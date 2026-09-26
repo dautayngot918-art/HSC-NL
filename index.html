@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Theo Dõi Loét Tì Đè - ICU BV Bệnh Nhiệt Đới</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React & Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#16a394',
+              tealLight: '#2dd4bf',
+              darkBg: '#0f1717',
+              darkCard: '#1a2324',
+              darkCardHover: '#222f30',
+              borderDark: '#283637',
+              accentRed: '#ef4444',
+              accentOrange: '#f97316',
+              accentYellow: '#eab308',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0b1112;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Thanh cuộn tối */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a3d3e;
+      border-radius: 4px;
+    }
+    .custom-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+</head>
+<body class="flex justify-center min-h-screen bg-black">
+  <div id="root" class="w-full max-w-md bg-[#0d1415] min-h-screen pb-24 relative shadow-2xl overflow-x-hidden flex flex-col"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    // --- DỮ LIỆU MẪU BAN ĐẦU ---
+    const INITIAL_PATIENTS = [
+      {
+        id: "HS-08",
+        code: "26-040239",
+        name: "Nguyễn Thị Dung",
+        age: 49,
+        bed: "HS-08",
+        days: 9,
+        waterlow: 23,
+        status: "treating", // treating | discharged
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 3 ngày 15 giờ",
+        lastTurnHours: 63,
+        turnTargetHours: 2,
+        unhandledNotes: 1,
+        noteContent: "Lưu ý kiểm tra đỏ vùng cùng cụt",
+        overdueAssessment: "Quá hạn 3 ngày 15 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-11",
+        code: "26-040242",
+        name: "Đỗ Ngọc Hoa",
+        age: 71,
+        bed: "HS-11",
+        days: 13,
+        waterlow: 31,
+        status: "treating",
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 3 ngày 14 giờ",
+        lastTurnHours: 62,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 3 ngày 14 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-07",
+        code: "26-040238",
+        name: "Phan Hữu Hùng",
+        age: 78,
+        bed: "HS-07",
+        days: 11,
+        waterlow: 25,
+        status: "treating",
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 3 ngày 13 giờ",
+        lastTurnHours: 61,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 3 ngày 13 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-10",
+        code: "26-040241",
+        name: "Nguyễn Thanh Khoa",
+        age: 42,
+        bed: "HS-10",
+        days: 16,
+        waterlow: 29,
+        status: "treating",
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 3 ngày 12 giờ",
+        lastTurnHours: 60,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 3 ngày 12 giờ",
+        turnsLast24h: 0,
+        injuries: 1
+      },
+      {
+        id: "HS-03",
+        code: "26-040234",
+        name: "Phạm Thu Linh",
+        age: 49,
+        bed: "HS-03",
+        days: 17,
+        waterlow: 23,
+        status: "treating",
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 3 ngày 13 giờ",
+        lastTurnHours: 61,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 3 ngày 13 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-04",
+        code: "26-040235",
+        name: "Phạm Hữu Hùng",
+        age: 65,
+        bed: "HS-04",
+        days: 8,
+        waterlow: 19,
+        status: "treating",
+        riskLevel: "Nguy cơ cao",
+        overdueTime: "Quá hạn 4 ngày 13 giờ",
+        lastTurnHours: 61,
+        turnTargetHours: 2,
+        unhandledNotes: 1,
+        noteContent: "Lưu ý chưa tiếp nhận",
+        overdueAssessment: "Quá hạn đánh giá 4 ngày 13 giờ",
+        turnsLast24h: 0,
+        injuries: 1
+      },
+      {
+        id: "HS-02",
+        code: "26-040233",
+        name: "Phan Đức Thắng",
+        age: 60,
+        bed: "HS-02",
+        days: 10,
+        waterlow: 20,
+        status: "treating",
+        riskLevel: "Nguy cơ rất cao",
+        overdueTime: "Quá hạn 2 ngày 5 giờ",
+        lastTurnHours: 61,
+        turnTargetHours: 2,
+        unhandledNotes: 1,
+        noteContent: "Lưu ý chưa ghi kết quả",
+        overdueAssessment: "Quá hạn đánh giá 2 ngày 5 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-09",
+        code: "26-040240",
+        name: "Nguyễn Minh Nam",
+        age: 55,
+        bed: "HS-09",
+        days: 3,
+        waterlow: null,
+        status: "treating",
+        riskLevel: "Chưa đánh giá",
+        overdueTime: "Chưa đánh giá lần đầu",
+        lastTurnHours: 61,
+        turnTargetHours: 3,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Chưa đánh giá lần đầu",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-05",
+        code: "26-040236",
+        name: "Dương Công Cường",
+        age: 58,
+        bed: "HS-05",
+        days: 12,
+        waterlow: 19,
+        status: "treating",
+        riskLevel: "Nguy cơ cao",
+        overdueTime: "Quá hạn 2 ngày 13 giờ",
+        lastTurnHours: 61,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 2 ngày 13 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      },
+      {
+        id: "HS-01",
+        code: "26-040232",
+        name: "Lê Tấn Khoa",
+        age: 63,
+        bed: "HS-01",
+        days: 14,
+        waterlow: 19,
+        status: "treating",
+        riskLevel: "Nguy cơ cao",
+        overdueTime: "Quá hạn 4 ngày 20 giờ",
+        lastTurnHours: 60,
+        turnTargetHours: 2,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 4 ngày 20 giờ",
+        turnsLast24h: 0,
+        injuries: 1
+      },
+      {
+        id: "HS-12",
+        code: "26-040243",
+        name: "Ngô Thanh Chi",
+        age: 52,
+        bed: "HS-12",
+        days: 10,
+        waterlow: 14,
+        status: "treating",
+        riskLevel: "Có nguy cơ",
+        overdueTime: "Quá hạn 3 ngày 20 giờ",
+        lastTurnHours: 60,
+        turnTargetHours: 3,
+        unhandledNotes: 0,
+        noteContent: "",
+        overdueAssessment: "Quá hạn 3 ngày 20 giờ",
+        turnsLast24h: 0,
+        injuries: 0
+      }
+    ];
+
+    function App() {
+      const [isLoggedIn, setIsLoggedIn] = useState(true);
+      const [currentUser, setCurrentUser] = useState({ name: "Trần Văn An", role: "Điều dưỡng", username: "dd.an" });
+      const [currentTab, setCurrentTab] = useState("home"); // home | patients | tasks | handover | account
+      const [patients, setPatients] = useState(INITIAL_PATIENTS);
+
+      // Modal & View States
+      const [viewMode, setViewMode] = useState("card"); // 'card' | 'table'
+      const [showSortMenu, setShowSortMenu] = useState(false);
+      const [showTimeMenu, setShowTimeMenu] = useState(false);
+      const [selectedSort, setSelectedSort] = useState("Ưu tiên chăm sóc");
+      const [selectedTime, setSelectedTime] = useState("Mọi thời điểm");
+      const [searchQuery, setSearchQuery] = useState("");
+      const [patientTabFilter, setPatientTabFilter] = useState("treating"); // 'treating' | 'discharged' | 'all'
+
+      // Bộ lọc riêng cho tab Cần lưu ý
+      const [taskFilter, setTaskFilter] = useState("all"); // 'all' | 'turn' | 'assessment' | 'notes'
+      const [taskSearchQuery, setTaskSearchQuery] = useState("");
+      const [taskSort, setTaskSort] = useState("Ưu tiên chăm sóc");
+      const [taskTime, setTaskTime] = useState("Mọi thời điểm");
+      const [showTaskSortMenu, setShowTaskSortMenu] = useState(false);
+      const [showTaskTimeMenu, setShowTaskTimeMenu] = useState(false);
+
+      // Thang điểm Waterlow Modal State
+      const [waterlowModalPatient, setWaterlowModalPatient] = useState(null);
+      const [newPatientModalOpen, setNewPatientModalOpen] = useState(false);
+      const [toastMessage, setToastMessage] = useState("");
+
+      const showToast = (msg) => {
+        setToastMessage(msg);
+        setTimeout(() => setToastMessage(""), 2500);
+      };
+
+      // Xoay trở cả buồng
+      const handleBulkTurn = () => {
+        setPatients(prev => prev.map(p => ({
+          ...p,
+          lastTurnHours: 0,
+          turnsLast24h: p.turnsLast24h + 1
+        })));
+        showToast("Đã ghi xoay trở thành công cho cả buồng!");
+      };
+
+      // Xoay trở 1 người bệnh
+      const handleSingleTurn = (patientId) => {
+        setPatients(prev => prev.map(p => p.id === patientId ? {
+          ...p,
+          lastTurnHours: 0,
+          turnsLast24h: p.turnsLast24h + 1
+        } : p));
+        showToast("Đã ghi nhận xoay trở người bệnh!");
+      };
+
+      // Xử lý lưu ý của người bệnh
+      const handleResolveNote = (patientId) => {
+        setPatients(prev => prev.map(p => p.id === patientId ? {
+          ...p,
+          unhandledNotes: 0,
+          noteContent: ""
+        } : p));
+        showToast("Đã xác nhận xử lý lưu ý!");
+      };
+
+      // Render Badge Nguy Cơ
+      const renderRiskBadge = (level, score) => {
+        if (!level || level === "Chưa đánh giá") {
+          return <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-medium border border-slate-700">Chưa đánh giá</span>;
+        }
+        if (level === "Nguy cơ rất cao") {
+          return <span className="text-[11px] px-2 py-0.5 rounded-full bg-[#3c1820] text-[#f87171] font-medium border border-[#dc2626]/40 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>Nguy cơ rất cao</span>;
+        }
+        if (level === "Nguy cơ cao") {
+          return <span className="text-[11px] px-2 py-0.5 rounded-full bg-[#352516] text-[#fb923c] font-medium border border-[#ea580c]/40 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>Nguy cơ cao</span>;
+        }
+        return <span className="text-[11px] px-2 py-0.5 rounded-full bg-[#302b16] text-[#facc15] font-medium border border-[#ca8a04]/40 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>Có nguy cơ</span>;
+      };
+
+      // Danh sách Người bệnh sau khi lọc & sắp xếp
+      const filteredPatients = useMemo(() => {
+        return patients
+          .filter(p => {
+            if (patientTabFilter === "treating") return p.status === "treating";
+            if (patientTabFilter === "discharged") return p.status === "discharged";
+            return true;
+          })
+          .filter(p => {
+            if (!searchQuery.trim()) return true;
+            const q = searchQuery.toLowerCase();
+            return p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.bed.toLowerCase().includes(q);
+          })
+          .sort((a, b) => {
+            if (selectedSort === "Tên A → Z") return a.name.localeCompare(b.name, 'vi');
+            if (selectedSort === "Tên Z → A") return b.name.localeCompare(a.name, 'vi');
+            if (selectedSort === "Theo giường") return a.bed.localeCompare(b.bed);
+            if (selectedSort === "Điểm Waterlow cao nhất") return (b.waterlow || 0) - (a.waterlow || 0);
+            // Default "Ưu tiên chăm sóc"
+            return (b.waterlow || 0) - (a.waterlow || 0);
+          });
+      }, [patients, patientTabFilter, searchQuery, selectedSort]);
+
+      // Danh sách Cần lưu ý / Việc cần làm sau khi lọc & sắp xếp
+      const filteredTaskPatients = useMemo(() => {
+        return patients
+          .filter(p => p.status === "treating")
+          .filter(p => {
+            if (!taskSearchQuery.trim()) return true;
+            const q = taskSearchQuery.toLowerCase();
+            return p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.bed.toLowerCase().includes(q);
+          })
+          .filter(p => {
+            if (taskFilter === "turn") return p.lastTurnHours >= p.turnTargetHours;
+            if (taskFilter === "assessment") return p.overdueAssessment || !p.waterlow;
+            if (taskFilter === "notes") return p.unhandledNotes > 0;
+            return true; // "all"
+          })
+          .sort((a, b) => {
+            if (taskSort === "Tên A → Z") return a.name.localeCompare(b.name, 'vi');
+            if (taskSort === "Tên Z → A") return b.name.localeCompare(a.name, 'vi');
+            if (taskSort === "Theo giường") return a.bed.localeCompare(b.bed);
+            if (taskSort === "Điểm Waterlow cao nhất") return (b.waterlow || 0) - (a.waterlow || 0);
+            if (taskSort === "Quá hạn nhiều nhất") return (b.lastTurnHours || 0) - (a.lastTurnHours || 0);
+            return (b.waterlow || 0) - (a.waterlow || 0);
+          });
+      }, [patients, taskFilter, taskSearchQuery, taskSort]);
+
+      // Thống kê nhanh
+      const highRiskCount = patients.filter(p => p.status === "treating" && (p.riskLevel === "Nguy cơ rất cao" || p.riskLevel === "Nguy cơ cao")).length;
+      const needTurnCount = patients.filter(p => p.status === "treating" && p.lastTurnHours >= p.turnTargetHours).length;
+      const unhandledNotesCount = patients.filter(p => p.status === "treating" && p.unhandledNotes > 0).length;
+
+      // ----------------------------------------------------
+      // MÀN HÌNH ĐĂNG NHẬP
+      // ----------------------------------------------------
+      if (!isLoggedIn) {
+        return (
+          <div className="flex-1 flex flex-col p-6 justify-center items-center">
+            <div className="w-16 h-16 rounded-2xl bg-[#16a394]/20 border border-[#16a394]/40 flex items-center justify-center text-teal-400 mb-6 shadow-lg shadow-teal-900/20">
+              <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+
+            <h1 className="text-xl font-bold text-slate-100 text-center">Đánh giá & theo dõi loét tì đè</h1>
+            <p className="text-xs text-slate-400 text-center mt-1 mb-8">Khoa Hồi sức tích cực — Bệnh viện Bệnh Nhiệt đới</p>
+
+            <div className="w-full bg-[#162021] border border-[#243335] rounded-2xl p-5 shadow-xl space-y-4">
+              <div>
+                <label className="text-xs text-slate-400 mb-1.5 block">Tên đăng nhập</label>
+                <input
+                  type="text"
+                  defaultValue="dd.an"
+                  className="w-full bg-[#101718] border border-[#2b3c3e] rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400"
+                  placeholder="vd: dd.an"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs text-slate-400 mb-1.5 block">Mật khẩu</label>
+                <input
+                  type="password"
+                  defaultValue="123456"
+                  className="w-full bg-[#101718] border border-[#2b3c3e] rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400"
+                  placeholder="••••••"
+                />
+              </div>
+
+              <div className="bg-[#122223] border border-[#1b3e3e] rounded-xl p-3 text-xs text-slate-300 flex items-start gap-2.5 leading-relaxed">
+                <span className="text-teal-400 mt-0.5">ℹ</span>
+                <span>Đăng nhập bằng tài khoản riêng của bạn đồng nghĩa với việc <strong>ký xác nhận</strong> mọi thao tác thực hiện sau đó. Không dùng chung tài khoản.</span>
+              </div>
+
+              <button
+                onClick={() => setIsLoggedIn(true)}
+                className="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold py-3 rounded-xl transition duration-150 shadow-md text-sm mt-2"
+              >
+                Đăng nhập
+              </button>
+            </div>
+
+            <div className="w-full bg-[#141d1e] border border-[#233133] rounded-xl p-4 mt-6 text-center text-xs text-slate-400">
+              <p>Máy này đang chạy <strong>dữ liệu mẫu</strong>, người bệnh hoàn toàn hư cấu.</p>
+              <p className="mt-1">Đăng nhập: <code className="text-teal-300">ddt.chau</code> (điều dưỡng trưởng) hoặc <code className="text-teal-300">dd.an</code> — mật khẩu <code className="text-teal-300">123456</code></p>
+              <button className="mt-3 w-full py-2 bg-[#1b2628] hover:bg-[#233134] text-slate-200 border border-[#2d3e40] rounded-lg font-medium text-xs">
+                Nối vào kho dữ liệu của khoa
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      // ----------------------------------------------------
+      // APP CHÍNH VỚI 5 TAB
+      // ----------------------------------------------------
+      return (
+        <div className="flex-1 flex flex-col relative text-slate-200">
+          {/* TOAST THÔNG BÁO */}
+          {toastMessage && (
+            <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-teal-500 text-slate-950 px-4 py-2 rounded-full font-medium text-xs shadow-2xl flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
+              {toastMessage}
+            </div>
+          )}
+
+          {/* TOP BAR CHUNG */}
+          <header className="px-4 pt-4 pb-2 flex justify-between items-center bg-[#0d1415] sticky top-0 z-30 border-b border-[#1c292b]">
+            <div>
+              <h1 className="text-lg font-bold text-white tracking-tight">
+                {currentTab === "home" && "Tổng quan"}
+                {currentTab === "patients" && "Người bệnh"}
+                {currentTab === "tasks" && "Cần lưu ý"}
+                {currentTab === "handover" && "Giao ban ca"}
+                {currentTab === "account" && "Tài khoản"}
+              </h1>
+              <p className="text-[11px] text-slate-400">
+                {currentTab === "patients" ? `${patients.filter(p=>p.status==="treating").length} đang điều trị` : "Bệnh viện Bệnh Nhiệt đới"}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button className="p-2 rounded-xl bg-[#172223] text-slate-300 border border-[#233133]">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+              </button>
+            </div>
+          </header>
+
+          {/* NỘI DUNG TỪNG TAB */}
+          <main className="flex-1 px-4 py-3">
+            {/* ======================================================== */}
+            {/* TAB 1: TỔNG QUAN                                         */}
+            {/* ======================================================== */}
+            {currentTab === "home" && (
+              <div className="space-y-4">
+                {/* Greeting Card */}
+                <div className="bg-[#141e1f] border border-[#223133] rounded-2xl p-4 relative overflow-hidden">
+                  <span className="text-[10px] font-semibold text-teal-400 uppercase tracking-wider block mb-0.5">Khoa Hồi Sức Tích Cực</span>
+                  <h2 className="text-lg font-bold text-white">Chào buổi sáng, An</h2>
+                  <p className="text-xs text-slate-400 mt-1">Điều dưỡng · phiên làm việc bắt đầu 10:51 ngày 26/09/2026</p>
+                </div>
+
+                {/* 4 Chỉ Số Thống Kê Nhanh */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3">
+                    <span className="text-xs text-slate-400 block mb-1">Người bệnh đang điều trị</span>
+                    <div className="text-2xl font-bold text-white leading-tight">12</div>
+                    <span className="text-[11px] text-red-400 mt-1 block">{highRiskCount} ca nguy cơ cao trở lên</span>
+                  </div>
+
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3">
+                    <span className="text-xs text-slate-400 block mb-1">Đến hạn đánh giá</span>
+                    <div className="text-2xl font-bold text-orange-400 leading-tight">12</div>
+                    <span className="text-[11px] text-slate-400 mt-1 block">1 ca chưa đánh giá lần nào</span>
+                  </div>
+
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3">
+                    <span className="text-xs text-slate-400 block mb-1">Đã tới lúc xoay trở</span>
+                    <div className="text-2xl font-bold text-orange-400 leading-tight">{needTurnCount}</div>
+                    <span className="text-[11px] text-slate-400 mt-1 block">quá khoảng cách mục tiêu của khoa</span>
+                  </div>
+
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3">
+                    <span className="text-xs text-slate-400 block mb-1">Cần lưu ý chưa xử lý</span>
+                    <div className="text-2xl font-bold text-red-400 leading-tight">{unhandledNotesCount}</div>
+                    <span className="text-[11px] text-slate-400 mt-1 block">{unhandledNotesCount} mục chưa tiếp nhận</span>
+                  </div>
+                </div>
+
+                {/* Khối Xoay Trở Nhanh */}
+                <div className="space-y-2 pt-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1 h-3.5 bg-teal-400 rounded-full"></span>
+                    <h3 className="text-sm font-semibold text-white">Xoay trở buồng bệnh</h3>
+                  </div>
+                  <p className="text-xs text-slate-400">{needTurnCount} người bệnh đã tới lúc xoay trở theo phác đồ</p>
+
+                  <button
+                    onClick={handleBulkTurn}
+                    className="w-full bg-[#f97316] hover:bg-[#ea580c] text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/40 text-sm transition"
+                  >
+                    <svg className="w-5 h-5 animate-spin-reverse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Ghi xoay trở cả buồng (12 người bệnh)
+                  </button>
+                </div>
+
+                {/* Banner chuyển sang Cần lưu ý */}
+                <div 
+                  onClick={() => setCurrentTab("tasks")}
+                  className="bg-[#182324] border border-[#27383a] rounded-2xl p-4 flex items-center justify-between cursor-pointer hover:bg-[#202f31] transition"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-sm">
+                      {patients.filter(p => p.status === "treating" && (p.lastTurnHours >= p.turnTargetHours || p.unhandledNotes > 0)).length}
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-semibold text-white">Xem danh sách Việc Cần Làm</h4>
+                      <p className="text-[11px] text-slate-400">Chuyển sang trang Cần lưu ý để lọc và xử lý chi tiết</p>
+                    </div>
+                  </div>
+                  <span className="text-teal-400 text-xs font-medium">Mở tab →</span>
+                </div>
+              </div>
+            )}
+
+            {/* ======================================================== */}
+            {/* TAB 2: NGƯỜI BỆNH                                        */}
+            {/* ======================================================== */}
+            {currentTab === "patients" && (
+              <div className="space-y-3">
+                {/* Search & Add New */}
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </span>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Tìm theo tên hoặc mã hồ sơ"
+                      className="w-full bg-[#152122] border border-[#223335] rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <button 
+                    onClick={() => setNewPatientModalOpen(true)}
+                    className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1 shrink-0"
+                  >
+                    <span>+ Hồ sơ mới</span>
+                  </button>
+                </div>
+
+                {/* 3 Status Filter Buttons */}
+                <div className="grid grid-cols-3 gap-1.5 bg-[#121c1d] p-1 rounded-xl border border-[#1f2d2f]">
+                  <button
+                    onClick={() => setPatientTabFilter("treating")}
+                    className={`py-1.5 text-center rounded-lg text-xs font-semibold transition ${patientTabFilter === "treating" ? "bg-teal-500 text-slate-950 shadow" : "text-slate-400 hover:text-white"}`}
+                  >
+                    Đang điều trị<br/><span className="text-[10px]">12</span>
+                  </button>
+                  <button
+                    onClick={() => setPatientTabFilter("discharged")}
+                    className={`py-1.5 text-center rounded-lg text-xs font-semibold transition ${patientTabFilter === "discharged" ? "bg-teal-500 text-slate-950 shadow" : "text-slate-400 hover:text-white"}`}
+                  >
+                    Đã kết thúc<br/><span className="text-[10px]">132</span>
+                  </button>
+                  <button
+                    onClick={() => setPatientTabFilter("all")}
+                    className={`py-1.5 text-center rounded-lg text-xs font-semibold transition ${patientTabFilter === "all" ? "bg-teal-500 text-slate-950 shadow" : "text-slate-400 hover:text-white"}`}
+                  >
+                    Tất cả<br/><span className="text-[10px]">144</span>
+                  </button>
+                </div>
+
+                {/* Filter & Sort Dropdowns */}
+                <div className="grid grid-cols-2 gap-2 text-xs relative">
+                  <div>
+                    <span className="text-[11px] text-slate-400 mb-1 block">Thời gian</span>
+                    <button
+                      onClick={() => { setShowTimeMenu(!showTimeMenu); setShowSortMenu(false); }}
+                      className="w-full bg-[#152122] border border-[#243436] rounded-xl px-3 py-2 text-left flex justify-between items-center text-slate-200"
+                    >
+                      <span>{selectedTime}</span>
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    {/* Time Menu Popup */}
+                    {showTimeMenu && (
+                      <div className="absolute left-0 mt-1 w-52 bg-[#1b2628] border border-[#2b3c3e] rounded-xl shadow-2xl z-40 py-1 text-xs">
+                        {["Mọi thời điểm", "7 ngày gần nhất", "30 ngày gần nhất", "Tháng này", "Tháng trước"].map((item) => (
+                          <div
+                            key={item}
+                            onClick={() => { setSelectedTime(item); setShowTimeMenu(false); }}
+                            className={`px-3 py-2 cursor-pointer hover:bg-teal-600/20 flex items-center justify-between ${selectedTime === item ? "text-teal-300 font-bold" : "text-slate-200"}`}
+                          >
+                            <span>{item}</span>
+                            {selectedTime === item && <span>✓</span>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] text-slate-400 mb-1 block">Sắp xếp</span>
+                    <button
+                      onClick={() => { setShowSortMenu(!showSortMenu); setShowTimeMenu(false); }}
+                      className="w-full bg-[#152122] border border-[#243436] rounded-xl px-3 py-2 text-left flex justify-between items-center text-slate-200"
+                    >
+                      <span className="truncate">{selectedSort}</span>
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    {/* Sort Menu Popup */}
+                    {showSortMenu && (
+                      <div className="absolute right-0 mt-1 w-56 bg-[#1b2628] border border-[#2b3c3e] rounded-xl shadow-2xl z-40 py-1 text-xs">
+                        {[
+                          "Ưu tiên chăm sóc",
+                          "Tên A → Z",
+                          "Tên Z → A",
+                          "Theo giường",
+                          "Nhập viện mới nhất",
+                          "Nhập viện lâu nhất",
+                          "Điểm Waterlow cao nhất"
+                        ].map((item) => (
+                          <div
+                            key={item}
+                            onClick={() => { setSelectedSort(item); setShowSortMenu(false); }}
+                            className={`px-3 py-2 cursor-pointer hover:bg-teal-600/20 flex items-center justify-between ${selectedSort === item ? "text-teal-300 font-bold" : "text-slate-200"}`}
+                          >
+                            <span>{item}</span>
+                            {selectedSort === item && <span>✓</span>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* View Switch Buttons (Thẻ / Bảng) */}
+                <div className="flex justify-end">
+                  <div className="bg-[#121c1d] border border-[#202f31] rounded-xl p-0.5 flex">
+                    <button
+                      onClick={() => setViewMode("card")}
+                      className={`px-3 py-1 rounded-lg text-xs font-medium transition ${viewMode === "card" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                    >
+                      Thẻ
+                    </button>
+                    <button
+                      onClick={() => setViewMode("table")}
+                      className={`px-3 py-1 rounded-lg text-xs font-medium transition ${viewMode === "table" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                    >
+                      Bảng
+                    </button>
+                  </div>
+                </div>
+
+                {/* DANH SÁCH DẠNG THẺ */}
+                {viewMode === "card" && (
+                  <div className="space-y-2.5">
+                    {filteredPatients.map((p) => (
+                      <div
+                        key={p.id}
+                        className="bg-[#162122] border border-[#233335] rounded-2xl p-3.5 flex justify-between items-center relative overflow-hidden shadow-sm hover:border-[#32494c] transition"
+                      >
+                        {/* Red Accent Left Indicator */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-rose-500"></div>
+
+                        <div className="pl-1">
+                          <h4 className="text-sm font-bold text-white">{p.name}</h4>
+                          <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5">
+                            <span>{p.code}</span>
+                            <span>·</span>
+                            <span>{p.age} tuổi</span>
+                            <span>·</span>
+                            <span className="font-semibold text-slate-300">{p.bed}</span>
+                          </div>
+                          <div className="text-[11px] text-rose-400 font-medium mt-1">
+                            {p.overdueTime}
+                          </div>
+                        </div>
+
+                        <div 
+                          onClick={() => setWaterlowModalPatient(p)}
+                          className="text-right cursor-pointer bg-[#1c2a2c] hover:bg-[#233638] px-3 py-1.5 rounded-xl border border-[#2b3e40] transition"
+                        >
+                          <div className="text-xl font-bold text-slate-100 leading-tight">
+                            {p.waterlow !== null ? p.waterlow : "--"}
+                          </div>
+                          <span className="text-[9px] font-semibold text-slate-400 block tracking-wider uppercase">
+                            WATERLOW
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* DANH SÁCH DẠNG BẢNG (NGANG CUỘN) */}
+                {viewMode === "table" && (
+                  <div className="bg-[#141e1f] border border-[#223335] rounded-2xl overflow-hidden shadow">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-xs text-slate-300">
+                        <thead className="bg-[#182526] text-[10px] text-slate-400 uppercase tracking-wider border-b border-[#233335]">
+                          <tr>
+                            <th className="py-2.5 px-3">Người bệnh</th>
+                            <th className="py-2.5 px-2">Mã HS</th>
+                            <th className="py-2.5 px-2">Giường</th>
+                            <th className="py-2.5 px-2">Ngày</th>
+                            <th className="py-2.5 px-2">Waterlow</th>
+                            <th className="py-2.5 px-3">Mức</th>
+                            <th className="py-2.5 px-3">Xoay 24h</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-[#1e2c2e]">
+                          {filteredPatients.map(p => (
+                            <tr key={p.id} className="hover:bg-[#1a2729]">
+                              <td className="py-2.5 px-3 font-semibold text-white whitespace-nowrap">{p.name}</td>
+                              <td className="py-2.5 px-2 text-slate-400 whitespace-nowrap">{p.code}</td>
+                              <td className="py-2.5 px-2 font-medium text-teal-300 whitespace-nowrap">{p.bed}</td>
+                              <td className="py-2.5 px-2 whitespace-nowrap">{p.days}</td>
+                              <td className="py-2.5 px-2 font-bold text-white whitespace-nowrap">{p.waterlow ?? '--'}</td>
+                              <td className="py-2.5 px-3 whitespace-nowrap">{renderRiskBadge(p.riskLevel, p.waterlow)}</td>
+                              <td className="py-2.5 px-3 whitespace-nowrap text-slate-400">{p.turnsLast24h} lượt</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ======================================================== */}
+            {/* TAB 3: CẦN LƯU Ý (VIỆC CẦN LÀM ĐẦY ĐỦ NHƯ HÌNH VÀ YÊU CẦU) */}
+            {/* ======================================================== */}
+            {currentTab === "tasks" && (
+              <div className="space-y-3">
+                {/* Header Tiêu Đề Mục Cần Lưu Ý */}
+                <div className="flex items-center justify-between pb-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-4 bg-teal-400 rounded-full"></span>
+                    <h2 className="text-base font-bold text-white tracking-tight">Việc cần làm</h2>
+                  </div>
+                  <span className="text-xs text-rose-400 font-semibold bg-rose-950/40 border border-rose-800/40 px-2.5 py-0.5 rounded-full">
+                    {patients.filter(p => p.status === "treating" && (p.lastTurnHours >= p.turnTargetHours || p.unhandledNotes > 0)).length} đang trễ
+                  </span>
+                </div>
+
+                {/* Thanh tìm kiếm */}
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  </span>
+                  <input
+                    type="text"
+                    value={taskSearchQuery}
+                    onChange={(e) => setTaskSearchQuery(e.target.value)}
+                    placeholder="Tìm theo tên hoặc mã hồ sơ cần xử lý..."
+                    className="w-full bg-[#152122] border border-[#223335] rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-400"
+                  />
+                </div>
+
+                {/* Bộ lọc phân loại công việc */}
+                <div className="grid grid-cols-4 gap-1 bg-[#121c1d] p-1 rounded-xl border border-[#1f2d2f] text-[11px]">
+                  <button
+                    onClick={() => setTaskFilter("all")}
+                    className={`py-1.5 rounded-lg font-medium transition text-center ${taskFilter === "all" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                  >
+                    Tất cả
+                  </button>
+                  <button
+                    onClick={() => setTaskFilter("turn")}
+                    className={`py-1.5 rounded-lg font-medium transition text-center ${taskFilter === "turn" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                  >
+                    Xoay trở
+                  </button>
+                  <button
+                    onClick={() => setTaskFilter("assessment")}
+                    className={`py-1.5 rounded-lg font-medium transition text-center ${taskFilter === "assessment" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                  >
+                    Đánh giá
+                  </button>
+                  <button
+                    onClick={() => setTaskFilter("notes")}
+                    className={`py-1.5 rounded-lg font-medium transition text-center ${taskFilter === "notes" ? "bg-teal-500 text-slate-950 font-bold" : "text-slate-400"}`}
+                  >
+                    Lưu ý
+                  </button>
+                </div>
+
+                {/* Bộ lọc Thời gian & Sắp xếp */}
+                <div className="grid grid-cols-2 gap-2 text-xs relative">
+                  <div>
+                    <span className="text-[11px] text-slate-400 mb-1 block">Thời gian</span>
+                    <button
+                      onClick={() => { setShowTaskTimeMenu(!showTaskTimeMenu); setShowTaskSortMenu(false); }}
+                      className="w-full bg-[#152122] border border-[#243436] rounded-xl px-3 py-2 text-left flex justify-between items-center text-slate-200"
+                    >
+                      <span className="truncate">{taskTime}</span>
+                      <svg className="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    {showTaskTimeMenu && (
+                      <div className="absolute left-0 mt-1 w-52 bg-[#1b2628] border border-[#2b3c3e] rounded-xl shadow-2xl z-40 py-1 text-xs">
+                        {["Mọi thời điểm", "24 giờ qua", "3 ngày gần nhất", "7 ngày gần nhất"].map((item) => (
+                          <div
+                            key={item}
+                            onClick={() => { setTaskTime(item); setShowTaskTimeMenu(false); }}
+                            className={`px-3 py-2 cursor-pointer hover:bg-teal-600/20 flex items-center justify-between ${taskTime === item ? "text-teal-300 font-bold" : "text-slate-200"}`}
+                          >
+                            <span>{item}</span>
+                            {taskTime === item && <span>✓</span>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] text-slate-400 mb-1 block">Sắp xếp</span>
+                    <button
+                      onClick={() => { setShowTaskSortMenu(!showTaskSortMenu); setShowTaskTimeMenu(false); }}
+                      className="w-full bg-[#152122] border border-[#243436] rounded-xl px-3 py-2 text-left flex justify-between items-center text-slate-200"
+                    >
+                      <span className="truncate">{taskSort}</span>
+                      <svg className="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    {showTaskSortMenu && (
+                      <div className="absolute right-0 mt-1 w-56 bg-[#1b2628] border border-[#2b3c3e] rounded-xl shadow-2xl z-40 py-1 text-xs">
+                        {[
+                          "Ưu tiên chăm sóc",
+                          "Quá hạn nhiều nhất",
+                          "Điểm Waterlow cao nhất",
+                          "Tên A → Z",
+                          "Theo giường"
+                        ].map((item) => (
+                          <div
+                            key={item}
+                            onClick={() => { setTaskSort(item); setShowTaskSortMenu(false); }}
+                            className={`px-3 py-2 cursor-pointer hover:bg-teal-600/20 flex items-center justify-between ${taskSort === item ? "text-teal-300 font-bold" : "text-slate-200"}`}
+                          >
+                            <span>{item}</span>
+                            {taskSort === item && <span>✓</span>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* DANH SÁCH THẺ VIỆC CẦN LÀM (CHÍNH XÁC NHƯ SCREENSHOT 9) */}
+                <div className="space-y-3 pt-1">
+                  {filteredTaskPatients.length === 0 ? (
+                    <div className="bg-[#152021] border border-[#213032] rounded-2xl p-8 text-center text-xs text-slate-400">
+                      Không tìm thấy công việc nào phù hợp với bộ lọc hiện tại.
+                    </div>
+                  ) : (
+                    filteredTaskPatients.map((p) => (
+                      <div
+                        key={p.id}
+                        className="bg-[#152122] border border-[#233335] rounded-2xl p-4 space-y-2.5 shadow-sm hover:border-[#334a4c] transition"
+                      >
+                        {/* Hàng 1: Giường - Họ Tên - Badge Mức Độ */}
+                        <div className="flex items-center justify-between flex-wrap gap-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-semibold text-slate-400 bg-[#1c2a2c] px-2 py-0.5 rounded-md border border-[#2b3d40]">
+                              {p.bed}
+                            </span>
+                            <h3 className="text-sm font-bold text-white">{p.name}</h3>
+                          </div>
+                          <div>
+                            {renderRiskBadge(p.riskLevel, p.waterlow)}
+                          </div>
+                        </div>
+
+                        {/* Hàng 2: Điểm Waterlow */}
+                        {p.waterlow !== null ? (
+                          <div className="inline-block bg-[#1a2729] text-slate-300 text-[10px] font-medium px-2 py-0.5 rounded border border-[#25383a]">
+                            Waterlow {p.waterlow}
+                          </div>
+                        ) : (
+                          <div className="inline-block bg-[#1a2729] text-slate-400 text-[10px] font-medium px-2 py-0.5 rounded border border-[#25383a]">
+                            Chưa có điểm Waterlow
+                          </div>
+                        )}
+
+                        {/* Hàng 3: Danh sách các vấn đề cảnh báo cần xử lý */}
+                        <ul className="text-xs space-y-1 text-slate-300 pt-0.5">
+                          {p.unhandledNotes > 0 && (
+                            <li className="flex items-start gap-1.5 text-[#fb923c]">
+                              <span className="text-orange-400 font-bold">•</span>
+                              <span>{p.unhandledNotes} lưu ý chưa tiếp nhận {p.noteContent && `(${p.noteContent})`}</span>
+                            </li>
+                          )}
+
+                          {p.overdueAssessment && (
+                            <li className="flex items-start gap-1.5 text-[#f87171]">
+                              <span className="text-red-400 font-bold">•</span>
+                              <span>{p.overdueAssessment}</span>
+                            </li>
+                          )}
+
+                          {p.lastTurnHours > 0 ? (
+                            <li className="flex items-start gap-1.5 text-[#fb923c]">
+                              <span className="text-orange-400 font-bold">•</span>
+                              <span>
+                                Đã {Math.floor(p.lastTurnHours / 24)} ngày {p.lastTurnHours % 24} giờ chưa xoay — mục tiêu mỗi {p.turnTargetHours} giờ
+                              </span>
+                            </li>
+                          ) : (
+                            <li className="flex items-start gap-1.5 text-teal-400">
+                              <span className="font-bold">•</span>
+                              <span>Đã xoay trở đúng hạn</span>
+                            </li>
+                          )}
+                        </ul>
+
+                        {/* Hàng 4: 3 nút hành động nhanh */}
+                        <div className="grid grid-cols-3 gap-2 pt-1.5">
+                          <button
+                            onClick={() => handleSingleTurn(p.id)}
+                            className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-2 rounded-xl text-xs transition text-center shadow-sm"
+                          >
+                            Ghi xoay trở
+                          </button>
+
+                          <button
+                            onClick={() => setWaterlowModalPatient(p)}
+                            className="bg-[#1f2d2f] hover:bg-[#283b3d] text-slate-200 border border-[#2d4042] font-semibold py-2 rounded-xl text-xs transition text-center"
+                          >
+                            Đánh giá
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              if (p.unhandledNotes > 0) {
+                                handleResolveNote(p.id);
+                              } else {
+                                showToast(`Mở hồ sơ bệnh án của ${p.name}`);
+                              }
+                            }}
+                            className="bg-[#1f2d2f] hover:bg-[#283b3d] text-slate-200 border border-[#2d4042] font-semibold py-2 rounded-xl text-xs transition text-center"
+                          >
+                            {p.unhandledNotes > 0 ? "Xem lưu ý" : "Mở hồ sơ"}
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ======================================================== */}
+            {/* TAB 4: GIAO BAN                                          */}
+            {/* ======================================================== */}
+            {currentTab === "handover" && (
+              <div className="space-y-4">
+                <div className="bg-[#152122] border border-[#223335] rounded-2xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-1.5 h-3.5 bg-teal-400 rounded-full"></span>
+                    <h3 className="text-sm font-bold text-white">Sổ giao ban ca trực ICU</h3>
+                  </div>
+                  <p className="text-xs text-slate-400 mb-3">Tổng hợp nguy cơ loét tì đè và bàn giao chăm sóc ca trực.</p>
+
+                  <div className="bg-[#11191a] border border-[#202e30] rounded-xl p-3 text-xs space-y-2 text-slate-300">
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Tổng số người bệnh:</span>
+                      <span className="font-bold text-white">12</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Nguy cơ rất cao (Waterlow ≥ 20):</span>
+                      <span className="font-bold text-red-400">{patients.filter(p=>p.waterlow >= 20).length}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Đang có tổn thương da / tì đè:</span>
+                      <span className="font-bold text-orange-400">{patients.filter(p=>p.injuries > 0).length}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Lưu ý chưa bàn giao xong:</span>
+                      <span className="font-bold text-yellow-400">{unhandledNotesCount}</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <label className="text-xs text-slate-400 mb-1 block">Nội dung ghi chú ca trực</label>
+                    <textarea
+                      rows="3"
+                      placeholder="Nhập nội dung dặn dò ca sau về các ca loét tì đè nặng..."
+                      className="w-full bg-[#11191a] border border-[#25383a] rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-teal-400"
+                    ></textarea>
+                  </div>
+
+                  <button
+                    onClick={() => showToast("Đã lưu biên bản giao ban thành công!")}
+                    className="w-full mt-3 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition"
+                  >
+                    Ký xác nhận bàn giao ca
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ======================================================== */}
+            {/* TAB 5: TÀI KHOẢN                                         */}
+            {/* ======================================================== */}
+            {currentTab === "account" && (
+              <div className="space-y-3">
+                {/* Thông tin cá nhân */}
+                <div className="bg-[#152122] border border-[#223335] rounded-2xl p-4 flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-500/30 text-teal-400 flex items-center justify-center font-bold text-lg">
+                    {currentUser.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-white">{currentUser.name}</h3>
+                    <p className="text-xs text-slate-400">{currentUser.role} · {currentUser.username}</p>
+                  </div>
+                </div>
+
+                {/* Thống kê cá nhân */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3.5">
+                    <span className="text-xs text-slate-400 block mb-1">Lượt đánh giá hôm nay</span>
+                    <span className="text-2xl font-bold text-white">0</span>
+                  </div>
+                  <div className="bg-[#152122] border border-[#223335] rounded-2xl p-3.5">
+                    <span className="text-xs text-slate-400 block mb-1">Tổng lượt đã thực hiện</span>
+                    <span className="text-2xl font-bold text-white">319</span>
+                  </div>
+                </div>
+
+                {/* Bảo Mật */}
+                <div className="bg-[#152122] border border-[#223335] rounded-2xl p-4 space-y-3">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-3.5 bg-teal-400 rounded-full"></span>
+                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">Bảo mật</h4>
+                  </div>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={() => showToast("Chức năng đổi mật khẩu đang kết nối máy chủ BV")}
+                      className="flex-1 bg-[#1c2a2c] hover:bg-[#25373a] text-slate-200 border border-[#2a3c3e] py-2 rounded-xl text-xs font-semibold"
+                    >
+                      Đổi mật khẩu
+                    </button>
+                    <button 
+                      onClick={() => setIsLoggedIn(false)}
+                      className="flex-1 bg-[#2e181c] hover:bg-[#3d1e24] text-rose-300 border border-[#4d232a] py-2 rounded-xl text-xs font-semibold"
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+                    Hệ thống tự khoá sau 20 phút không thao tác. Mọi lượt đánh giá đều lưu tên và thời điểm của người thực hiện, không thể sửa hay xoá.
+                  </p>
+                </div>
+
+                {/* Về ứng dụng */}
+                <div className="bg-[#152122] border border-[#223335] rounded-2xl p-4 space-y-2 text-xs text-slate-300">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-3.5 bg-teal-400 rounded-full"></span>
+                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">Về ứng dụng</h4>
+                  </div>
+                  <p className="leading-relaxed text-slate-400 text-[11px]">
+                    Phiên bản 1.6.2 · Thang điểm <strong>Waterlow</strong> (bản sửa đổi 2005), phân độ tổn thương theo <strong>NPIAP/EPUAP</strong>. Ứng dụng hỗ trợ ghi nhận và theo dõi, <strong>không thay thế</strong> đánh giá lâm sàng trực tiếp của điều dưỡng và bác sĩ.
+                  </p>
+                  <p className="text-[11px] text-teal-400 pt-1">
+                    Chế độ dữ liệu: <strong>Lưu trên máy này</strong>
+                  </p>
+                </div>
+              </div>
+            )}
+          </main>
+
+          {/* ======================================================== */}
+          {/* MODAL THANG ĐIỂM WATERLOW (CALCULATOR)                   */}
+          {/* ======================================================== */}
+          {waterlowModalPatient && (
+            <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+              <div className="w-full max-w-md bg-[#131d1e] border border-[#27393b] rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-200">
+                {/* Modal Header */}
+                <div className="px-5 py-3.5 border-b border-[#213032] flex justify-between items-center bg-[#172325]">
+                  <div>
+                    <h3 className="text-sm font-bold text-white">Đánh giá thang điểm Waterlow</h3>
+                    <p className="text-[11px] text-teal-400">{waterlowModalPatient.name} — {waterlowModalPatient.bed}</p>
+                  </div>
+                  <button 
+                    onClick={() => setWaterlowModalPatient(null)}
+                    className="p-1 rounded-lg text-slate-400 hover:text-white"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Modal Content - Waterlow criteria */}
+                <div className="p-4 overflow-y-auto space-y-4 text-xs">
+                  <div className="bg-[#172324] border border-[#27383a] p-3 rounded-xl">
+                    <span className="font-semibold text-teal-300 block mb-1">Quy định phân loại thang điểm Waterlow:</span>
+                    <div className="grid grid-cols-3 gap-1 text-[10px] text-center mt-2">
+                      <div className="p-1.5 rounded bg-yellow-950/40 text-yellow-300 border border-yellow-800/40">10-14: Có nguy cơ</div>
+                      <div className="p-1.5 rounded bg-orange-950/40 text-orange-300 border border-orange-800/40">15-19: Nguy cơ cao</div>
+                      <div className="p-1.5 rounded bg-red-950/40 text-red-300 border border-red-800/40">≥20: Rất cao</div>
+                    </div>
+                  </div>
+
+                  {/* 1. Thể trạng & Chiều cao */}
+                  <div>
+                    <label className="font-semibold text-slate-200 block mb-1.5">1. Xây dựng thể trạng / BMI</label>
+                    <select className="w-full bg-[#172223] border border-[#273739] rounded-xl p-2.5 text-xs text-slate-200">
+                      <option>Trung bình (BMI 20 - 24.9) — 0 điểm</option>
+                      <option>Trên trung bình (BMI 25 - 29.9) — 1 điểm</option>
+                      <option>Béo phì (BMI ≥ 30) — 2 điểm</option>
+                      <option>Dưới trung bình (BMI < 20) — 3 điểm</option>
+                    </select>
+                  </div>
+
+                  {/* 2. Loại da */}
+                  <div>
+                    <label className="font-semibold text-slate-200 block mb-1.5">2. Tình trạng da ở các vùng nguy cơ</label>
+                    <select className="w-full bg-[#172223] border border-[#273739] rounded-xl p-2.5 text-xs text-slate-200">
+                      <option>Khỏe mạnh — 0 điểm</option>
+                      <option>Mỏng manh như giấy lá hành — 1 điểm</option>
+                      <option>Khô ráp — 1 điểm</option>
+                      <option>Phù nề — 1 điểm</option>
+                      <option>Ứ đọng / đổi màu — 2 điểm</option>
+                      <option>Nứt nẻ / có vết loét độ I, II — 3 điểm</option>
+                    </select>
+                  </div>
+
+                  {/* 3. Giới tính & Tuổi */}
+                  <div>
+                    <label className="font-semibold text-slate-200 block mb-1.5">3. Độ tuổi</label>
+                    <select className="w-full bg-[#172223] border border-[#273739] rounded-xl p-2.5 text-xs text-slate-200">
+                      <option>14 - 49 tuổi — 1 điểm</option>
+                      <option>50 - 64 tuổi — 2 điểm</option>
+                      <option>65 - 74 tuổi — 3 điểm</option>
+                      <option>75 - 80 tuổi — 4 điểm</option>
+                      <option>≥ 81 tuổi — 5 điểm</option>
+                    </select>
+                  </div>
+
+                  {/* 4. Khả năng vận động */}
+                  <div>
+                    <label className="font-semibold text-slate-200 block mb-1.5">4. Khả năng vận động</label>
+                    <select className="w-full bg-[#172223] border border-[#273739] rounded-xl p-2.5 text-xs text-slate-200">
+                      <option>Hoàn toàn bình thường — 0 điểm</option>
+                      <option>Bồn chồn / ngọ nguậy — 1 điểm</option>
+                      <option>Lãnh đạm / thờ ơ — 2 điểm</option>
+                      <option>Hạn chế cử động — 3 điểm</option>
+                      <option>Nằm liệt giường / Bất động ICU — 4 điểm</option>
+                      <option>Ngồi xe lăn — 5 điểm</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Modal Footer */}
+                <div className="p-4 border-t border-[#233335] bg-[#172324] flex gap-2">
+                  <button
+                    onClick={() => setWaterlowModalPatient(null)}
+                    className="flex-1 py-2.5 bg-[#202e30] text-slate-300 font-semibold rounded-xl text-xs"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPatients(prev => prev.map(p => p.id === waterlowModalPatient.id ? {
+                        ...p,
+                        overdueAssessment: null
+                      } : p));
+                      setWaterlowModalPatient(null);
+                      showToast("Đã lưu kết quả đánh giá thang điểm Waterlow!");
+                    }}
+                    className="flex-1 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-xs transition"
+                  >
+                    Lưu kết quả
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* MODAL THÊM HỒ SƠ MỚI                                     */}
+          {/* ======================================================== */}
+          {newPatientModalOpen && (
+            <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+              <div className="w-full max-w-sm bg-[#131d1e] border border-[#27393b] rounded-2xl overflow-hidden shadow-2xl p-5 space-y-3 text-xs">
+                <h3 className="text-sm font-bold text-white mb-2">Thêm hồ sơ người bệnh mới</h3>
+                <div>
+                  <label className="text-slate-400 block mb-1">Họ và tên</label>
+                  <input type="text" placeholder="vd: Trần Văn Bình" className="w-full bg-[#182324] border border-[#263738] rounded-xl px-3 py-2 text-white" />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-slate-400 block mb-1">Tuổi</label>
+                    <input type="number" placeholder="60" className="w-full bg-[#182324] border border-[#263738] rounded-xl px-3 py-2 text-white" />
+                  </div>
+                  <div>
+                    <label className="text-slate-400 block mb-1">Giường (ICU)</label>
+                    <input type="text" placeholder="HS-13" className="w-full bg-[#182324] border border-[#263738] rounded-xl px-3 py-2 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-slate-400 block mb-1">Mã hồ sơ</label>
+                  <input type="text" placeholder="26-040250" className="w-full bg-[#182324] border border-[#263738] rounded-xl px-3 py-2 text-white" />
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <button onClick={() => setNewPatientModalOpen(false)} className="flex-1 py-2 bg-[#202e30] text-slate-300 font-semibold rounded-xl">Hủy</button>
+                  <button 
+                    onClick={() => { setNewPatientModalOpen(false); showToast("Đã thêm hồ sơ người bệnh!"); }} 
+                    className="flex-1 py-2 bg-teal-500 font-bold text-slate-950 rounded-xl"
+                  >
+                    Tạo mới
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* BOTTOM NAVIGATION BAR (5 TAB CHUẨN)                     */}
+          {/* ======================================================== */}
+          <nav className="fixed bottom-0 max-w-md w-full bg-[#0d1415]/95 backdrop-blur-md border-t border-[#1c292b] px-2 py-2 flex justify-around items-center z-40">
+            {/* 1. Trang chủ */}
+            <button
+              onClick={() => setCurrentTab("home")}
+              className={`flex flex-col items-center gap-1 transition ${currentTab === "home" ? "text-teal-400 font-bold" : "text-slate-400 hover:text-slate-200"}`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <span className="text-[10px]">Trang chủ</span>
+            </button>
+
+            {/* 2. Người bệnh */}
+            <button
+              onClick={() => setCurrentTab("patients")}
+              className={`flex flex-col items-center gap-1 transition ${currentTab === "patients" ? "text-teal-400 font-bold" : "text-slate-400 hover:text-slate-200"}`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <span className="text-[10px]">Người bệnh</span>
+            </button>
+
+            {/* 3. Cần lưu ý (Việc cần làm) - Kèm Badge đỏ */}
+            <button
+              onClick={() => setCurrentTab("tasks")}
+              className={`flex flex-col items-center gap-1 relative transition ${currentTab === "tasks" ? "text-teal-400 font-bold" : "text-slate-400 hover:text-slate-200"}`}
+            >
+              <div className="relative">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+                {unhandledNotesCount > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-rose-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#0d1415]">
+                    {unhandledNotesCount}
+                  </span>
+                )}
+              </div>
+              <span className="text-[10px]">Cần lưu ý</span>
+            </button>
+
+            {/* 4. Giao ban */}
+            <button
+              onClick={() => setCurrentTab("handover")}
+              className={`flex flex-col items-center gap-1 transition ${currentTab === "handover" ? "text-teal-400 font-bold" : "text-slate-400 hover:text-slate-200"}`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span className="text-[10px]">Giao ban</span>
+            </button>
+
+            {/* 5. Tài khoản */}
+            <button
+              onClick={() => setCurrentTab("account")}
+              className={`flex flex-col items-center gap-1 transition ${currentTab === "account" ? "text-teal-400 font-bold" : "text-slate-400 hover:text-slate-200"}`}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span className="text-[10px]">Tài khoản</span>
+            </button>
+          </nav>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
