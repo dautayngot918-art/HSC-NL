@@ -62,59 +62,14 @@
     .badge-yellow { background: #dcfce7; color: #15803d; border: 1px solid #86efac; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
     .badge-gray { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 
-    /* Hộp Cảnh Báo Nguy Cơ Khi Nhấp Vào Bệnh Nhân */
-    .alert-box-red {
-      background: #fef2f2;
-      border: 1.5px solid #ef4444;
-      border-radius: 16px;
-      padding: 16px;
-      color: #991b1b;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.08);
-    }
-    .alert-box-yellow {
-      background: #fffbeb;
-      border: 1.5px solid #f59e0b;
-      border-radius: 16px;
-      padding: 16px;
-      color: #92400e;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
-    }
-    .alert-box-green {
-      background: #f0fdf4;
-      border: 1.5px solid #22c55e;
-      border-radius: 16px;
-      padding: 16px;
-      color: #166534;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08);
-    }
-    .alert-box-purple {
-      background: #faf5ff;
-      border: 1.5px solid #a855f7;
-      border-radius: 16px;
-      padding: 16px;
-      color: #6b21a8;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.08);
-    }
+    /* Cảnh báo nguy cơ */
+    .alert-box-red { background: #fef2f2; border: 1.5px solid #ef4444; border-radius: 16px; padding: 16px; color: #991b1b; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.08); }
+    .alert-box-yellow { background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 16px; padding: 16px; color: #92400e; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08); }
+    .alert-box-green { background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 16px; padding: 16px; color: #166534; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08); }
+    .alert-box-purple { background: #faf5ff; border: 1.5px solid #a855f7; border-radius: 16px; padding: 16px; color: #6b21a8; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.08); }
 
-    /* Tiêu đề mục màu xanh dương */
-    .section-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: #0284c7;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .section-indicator {
-      width: 4px;
-      height: 16px;
-      background: #0284c7;
-      border-radius: 4px;
-    }
+    .section-title { font-size: 15px; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 6px; }
+    .section-indicator { width: 4px; height: 16px; background: #0284c7; border-radius: 4px; }
 
     /* Buttons */
     .btn-blue { background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; width: 100%; transition: 0.15s; }
@@ -124,26 +79,9 @@
     .btn-orange { background: #ea580c; color: #fff; font-weight: 700; border: none; border-radius: 14px; padding: 14px; font-size: 14px; cursor: pointer; text-align: center; width: 100%; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2); }
     .btn-orange:active { background: #c2410c; }
 
-    .pos-btn {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      color: #475569;
-      border-radius: 8px;
-      padding: 7px 4px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-      transition: 0.15s;
-    }
-    .pos-btn.pos-active {
-      background: #0284c7;
-      color: #ffffff;
-      font-weight: 700;
-      border-color: #0284c7;
-    }
+    .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
+    .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 700; border-color: #0284c7; }
 
-    /* Inputs & Select */
     input, select, textarea {
       width: 100%;
       background: #ffffff;
@@ -156,7 +94,9 @@
     }
     input:focus, select:focus, textarea:focus { border-color: #0284c7; }
 
-    /* Bảng cuộn ngang */
+    /* ======================================================== */
+    /* CSS CHO BẢNG CUỘN NGANG VỚI 2 CỘT ĐẦU CỐ ĐỊNH (STICKY) */
+    /* ======================================================== */
     .table-container {
       width: 100%;
       overflow-x: auto;
@@ -169,8 +109,9 @@
     }
     .table-custom {
       width: 100%;
-      min-width: 820px;
-      border-collapse: collapse;
+      min-width: 760px;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 12px;
       text-align: left;
     }
@@ -189,10 +130,43 @@
       vertical-align: middle;
       white-space: nowrap;
       color: #1e293b;
+      background: #ffffff;
     }
-    .table-custom tr:hover {
+    .table-custom tr:hover td {
       background-color: #f8fafc;
     }
+
+    /* 1. Cố định Cột Màu Đầu Tiên (Sticky Col 1) */
+    .sticky-col-color {
+      position: sticky;
+      left: 0;
+      z-index: 20;
+      width: 8px;
+      min-width: 8px;
+      max-width: 8px;
+      padding: 0 !important;
+    }
+    th.sticky-col-color {
+      background: #f8fafc;
+      z-index: 25;
+    }
+
+    /* 2. Cố định Cột Tên Người Bệnh (Sticky Col 2) */
+    .sticky-col-name {
+      position: sticky;
+      left: 8px;
+      z-index: 20;
+      background: #ffffff;
+      box-shadow: 3px 0 6px -2px rgba(0, 0, 0, 0.08);
+      padding-left: 10px !important;
+      padding-right: 12px !important;
+    }
+    th.sticky-col-name {
+      background: #f8fafc;
+      z-index: 25;
+      box-shadow: 3px 0 6px -2px rgba(0, 0, 0, 0.08);
+    }
+
     .tbl-link {
       cursor: pointer;
       text-decoration: underline;
@@ -513,7 +487,7 @@
           <button id="st-trend-btn" onclick="setSubTab('trend')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Diễn tiến</button>
         </div>
 
-        <!-- KHỐI CẢNH BÁO ĐỔI MÀU THEO MỨC ĐỘ NGUY CƠ (YÊU CẦU MỚI) -->
+        <!-- Khối cảnh báo nguy cơ đổi màu theo Waterlow -->
         <div id="patient-alert-container"></div>
 
         <!-- Subtab 1: Tổng quan -->
@@ -603,7 +577,7 @@
                 <span class="section-indicator"></span>
                 <span>Diễn tiến đánh giá</span>
               </div>
-              <span id="dt-trend-change-badge" style="font-size: 12px; font-weight: 800; color: #0284c7;">→ Không đổi</span>
+              <span id="dt-trend-change-badge" style="font-size: 12px; font-weight: 800; color: #0284c7;">Không đổi</span>
             </div>
             <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">6 lượt · đợt điều trị hiện tại</div>
 
@@ -767,20 +741,20 @@
       "Chụp ảnh và ghi nhận tiến triển tổn thương mỗi 48 – 72 giờ"
     ];
 
-    // Dữ liệu bệnh nhân kèm ngày giờ đánh giá chi tiết
+    // Dữ liệu bệnh nhân đầy đủ
     var patients = [
-      { id: "HS-11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "HS-11", bedNum: 11, age: 71, gender: "Nữ", dob: "12/04/1955", diag: "Uốn ván nặng", stayDays: 13, waterlow: 31, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], trend: "↗ Tăng", overdueTurn: "2 ngày 15 giờ trước · mục tiêu 2g", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
-      { id: "HS-12", code: "26-040243", name: "Ngô Thanh Chi", bed: "HS-12", bedNum: 12, age: 52, gender: "Nữ", dob: "19/10/1973", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, waterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], trend: "→ Không đổi", overdueTurn: "2 ngày 15 giờ trước", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
-      { id: "HS-07", code: "26-040238", name: "Phan Hữu Hùng", bed: "HS-07", bedNum: 7, age: 78, gender: "Nam", dob: "20/01/1948", diag: "Sốc nhiễm trùng", stayDays: 11, waterlow: 25, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], trend: "↗ Tăng", overdueTurn: "2 ngày 14 giờ trước", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
-      { id: "HS-15", code: "26-066069", name: "Phan Tú Linh", bed: "HS-15", bedNum: 15, age: 50, gender: "Nam", dob: "12/03/1976", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, waterlow: 24, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], trend: "↘ Giảm", overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
-      { id: "HS-08", code: "26-040239", name: "Nguyễn Thị Dung", bed: "HS-08", bedNum: 8, age: 49, gender: "Nữ", dob: "08/12/1976", diag: "Viêm não", stayDays: 9, waterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], trend: "↘ Giảm", overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "" },
-      { id: "HS-10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "HS-10", bedNum: 10, age: 42, gender: "Nam", dob: "14/09/1984", diag: "Sốt xuất huyết nặng", stayDays: 16, waterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], trend: "↗ Tăng", overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
-      { id: "HS-03", code: "26-040234", name: "Phạm Thu Linh", bed: "HS-03", bedNum: 3, age: 49, gender: "Nữ", dob: "05/06/1977", diag: "Viêm cơ tim cấp", stayDays: 17, waterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], trend: "→ Không đổi", overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
-      { id: "HS-04", code: "26-040235", name: "Phạm Hữu Hùng", bed: "HS-04", bedNum: 4, age: 65, gender: "Nam", dob: "11/11/1961", diag: "Suy hô hấp ARDS", stayDays: 8, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], trend: "↗ Tăng", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận" },
-      { id: "HS-02", code: "26-040233", name: "Phan Đức Thắng", bed: "HS-02", bedNum: 2, age: 60, gender: "Nam", dob: "22/03/1966", diag: "Nhiễm trùng huyết", stayDays: 10, waterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], trend: "→ Không đổi", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả" },
-      { id: "HS-09", code: "26-040240", name: "Nguyễn Minh Nam", bed: "HS-09", bedNum: 9, age: 55, gender: "Nam", dob: "15/07/1971", diag: "Viêm màng não mủ", stayDays: 3, waterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], trend: "→ Không đổi", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "" },
-      { id: "HS-05", code: "26-040236", name: "Dương Công Cường", bed: "HS-05", bedNum: 5, age: 58, gender: "Nam", dob: "30/08/1968", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], trend: "↘ Giảm", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
-      { id: "HS-01", code: "26-040232", name: "Lê Tấn Khoa", bed: "HS-01", bedNum: 1, age: 63, gender: "Nam", dob: "02/02/1963", diag: "Cúm A biến chứng", stayDays: 14, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], trend: "→ Không đổi", overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "" }
+      { id: "HS-11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "HS-11", bedNum: 11, age: 71, gender: "Nữ", dob: "12/04/1955", diag: "Uốn ván nặng", stayDays: 13, waterlow: 31, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], trend: "Tăng", overdueTurn: "2 ngày 15 giờ trước · mục tiêu 2g", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
+      { id: "HS-12", code: "26-040243", name: "Ngô Thanh Chi", bed: "HS-12", bedNum: 12, age: 52, gender: "Nữ", dob: "19/10/1973", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, waterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], trend: "Không đổi", overdueTurn: "2 ngày 15 giờ trước", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
+      { id: "HS-07", code: "26-040238", name: "Phan Hữu Hùng", bed: "HS-07", bedNum: 7, age: 78, gender: "Nam", dob: "20/01/1948", diag: "Sốc nhiễm trùng", stayDays: 11, waterlow: 25, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], trend: "Tăng", overdueTurn: "2 ngày 14 giờ trước", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
+      { id: "HS-15", code: "26-066069", name: "Phan Tú Linh", bed: "HS-15", bedNum: 15, age: 50, gender: "Nam", dob: "12/03/1976", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, waterlow: 24, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], trend: "Giảm", overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
+      { id: "HS-08", code: "26-040239", name: "Nguyễn Thị Dung", bed: "HS-08", bedNum: 8, age: 49, gender: "Nữ", dob: "08/12/1976", diag: "Viêm não", stayDays: 9, waterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], trend: "Giảm", overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "" },
+      { id: "HS-10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "HS-10", bedNum: 10, age: 42, gender: "Nam", dob: "14/09/1984", diag: "Sốt xuất huyết nặng", stayDays: 16, waterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], trend: "Tăng", overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", checkedSkin: true, notes: "" },
+      { id: "HS-03", code: "26-040234", name: "Phạm Thu Linh", bed: "HS-03", bedNum: 3, age: 49, gender: "Nữ", dob: "05/06/1977", diag: "Viêm cơ tim cấp", stayDays: 17, waterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], trend: "Không đổi", overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
+      { id: "HS-04", code: "26-040235", name: "Phạm Hữu Hùng", bed: "HS-04", bedNum: 4, age: 65, gender: "Nam", dob: "11/11/1961", diag: "Suy hô hấp ARDS", stayDays: 8, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], trend: "Tăng", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận" },
+      { id: "HS-02", code: "26-040233", name: "Phan Đức Thắng", bed: "HS-02", bedNum: 2, age: 60, gender: "Nam", dob: "22/03/1966", diag: "Nhiễm trùng huyết", stayDays: 10, waterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], trend: "Không đổi", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả" },
+      { id: "HS-09", code: "26-040240", name: "Nguyễn Minh Nam", bed: "HS-09", bedNum: 9, age: 55, gender: "Nam", dob: "15/07/1971", diag: "Viêm màng não mủ", stayDays: 3, waterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], trend: "Không đổi", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "" },
+      { id: "HS-05", code: "26-040236", name: "Dương Công Cường", bed: "HS-05", bedNum: 5, age: 58, gender: "Nam", dob: "30/08/1968", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], trend: "Giảm", overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "" },
+      { id: "HS-01", code: "26-040232", name: "Lê Tấn Khoa", bed: "HS-01", bedNum: 1, age: 63, gender: "Nam", dob: "02/02/1963", diag: "Cúm A biến chứng", stayDays: 14, waterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], trend: "Không đổi", overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "" }
     ];
 
     var currentPatient = patients[0];
@@ -789,6 +763,14 @@
     var isFilteringBedRange = false;
     var currentSortMode = "bed-asc";
     var currentViewMode = "card";
+
+    // Hàm trả về mã màu chỉ thị dựa theo điểm/mức nguy cơ Waterlow
+    function getRiskColorCode(p) {
+      if (!p.waterlow || p.risk === 'Chưa đánh giá') return '#a855f7'; // Tím: Chưa đánh giá
+      if (p.waterlow >= 20 || p.risk === 'Nguy cơ rất cao') return '#ef4444'; // Đỏ: Rất cao
+      if (p.waterlow >= 15 || p.risk === 'Nguy cơ cao') return '#f59e0b'; // Vàng cam: Cao
+      return '#22c55e'; // Xanh lá: Có nguy cơ
+    }
 
     function getLastName(fullName) {
       if (!fullName) return "";
@@ -921,9 +903,9 @@
       renderPatients();
     }
 
-    // =======================================================
-    // RENDER NGƯỜI BỆNH
-    // =======================================================
+    // =========================================================================
+    // RENDER NGƯỜI BỆNH: CỘT MÀU CẢNH BÁO + CỐ ĐỊNH TÊN VÀ MÀU TRONG BẢNG
+    // =========================================================================
     function renderPatients() {
       var container = document.getElementById('patient-display-container');
       if (!container) return;
@@ -944,9 +926,7 @@
 
       if (currentSortMode === 'az') {
         list.sort(function(a, b) {
-          var lastNameA = getLastName(a.name);
-          var lastNameB = getLastName(b.name);
-          var comp = lastNameA.localeCompare(lastNameB, 'vi');
+          var comp = getLastName(a.name).localeCompare(getLastName(b.name), 'vi');
           if (comp === 0) return a.name.localeCompare(b.name, 'vi');
           return comp;
         });
@@ -965,14 +945,17 @@
         return;
       }
 
-      // CHẾ ĐỘ THẺ
+      // 1. CHẾ ĐỘ THẺ: CỘT MÀU NHỎ PHÍA TRƯỚC TỰ ĐỔI MÀU THEO NGUY CƠ WATERLOW
       if (currentViewMode === 'card') {
         var html = '';
         for (var j = 0; j < list.length; j++) {
           var pt = list[j];
-          html += '<div onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="card card-click" style="display:flex; justify-content:space-between; align-items:center; position:relative; overflow:hidden;">' +
-            '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:#ef4444;"></div>' +
-            '<div style="padding-left:6px;">' +
+          var colorCode = getRiskColorCode(pt);
+
+          html += '<div onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="card card-click" style="display:flex; justify-content:space-between; align-items:center; position:relative; overflow:hidden; padding-left:16px;">' +
+            '<!-- Cột màu nhỏ phía trước tên người bệnh -->' +
+            '<div style="position:absolute; left:0; top:0; bottom:0; width:6px; background:' + colorCode + ';"></div>' +
+            '<div>' +
               '<div style="font-size:14px; font-weight:800; color:#0f172a;">' + pt.name + '</div>' +
               '<div style="font-size:11px; color:#64748b; margin:2px 0;">' + pt.code + ' · ' + pt.age + ' tuổi · <strong style="color:#0284c7;">' + pt.bed + '</strong></div>' +
               '<div style="font-size:11px; color:#dc2626; font-weight:600;">' + pt.overdueTurn + '</div>' +
@@ -985,60 +968,68 @@
         }
         container.innerHTML = html;
       } 
-      // CHẾ ĐỘ BẢNG
+      // 2. CHẾ ĐỘ BẢNG: CỐ ĐỊNH CỘT MÀU & TÊN BỆNH NHÂN, BỎ CỘT MỨC & BỎ TOÀN BỘ MŨI TÊN
       else {
         var tbHtml = '<div class="table-container"><table class="table-custom">' +
           '<thead>' +
             '<tr>' +
-              '<th>Tên người bệnh</th>' +
+              '<th class="sticky-col-color"></th>' +
+              '<th class="sticky-col-name">Tên người bệnh</th>' +
               '<th>Mã hồ sơ</th>' +
               '<th>Giường</th>' +
-              '<th>Ngày nằm</th>' +
-              '<th>Waterlow</th>' +
-              '<th>Mức</th>' +
+              '<th style="text-align:center;">Ngày nằm</th>' +
+              '<th style="text-align:center;">Waterlow</th>' +
               '<th>Đánh giá gần nhất</th>' +
-              '<th style="color:#0284c7;">Tổng xoay 24h (Lượt)</th>' +
+              '<th style="color:#0284c7; text-align:center;">Tổng xoay 24h</th>' +
               '<th style="color:#ea580c;">Tổn thương</th>' +
-              '<th style="color:#0284c7;">Kế hoạch phòng ngừa</th>' +
-              '<th style="color:#0369a1;">Diễn tiến cuối cùng</th>' +
+              '<th style="color:#0284c7; text-align:center;">Kế hoạch phòng ngừa</th>' +
+              '<th style="color:#0369a1; text-align:center;">Diễn tiến cuối cùng</th>' +
             '</tr>' +
           '</thead>' +
           '<tbody>';
 
         for (var k = 0; k < list.length; k++) {
           var ptt = list[k];
-          var badgeCls = (ptt.risk === 'Nguy cơ rất cao') ? 'badge-red' : (ptt.risk === 'Nguy cơ cao' ? 'badge-orange' : (ptt.risk === 'Có nguy cơ' ? 'badge-yellow' : 'badge-gray'));
           var chkCount = (ptt.checked || []).length;
           var chkColor = (chkCount === 10) ? '#0284c7' : '#ea580c';
-          var trendColor = (ptt.trend && ptt.trend.indexOf('Tăng') > -1) ? '#dc2626' : ((ptt.trend && ptt.trend.indexOf('Giảm') > -1) ? '#16a34a' : '#64748b');
+          var colorCode = getRiskColorCode(ptt);
+
+          var trendText = ptt.trend || 'Không đổi';
+          var trendColor = (trendText === 'Tăng') ? '#dc2626' : ((trendText === 'Giảm') ? '#16a34a' : '#64748b');
 
           tbHtml += '<tr>' +
-            '<td onclick="openDetailById(\'' + ptt.id + '\', \'overview\')" class="tbl-link" style="font-weight:700; color:#0f172a;">' + ptt.name + '</td>' +
+            '<!-- Cột màu nhỏ cố định -->' +
+            '<td class="sticky-col-color" style="background:' + colorCode + ';"></td>' +
+
+            '<!-- Cột tên người bệnh cố định -->' +
+            '<td onclick="openDetailById(\'' + ptt.id + '\', \'overview\')" class="sticky-col-name tbl-link" style="font-weight:700; color:#0f172a;">' +
+              ptt.name +
+            '</td>' +
+
             '<td style="color:#64748b;">' + ptt.code + '</td>' +
             '<td style="color:#0284c7; font-weight:800;">' + ptt.bed + '</td>' +
             '<td style="text-align:center;">' + (ptt.stayDays || 9) + ' ngày</td>' +
             '<td style="font-weight:800; text-align:center; color:#0284c7;">' + (ptt.waterlow !== null ? ptt.waterlow : '--') + '</td>' +
-            '<td><span class="' + badgeCls + '">' + ptt.risk + '</span></td>' +
             '<td style="color:#475569; font-size:11px;">' + (ptt.latestAssess || 'Mới cập nhật') + '</td>' +
             
-            // Cột Tổng xoay 24h
+            // Cột Tổng xoay 24h (Bỏ mũi tên)
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'turn\')" class="tbl-link" style="color:#0284c7; font-weight:700; text-align:center;">' +
-              (ptt.turns24h || 0) + ' lượt ↗' +
+              (ptt.turns24h || 0) + ' lượt' +
             '</td>' +
 
-            // Cột Tổn thương
+            // Cột Tổn thương (Bỏ mũi tên)
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'wound\')" class="tbl-link" style="color:' + (ptt.wounds > 0 ? '#dc2626' : '#64748b') + '; font-weight:' + (ptt.wounds > 0 ? '700' : '500') + ';">' +
-              (ptt.wounds > 0 ? ('Loét/Tổn thương: ' + ptt.wounds) : 'Chưa có') + ' ↗' +
+              (ptt.wounds > 0 ? ('Loét/Tổn thương: ' + ptt.wounds) : 'Chưa có') +
             '</td>' +
 
-            // Cột Kế hoạch phòng ngừa
+            // Cột Kế hoạch phòng ngừa (Bỏ mũi tên)
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'overview\')" class="tbl-link" style="color:' + chkColor + '; font-weight:700; text-align:center;">' +
-              chkCount + '/10 ' + (chkCount === 10 ? '✓ Đủ' : 'ghi') +
+              chkCount + '/10 ' + (chkCount === 10 ? 'Đủ' : '') +
             '</td>' +
 
-            // Cột Diễn tiến
+            // Cột Diễn tiến (Bỏ mũi tên)
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-link" style="color:' + trendColor + '; font-weight:700; text-align:center;">' +
-              (ptt.trend || '→ Không đổi') + ' ↗' +
+              trendText +
             '</td>' +
           '</tr>';
         }
@@ -1282,7 +1273,7 @@
         turns24h: 0,
         wounds: 0,
         checked: [],
-        trend: "→ Không đổi",
+        trend: "Không đổi",
         overdueTurn: "Vừa nhận bệnh",
         turnTarget: 2,
         overdueAssess: "Chưa đánh giá lần đầu",
@@ -1299,9 +1290,6 @@
       openDetailById(newP.id, 'overview');
     }
 
-    // =======================================================
-    // CHI TIẾT NGƯỜI BỆNH & KHỐI CẢNH BÁO ĐỔI MÀU (YÊU CẦU MỚI)
-    // =======================================================
     function openDetailById(id, subTabName) {
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
@@ -1325,6 +1313,7 @@
           btn.style.color = (subs[i] === sub) ? '#ffffff' : '#64748b';
         }
       }
+      renderDetail();
     }
 
     function renderDetail() {
@@ -1341,11 +1330,7 @@
       if (assessOd) assessOd.innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
       if (turnOd) turnOd.innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + p.turnTarget + ' giờ';
 
-      // RENDER KHỐI CẢNH BÁO ĐỔI MÀU CHÍNH XÁC THEO MỨC ĐỘ NGUY CƠ:
-      // - Nguy cơ rất cao: Đỏ (điểm, ngày giờ)
-      // - Nguy cơ cao: Vàng (điểm, ngày giờ)
-      // - Có nguy cơ: Xanh lá (điểm, ngày giờ)
-      // - Chưa đánh giá: Tím / Bạc (chưa đánh giá)
+      // Cập nhật khối cảnh báo màu sắc theo mức độ nguy cơ
       var alertBox = document.getElementById('patient-alert-container');
       if (alertBox) {
         if (p.risk === 'Nguy cơ rất cao') {
@@ -1420,7 +1405,7 @@
       // Cập nhật diễn tiến
       var trChange = document.getElementById('dt-trend-change-badge');
       var trScore = document.getElementById('trend-box-score');
-      if (trChange) trChange.innerText = p.trend || '→ Không đổi';
+      if (trChange) trChange.innerText = p.trend || 'Không đổi';
       if (trScore) trScore.innerText = (p.waterlow !== null ? p.waterlow : '--');
 
       renderChecklist();
@@ -1485,7 +1470,7 @@
       if (!currentPatient.waterlow) {
         currentPatient.waterlow = 23;
         currentPatient.risk = "Nguy cơ rất cao";
-        currentPatient.trend = "↗ Tăng";
+        currentPatient.trend = "Tăng";
       }
       currentPatient.assessDateTime = "13:21 · 26/09/2026";
       currentPatient.latestAssess = "Hôm nay 13:21";
