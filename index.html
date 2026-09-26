@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Theo Dõi Loét Tì Đè - ICU BV Bệnh Nhiệt Đới</title>
+  <title>Theo Dõi Loét Tì Đè - HSCĐ BV Bệnh Nhiệt Đới</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
@@ -58,7 +58,6 @@
     .badge-red { background: #3c1820; color: #f87171; border: 1px solid rgba(220,38,38,0.4); padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
     .badge-orange { background: #352516; color: #fb923c; border: 1px solid rgba(234,88,12,0.4); padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
     .badge-yellow { background: #302b16; color: #facc15; border: 1px solid rgba(202,138,4,0.4); padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
-    .badge-gray { background: #1e293b; color: #cbd5e1; border: 1px solid #475569; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; }
 
     /* Buttons */
     .btn-teal { background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; width: 100%; }
@@ -67,7 +66,7 @@
     .btn-dark:active { background: #2b3e40; }
     .btn-orange { background: #f97316; color: #fff; font-weight: 700; border: none; border-radius: 14px; padding: 14px; font-size: 14px; cursor: pointer; text-align: center; width: 100%; }
 
-    /* Form Controls */
+    /* Inputs & Select */
     input, select, textarea {
       width: 100%;
       background: #101718;
@@ -181,7 +180,7 @@
     <!-- Main Content Area -->
     <main>
       <!-- ============================================== -->
-      <!-- TAB 1: TỔNG QUAN (HIỂN THỊ TRỰC TIẾP MẶC ĐỊNH) -->
+      <!-- TAB 1: TỔNG QUAN                               -->
       <!-- ============================================== -->
       <div id="tab-home" style="display: block;">
         <div class="card">
@@ -202,39 +201,35 @@
           <div style="font-size: 12px; color: #2dd4bf; font-weight: 600;">Tạo mới →</div>
         </div>
 
-        <!-- 4 Ô Thống Kê (Click chuyển thẳng vào trang đích) -->
+        <!-- 4 Ô Thống Kê -->
         <div class="grid-2">
-          <!-- Ô 1: Link sang Người bệnh đang điều trị -->
           <div onclick="showTab('patients')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
               <span>Người bệnh đang điều trị</span>
               <span style="color: #2dd4bf;">Xem →</span>
             </div>
-            <div id="stat-home-treating" style="font-size: 24px; font-weight: 700; color: #fff; margin: 4px 0;">11</div>
+            <div id="stat-home-treating" style="font-size: 24px; font-weight: 700; color: #fff; margin: 4px 0;">12</div>
             <div style="font-size: 11px; color: #f87171;">9 ca nguy cơ cao trở lên</div>
           </div>
 
-          <!-- Ô 2: Link sang Việc cần làm: Đánh giá -->
           <div onclick="showTabWithTaskFilter('assess')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
               <span>Đến hạn đánh giá</span>
               <span style="color: #fb923c;">Xem →</span>
             </div>
-            <div style="font-size: 24px; font-weight: 700; color: #fb923c; margin: 4px 0;">11</div>
+            <div style="font-size: 24px; font-weight: 700; color: #fb923c; margin: 4px 0;">12</div>
             <div style="font-size: 11px; color: #94a3b8;">1 ca chưa đánh giá lần nào</div>
           </div>
 
-          <!-- Ô 3: Link sang Việc cần làm: Xoay trở -->
           <div onclick="showTabWithTaskFilter('turn')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
               <span>Đã tới lúc xoay trở</span>
               <span style="color: #fb923c;">Xem →</span>
             </div>
-            <div style="font-size: 24px; font-weight: 700; color: #fb923c; margin: 4px 0;">11</div>
+            <div style="font-size: 24px; font-weight: 700; color: #fb923c; margin: 4px 0;">12</div>
             <div style="font-size: 11px; color: #94a3b8;">quá khoảng cách mục tiêu</div>
           </div>
 
-          <!-- Ô 4: Link sang Việc cần làm: Lưu ý -->
           <div onclick="showTabWithTaskFilter('note')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
               <span>Cần lưu ý chưa xử lý</span>
@@ -245,62 +240,78 @@
           </div>
         </div>
 
-        <!-- Khối Ghi xoay trở cả buồng -->
         <div style="margin-top: 10px;">
           <div style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px;">Xoay trở</div>
-          <div style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;">11 người bệnh đã tới lúc xoay</div>
+          <div style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;">12 người bệnh đã tới lúc xoay</div>
           <button onclick="turnAllPatients()" class="btn-orange">
-            🔄 Ghi xoay trở cả buồng (11 người bệnh)
+            🔄 Ghi xoay trở cả buồng (12 người bệnh)
           </button>
         </div>
       </div>
 
       <!-- ============================================== -->
-      <!-- TAB 2: NGƯỜI BỆNH                              -->
+      <!-- TAB 2: NGƯỜI BỆNH (ĐÚNG THEO HÌNH ẢNH MỚI)     -->
       <!-- ============================================== -->
       <div id="tab-patients" style="display: none;">
         <!-- Thanh Tìm kiếm & Nút thêm mới -->
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-          <input type="text" id="patient-search-input" placeholder="Tìm theo tên hoặc mã hồ sơ" oninput="renderPatients()" />
-          <button onclick="openNewPatientModal()" style="width: 125px; background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 10px; font-size: 12px; cursor: pointer;">+ Hồ sơ mới</button>
+          <input type="text" id="patient-search-input" placeholder="🔍 Tìm theo tên hoặc mã hồ sơ" oninput="renderPatients()" />
+          <button onclick="openNewPatientModal()" style="width: 120px; background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 10px; font-size: 12px; cursor: pointer; shrink: 0;">+ Hồ sơ mới</button>
         </div>
 
         <!-- 3 Nút lọc trạng thái -->
         <div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #111a1b;">
-          <button id="pbtn-treating" onclick="setPatientFilterStatus('treating')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đang điều trị<br><span id="count-p-treating" style="font-size: 10px;">11</span></button>
+          <button id="pbtn-treating" onclick="setPatientFilterStatus('treating')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đang điều trị<br><span id="count-p-treating" style="font-size: 10px;">12</span></button>
           <button id="pbtn-discharged" onclick="setPatientFilterStatus('discharged')" style="background: transparent; color: #94a3b8; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã kết thúc<br><span style="font-size: 10px;">132</span></button>
-          <button id="pbtn-all" onclick="setPatientFilterStatus('all')" style="background: transparent; color: #94a3b8; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả<br><span style="font-size: 10px;">143</span></button>
+          <button id="pbtn-all" onclick="setPatientFilterStatus('all')" style="background: transparent; color: #94a3b8; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả<br><span style="font-size: 10px;">144</span></button>
         </div>
 
-        <!-- Lọc giường (từ - đến) -->
-        <div class="card" style="margin-bottom: 10px; padding: 10px;">
-          <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">
-            <span>Lọc theo giường (từ – đến):</span>
-            <span style="color: #2dd4bf; font-size: 11px;">Khoa ICU</span>
+        <!-- Hai dropdown: Thời gian & Sắp xếp (Có menu Giường chi tiết) -->
+        <div class="grid-2" style="margin-bottom: 8px;">
+          <div>
+            <span style="font-size: 11px; color: #94a3b8; display: block; margin-bottom: 4px;">Thời gian</span>
+            <select style="font-size: 12px; padding: 8px 10px;">
+              <option>Mọi thời điểm</option>
+              <option>7 ngày gần nhất</option>
+              <option>30 ngày gần nhất</option>
+            </select>
           </div>
-          <div class="grid-4" style="margin-bottom: 8px;">
-            <button id="bed-b-all" onclick="setBedRange('all')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 6px; padding: 5px; font-size: 11px; cursor: pointer;">Tất cả</button>
-            <button id="bed-b-1-4" onclick="setBedRange('1-4')" style="background: #1a2729; color: #94a3b8; border: none; border-radius: 6px; padding: 5px; font-size: 11px; cursor: pointer;">G. 1 – 4</button>
-            <button id="bed-b-5-8" onclick="setBedRange('5-8')" style="background: #1a2729; color: #94a3b8; border: none; border-radius: 6px; padding: 5px; font-size: 11px; cursor: pointer;">G. 5 – 8</button>
-            <button id="bed-b-9-12" onclick="setBedRange('9-12')" style="background: #1a2729; color: #94a3b8; border: none; border-radius: 6px; padding: 5px; font-size: 11px; cursor: pointer;">G. 9 – 12</button>
-          </div>
-          <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8; padding-top: 6px; border-top: 1px solid #1f2f31;">
-            <span>Khoảng: Từ</span>
-            <input type="number" id="bed-custom-from" value="1" style="width: 45px; padding: 3px 5px; text-align: center; color: #2dd4bf; font-weight: 700;" />
-            <span>đến</span>
-            <input type="number" id="bed-custom-to" value="12" style="width: 45px; padding: 3px 5px; text-align: center; color: #2dd4bf; font-weight: 700;" />
-            <button onclick="applyBedCustom()" style="margin-left: auto; background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer;">Lọc</button>
+          <div>
+            <span style="font-size: 11px; color: #94a3b8; display: block; margin-bottom: 4px;">Sắp xếp</span>
+            <select id="patient-sort-select" onchange="onSortChange(this.value)" style="font-size: 12px; padding: 8px 10px; border-color: #14b8a6;">
+              <option value="bed-asc">Theo giường: Thấp → Cao</option>
+              <option value="bed-desc">Theo giường: Cao → Thấp</option>
+              <option value="bed-range">Theo giường: Lọc (Từ – Đến)...</option>
+              <option value="priority">Ưu tiên chăm sóc</option>
+              <option value="waterlow">Điểm Waterlow cao nhất</option>
+              <option value="az">Tên A → Z</option>
+            </select>
           </div>
         </div>
 
-        <!-- Chế độ Thẻ / Bảng & Sắp xếp -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <select id="patient-sort-select" onchange="renderPatients()" style="width: 170px; padding: 6px 10px; font-size: 11px;">
-            <option value="priority">Ưu tiên chăm sóc</option>
-            <option value="waterlow">Điểm Waterlow cao nhất</option>
-            <option value="bed">Theo giường</option>
-            <option value="az">Tên A → Z</option>
-          </select>
+        <!-- Khung lọc giường (Từ - Đến) - Tự động hiển thị khi chọn hoặc bấm -->
+        <div id="bed-range-box" class="card" style="display: none; padding: 10px; margin-bottom: 10px; background: #121f20; border: 1px solid #14b8a688;">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">
+            <span>Lọc giường bệnh:</span>
+            <span onclick="setQuickBedRange(1, 15)" style="color: #2dd4bf; cursor: pointer;">Đặt lại tất cả</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8;">
+            <span>Từ giường</span>
+            <input type="number" id="bed-from-val" value="1" style="width: 50px; padding: 4px; text-align: center; color: #2dd4bf; font-weight: 700;" />
+            <span>đến giường</span>
+            <input type="number" id="bed-to-val" value="15" style="width: 50px; padding: 4px; text-align: center; color: #2dd4bf; font-weight: 700;" />
+            <button onclick="applyBedRangeFilter()" style="margin-left: auto; background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 6px; padding: 5px 12px; cursor: pointer;">Lọc</button>
+          </div>
+          <div style="display: flex; gap: 4px; margin-top: 6px;">
+            <button onclick="setQuickBedRange(1, 4)" style="flex: 1; background: #1a2729; color: #94a3b8; border: 1px solid #283a3d; border-radius: 4px; font-size: 10px; padding: 3px; cursor: pointer;">G. 1-4</button>
+            <button onclick="setQuickBedRange(5, 8)" style="flex: 1; background: #1a2729; color: #94a3b8; border: 1px solid #283a3d; border-radius: 4px; font-size: 10px; padding: 3px; cursor: pointer;">G. 5-8</button>
+            <button onclick="setQuickBedRange(9, 12)" style="flex: 1; background: #1a2729; color: #94a3b8; border: 1px solid #283a3d; border-radius: 4px; font-size: 10px; padding: 3px; cursor: pointer;">G. 9-12</button>
+            <button onclick="setQuickBedRange(13, 16)" style="flex: 1; background: #1a2729; color: #94a3b8; border: 1px solid #283a3d; border-radius: 4px; font-size: 10px; padding: 3px; cursor: pointer;">G. 13-16</button>
+          </div>
+        </div>
+
+        <!-- Chế độ Thẻ / Bảng -->
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #121c1d; border: 1px solid #202f31; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer;">Thẻ</button>
             <button id="view-table-btn" onclick="setViewMode('table')" style="background: transparent; color: #94a3b8; border: none; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer;">Bảng</button>
@@ -320,12 +331,11 @@
             <span style="width: 4px; height: 16px; background: #14b8a6; border-radius: 4px;"></span>
             <div style="font-size: 15px; font-weight: 700; color: #fff;">Việc cần làm</div>
           </div>
-          <span style="font-size: 11px; color: #f87171; background: #3c1820; border: 1px solid rgba(220,38,38,0.4); padding: 2px 8px; border-radius: 99px; font-weight: 600;">11 đang trễ</span>
+          <span style="font-size: 11px; color: #f87171; background: #3c1820; border: 1px solid rgba(220,38,38,0.4); padding: 2px 8px; border-radius: 99px; font-weight: 600;">12 đang trễ</span>
         </div>
 
         <input type="text" id="task-search-input" placeholder="Tìm theo tên hoặc mã hồ sơ..." oninput="renderTasks()" style="margin-bottom: 8px;" />
 
-        <!-- 4 nút phân loại việc cần làm -->
         <div class="grid-4 card" style="padding: 4px; margin-bottom: 10px; background: #111a1b;">
           <button id="t-btn-all" onclick="setTaskFilter('all')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Tất cả</button>
           <button id="t-btn-turn" onclick="setTaskFilter('turn')" style="background: transparent; color: #94a3b8; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Xoay trở</button>
@@ -333,7 +343,6 @@
           <button id="t-btn-note" onclick="setTaskFilter('note')" style="background: transparent; color: #94a3b8; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Lưu ý</button>
         </div>
 
-        <!-- Khung danh sách việc cần làm -->
         <div id="tasks-display-container"></div>
       </div>
 
@@ -341,7 +350,6 @@
       <!-- TAB 4: CHI TIẾT NGƯỜI BỆNH                     -->
       <!-- ============================================== -->
       <div id="tab-patient-detail" style="display: none;">
-        <!-- 4 Tab con -->
         <div class="grid-4" style="background: #111a1b; border: 1px solid #233335; border-radius: 12px; padding: 4px; margin-bottom: 12px;">
           <button id="st-overview-btn" onclick="setSubTab('overview')" style="background: #14b8a6; color: #022c22; font-weight: 700; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Tổng quan</button>
           <button id="st-wound-btn" onclick="setSubTab('wound')" style="background: transparent; color: #94a3b8; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Tổn thương</button>
@@ -349,22 +357,19 @@
           <button id="st-trend-btn" onclick="setSubTab('trend')" style="background: transparent; color: #94a3b8; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Diễn tiến</button>
         </div>
 
-        <!-- Subtab 1: Tổng quan -->
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
-            <div id="dt-code-line" style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">26-040239 · 49 tuổi · Nữ · sinh 08/12/1976</div>
-            <div id="dt-bed-diag" style="font-size: 12px; color: #fff; margin-bottom: 4px;">Giường <strong style="color: #2dd4bf;">HS-08</strong> · Viêm não</div>
+            <div id="dt-code-line" style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">26-066069 · 50 tuổi · Nam</div>
+            <div id="dt-bed-diag" style="font-size: 12px; color: #fff; margin-bottom: 4px;">Giường <strong style="color: #2dd4bf;">HS-15</strong> · Viêm phổi nặng</div>
             <div style="font-size: 11px; color: #94a3b8;">Nhập khoa 17:21 · ngày điều trị thứ 9</div>
           </div>
 
-          <!-- Thẻ Waterlow -->
           <div class="card" style="background: #241318; border: 1px solid #4d1f27;">
             <div id="dt-waterlow-score" style="font-size: 32px; font-weight: 700; color: #fff;">23</div>
             <div id="dt-risk-text" style="font-size: 13px; font-weight: 700; color: #f87171; margin-top: 2px;">Nguy cơ rất cao</div>
             <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Waterlow · 4 ngày 0 giờ trước</div>
           </div>
 
-          <!-- Hộp CẦN LÀM -->
           <div class="card" style="background: #1f1911; border: 1px solid #402e1b;">
             <div style="font-size: 11px; font-weight: 700; color: #f59e0b; margin-bottom: 6px;">CẦN LÀM</div>
             <div style="font-size: 12px; color: #fff; line-height: 1.6; margin-bottom: 10px;">
@@ -377,7 +382,6 @@
             </div>
           </div>
 
-          <!-- Kế hoạch phòng ngừa tối đa (10 Mục) -->
           <div style="margin-top: 14px;">
             <div style="font-size: 14px; font-weight: 700; color: #fff;">Kế hoạch phòng ngừa tối đa</div>
             <div style="font-size: 11px; color: #f87171; font-weight: 600; margin-bottom: 6px;">Nguy cơ rất cao</div>
@@ -391,7 +395,6 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương -->
         <div id="subtab-wound-content" style="display: none;">
           <div class="card">
             <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px;">Da và tổn thương</div>
@@ -403,7 +406,6 @@
           </div>
         </div>
 
-        <!-- Subtab 3: Xoay trở -->
         <div id="subtab-turn-content" style="display: none;">
           <div class="card">
             <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px;">Xoay trở</div>
@@ -414,7 +416,6 @@
           </div>
         </div>
 
-        <!-- Subtab 4: Diễn tiến -->
         <div id="subtab-trend-content" style="display: none;">
           <div class="card">
             <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px;">Diễn tiến đánh giá Waterlow</div>
@@ -433,11 +434,6 @@
         <div class="card">
           <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">Sổ giao ban ca trực ICU</div>
           <div style="font-size: 11px; color: #94a3b8; margin-bottom: 12px;">Tổng hợp nguy cơ loét tì đè và bàn giao chăm sóc ca trực.</div>
-          <div style="background: #101718; padding: 10px; border-radius: 10px; font-size: 12px; margin-bottom: 12px; line-height: 1.8;">
-            <div style="display: flex; justify-content: space-between;"><span>Tổng số người bệnh:</span><strong>11</strong></div>
-            <div style="display: flex; justify-content: space-between;"><span>Nguy cơ rất cao (Waterlow ≥ 20):</span><strong style="color: #f87171;">9</strong></div>
-            <div style="display: flex; justify-content: space-between;"><span>Có lưu ý chưa xử lý:</span><strong style="color: #fb923c;">2</strong></div>
-          </div>
           <textarea rows="3" placeholder="Ghi chú dặn dò cho ca trực sau..." style="margin-bottom: 10px;"></textarea>
           <button onclick="showToast('Đã lưu và ký biên bản giao ban!')" class="btn-teal">Ký xác nhận bàn giao ca</button>
         </div>
@@ -452,16 +448,6 @@
           <div>
             <div style="font-size: 15px; font-weight: 700; color: #fff;">Trần Văn An</div>
             <div style="font-size: 12px; color: #94a3b8;">Điều dưỡng · dd.an</div>
-          </div>
-        </div>
-        <div class="grid-2">
-          <div class="card">
-            <div style="font-size: 11px; color: #94a3b8;">Lượt đánh giá hôm nay</div>
-            <div style="font-size: 24px; font-weight: 700; color: #fff;">0</div>
-          </div>
-          <div class="card">
-            <div style="font-size: 11px; color: #94a3b8;">Tổng lượt đã thực hiện</div>
-            <div style="font-size: 24px; font-weight: 700; color: #fff;">319</div>
           </div>
         </div>
         <div class="card" style="font-size: 11px; color: #94a3b8; line-height: 1.6;">
@@ -508,10 +494,6 @@
           <button onclick="closeNewPatientModal()" style="background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer;">✕</button>
         </div>
 
-        <div style="background: #112022; border: 1px solid rgba(20,184,166,0.3); border-radius: 10px; padding: 10px; font-size: 11px; color: #cbd5e1; margin-bottom: 12px; line-height: 1.5;">
-          ℹ Nếu người bệnh đã từng nằm khoa, hãy tìm lại hồ sơ cũ bằng tên và ngày sinh thay vì tạo mới.
-        </div>
-
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div>
             <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Họ và tên</label>
@@ -520,33 +502,18 @@
 
           <div class="grid-2">
             <div>
-              <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Mã hồ sơ bệnh viện</label>
+              <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Mã hồ sơ</label>
               <input type="text" id="inp-p-code" placeholder="vd: 26-045678" />
-              <span style="font-size: 9px; color: #64748b;">Mã định danh chính.</span>
-            </div>
-            <div>
-              <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Ngày sinh</label>
-              <input type="date" id="inp-p-dob" />
-            </div>
-          </div>
-
-          <div class="grid-2">
-            <div>
-              <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Giới tính</label>
-              <select id="inp-p-gender">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-              </select>
             </div>
             <div>
               <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Giường</label>
-              <input type="text" id="inp-p-bed" placeholder="vd: HS-07" />
+              <input type="text" id="inp-p-bed" placeholder="vd: HS-05" />
             </div>
           </div>
 
           <div>
-            <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Chẩn đoán chính</label>
-            <input type="text" id="inp-p-diag" placeholder="vd: Viêm phổi nặng, sốc nhiễm khuẩn" />
+            <label style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px; display: block;">Chẩn đoán</label>
+            <input type="text" id="inp-p-diag" placeholder="vd: Viêm phổi nặng" />
           </div>
 
           <div class="grid-2" style="margin-top: 8px;">
@@ -575,7 +542,9 @@
       "Chụp ảnh và ghi nhận tiến triển tổn thương mỗi 48 – 72 giờ"
     ];
 
+    // Dữ liệu bệnh nhân (có sẵn trường bedNum để sắp xếp giường chuẩn)
     var patients = [
+      { id: "HS-15", code: "26-066069", name: "Phan Tú Linh", bed: "HS-15", bedNum: 15, age: 50, gender: "Nam", dob: "12/03/1976", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", waterlow: 24, risk: "Nguy cơ rất cao", overdueTurn: "Quá hạn 3 ngày 15 giờ", turnTarget: 2, overdueAssess: "Quá hạn đánh giá 3 ngày 16 giờ", notes: "", checked: [0, 1] },
       { id: "HS-08", code: "26-040239", name: "Nguyễn Thị Dung", bed: "HS-08", bedNum: 8, age: 49, gender: "Nữ", dob: "08/12/1976", diag: "Viêm não", waterlow: 23, risk: "Nguy cơ rất cao", overdueTurn: "Quá hạn 3 ngày 15 giờ", turnTarget: 2, overdueAssess: "Quá hạn đánh giá 3 ngày 16 giờ", notes: "", checked: [0, 1] },
       { id: "HS-11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "HS-11", bedNum: 11, age: 71, gender: "Nữ", dob: "12/04/1955", diag: "Uốn ván nặng", waterlow: 31, risk: "Nguy cơ rất cao", overdueTurn: "Quá hạn 3 ngày 14 giờ", turnTarget: 2, overdueAssess: "Quá hạn đánh giá 3 ngày 14 giờ", notes: "", checked: [] },
       { id: "HS-07", code: "26-040238", name: "Phan Hữu Hùng", bed: "HS-07", bedNum: 7, age: 78, gender: "Nam", dob: "20/01/1948", diag: "Sốc nhiễm trùng", waterlow: 25, risk: "Nguy cơ rất cao", overdueTurn: "Quá hạn 3 ngày 13 giờ", turnTarget: 2, overdueAssess: "Quá hạn đánh giá 3 ngày 13 giờ", notes: "", checked: [] },
@@ -590,13 +559,11 @@
     ];
 
     var currentPatient = patients[0];
-    var currentBedRange = 'all';
-    var bedCustomFrom = 1;
-    var bedCustomTo = 12;
-    var currentPStatus = 'treating';
-    var currentTaskFilter = 'all';
-    var currentViewMode = 'card';
-    var currentSubTab = 'overview';
+    var bedFrom = 1;
+    var bedTo = 20;
+    var isFilteringBedRange = false;
+    var currentSortMode = "bed-asc"; // Mặc định từ giường thấp đến cao
+    var currentViewMode = "card";
 
     function showToast(msg) {
       var t = document.getElementById('toast');
@@ -607,7 +574,6 @@
       }
     }
 
-    // Chuyển tab chính an toàn tuyệt đối
     function showTab(tabName) {
       var tabs = ['home', 'patients', 'tasks', 'patient-detail', 'handover', 'account'];
       for (var i = 0; i < tabs.length; i++) {
@@ -650,123 +616,47 @@
     }
 
     function showTabWithTaskFilter(fType) {
-      currentTaskFilter = fType;
       setTaskFilter(fType);
       showTab('tasks');
     }
 
-    function openNewPatientModal() {
-      var m = document.getElementById('new-patient-modal');
-      if (m) m.style.display = 'flex';
-    }
-
-    function closeNewPatientModal() {
-      var m = document.getElementById('new-patient-modal');
-      if (m) m.style.display = 'none';
-    }
-
-    function saveNewPatient() {
-      var nameInp = document.getElementById('inp-p-name');
-      var codeInp = document.getElementById('inp-p-code');
-      var bedInp = document.getElementById('inp-p-bed');
-      var diagInp = document.getElementById('inp-p-diag');
-      var genderInp = document.getElementById('inp-p-gender');
-
-      var name = nameInp ? nameInp.value.trim() : '';
-      var code = (codeInp && codeInp.value.trim()) ? codeInp.value.trim() : ('26-' + Math.floor(100000 + Math.random() * 900000));
-      var bed = (bedInp && bedInp.value.trim()) ? bedInp.value.trim() : 'HS-01';
-      var diag = (diagInp && diagInp.value.trim()) ? diagInp.value.trim() : 'Theo dõi hồi sức';
-      var gender = genderInp ? genderInp.value : 'Nam';
-
-      if (!name) {
-        alert('Vui lòng nhập họ và tên!');
-        return;
-      }
-
-      var match = bed.match(/\d+/);
-      var num = match ? parseInt(match[0]) : 99;
-
-      var newP = {
-        id: bed,
-        code: code,
-        name: name,
-        bed: bed,
-        bedNum: num,
-        age: 55,
-        gender: gender,
-        dob: "01/01/1971",
-        diag: diag,
-        waterlow: null,
-        risk: "Chưa đánh giá",
-        overdueTurn: "Vừa nhận bệnh",
-        turnTarget: 2,
-        overdueAssess: "Chưa đánh giá lần đầu",
-        notes: "",
-        checked: []
-      };
-
-      patients.unshift(newP);
-      closeNewPatientModal();
-      showToast('Đã nhận bệnh mới ' + name);
-
-      var stHome = document.getElementById('stat-home-treating');
-      var countP = document.getElementById('count-p-treating');
-      if (stHome) stHome.innerText = patients.length;
-      if (countP) countP.innerText = patients.length;
-
-      openDetailById(newP.id);
-    }
-
-    function turnAllPatients() {
-      for (var i = 0; i < patients.length; i++) {
-        patients[i].overdueTurn = "Vừa xoay";
-      }
-      showToast("Đã ghi xoay trở cả buồng thành công!");
-      renderPatients();
-      renderTasks();
-    }
-
-    // Lọc giường
-    function setBedRange(range) {
-      currentBedRange = range;
-      var arr = ['all', '1-4', '5-8', '9-12'];
-      for (var i = 0; i < arr.length; i++) {
-        var b = document.getElementById('bed-b-' + arr[i]);
-        if (b) {
-          b.style.background = (arr[i] === range) ? '#14b8a6' : '#1a2729';
-          b.style.color = (arr[i] === range) ? '#022c22' : '#94a3b8';
-        }
+    // Xử lý khi chọn dropdown Sắp xếp & Lọc giường
+    function onSortChange(val) {
+      currentSortMode = val;
+      var rangeBox = document.getElementById('bed-range-box');
+      if (val === 'bed-range') {
+        if (rangeBox) rangeBox.style.display = 'block';
+        isFilteringBedRange = true;
+      } else {
+        if (rangeBox) rangeBox.style.display = 'none';
+        isFilteringBedRange = false;
       }
       renderPatients();
     }
 
-    function applyBedCustom() {
-      var fromEl = document.getElementById('bed-custom-from');
-      var toEl = document.getElementById('bed-custom-to');
-      bedCustomFrom = fromEl ? (parseInt(fromEl.value) || 1) : 1;
-      bedCustomTo = toEl ? (parseInt(toEl.value) || 50) : 12;
-      currentBedRange = 'custom';
-      var arr = ['all', '1-4', '5-8', '9-12'];
-      for (var i = 0; i < arr.length; i++) {
-        var b = document.getElementById('bed-b-' + arr[i]);
-        if (b) { b.style.background = '#1a2729'; b.style.color = '#94a3b8'; }
-      }
+    function applyBedRangeFilter() {
+      var fEl = document.getElementById('bed-from-val');
+      var tEl = document.getElementById('bed-to-val');
+      bedFrom = fEl ? (parseInt(fEl.value) || 1) : 1;
+      bedTo = tEl ? (parseInt(tEl.value) || 99) : 99;
+      isFilteringBedRange = true;
       renderPatients();
-      showToast('Đã lọc giường từ ' + bedCustomFrom + ' đến ' + bedCustomTo);
+      showToast('Đã lọc giường từ ' + bedFrom + ' đến ' + bedTo);
     }
 
-    function checkBedMatch(p) {
-      var n = p.bedNum;
-      if (currentBedRange === 'all') return true;
-      if (currentBedRange === '1-4') return n >= 1 && n <= 4;
-      if (currentBedRange === '5-8') return n >= 5 && n <= 8;
-      if (currentBedRange === '9-12') return n >= 9 && n <= 12;
-      if (currentBedRange === 'custom') return n >= bedCustomFrom && n <= bedCustomTo;
-      return true;
+    function setQuickBedRange(from, to) {
+      var fEl = document.getElementById('bed-from-val');
+      var tEl = document.getElementById('bed-to-val');
+      if (fEl) fEl.value = from;
+      if (tEl) tEl.value = to;
+      bedFrom = from;
+      bedTo = to;
+      isFilteringBedRange = true;
+      renderPatients();
+      showToast('Đã lọc giường từ ' + from + ' đến ' + to);
     }
 
     function setPatientFilterStatus(st) {
-      currentPStatus = st;
       var arr = ['treating', 'discharged', 'all'];
       for (var i = 0; i < arr.length; i++) {
         var b = document.getElementById('pbtn-' + arr[i]);
@@ -795,26 +685,32 @@
       var sInp = document.getElementById('patient-search-input');
       var search = sInp ? sInp.value.toLowerCase().trim() : '';
 
-      var sortInp = document.getElementById('patient-sort-select');
-      var sort = sortInp ? sortInp.value : 'priority';
-
       var list = [];
       for (var i = 0; i < patients.length; i++) {
         var p = patients[i];
-        if (checkBedMatch(p)) {
-          if (!search || p.name.toLowerCase().indexOf(search) > -1 || p.bed.toLowerCase().indexOf(search) > -1 || p.code.toLowerCase().indexOf(search) > -1) {
-            list.push(p);
-          }
+        if (isFilteringBedRange) {
+          if (p.bedNum < bedFrom || p.bedNum > bedTo) continue;
+        }
+        if (!search || p.name.toLowerCase().indexOf(search) > -1 || p.bed.toLowerCase().indexOf(search) > -1 || p.code.toLowerCase().indexOf(search) > -1) {
+          list.push(p);
         }
       }
 
-      if (sort === 'waterlow') list.sort(function(a,b){ return (b.waterlow||0) - (a.waterlow||0); });
-      else if (sort === 'bed') list.sort(function(a,b){ return a.bedNum - b.bedNum; });
-      else if (sort === 'az') list.sort(function(a,b){ return a.name.localeCompare(b.name, 'vi'); });
-      else list.sort(function(a,b){ return (b.waterlow||0) - (a.waterlow||0); });
+      // Logic sắp xếp giường từ thấp đến cao, cao đến thấp
+      if (currentSortMode === 'bed-asc' || currentSortMode === 'bed-range') {
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      } else if (currentSortMode === 'bed-desc') {
+        list.sort(function(a, b) { return b.bedNum - a.bedNum; });
+      } else if (currentSortMode === 'waterlow') {
+        list.sort(function(a, b) { return (b.waterlow || 0) - (a.waterlow || 0); });
+      } else if (currentSortMode === 'az') {
+        list.sort(function(a, b) { return a.name.localeCompare(b.name, 'vi'); });
+      } else {
+        list.sort(function(a, b) { return (b.waterlow || 0) - (a.waterlow || 0); });
+      }
 
       if (list.length === 0) {
-        container.innerHTML = '<div class="card" style="text-align:center; color:#94a3b8; font-size:12px;">Không có bệnh nhân trong khoảng giường này.</div>';
+        container.innerHTML = '<div class="card" style="text-align:center; color:#94a3b8; font-size:12px;">Không có bệnh nhân phù hợp với điều kiện lọc.</div>';
         return;
       }
 
@@ -853,7 +749,8 @@
       }
     }
 
-    // Hiển thị danh sách Việc cần làm
+    // Các hàm việc cần làm
+    var currentTaskFilter = 'all';
     function setTaskFilter(type) {
       currentTaskFilter = type;
       var arr = ['all', 'turn', 'assess', 'note'];
@@ -883,11 +780,6 @@
           if (currentTaskFilter === 'note' && !p.notes) continue;
           list.push(p);
         }
-      }
-
-      if (list.length === 0) {
-        container.innerHTML = '<div class="card" style="text-align:center; color:#94a3b8; font-size:12px;">Không có công việc nào cần xử lý.</div>';
-        return;
       }
 
       var html = '';
@@ -931,7 +823,68 @@
       renderTasks();
     }
 
-    // Chi tiết bệnh nhân
+    function turnAllPatients() {
+      for (var i = 0; i < patients.length; i++) {
+        patients[i].overdueTurn = "Vừa xoay";
+      }
+      showToast("Đã ghi xoay trở cả buồng thành công!");
+      renderPatients();
+      renderTasks();
+    }
+
+    function openNewPatientModal() {
+      var m = document.getElementById('new-patient-modal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeNewPatientModal() {
+      var m = document.getElementById('new-patient-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    function saveNewPatient() {
+      var nameInp = document.getElementById('inp-p-name');
+      var codeInp = document.getElementById('inp-p-code');
+      var bedInp = document.getElementById('inp-p-bed');
+      var diagInp = document.getElementById('inp-p-diag');
+
+      var name = nameInp ? nameInp.value.trim() : '';
+      var code = (codeInp && codeInp.value.trim()) ? codeInp.value.trim() : ('26-' + Math.floor(100000 + Math.random() * 900000));
+      var bed = (bedInp && bedInp.value.trim()) ? bedInp.value.trim() : 'HS-05';
+      var diag = (diagInp && diagInp.value.trim()) ? diagInp.value.trim() : 'Theo dõi hồi sức';
+
+      if (!name) { alert('Vui lòng nhập họ và tên!'); return; }
+
+      var match = bed.match(/\d+/);
+      var num = match ? parseInt(match[0]) : 99;
+
+      var newP = {
+        id: bed,
+        code: code,
+        name: name,
+        bed: bed,
+        bedNum: num,
+        age: 50,
+        gender: "Nam",
+        dob: "01/01/1976",
+        diag: diag,
+        waterlow: null,
+        risk: "Chưa đánh giá",
+        overdueTurn: "Vừa nhận bệnh",
+        turnTarget: 2,
+        overdueAssess: "Chưa đánh giá lần đầu",
+        notes: "",
+        checked: []
+      };
+
+      patients.unshift(newP);
+      closeNewPatientModal();
+      showToast('Đã nhận bệnh mới ' + name);
+      document.getElementById('stat-home-treating').innerText = patients.length;
+      document.getElementById('count-p-treating').innerText = patients.length;
+      openDetailById(newP.id);
+    }
+
     function openDetailById(id) {
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
@@ -944,7 +897,6 @@
     }
 
     function setSubTab(sub) {
-      currentSubTab = sub;
       var subs = ['overview', 'wound', 'turn', 'trend'];
       for (var i = 0; i < subs.length; i++) {
         var el = document.getElementById('subtab-' + subs[i] + '-content');
@@ -966,7 +918,7 @@
       var assessOd = document.getElementById('dt-assess-overdue');
       var turnOd = document.getElementById('dt-turn-overdue');
 
-      if (codeLine) codeLine.innerText = p.code + ' · ' + p.age + ' tuổi · ' + p.gender + ' · sinh ' + p.dob;
+      if (codeLine) codeLine.innerText = p.code + ' · ' + p.age + ' tuổi · ' + p.gender;
       if (bedDiag) bedDiag.innerHTML = 'Giường <strong style="color: #2dd4bf;">' + p.bed + '</strong> · ' + p.diag;
       if (wScore) wScore.innerText = (p.waterlow !== null ? p.waterlow : '--');
       if (riskText) riskText.innerText = p.risk;
