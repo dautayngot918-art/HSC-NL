@@ -83,17 +83,17 @@
     .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 700; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; }
 
     /* Nút chọn tư thế */
-    .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
-    .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 700; border-color: #0284c7; }
+    .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 8px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
+    .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 700; border-color: #0284c7; box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2); }
 
     input, select, textarea {
       width: 100%;
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 10px;
-      padding: 9px 12px;
+      padding: 8px 10px;
       color: #0f172a;
-      font-size: 13px;
+      font-size: 12px;
       outline: none;
     }
     input:focus, select:focus, textarea:focus { border-color: #0284c7; }
@@ -309,6 +309,7 @@
 
         <!-- 4 Ô Thống Kê -->
         <div class="grid-2">
+          <!-- Ô 1: Người bệnh đang điều trị -->
           <div onclick="showTab('patients')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Người bệnh điều trị</span>
@@ -318,6 +319,7 @@
             <div id="stat-home-highrisk" style="font-size: 11px; color: #dc2626; font-weight: 600;">9 ca nguy cơ cao trở lên</div>
           </div>
 
+          <!-- Ô 2: Đến hạn đánh giá -->
           <div onclick="showTabWithTaskFilter('assess')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Đến hạn đánh giá</span>
@@ -327,7 +329,8 @@
             <div style="font-size: 11px; color: #64748b;">ca chưa đánh giá lại</div>
           </div>
 
-          <div onclick="showTabWithTaskFilter('turn')" class="card card-click">
+          <!-- Ô 3: Đã tới lúc xoay trở -->
+          <div onclick="showTab('bulk-turn')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Đã tới lúc xoay trở</span>
               <span style="color: #ea580c;">Xem →</span>
@@ -336,6 +339,7 @@
             <div style="font-size: 11px; color: #64748b;">quá khoảng cách mục tiêu</div>
           </div>
 
+          <!-- Ô 4: Lưu ý chưa xử lý -->
           <div onclick="showTabWithTaskFilter('note')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Lưu ý chưa xử lý</span>
@@ -416,7 +420,6 @@
           <button onclick="openNewPatientModal()" style="width: 120px; background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; font-size: 12px; cursor: pointer; shrink: 0;">+ Hồ sơ mới</button>
         </div>
 
-        <!-- 3 Nút lọc trạng thái -->
         <div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">
           <button id="pbtn-treating" onclick="setPatientFilterStatus('treating')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đang điều trị<br><span id="count-p-treating" style="font-size: 10px;">12</span></button>
           <button id="pbtn-discharged" onclick="setPatientFilterStatus('discharged')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã xuất viện<br><span id="count-p-discharged" style="font-size: 10px;">132</span></button>
@@ -428,7 +431,6 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
-        <!-- Hai dropdown: Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -451,7 +453,6 @@
           </div>
         </div>
 
-        <!-- Khung lọc giường (Từ - Đến) -->
         <div id="bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường bệnh:</span>
@@ -466,7 +467,6 @@
           </div>
         </div>
 
-        <!-- Chế độ Thẻ / Bảng -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; cursor: pointer;">Thẻ</button>
@@ -514,16 +514,15 @@
         </div>
       </div>
 
-      <!-- ======================================================== -->
-      <!-- TAB 4: CẦN LƯU Ý (THIẾT KẾ GỌN GÀNG, BỎ 2 KHUNG NÚT DÀI) -->
-      <!-- ======================================================== -->
+      <!-- ========================================================================= -->
+      <!-- TAB 4: CẦN LƯU Ý (THIẾT KẾ ĐẦY ĐỦ TƯ THẾ, CHỈNH NGÀY GIỜ & LƯU CỮ XOAY) -->
+      <!-- ========================================================================= -->
       <div id="tab-tasks" style="display: none;">
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
           <input type="text" id="task-search-input" placeholder="🔍 Tìm theo tên hoặc mã hồ sơ" oninput="renderTasks()" />
           <button onclick="openNewPatientModal()" style="width: 120px; background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; font-size: 12px; cursor: pointer; shrink: 0;">+ Hồ sơ mới</button>
         </div>
 
-        <!-- 3 Nút lọc trạng thái -->
         <div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">
           <button id="task-pbtn-treating" onclick="setTaskPatientFilter('treating')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đang điều trị<br><span id="count-task-treating" style="font-size: 10px;">12</span></button>
           <button id="task-pbtn-discharged" onclick="setTaskPatientFilter('discharged')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã xuất viện<br><span id="count-task-discharged" style="font-size: 10px;">132</span></button>
@@ -633,7 +632,7 @@
           </div>
         </div>
 
-        <!-- Subtab 3: Xoay trở (CHỈ HIỂN THỊ ĐÚNG RIÊNG BỆNH NHÂN NÀY) -->
+        <!-- Subtab 3: Xoay trở (Đầy đủ cữ xoay riêng cho bệnh nhân này) -->
         <div id="subtab-turn-content" style="display: none;">
           <div class="card">
             <div class="section-title" style="margin-bottom: 2px;">
@@ -644,7 +643,6 @@
             <div id="dt-next-turn-pos" style="font-size: 18px; font-weight: 800; color: #0284c7; margin-bottom: 4px;">Nghiêng phải 30°</div>
             <div id="dt-turn-status-text" style="font-size: 11px; color: #dc2626; font-weight: 600; margin-bottom: 12px;">Đã quá hạn mục tiêu xoay trở</div>
 
-            <!-- Bảng chọn tư thế nhanh cho riêng bệnh nhân này -->
             <div class="grid-4" style="margin-bottom: 6px;">
               <button onclick="selectSingleDetailPos('Ngửa')" id="sdt-pos-ngua" class="pos-btn pos-active">Ngửa</button>
               <button onclick="selectSingleDetailPos('Ngh. trái')" id="sdt-pos-trai" class="pos-btn">Ngh. trái</button>
@@ -656,15 +654,21 @@
               <button onclick="selectSingleDetailPos('Chưa xoay được')" id="sdt-pos-chua" class="pos-btn">chưa xoay được</button>
             </div>
 
-            <div onclick="toggleSingleDetailSkinCheck()" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #334155; margin-bottom: 12px;">
+            <div onclick="toggleSingleDetailSkinCheck()" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #334155; margin-bottom: 10px;">
               <div id="sdt-skin-box" style="width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid #0284c7; display: flex; align-items: center; justify-content: center; background: #0284c7; color: #ffffff; font-weight: 900; font-size: 12px;">
                 ✓
               </div>
               <span style="font-weight: 600;">đã xem da điểm tì đè</span>
             </div>
 
+            <!-- Ô chỉnh ngày giờ trước khi lưu cữ xoay trong chi tiết -->
+            <div style="margin-bottom: 10px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Ngày giờ thực hiện xoay trở (bỏ trống = lấy giờ hiện tại):</label>
+              <input type="datetime-local" id="dt-single-turntime" style="font-size: 12px; padding: 8px 10px;" />
+            </div>
+
             <button onclick="handleDetailTurnAction()" class="btn-blue" style="margin-bottom: 14px;">
-              Ghi nhận lượt xoay này
+              Lưu cữ xoay
             </button>
 
             <div style="font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px;">
@@ -729,7 +733,6 @@
               </div>
             </div>
 
-            <!-- Phiếu đánh giá -->
             <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 12px; margin-bottom: 8px;">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
                 <span id="trend-box-score" style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 14px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">23</span>
@@ -792,6 +795,7 @@
                 </div>
               </div>
 
+              <!-- Thẻ hiển thị khi người bệnh đã xuất viện -->
               <div id="discharged-info-view" style="display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; line-height: 1.7;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                   <strong style="color: #0284c7; font-size: 13px;">HỒ SƠ ĐÃ KẾT THÚC ĐIỀU TRỊ</strong>
@@ -933,19 +937,43 @@
       return 4;
     }
 
+    // Hàm lấy chuỗi ngày giờ định dạng YYYY-MM-DDTHH:mm cho input datetime-local
+    function getNowDateTimeInputValue() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = String(now.getMonth() + 1).padStart(2, '0');
+      var day = String(now.getDate()).padStart(2, '0');
+      var hours = String(now.getHours()).padStart(2, '0');
+      var minutes = String(now.getMinutes()).padStart(2, '0');
+      return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+    }
+
+    // Format hiển thị ra chuỗi thân thiện: HH:mm ngày DD/MM/YYYY
+    function formatDateTimeDisplay(dtInputVal) {
+      var dateObj = dtInputVal ? new Date(dtInputVal) : new Date();
+      if (isNaN(dateObj.getTime())) dateObj = new Date();
+      var h = String(dateObj.getHours()).padStart(2, '0');
+      var m = String(dateObj.getMinutes()).padStart(2, '0');
+      var d = String(dateObj.getDate()).padStart(2, '0');
+      var mo = String(dateObj.getMonth() + 1).padStart(2, '0');
+      var y = dateObj.getFullYear();
+      return h + ':' + m + ' · ' + d + '/' + mo + '/' + y;
+    }
+
+    // Dữ liệu bệnh nhân mẫu
     var patients = [
-      { id: "HS-02", code: "26-040233", name: "Phan Đức Thắng", bed: "HS-02", bedNum: 2, age: 60, gender: "Nam", dob: "22/03/1966", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null },
-      { id: "HS-03", code: "26-040234", name: "Phan Thu Linh", bed: "HS-03", bedNum: 3, age: 49, gender: "Nữ", dob: "05/06/1977", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-01", code: "26-040232", name: "Lê Tấn Khoa", bed: "HS-01", bedNum: 1, age: 63, gender: "Nam", dob: "02/02/1963", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-04", code: "26-040235", name: "Phạm Hữu Hùng", bed: "HS-04", bedNum: 4, age: 65, gender: "Nam", dob: "11/11/1961", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null },
-      { id: "HS-11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "HS-11", bedNum: 11, age: 71, gender: "Nữ", dob: "12/04/1955", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "HS-10", bedNum: 10, age: 42, gender: "Nam", dob: "14/09/1984", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-07", code: "26-040238", name: "Phan Hữu Hùng", bed: "HS-07", bedNum: 7, age: 78, gender: "Nam", dob: "20/01/1948", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-15", code: "26-066069", name: "Phan Tú Linh", bed: "HS-15", bedNum: 15, age: 50, gender: "Nam", dob: "12/03/1976", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-08", code: "26-040239", name: "Nguyễn Thị Dung", bed: "HS-08", bedNum: 8, age: 49, gender: "Nữ", dob: "08/12/1976", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-05", code: "26-040236", name: "Dương Công Cường", bed: "HS-05", bedNum: 5, age: 58, gender: "Nam", dob: "30/08/1968", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-12", code: "26-040243", name: "Ngô Thanh Chi", bed: "HS-12", bedNum: 12, age: 52, gender: "Nữ", dob: "19/10/1973", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null },
-      { id: "HS-09", code: "26-040240", name: "Nguyễn Minh Nam", bed: "HS-09", bedNum: 9, age: 55, gender: "Nam", dob: "15/07/1971", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "", dischargeData: null }
+      { id: "HS-02", code: "26-040233", name: "Phan Đức Thắng", bed: "HS-02", bedNum: 2, age: 60, gender: "Nam", dob: "22/03/1966", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [] },
+      { id: "HS-03", code: "26-040234", name: "Phan Thu Linh", bed: "HS-03", bedNum: 3, age: 49, gender: "Nữ", dob: "05/06/1977", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-01", code: "26-040232", name: "Lê Tấn Khoa", bed: "HS-01", bedNum: 1, age: 63, gender: "Nam", dob: "02/02/1963", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-04", code: "26-040235", name: "Phạm Hữu Hùng", bed: "HS-04", bedNum: 4, age: 65, gender: "Nam", dob: "11/11/1961", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [] },
+      { id: "HS-11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "HS-11", bedNum: 11, age: 71, gender: "Nữ", dob: "12/04/1955", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "HS-10", bedNum: 10, age: 42, gender: "Nam", dob: "14/09/1984", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-07", code: "26-040238", name: "Phan Hữu Hùng", bed: "HS-07", bedNum: 7, age: 78, gender: "Nam", dob: "20/01/1948", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-15", code: "26-066069", name: "Phan Tú Linh", bed: "HS-15", bedNum: 15, age: 50, gender: "Nam", dob: "12/03/1976", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-08", code: "26-040239", name: "Nguyễn Thị Dung", bed: "HS-08", bedNum: 8, age: 49, gender: "Nữ", dob: "08/12/1976", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-05", code: "26-040236", name: "Dương Công Cường", bed: "HS-05", bedNum: 5, age: 58, gender: "Nam", dob: "30/08/1968", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-12", code: "26-040243", name: "Ngô Thanh Chi", bed: "HS-12", bedNum: 12, age: 52, gender: "Nữ", dob: "19/10/1973", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [] },
+      { id: "HS-09", code: "26-040240", name: "Nguyễn Minh Nam", bed: "HS-09", bedNum: 9, age: 55, gender: "Nam", dob: "15/07/1971", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [] }
     ];
 
     var currentPatient = patients[0];
@@ -1297,6 +1325,7 @@
         return;
       }
 
+      // 1. CHẾ ĐỘ THẺ
       if (currentViewMode === 'card') {
         var html = '';
         for (var j = 0; j < list.length; j++) {
@@ -1322,7 +1351,9 @@
           '</div>';
         }
         container.innerHTML = html;
-      } else {
+      } 
+      // 2. CHẾ ĐỘ BẢNG
+      else {
         var tbHtml = '<div class="table-container"><table class="table-custom">' +
           '<thead>' +
             '<tr>' +
@@ -1456,18 +1487,18 @@
           '</div>' +
 
           '<div class="grid-4" style="margin-bottom:6px;">' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
           '<div class="grid-2" style="margin-bottom:8px;">' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
           '</div>' +
 
-          '<div onclick="togglePatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155; padding-top:2px;">' +
+          '<div onclick="toggleBulkPatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155; padding-top:2px;">' +
             '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:12px;">' +
               (pt.checkedSkin ? '✓' : '') +
             '</div>' +
@@ -1478,7 +1509,7 @@
       container.innerHTML = html;
     }
 
-    function selectPatientPos(id, posName) {
+    function selectBulkPatientPos(id, posName) {
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
           patients[i].selectedPos = posName;
@@ -1488,7 +1519,7 @@
       renderBulkTurnList();
     }
 
-    function togglePatientSkinCheck(id) {
+    function toggleBulkPatientSkinCheck(id) {
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
           patients[i].checkedSkin = !patients[i].checkedSkin;
@@ -1499,11 +1530,18 @@
     }
 
     function saveAllBulkTurn() {
+      var nowDisplay = formatDateTimeDisplay(null);
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].status === 'treating') {
           patients[i].overdueTurn = "Vừa xoay";
-          patients[i].lastTurnNote = (patients[i].selectedPos || "Ngửa") + " lúc 12:44";
+          patients[i].lastTurnNote = (patients[i].selectedPos || "Ngửa") + " lúc " + nowDisplay.split('·')[0].trim();
           patients[i].turns24h = (patients[i].turns24h || 0) + 1;
+          if (!patients[i].turnLogs) patients[i].turnLogs = [];
+          patients[i].turnLogs.unshift({
+            time: nowDisplay,
+            pos: patients[i].selectedPos || "Ngửa",
+            skin: patients[i].checkedSkin
+          });
         }
       }
       showToast("Đã lưu xoay trở thành công cho cả buồng!");
@@ -1514,8 +1552,30 @@
     }
 
     // =========================================================================
-    // RENDER TAB CẦN LƯU Ý: THIẾT KẾ GỌN GÀNG, BỎ 2 KHUNG NÚT DÀI
-    // TỰ ĐỘNG BIẾN MẤT KHI ĐÃ HOÀN THÀNH MỤC TƯƠNG ỨNG
+    // HÀM CHỌN TƯ THẾ TRỰC TIẾP TRÊN THẺ TAB CẦN LƯU Ý (KHẮC PHỤC TRIỆT ĐỂ LỖI BẤM)
+    // =========================================================================
+    function selectTaskPos(patientId, posName) {
+      for (var i = 0; i < patients.length; i++) {
+        if (patients[i].id === patientId) {
+          patients[i].selectedPos = posName;
+          break;
+        }
+      }
+      renderTasks();
+    }
+
+    function toggleTaskSkin(patientId) {
+      for (var i = 0; i < patients.length; i++) {
+        if (patients[i].id === patientId) {
+          patients[i].checkedSkin = !patients[i].checkedSkin;
+          break;
+        }
+      }
+      renderTasks();
+    }
+
+    // =========================================================================
+    // RENDER TAB CẦN LƯU Ý (CÓ Ô NHẬP/CHỈNH NGÀY GIỜ TRƯỚC NÚT LƯU CỮ XOAY)
     // =========================================================================
     var currentTaskFilter = 'all';
     function setTaskFilter(type) {
@@ -1551,7 +1611,6 @@
         var isAssessNeeded = p.overdueAssess && p.overdueAssess.trim() !== '';
         var isNotePending = p.notes && p.notes.trim() !== '';
 
-        // Cơ chế lọc tự động biến mất khi làm xong:
         if (currentTaskFilter === 'turn' && !isTurnOverdue) continue;
         if (currentTaskFilter === 'assess' && !isAssessNeeded) continue;
         if (currentTaskFilter === 'note' && !isNotePending) continue;
@@ -1577,7 +1636,9 @@
         return;
       }
 
+      var defaultNowInput = getNowDateTimeInputValue();
       var html = '';
+
       for (var j = 0; j < list.length; j++) {
         var pt = list[j];
         var badgeCls = (pt.risk === 'Nguy cơ rất cao') ? 'badge-red' : (pt.risk === 'Nguy cơ cao' ? 'badge-orange' : 'badge-yellow');
@@ -1598,7 +1659,7 @@
             '</div>' +
           '</div>';
 
-        // NẾU ĐANG CHỌN MỤC XOAY TRỞ: HIỆN BẢNG CHỌN TƯ THẾ NHƯ ẢNH 27
+        // NẾU ĐANG CHỌN MỤC XOAY TRỞ: BẢNG CHỌN TƯ THẾ TRỰC TIẾP & Ô CHỈNH NGÀY GIỜ
         if (currentTaskFilter === 'turn') {
           html += '<div style="display:flex; justify-content:space-between; font-size:11px; color:#ea580c; margin-bottom:8px; font-weight:600;">' +
             '<span>' + pt.overdueTurn + ' (Mục tiêu: mỗi ' + targetH + 'g)</span>' +
@@ -1606,35 +1667,43 @@
           '</div>' +
 
           '<div class="grid-4" style="margin-bottom:6px;">' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
           '<div class="grid-2" style="margin-bottom:8px;">' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
-            '<button onclick="selectPatientPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
           '</div>' +
 
-          '<div style="display:flex; justify-content:space-between; align-items:center; padding-top:4px;">' +
-            '<div onclick="togglePatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155;">' +
-              '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:12px;">' +
-                (pt.checkedSkin ? '✓' : '') +
-              '</div>' +
-              '<span style="font-weight:600;">đã xem da điểm tì đè</span>' +
+          '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155; margin-bottom:8px;">' +
+            '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:12px;">' +
+              (pt.checkedSkin ? '✓' : '') +
             '</div>' +
-            '<button onclick="singleTurnAction(\'' + pt.id + '\')" class="btn-blue" style="width:auto; padding:6px 14px; font-size:11px;">Lưu cữ xoay</button>' +
-          '</div>';
+            '<span style="font-weight:600;">đã xem da điểm tì đè</span>' +
+          '</div>' +
+
+          '<!-- Ô NHẬP/CHỈNH NGÀY GIỜ XOAY NGAY TRƯỚC NÚT LƯU CỮ XOAY -->' +
+          '<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin-bottom:10px;">' +
+            '<label style="font-size:11px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">' +
+              'Thời gian xoay trở (bỏ trống tự lấy giờ hiện tại):' +
+            '</label>' +
+            '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:12px; padding:6px 8px; font-weight:600; color:#0284c7;" />' +
+          '</div>' +
+
+          '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-blue" style="padding:10px; font-size:12px;">' +
+            'Lưu cữ xoay' +
+          '</button>';
         } 
-        // CÁC MỤC KHÁC: HIỆN CẢNH BÁO GỌN GÀNG (ẢNH 28)
+        // CÁC MỤC KHÁC: CẢNH BÁO GỌN GÀNG
         else {
           html += '<div style="font-size:10px; color:#0284c7; font-weight:700; background:#f0f9ff; display:inline-block; padding:2px 6px; border-radius:4px; margin-bottom:8px;">' +
             'Waterlow ' + (pt.waterlow !== null ? pt.waterlow : '--') +
           '</div>' +
 
           '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
-            // Dòng lưu ý
             (pt.notes ? 
               '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;" title="Nhấp để xử lý">' +
                 '<span>• ' + pt.notes + '</span>' +
@@ -1642,7 +1711,6 @@
               '</div>' 
             : '') +
 
-            // Dòng đánh giá
             (pt.overdueAssess ? 
               '<div onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;" title="Nhấp để đánh giá">' +
                 '<span>• ' + pt.overdueAssess + '</span>' +
@@ -1650,7 +1718,6 @@
               '</div>' 
             : '') +
 
-            // Dòng xoay trở
             (isTurnOverdue ?
               '<div onclick="openDetailById(\'' + pt.id + '\', \'turn\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;" title="Nhấp để xoay">' +
                 '<span>• Đã ' + pt.overdueTurn + ' chưa xoay — <strong>mục tiêu mỗi ' + targetH + ' giờ</strong></span>' +
@@ -1665,15 +1732,36 @@
       container.innerHTML = html;
     }
 
-    function singleTurnAction(id) {
+    // =========================================================================
+    // HÀM LƯU CỮ XOAY CÓ NGÀY GIỜ VÀO HỒ SƠ BỆNH NHÂN (TỰ ĐỘNG LẤY GIỜ HOẶC THEO INPUT)
+    // =========================================================================
+    function saveTaskTurnWithTime(id) {
+      var timeInput = document.getElementById('turntime-' + id);
+      var chosenVal = (timeInput && timeInput.value) ? timeInput.value : null;
+
+      // Nếu không nhập thì tự động lấy ngày giờ của máy tính/điện thoại
+      var recordTimeDisplay = formatDateTimeDisplay(chosenVal);
+
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
-          patients[i].overdueTurn = "Vừa xoay";
-          patients[i].turns24h = (patients[i].turns24h || 0) + 1;
-          showToast("Đã ghi xoay trở giường " + patients[i].bed);
+          var p = patients[i];
+          var pos = p.selectedPos || "Ngửa";
+          p.overdueTurn = "Vừa xoay";
+          p.lastTurnNote = pos + " lúc " + recordTimeDisplay.split('·')[0].trim();
+          p.turns24h = (p.turns24h || 0) + 1;
+
+          if (!p.turnLogs) p.turnLogs = [];
+          p.turnLogs.unshift({
+            time: recordTimeDisplay,
+            pos: pos,
+            skin: p.checkedSkin !== false
+          });
+
+          showToast("Đã lưu cữ xoay giường " + p.bed + " (" + recordTimeDisplay + ")");
           break;
         }
       }
+
       updateDynamicDashboardCounts();
       renderTasks();
       renderPatients();
@@ -1743,7 +1831,8 @@
         notes: "",
         selectedPos: "Ngửa",
         checkedSkin: true,
-        dischargeData: null
+        dischargeData: null,
+        turnLogs: []
       };
 
       patients.unshift(newP);
@@ -1764,7 +1853,7 @@
     }
 
     // =======================================================
-    // CHI TIẾT NGƯỜI BỆNH (CHỌN TƯ THẾ RIÊNG BỆNH NHÂN ĐÓ)
+    // CHI TIẾT NGƯỜI BỆNH
     // =======================================================
     function openDetailById(id, subTabName) {
       for (var i = 0; i < patients.length; i++) {
@@ -1835,12 +1924,28 @@
       var careBox = document.getElementById('dt-care-box');
       if (careBox) careBox.style.display = isDis ? 'none' : 'block';
 
-      // Cập nhật trạng thái nút tư thế trong tab Xoay trở riêng của bệnh nhân
+      // Cập nhật nút tư thế trong tab Xoay trở riêng của bệnh nhân
       selectSingleDetailPos(p.selectedPos || 'Ngửa');
       var skinBox = document.getElementById('sdt-skin-box');
       if (skinBox) {
         skinBox.style.background = p.checkedSkin ? '#0284c7' : 'transparent';
         skinBox.innerText = p.checkedSkin ? '✓' : '';
+      }
+
+      // Đặt mặc định giờ vào input trong tab chi tiết
+      var dtTimeInput = document.getElementById('dt-single-turntime');
+      if (dtTimeInput) dtTimeInput.value = getNowDateTimeInputValue();
+
+      // Hiển thị bảng nhật ký lịch sử xoay trở đã thực hiện của bệnh nhân
+      var turnLogContainer = document.getElementById('dt-turn-log-table');
+      if (turnLogContainer) {
+        if (p.turnLogs && p.turnLogs.length > 0) {
+          turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
+            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
+          }).join('');
+        } else {
+          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
+        }
       }
 
       var alertBox = document.getElementById('patient-alert-container');
@@ -2034,11 +2139,25 @@
       renderPatients();
     }
 
+    // Xoay trong trang chi tiết người bệnh
     function handleDetailTurnAction() {
+      var timeInp = document.getElementById('dt-single-turntime');
+      var chosenVal = (timeInp && timeInp.value) ? timeInp.value : null;
+      var recordTime = formatDateTimeDisplay(chosenVal);
+      var pos = currentPatient.selectedPos || "Ngửa";
+
       currentPatient.overdueTurn = "Vừa xoay";
+      currentPatient.lastTurnNote = pos + " lúc " + recordTime.split('·')[0].trim();
       currentPatient.turns24h = (currentPatient.turns24h || 0) + 1;
-      currentPatient.lastTurnNote = (currentPatient.selectedPos || "Ngửa") + " lúc 12:44";
-      showToast("Đã ghi xoay trở giường " + currentPatient.bed);
+
+      if (!currentPatient.turnLogs) currentPatient.turnLogs = [];
+      currentPatient.turnLogs.unshift({
+        time: recordTime,
+        pos: pos,
+        skin: currentPatient.checkedSkin !== false
+      });
+
+      showToast("Đã ghi xoay trở giường " + currentPatient.bed + " (" + recordTime + ")");
       updateDynamicDashboardCounts();
       renderDetail();
       renderPatients();
@@ -2053,8 +2172,8 @@
       }
       currentPatient.waterlow = 23;
       currentPatient.risk = "Nguy cơ rất cao";
-      currentPatient.assessDateTime = "14:00 · 26/09/2026";
-      currentPatient.latestAssess = "Hôm nay 14:00";
+      currentPatient.assessDateTime = formatDateTimeDisplay(null);
+      currentPatient.latestAssess = "Hôm nay " + currentPatient.assessDateTime.split('·')[0].trim();
       showToast("Đã lưu đánh giá Waterlow!");
       updateDynamicDashboardCounts();
       renderDetail();
