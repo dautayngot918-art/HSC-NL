@@ -721,32 +721,32 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương (Cập nhật chuẩn đầy đủ theo hình mẫu yêu cầu) -->
+        <!-- Subtab 2: Tổn thương (Đã chuyển tông màu sáng và bổ sung đầy đủ các mục theo yêu cầu) -->
         <div id="subtab-wound-content" style="display: none;">
-          <div class="card" style="background: #0f172a; color: #f8fafc; border: none; padding: 16px;">
+          <div class="card" style="background: #ffffff; color: #334155; border: 1px solid #e2e8f0; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-              <div style="font-size: 15px; font-weight: 800; color: #ffffff;">Khám da và tổn thương</div>
-              <span style="font-size: 11px; color: #94a3b8; font-weight: 700;">Bước 3 / 4</span>
+              <div style="font-size: 15px; font-weight: 800; color: #0284c7;">Khám da và tổn thương</div>
+              <span style="font-size: 11px; color: #64748b; font-weight: 700;">Bước 3 / 4</span>
             </div>
-            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 12px; font-size: 11.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 14px;">
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; font-size: 11.5px; color: #475569; line-height: 1.5; margin-bottom: 14px;">
               ℹ Quy trình Bước 1: khám da toàn diện cùng lúc với chấm điểm Waterlow. Quan sát toàn bộ điểm tì đè và vùng da dưới mọi thiết bị y tế.
             </div>
 
             <!-- Quan sát chung -->
-            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 10px;">DA Quan sát chung</div>
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+              <div style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase; margin-bottom: 10px;">DA Quan sát chung</div>
               <div class="grid-2" style="margin-bottom: 10px;">
                 <div>
-                  <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Nhiệt độ da</label>
-                  <select id="dt-wound-temp" onchange="currentPatient.wizardState.skinTemp=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                  <label style="font-size: 11px; color: #475569; font-weight: 700; display: block; margin-bottom: 4px;">Nhiệt độ da</label>
+                  <select id="dt-wound-temp" onchange="currentPatient.wizardState.skinTemp=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                     <option>Bình thường</option>
                     <option>Nóng sốt</option>
                     <option>Lạnh ẩm</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Độ chắc của mô</label>
-                  <select id="dt-wound-firm" onchange="currentPatient.wizardState.skinFirm=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                  <label style="font-size: 11px; color: #475569; font-weight: 700; display: block; margin-bottom: 4px;">Độ chắc của mô</label>
+                  <select id="dt-wound-firm" onchange="currentPatient.wizardState.skinFirm=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                     <option>Bình thường</option>
                     <option>Phù nề</option>
                     <option>Teo nhão</option>
@@ -754,8 +754,8 @@
                 </div>
               </div>
               <div>
-                <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Cảm giác</label>
-                <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                <label style="font-size: 11px; color: #475569; font-weight: 700; display: block; margin-bottom: 4px;">Cảm giác</label>
+                <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
                   <option>Mất cảm giác hoàn toàn</option>
@@ -763,42 +763,107 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Sơ đồ cơ thể) -->
-            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+            <!-- Vị trí bất thường (Sơ đồ cơ thể chuẩn 2 mặt trước và sau với các mốc vòng tròn) -->
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">VT Vị trí bất thường</span>
-                <span style="font-size: 11px; color: #94a3b8; font-weight: 700;">0 vị trí</span>
+                <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
+                <span style="font-size: 11px; color: #64748b; font-weight: 700;">0 vị trí</span>
               </div>
-              <div style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">Bấm Thêm vị trí để ghi, hoặc chạm thẳng vào vị trí trên hình.</div>
-              <div class="grid-2" style="text-align: center; font-size: 11px; color: #94a3b8;">
-                <div style="background: #0f172a; border: 1px dashed #334155; border-radius: 8px; padding: 20px;">Nhìn từ phía trước</div>
-                <div style="background: #0f172a; border: 1px dashed #334155; border-radius: 8px; padding: 20px;">Nhìn từ phía sau</div>
+              <div style="font-size: 11px; color: #475569; margin-bottom: 10px;">Bấm Thêm vị trí để ghi, hoặc chạm thẳng vào vị trí trên hình. Vị trí đã ghi hiện chấm đỏ; chạm vào chấm đỏ để sửa.</div>
+              
+              <div class="grid-2" style="text-align: center; font-size: 11px; color: #334155; gap: 10px; margin-bottom: 10px;">
+                <!-- Sơ đồ trước -->
+                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
+                  <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía trước</div>
+                  <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
+                    <!-- Đầu & Cổ -->
+                    <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="50" cy="18" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
+                    <!-- Thân -->
+                    <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="50" cy="65" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <!-- Vai / Tay -->
+                    <circle cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <!-- Chân -->
+                    <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <!-- Sơ đồ sau -->
+                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
+                  <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía sau</div>
+                  <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
+                    <!-- Đầu & Cổ -->
+                    <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="50" cy="18" r="5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
+                    <!-- Thân -->
+                    <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="50" cy="58" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="50" cy="72" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <!-- Vai / Tay -->
+                    <circle cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <!-- Chân -->
+                    <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                  </svg>
+                </div>
               </div>
-              <button onclick="showToast('Đã mở công cụ chấm vị trí bất thường')" class="btn-dark" style="margin-top: 10px; background: #0f172a; color: #38bdf8; border-color: #334155;">+ Thêm vị trí tổn thương</button>
+
+              <div style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh dấu vị trí nào — da bình thường</div>
+              <div style="border: 1px dashed #cbd5e1; border-radius: 8px; padding: 12px; text-align: center; color: #64748b; font-size: 11px; margin-bottom: 8px;">Chưa ghi nhận vị trí nào.</div>
+              <button onclick="showToast('Đã mở công cụ chấm vị trí bất thường')" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7;">+ Thêm vị trí tổn thương</button>
             </div>
 
             <!-- Loét do thiết bị y tế -->
-            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <span style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">TB Loét do thiết bị y tế</span>
-                <span style="font-size: 11px; color: #f8fafc; background: #0f172a; border: 1px solid #334155; padding: 2px 8px; border-radius: 6px; font-weight: 700;">1 vị trí</span>
+                <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">TB Loét do thiết bị y tế</span>
+                <span style="font-size: 11px; color: #b91c1c; background: #fee2e2; border: 1px solid #f87171; padding: 2px 8px; border-radius: 6px; font-weight: 700;">1 vị trí</span>
               </div>
-              <div style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; line-height: 1.4;">Sau tai do dây oxy, sống mũi do mặt nạ, mép miệng và môi do ống nội khí quản...</div>
+              <div style="font-size: 11px; color: #64748b; margin-bottom: 10px; line-height: 1.4;">Sau tai do dây oxy, sống mũi do mặt nạ, mép miệng và môi do ống nội khí quản, cổ tay do vòng cố định...</div>
               
-              <div style="background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
+              <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <strong style="color: #ffffff; font-size: 12px;" id="dt-wound-loc-title">Vành tai trái — Dây thở oxy qua mũi</strong>
-                  <span style="background: #334155; color: #ffffff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Độ I</span>
+                  <strong style="color: #334155; font-size: 12px;" id="dt-wound-loc-title">Vành tai trái — Dây thở oxy qua mũi</strong>
+                  <span style="background: #e2e8f0; color: #334155; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Độ I</span>
                 </div>
                 <div style="display: flex; gap: 6px; margin-bottom: 6px; font-size: 10.5px;">
-                  <span style="background: #7c2d12; color: #ffedd5; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Phát sinh tại khoa</span>
-                  <span style="background: #1e293b; color: #94a3b8; padding: 2px 6px; border-radius: 4px;">5 × 2 cm · 0 ảnh</span>
+                  <span style="background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Phát sinh tại khoa</span>
+                  <span style="background: #f1f5f9; color: #64748b; padding: 2px 6px; border-radius: 4px;">5 × 2 cm · 0 ảnh</span>
                 </div>
-                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Do dây oxy gọng mũi tì lâu</div>
-                <div style="border: 1px dashed #334155; border-radius: 8px; padding: 12px; text-align: center; color: #64748b; font-size: 11px;">📷 Chụp ảnh tổn thương</div>
+                <div style="font-size: 11px; color: #475569; margin-bottom: 8px;">Do dây oxy gọng mũi tì lâu</div>
+                <div style="border: 1px dashed #cbd5e1; border-radius: 8px; padding: 12px; text-align: center; color: #0284c7; font-size: 11px; background: #f8fafc; cursor: pointer;" onclick="showToast('Mở máy ảnh chụp tổn thương')">📷 Chụp ảnh tổn thương</div>
               </div>
 
-              <button onclick="addNewWoundRecord()" class="btn-dark" style="background: #0f172a; color: #38bdf8; border-color: #334155;">+ Thêm tổn thương do thiết bị</button>
+              <button onclick="addNewWoundRecord()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7;">+ Thêm tổn thương do thiết bị</button>
             </div>
           </div>
         </div>
@@ -1309,7 +1374,7 @@
     ];
 
     var currentPatient = patients[0];
-    var navHistory = []; // Lưu lịch sử điều hướng các tab để quay lại đúng trang trước
+    var navHistory = [];
     var isFilteringBedRange = false;
     var bedFrom = 1;
     var bedTo = 50;
@@ -2398,10 +2463,10 @@
       if (turnLogContainer) {
         if (p.turnLogs && p.turnLogs.length > 0) {
           turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
-            return '<div style="border-bottom:1px solid #334155; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
+            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
           }).join('');
         } else {
-          turnLogContainer.innerHTML = '<div style="color:#94a3b8;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
+          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
         }
       }
 
