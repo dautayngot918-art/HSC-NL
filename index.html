@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       background-color: #f1f5f9;
-      color: #1e293b;
+      color: #334155;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       justify-content: center;
@@ -91,7 +91,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 9px 12px;
-      color: #1e293b;
+      color: #334155;
       font-size: 12px;
       outline: none;
     }
@@ -107,6 +107,21 @@
       justify-content: space-between;
     }
     .clickable-alert-item:hover { background-color: #f1f5f9; }
+
+    /* Format Họ Tên Dịu Mắt */
+    .patient-header-text {
+      color: #334155;
+      font-weight: 700;
+      font-size: 13.5px;
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .header-pipe {
+      color: #94a3b8;
+      font-weight: 400;
+      margin: 0 5px;
+    }
 
     /* Bảng */
     .table-container {
@@ -467,7 +482,7 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
-        <!-- Hai dropdown: Thời gian & Sắp xếp (THỨ TỰ CHUẨN ẢNH 40) -->
+        <!-- Hai dropdown: Thời gian & Sắp xếp (ĐỒNG BỘ 100% VỊ TRÍ 1-5 CHUẨN ẢNH 40) -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -559,7 +574,7 @@
       </div>
 
       <!-- ========================================================================= -->
-      <!-- TAB 4: CẦN LƯU Ý (MENU SẮP XẾP ĐỒNG BỘ CHUẨN ẢNH 40)                    -->
+      <!-- TAB 4: CẦN LƯU Ý (MENU SẮP XẾP ĐỒNG BỘ 100% VỊ TRÍ 1-5 CHUẨN ẢNH 40)    -->
       <!-- ========================================================================= -->
       <div id="tab-tasks" style="display: none;">
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
@@ -574,7 +589,7 @@
           <button id="task-pbtn-all" onclick="setTaskPatientFilter('all')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả<br><span id="count-task-all" style="font-size: 10px;">144</span></button>
         </div>
 
-        <!-- Hai dropdown Thời gian & Sắp xếp (ĐỒNG BỘ CHUẨN ẢNH 40) -->
+        <!-- Hai dropdown Thời gian & Sắp xếp (ĐỒNG BỘ 100% VỚI TRANG NGƯỜI BỆNH) -->
         <div class="grid-2" style="margin-bottom: 10px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -596,7 +611,7 @@
           </div>
         </div>
 
-        <!-- Khung lọc giường (Từ - Đến) trang Cần lưu ý -->
+        <!-- Khung lọc giường (Từ - Đến) riêng cho trang Cần lưu ý -->
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
@@ -644,7 +659,9 @@
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
             <div>
-              <div id="dt-name-header" style="font-size: 15px; font-weight: 700; color: #334155; margin-bottom: 2px;">ĐÀO THỊ THÌN | 1963 | Nữ</div>
+              <div id="dt-name-header" class="patient-header-text" style="font-size: 15px; margin-bottom: 2px;">
+                ĐÀO THỊ THÌN <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nữ
+              </div>
               <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
               <div id="dt-bed-diag" style="font-size: 13px; color: #334155; margin-bottom: 4px;">Giường <strong style="color: #0284c7;">G.8</strong> · Viêm não</div>
               <div id="dt-stay-days" style="font-size: 11px; color: #64748b;">Nhập khoa 17:21 · ngày điều trị thứ 9</div>
@@ -774,6 +791,7 @@
               </div>
             </div>
 
+            <!-- Đồ thị SVG -->
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-bottom: 4px;">
                 <span>39</span>
@@ -977,7 +995,7 @@
             <label style="font-size: 12px; color: #334155; font-weight: 700; margin-bottom: 4px; display: block;">Giường bệnh</label>
             <div style="display:flex; align-items:center; background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding-left:10px;">
               <span style="font-weight:800; color:#0284c7; font-size:14px;">G.</span>
-              <input type="number" id="inp-p-bed-num" placeholder="Điền số giường (vd: 5, 8, 12...)" min="1" max="100" style="border:none; padding:9px 8px; font-weight:700; color:#0f172a;" />
+              <input type="number" id="inp-p-bed-num" placeholder="Điền số giường (vd: 5, 8, 12...)" min="1" max="100" style="border:none; padding:9px 8px; font-weight:700; color:#334155;" />
             </div>
           </div>
 
@@ -1001,7 +1019,9 @@
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 18px; color: #64748b; cursor: pointer;">←</button>
             <div>
-              <div id="wz-patient-name-title" style="font-size: 15px; font-weight: 700; color: #334155;">PHAN ĐỨC THẮNG | 1966 | Nam</div>
+              <div id="wz-patient-name-title" class="patient-header-text" style="font-size: 15px;">
+                PHAN ĐỨC THẮNG <span class="header-pipe">|</span> 1966 <span class="header-pipe">|</span> Nam
+              </div>
               <div id="wz-patient-sub-title" style="font-size: 11px; color: #64748b;">Đánh giá · Giường G.2</div>
             </div>
           </div>
@@ -1039,7 +1059,9 @@
   </div>
 
   <script>
-    // Xử lý đổi sắp xếp ở trang Người bệnh
+    var currentSortMode = "bed-asc"; // MẶC ĐỊNH VỊ TRÍ 1 KHI VÀO TRANG
+
+    // Xử lý đổi sắp xếp ở trang Người bệnh (Chuẩn 100% thứ tự)
     function onPatientSortChange(val) {
       currentSortMode = val;
       var rangeBox = document.getElementById('bed-range-box');
@@ -1053,12 +1075,14 @@
       renderPatients();
     }
 
-    // Xử lý đổi sắp xếp ở trang Cần lưu ý (ĐỒNG BỘ 100% THỨ TỰ VÀ MẶC ĐỊNH CHUẨN ẢNH 40)
+    // Xử lý đổi sắp xếp ở trang Cần lưu ý (ĐỒNG BỘ 100% VỚI TRANG NGƯỜI BỆNH)
     var isTaskFilteringBedRange = false;
     var taskBedFrom = 1;
     var taskBedTo = 50;
+    var currentTaskSortMode = "bed-asc"; // MẶC ĐỊNH VỊ TRÍ 1 KHI VÀO TRANG
 
     function onTaskSortChange(val) {
+      currentTaskSortMode = val;
       var rangeBox = document.getElementById('task-bed-range-box');
       if (val === 'bed-range') {
         if (rangeBox) rangeBox.style.display = 'block';
@@ -1090,6 +1114,7 @@
       if (rangeBox) rangeBox.style.display = 'none';
       var sSelect = document.getElementById('task-sort-select');
       if (sSelect) sSelect.value = 'bed-asc';
+      currentTaskSortMode = 'bed-asc';
       renderTasks();
       showToast('Đã đặt lại danh sách tất cả giường');
     }
