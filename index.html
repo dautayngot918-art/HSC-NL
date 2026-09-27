@@ -108,20 +108,19 @@
     }
     .clickable-alert-item:hover { background-color: #f1f5f9; }
 
-    /* Format Họ Tên - Tiêu chuẩn thanh mảnh, hiện đại */
+    /* Format Họ Tên Dịu Mắt */
     .patient-header-text {
-      color: #0f172a;
-      font-weight: 600;
-      font-size: 17px;
+      color: #334155;
+      font-weight: 700;
+      font-size: 13.5px;
       display: inline-flex;
       align-items: center;
       flex-wrap: wrap;
-      letter-spacing: -0.2px;
     }
     .header-pipe {
-      color: #cbd5e1;
-      font-weight: 300;
-      margin: 0 6px;
+      color: #94a3b8;
+      font-weight: 400;
+      margin: 0 5px;
     }
 
     /* Bảng cuộn ngang */
@@ -204,6 +203,7 @@
       margin-bottom: 12px;
     }
     
+    /* Phân cấp cỡ chữ cho Bảng Đánh Giá Waterlow */
     .wizard-group-title {
       display: flex;
       justify-content: space-between;
@@ -672,18 +672,8 @@
         <div id="tasks-display-container"></div>
       </div>
 
-      <!-- TAB 5: CHI TIẾT NGƯỜI BỆNH (Phần Header cố định thông tin bệnh nhân theo mẫu hình ảnh) -->
+      <!-- TAB 5: CHI TIẾT NGƯỜI BỆNH -->
       <div id="tab-patient-detail" style="display: none;">
-        <!-- Cố định phần thông tin nhận diện người bệnh (Họ tên bự thanh mảnh, năm sinh, giới tính, mã HS, giường, chẩn đoán, nhập khoa, ngày điều trị) -->
-        <div class="card" id="dt-fixed-patient-header-card" style="position: sticky; top: 57px; z-index: 25; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.04); margin-bottom: 12px; border: 1px solid #cbd5e1;">
-          <div id="dt-name-header" class="patient-header-text" style="font-size: 17px; margin-bottom: 3px; font-weight: 600; color: #0f172a;">
-            LÊ TẤN KHOA <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nam
-          </div>
-          <div id="dt-code-line" style="font-size: 11.5px; color: #64748b; margin-bottom: 2px;">Mã hồ sơ: 26-040232</div>
-          <div id="dt-bed-diag" style="font-size: 12px; color: #334155; margin-bottom: 2px;">Giường <strong style="color: #0284c7;">G.1</strong> · Cúm A biến chứng</div>
-          <div id="dt-stay-days" style="font-size: 11px; color: #64748b;">Nhập khoa 17:21 · ngày điều trị thứ 14</div>
-        </div>
-
         <div class="grid-4" style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 4px; margin-bottom: 12px;">
           <button id="st-overview-btn" onclick="setSubTab('overview')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Tổng quan</button>
           <button id="st-wound-btn" onclick="setSubTab('wound')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 8px 2px; font-size: 11px; cursor: pointer;">Tổn thương</button>
@@ -695,6 +685,17 @@
 
         <!-- Subtab 1: Tổng quan -->
         <div id="subtab-overview-content" style="display: block;">
+          <div class="card">
+            <div>
+              <div id="dt-name-header" class="patient-header-text" style="font-size: 15px; margin-bottom: 4px;">
+                ĐÀO THỊ THÌN <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nữ
+              </div>
+              <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
+              <div id="dt-bed-diag" style="font-size: 13px; color: #334155; margin-bottom: 4px;">Giường <strong style="color: #0284c7;">G.8</strong> · Viêm não</div>
+              <div id="dt-stay-days" style="font-size: 11px; color: #64748b;">Nhập khoa 17:21 · ngày điều trị thứ 9</div>
+            </div>
+          </div>
+
           <div id="dt-care-box" class="card" style="background: #fffbeb; border: 1.5px solid #fde68a;">
             <div class="section-title" style="color: #b45309; margin-bottom: 6px;">
               <span>⚠️ CẦN LÀM TRONG CA</span>
@@ -947,7 +948,7 @@
         </div>
         <div class="card" style="font-size: 11px; color: #64748b; line-height: 1.6;">
           <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px;">VỀ ỨNG DỤNG</div>
-          Phiên bản 1.6.2 (Giao diện chuẩn y tế) · Thang điểm Waterlow quốc tế chuẩn chỉnh, phân độ tổn thương theo NPIAP/EPUAP. Bệnh viện Bệnh Nhiệt đới.
+          Phiên bản 1.6.2 (Giao diện chuẩn y tế) · Thang điểm Waterlow (bản sửa đổi 2005), phân độ tổn thương theo NPIAP/EPUAP. Bệnh viện Bệnh Nhiệt đới.
         </div>
       </div>
     </main>
@@ -1036,7 +1037,7 @@
       </div>
     </div>
 
-    <!-- Modal Đánh Giá Chuẩn Quốc Tế Waterlow Đầy Đủ -->
+    <!-- Modal Đánh Giá 4 Bước -->
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
@@ -1056,7 +1057,7 @@
 
         <!-- KHUNG THÔNG BÁO VÀNG NHẠT IN ĐẬM -->
         <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
-          ℹ Bảng điểm Waterlow chuẩn quốc tế đầy đủ các mục (Thể trạng/BMI, Tình trạng da, Giới tính/Tuổi, Đái dầm/Tiêu tiểu, Vận động, Dinh dưỡng, Yếu tố nguy cơ đặc biệt/Mô tổn thương/Thần kinh). Vui lòng soát lại toàn bộ trước khi ký.
+          ℹ Một số mục ít thay đổi đã được điền sẵn từ lần đánh giá trước. Vui lòng soát lại toàn bộ trước khi ký.
         </div>
 
         <div id="wz-steps-container"></div>
@@ -1100,104 +1101,6 @@
       "Chụp ảnh và ghi nhận tiến triển tổn thương mỗi 48 – 72 giờ"
     ];
 
-    // =========================================================================
-    // ĐỊNH NGHĨA CHUẨN XÁC BẢNG ĐIỂM WATERLOW QUỐC TẾ (ĐẦY ĐỦ CÁC MỤC)
-    // =========================================================================
-    var WATERLOW_BUILD = [
-      {
-        title: "1. Thể trạng / BMI (Chọn 1 mức)",
-        key: "bmiCat",
-        type: "single",
-        options: [
-          { id: "bmi_avg", text: "Trung bình (BMI 20 - 24.9)", points: 0 },
-          { id: "bmi_above", text: "Trên trung bình (BMI 25 - 29.9)", points: 1 },
-          { id: "bmi_obese", text: "Béo phì (BMI ≥ 30)", points: 2 },
-          { id: "bmi_under", text: "Dưới trung bình / Suy dinh dưỡng (BMI < 20)", points: 3 }
-        ]
-      },
-      {
-        title: "2. Tình trạng da vùng tì đè (Chọn mức nặng nhất)",
-        key: "skinCat",
-        type: "single",
-        options: [
-          { id: "skin_normal", text: "Bình thường / Lành lặn", points: 0 },
-          { id: "skin_papery", text: "Giấy da / Mỏng, khô", points: 1 },
-          { id: "skin_dry", text: "Da khô, bong tróc", points: 1 },
-          { id: "skin_edema", text: "Phù nề", points: 1 },
-          { id: "skin_clammy", text: "Ẩm ướt / Đổ mồ hôi nhiều (Dễ tả, sốt)", points: 1 },
-          { id: "skin_discolor", text: "Đổi màu / Xám, bầm tím, lốm đốm", points: 2 },
-          { id: "skin_broken", text: "Trợt da / Loét nông (Độ I - II)", points: 3 }
-        ]
-      },
-      {
-        title: "3. Giới tính & Tuổi (Điểm cộng dồn chuẩn Waterlow)",
-        key: "ageCat",
-        type: "single",
-        options: [
-          { id: "a1", text: "Nam (1 điểm) · 14 – 49 tuổi (1 điểm) [Tổng = 2]", points: 2 },
-          { id: "a2", text: "Nam (1 điểm) · 50 – 64 tuổi (2 điểm) [Tổng = 3]", points: 3 },
-          { id: "a3", text: "Nam (1 điểm) · 65 – 74 tuổi (3 điểm) [Tổng = 4]", points: 4 },
-          { id: "a4", text: "Nam (1 điểm) · 75 – 80 tuổi (4 điểm) [Tổng = 5]", points: 5 },
-          { id: "a5", text: "Nam (1 điểm) · ≥ 81 tuổi (5 điểm) [Tổng = 6]", points: 6 },
-          { id: "b1", text: "Nữ (2 điểm) · 14 – 49 tuổi (1 điểm) [Tổng = 3]", points: 3 },
-          { id: "b2", text: "Nữ (2 điểm) · 50 – 64 tuổi (2 điểm) [Tổng = 4]", points: 4 },
-          { id: "b3", text: "Nữ (2 điểm) · 65 – 74 tuổi (3 điểm) [Tổng = 5]", points: 5 },
-          { id: "b4", text: "Nữ (2 điểm) · 75 – 80 tuổi (4 điểm) [Tổng = 6]", points: 6 },
-          { id: "b5", text: "Nữ (2 điểm) · ≥ 81 tuổi (5 điểm) [Tổng = 7]", points: 7 }
-        ]
-      },
-      {
-        title: "4. Đái dầm / Tiêu tiểu (Continence - Chọn 1 mức)",
-        key: "contCat",
-        type: "single",
-        options: [
-          { id: "c0", text: "Tự chủ / Có sonde tiểu hoặc hậu môn nhân tạo", points: 0 },
-          { id: "c1", text: "Thỉnh thoảng đái dầm / Rỉ nước tiểu", points: 1 },
-          { id: "c2", text: "Tiêu phân không tự chủ / Tiêu chảy", points: 2 },
-          { id: "c3", text: "Cả tiêu và tiểu không tự chủ hoàn toàn", points: 3 }
-        ]
-      },
-      {
-        title: "5. Khả năng vận động (Mobility - Chọn 1 mức)",
-        key: "mobCat",
-        type: "single",
-        options: [
-          { id: "m0", text: "Bình thường / Tự đi lại", points: 0 },
-          { id: "m1", text: "Bồn chồn / Ngọ nguậy liên tục", points: 1 },
-          { id: "m2", text: "Lãnh đạm / Hạn chế di chuyển", points: 2 },
-          { id: "m3", text: "Hạn chế vận động nhiều / Cần trợ giúp", points: 3 },
-          { id: "m4", text: "Bất động hoàn toàn / Liệt giường (Hồi sức ICU)", points: 4 },
-          { id: "m5", text: "Ngồi xe lăn", points: 5 }
-        ]
-      },
-      {
-        title: "6. Dinh dưỡng (Nutrition - Có thể chọn kết hợp)",
-        key: "nutMulti",
-        type: "multi",
-        options: [
-          { id: "n_loss5", text: "Sụt cân không chủ ý 5 - 10% (3 - 6 tháng qua)", points: 1 },
-          { id: "n_loss10", text: "Sụt cân không chủ ý > 10% (3 - 6 tháng qua)", points: 2 },
-          { id: "n_npo", text: "Nhịn ăn / Nuốt kém / Nuôi ăn qua sonde > 5 ngày", points: 2 },
-          { id: "n_cachexia", text: "Suy kiệt nặng / Albumin máu < 30 g/L", points: 3 }
-        ]
-      },
-      {
-        title: "7. Yếu tố nguy cơ đặc biệt / Tổn thương mô / Thần kinh (Chọn nhiều mục)",
-        key: "specMulti",
-        type: "multi",
-        options: [
-          { id: "s_term", text: "Giai đoạn cuối đời / Tiên lượng nặng cận kề", points: 8 },
-          { id: "s_multi_organ", text: "Suy đa tạng / Sốc nặng", points: 8 },
-          { id: "s_single_organ", text: "Suy 1 tạng (gan, thận, tim, phổi nặng)", points: 5 },
-          { id: "s_pvd", text: "Bệnh lý mạch máu ngoại biên (PVD)", points: 5 },
-          { id: "s_anemia", text: "Thiếu máu nặng (Hb < 8 g/dL)", points: 2 },
-          { id: "s_smoke", text: "Hút thuốc lá nhiều", points: 1 },
-          { id: "s_neuro", text: "Khiếm khuyết thần kinh (liệt hai chi, chấn thương tủy, mê)", points: 4 },
-          { id: "s_surgery", text: "Phẫu thuật lớn / Gây mê kéo dài > 2 giờ", points: 5 }
-        ]
-      }
-    ];
-
     function getTurnTargetHours(waterlow, risk) {
       if (waterlow === null || waterlow === undefined || risk === 'Chưa đánh giá') return 2;
       if (waterlow >= 20 || risk === 'Nguy cơ rất cao') return 2;
@@ -1215,7 +1118,6 @@
       return '<span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">xoay trở mỗi 4h</span>';
     }
 
-    // Tiêu chuẩn hiển thị Họ tên / Năm sinh / Giới tính: chữ bự thanh mảnh, không bị nặng mắt
     function getPatientFormattedHeader(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1250,7 +1152,7 @@
       }
       var gender = p.gender || 'Nam';
       return '<div>' +
-        '<div style="font-weight:600; color:#0f172a; font-size:13.5px; line-height:1.3; letter-spacing:-0.2px;">' + nameUpper + '</div>' +
+        '<div style="font-weight:700; color:#334155; font-size:13px; line-height:1.3;">' + nameUpper + '</div>' +
         '<div style="font-size:10.5px; color:#64748b; font-weight:500; margin-top:2px;">' + birthYear + ' <span style="color:#cbd5e1;">|</span> ' + gender + '</div>' +
       '</div>';
     }
@@ -1278,15 +1180,35 @@
 
     var patients = [
       { 
-        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
         id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
-        wizardState: null
+        wizardState: {
+          gender: 1, ageGroup: 2, bmi: 0, skinStatus: 2, continence: 0, mobility: 4, nutritionDrop: 0, nutritionNpo: 2, tissueDamage: [5], neuroDeficit: 4, surgeryTrauma: 0,
+          skinTemp: "Bình thường", skinFirm: "Phù nề", skinSens: "Giảm cảm giác",
+          deviceUlcerLocation: "Vành tai trái — Dây thở oxy qua mũi",
+          deviceUlcerGrade: "Độ I",
+          deviceUlcerSize: "5 × 2 cm",
+          deviceUlcerOrigin: "Phát sinh tại khoa",
+          deviceUlcerDesc: "Do dây oxy gọng mũi tì lâu",
+          preventiveChecks: [0, 1, 2, 3, 4],
+          nurseNote: "Đã chêm gạc đệm vùng tai, kiểm tra da mỗi ca."
+        }
       },
       { 
         id: "G.3", code: "26-040234", name: "Phan Thu Linh", bed: "G.3", bedNum: 3, age: 49, gender: "Nữ", dob: "1977-06-05", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. phải", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: {
+          gender: 2, ageGroup: 1, bmi: 0, skinStatus: 1, continence: 0, mobility: 4, nutritionDrop: 1, nutritionNpo: 2, tissueDamage: [5], neuroDeficit: 4, surgeryTrauma: 0,
+          skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
+          deviceUlcerLocation: "Cánh mũi — Ống thông dạ dày",
+          deviceUlcerGrade: "Độ I",
+          deviceUlcerSize: "1 × 1 cm",
+          deviceUlcerOrigin: "Theo dõi tiếp từ lần trước",
+          deviceUlcerDesc: "Dán cố định lại sonde dạ dày",
+          preventiveChecks: [0, 1, 2, 3, 4, 5],
+          nurseNote: "Thay đổi băng dán cố định sonde dạ dày hàng ngày."
+        }
+      },
+      { 
+        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
@@ -1294,19 +1216,7 @@
         wizardState: null
       },
       { 
-        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
@@ -1314,7 +1224,19 @@
         wizardState: null
       },
       { 
-        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
@@ -1322,7 +1244,7 @@
         wizardState: null
       },
       { 
-        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       }
     ];
@@ -1520,7 +1442,7 @@
 
       if (tabName === 'patient-detail') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = "Chi tiết người bệnh";
+        if (titleEl) titleEl.innerHTML = getPatientFormattedHeader(currentPatient);
         if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
         renderDetail();
       } else if (tabName === 'bulk-turn') {
@@ -2365,7 +2287,7 @@
       if (nameHeader) nameHeader.innerHTML = getPatientFormattedHeader(p);
       if (codeLine) codeLine.innerText = 'Mã hồ sơ: ' + p.code;
       if (bedDiag) bedDiag.innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
-      if (stayDays) stayDays.innerText = 'Nhập khoa 17:21 · ngày điều trị thứ ' + (p.stayDays || 14);
+      if (stayDays) stayDays.innerText = 'Nhập khoa 17:21 · ngày điều trị thứ ' + (p.stayDays || 9);
       if (assessOd) assessOd.innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
       if (turnOd) turnOd.innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + targetH + ' giờ';
       if (turnProtocol) turnProtocol.innerText = 'quy trình mỗi ' + targetH + ' giờ · ' + p.risk.toLowerCase();
@@ -2610,54 +2532,59 @@
     }
 
     // =========================================================================
-    // QUY TRÌNH ĐÁNH GIÁ WATERLOW CHUẨN QUỐC TẾ MỚI (ĐẦY ĐỦ CÁC MỤC)
+    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC (CẬP NHẬT CỠ CHỮ CHUẨN TRỰC QUAN)
     // =========================================================================
     var wizardPatient = null;
+    var wizardCurrentStep = 1;
     var wizardForm = {
-      bmiCat: "bmi_avg",
-      skinCat: "skin_normal",
-      ageCat: "a1",
-      contCat: "c0",
-      mobCat: "m0",
-      nutMulti: [],
-      specMulti: [],
-      preventiveChecks: [],
-      nurseNote: ""
+      gender: 1, ageGroup: 1, bmi: 0, skinStatus: 0, continence: 0, mobility: 0,
+      nutritionDrop: 0, nutritionNpo: 0, tissueDamage: [], neuroDeficit: 0, surgeryTrauma: 0,
+      skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
+      deviceUlcerLocation: "", deviceUlcerGrade: "Độ I", deviceUlcerSize: "", deviceUlcerOrigin: "Phát sinh tại khoa", deviceUlcerDesc: "",
+      preventiveChecks: [], nurseNote: ""
     };
 
     function openWaterlowAssessmentWizard(patientId) {
       wizardPatient = patients.find(function(x) { return x.id === patientId; });
       if (!wizardPatient) return;
 
+      wizardCurrentStep = 1;
+
       if (wizardPatient.wizardState) {
         wizardForm = JSON.parse(JSON.stringify(wizardPatient.wizardState));
-        if (!wizardForm.nutMulti) wizardForm.nutMulti = [];
-        if (!wizardForm.specMulti) wizardForm.specMulti = [];
       } else {
-        // Tự động suy luận dựa trên dữ liệu bệnh nhân hiện tại
-        var gPrefix = (wizardPatient.gender === 'Nữ') ? 'b' : 'a';
-        var aGroup = 1;
-        if (wizardPatient.age >= 81) aGroup = 5;
-        else if (wizardPatient.age >= 75) aGroup = 4;
-        else if (wizardPatient.age >= 65) aGroup = 3;
-        else if (wizardPatient.age >= 50) aGroup = 2;
-        else aGroup = 1;
+        wizardForm.gender = (wizardPatient.gender === 'Nữ') ? 2 : 1;
+        if (wizardPatient.age >= 81) wizardForm.ageGroup = 5;
+        else if (wizardPatient.age >= 75) wizardForm.ageGroup = 4;
+        else if (wizardPatient.age >= 65) wizardForm.ageGroup = 3;
+        else if (wizardPatient.age >= 50) wizardForm.ageGroup = 2;
+        else wizardForm.ageGroup = 1;
 
-        wizardForm.bmiCat = "bmi_avg";
-        wizardForm.skinCat = "skin_normal";
-        wizardForm.ageCat = gPrefix + aGroup;
-        wizardForm.contCat = "c0";
-        wizardForm.mobCat = "m4"; // ICU mặc định bất động
-        wizardForm.nutMulti = [];
-        wizardForm.specMulti = ["s_single_organ"];
-        wizardForm.preventiveChecks = [0,1,2,3,4];
+        wizardForm.bmi = 0;
+        wizardForm.skinStatus = 0;
+        wizardForm.continence = 0;
+        wizardForm.mobility = 0;
+        wizardForm.nutritionDrop = 0;
+        wizardForm.nutritionNpo = 0;
+        wizardForm.tissueDamage = [];
+        wizardForm.neuroDeficit = 0;
+        wizardForm.surgeryTrauma = 0;
+        wizardForm.skinTemp = "Bình thường";
+        wizardForm.skinFirm = "Bình thường";
+        wizardForm.skinSens = "Bình thường";
+        wizardForm.deviceUlcerLocation = "";
+        wizardForm.deviceUlcerGrade = "Độ I";
+        wizardForm.deviceUlcerSize = "";
+        wizardForm.deviceUlcerOrigin = "Phát sinh tại khoa";
+        wizardForm.deviceUlcerDesc = "";
+        wizardForm.preventiveChecks = [];
         wizardForm.nurseNote = "";
       }
 
       document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
-      document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá Waterlow chuẩn · Giường ' + wizardPatient.bed;
+      document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
 
-      renderWaterlowWizardUI();
+      renderWizardCurrentStep();
       updateWizardLiveBottomBar();
 
       var m = document.getElementById('waterlow-wizard-modal');
@@ -2669,167 +2596,394 @@
       if (m) m.style.display = 'none';
     }
 
-    function calculateWaterlowScore() {
+    function calculateWizardTotalScore() {
       var total = 0;
-      // 1. BMI
-      var bmiOpt = WATERLOW_BUILD[0].options.find(function(o){ return o.id === wizardForm.bmiCat; });
-      if (bmiOpt) total += bmiOpt.points;
+      total += parseInt(wizardForm.gender) || 0;
+      total += parseInt(wizardForm.ageGroup) || 0;
+      total += parseInt(wizardForm.bmi) || 0;
+      total += parseInt(wizardForm.skinStatus) || 0;
+      total += parseInt(wizardForm.continence) || 0;
+      total += parseInt(wizardForm.mobility) || 0;
+      total += parseInt(wizardForm.nutritionDrop) || 0;
+      total += parseInt(wizardForm.nutritionNpo) || 0;
 
-      // 2. Skin
-      var skinOpt = WATERLOW_BUILD[1].options.find(function(o){ return o.id === wizardForm.skinCat; });
-      if (skinOpt) total += skinOpt.points;
-
-      // 3. Age & Gender
-      var ageOpt = WATERLOW_BUILD[2].options.find(function(o){ return o.id === wizardForm.ageCat; });
-      if (ageOpt) total += ageOpt.points;
-
-      // 4. Continence
-      var contOpt = WATERLOW_BUILD[3].options.find(function(o){ return o.id === wizardForm.contCat; });
-      if (contOpt) total += contOpt.points;
-
-      // 5. Mobility
-      var mobOpt = WATERLOW_BUILD[4].options.find(function(o){ return o.id === wizardForm.mobCat; });
-      if (mobOpt) total += mobOpt.points;
-
-      // 6. Nutrition Multi
-      for (var i = 0; i < wizardForm.nutMulti.length; i++) {
-        var nId = wizardForm.nutMulti[i];
-        var nOpt = WATERLOW_BUILD[5].options.find(function(o){ return o.id === nId; });
-        if (nOpt) total += nOpt.points;
+      if (wizardForm.tissueDamage && wizardForm.tissueDamage.length > 0) {
+        for (var i = 0; i < wizardForm.tissueDamage.length; i++) {
+          total += parseInt(wizardForm.tissueDamage[i]) || 0;
+        }
       }
 
-      // 7. Special Risk Multi
-      for (var j = 0; j < wizardForm.specMulti.length; j++) {
-        var sId = wizardForm.specMulti[j];
-        var sOpt = WATERLOW_BUILD[6].options.find(function(o){ return o.id === sId; });
-        if (sOpt) total += sOpt.points;
-      }
+      total += parseInt(wizardForm.neuroDeficit) || 0;
+      total += parseInt(wizardForm.surgeryTrauma) || 0;
 
       return total;
     }
 
     function updateWizardLiveBottomBar() {
-      var score = calculateWaterlowScore();
+      var score = calculateWizardTotalScore();
       var scoreEl = document.getElementById('wz-bottom-score');
       var badgeEl = document.getElementById('wz-bottom-risk-badge');
 
       if (scoreEl) scoreEl.innerText = score;
 
       if (score >= 20) {
-        if (badgeEl) { badgeEl.className = "badge-red"; badgeEl.innerText = "Nguy cơ rất cao (≥20)"; }
+        if (badgeEl) { badgeEl.className = "badge-red"; badgeEl.innerText = "Nguy cơ rất cao"; }
       } else if (score >= 15) {
-        if (badgeEl) { badgeEl.className = "badge-orange"; badgeEl.innerText = "Nguy cơ cao (15-19)"; }
+        if (badgeEl) { badgeEl.className = "badge-orange"; badgeEl.innerText = "Nguy cơ cao"; }
       } else if (score >= 10) {
-        if (badgeEl) { badgeEl.className = "badge-yellow"; badgeEl.innerText = "Có nguy cơ (10-14)"; }
+        if (badgeEl) { badgeEl.className = "badge-yellow"; badgeEl.innerText = "Có nguy cơ"; }
       } else {
-        if (badgeEl) { badgeEl.className = "badge-gray"; badgeEl.innerText = "Nguy cơ thấp (<10)"; }
+        if (badgeEl) { badgeEl.className = "badge-gray"; badgeEl.innerText = "Nguy cơ thấp"; }
+      }
+
+      var backBtn = document.getElementById('wz-back-step-btn');
+      var nextBtn = document.getElementById('wz-next-step-btn');
+
+      if (backBtn) backBtn.style.display = (wizardCurrentStep > 1) ? 'block' : 'none';
+      if (nextBtn) {
+        if (wizardCurrentStep === 4) {
+          nextBtn.innerText = "Hoàn tất và ký";
+          nextBtn.style.background = "#14b8a6";
+          nextBtn.style.color = "#022c22";
+        } else {
+          nextBtn.innerText = "Tiếp tục";
+          nextBtn.style.background = "#14b8a6";
+          nextBtn.style.color = "#022c22";
+        }
       }
     }
 
-    function selectSingleWaterlow(key, optionId) {
-      wizardForm[key] = optionId;
-      renderWaterlowWizardUI();
-      updateWizardLiveBottomBar();
-    }
-
-    function toggleMultiWaterlow(key, optionId) {
-      if (!wizardForm[key]) wizardForm[key] = [];
-      var idx = wizardForm[key].indexOf(optionId);
-      if (idx > -1) {
-        wizardForm[key].splice(idx, 1);
+    function goNextWizardStep() {
+      if (wizardCurrentStep < 4) {
+        wizardCurrentStep++;
+        renderWizardCurrentStep();
+        updateWizardLiveBottomBar();
+        var mc = document.querySelector('#waterlow-wizard-modal .modal-content');
+        if (mc) mc.scrollTop = 0;
       } else {
-        wizardForm[key].push(optionId);
+        finishAndSignWizard();
       }
-      renderWaterlowWizardUI();
-      updateWizardLiveBottomBar();
     }
 
-    function renderWaterlowWizardUI() {
+    function goPreviousWizardStep() {
+      if (wizardCurrentStep > 1) {
+        wizardCurrentStep--;
+        renderWizardCurrentStep();
+        updateWizardLiveBottomBar();
+        var mc = document.querySelector('#waterlow-wizard-modal .modal-content');
+        if (mc) mc.scrollTop = 0;
+      }
+    }
+
+    function renderWizardCurrentStep() {
       var c = document.getElementById('wz-steps-container');
       if (!c) return;
 
-      var html = '';
+      if (wizardCurrentStep === 1) {
+        c.innerHTML = `
+          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
+            Thang điểm Waterlow <span style="font-size: 12px; color: #64748b; font-weight: 500;">(Bước 1 / 4)</span>
+          </div>
 
-      // Hiển thị toàn bộ các phần của bảng Waterlow quốc tế theo đúng yêu cầu
-      for (var i = 0; i < WATERLOW_BUILD.length; i++) {
-        var group = WATERLOW_BUILD[i];
-        var currentSelected = wizardForm[group.key];
+          <!-- 1. Giới tính -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>1. Giới tính</span><span class="wizard-group-score">+${wizardForm.gender}</span>
+            </div>
+            <div onclick="wizardForm.gender=1; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.gender===1?'opt-selected':''}">
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===1?'✓':''}</span><span class="opt-text">Nam</span></div>
+              <strong class="opt-points">+1</strong>
+            </div>
+            <div onclick="wizardForm.gender=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.gender===2?'opt-selected':''}">
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===2?'✓':''}</span><span class="opt-text">Nữ</span></div>
+              <strong class="opt-points">+2</strong>
+            </div>
+          </div>
 
-        // Tính điểm hiện tại của nhóm
-        var groupScore = 0;
-        if (group.type === 'single') {
-          var found = group.options.find(function(o){ return o.id === currentSelected; });
-          if (found) groupScore = found.points;
-        } else {
-          var selectedArr = currentSelected || [];
-          for (var s = 0; s < selectedArr.length; s++) {
-            var optF = group.options.find(function(o){ return o.id === selectedArr[s]; });
-            if (optF) groupScore += optF.points;
-          }
-        }
+          <!-- 2. Nhóm tuổi -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>2. Nhóm tuổi</span><span class="wizard-group-score">+${wizardForm.ageGroup}</span>
+            </div>
+            ${[
+              {v: 1, t: "14 – 49 tuổi", p: "+1"},
+              {v: 2, t: "50 – 64 tuổi", p: "+2"},
+              {v: 3, t: "65 – 74 tuổi", p: "+3"},
+              {v: 4, t: "75 – 80 tuổi", p: "+4"},
+              {v: 5, t: "≥ 81 tuổi", p: "+5"}
+            ].map(o => `
+              <div onclick="wizardForm.ageGroup=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.ageGroup===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.ageGroup===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
 
-        html += '<div class="step-item-card">' +
-          '<div class="wizard-group-title">' +
-            '<span>' + group.title + '</span>' +
-            '<span class="wizard-group-score">+' + groupScore + '</span>' +
-          '</div>';
+          <!-- 3. Thể trạng / BMI -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>3. Thể trạng / BMI</span><span class="wizard-group-score">+${wizardForm.bmi}</span>
+            </div>
+            ${[
+              {v: 0, t: "Trung bình (BMI 20 - 24.9)", p: "+0"},
+              {v: 1, t: "Trên trung bình (BMI 25 - 29.9)", p: "+1"},
+              {v: 2, t: "Béo phì (BMI ≥ 30)", p: "+2"},
+              {v: 3, t: "Dưới trung bình (BMI < 20)", p: "+3"}
+            ].map(o => `
+              <div onclick="wizardForm.bmi=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.bmi===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.bmi===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
 
-        for (var j = 0; j < group.options.length; j++) {
-          var opt = group.options[j];
-          var isSelected = false;
-          if (group.type === 'single') {
-            isSelected = (currentSelected === opt.id);
-          } else {
-            isSelected = (currentSelected && currentSelected.indexOf(opt.id) > -1);
-          }
+          <!-- 4. Tình trạng da vùng nguy cơ -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>4. Tình trạng da vùng nguy cơ</span><span class="wizard-group-score">+${wizardForm.skinStatus}</span>
+            </div>
+            ${[
+              {v: 0, t: "Bình thường", p: "+0"},
+              {v: 1, t: "Da mỏng", p: "+1"},
+              {v: 1, t: "Da khô, bong hoặc tróc vảy", p: "+1"},
+              {v: 1, t: "Phù", p: "+1"},
+              {v: 1, t: "Da ẩm, rịn mồ hôi, hoặc có sốt", p: "+1"},
+              {v: 2, t: "Da đổi màu — bầm, xanh, tím, lốm đốm", p: "+2"},
+              {v: 3, t: "Có bóng nước hoặc trợt da — loét độ II", p: "+3"}
+            ].map(o => `
+              <div onclick="wizardForm.skinStatus=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.skinStatus===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.skinStatus===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
 
-          var clickAction = group.type === 'single'
-            ? "selectSingleWaterlow('" + group.key + "', '" + opt.id + "')"
-            : "toggleMultiWaterlow('" + group.key + "', '" + opt.id + "')";
+          <!-- 5. Tiêu tiểu -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>5. Tiêu tiểu</span><span class="wizard-group-score">+${wizardForm.continence}</span>
+            </div>
+            ${[
+              {v: 0, t: "Có sonde tiểu hoặc sonde trực tràng", p: "+0"},
+              {v: 1, t: "Tiểu không tự chủ, hoặc sonde tiểu bị dò rỉ", p: "+1"},
+              {v: 2, t: "Tiêu không tự chủ, hoặc tiêu lỏng lượng nhiều", p: "+2"},
+              {v: 3, t: "Tiêu tiểu không tự chủ cả hai", p: "+3"}
+            ].map(o => `
+              <div onclick="wizardForm.continence=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.continence===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.continence===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
 
-          html += '<div onclick="' + clickAction + '" class="option-row ' + (isSelected ? 'opt-selected' : '') + '">' +
-            '<div style="display:flex; align-items:center;">' +
-              '<span class="opt-circle">' + (isSelected ? '✓' : '') + '</span>' +
-              '<span class="opt-text">' + opt.text + '</span>' +
-            '</div>' +
-            '<strong class="opt-points">+' + opt.points + '</strong>' +
-          '</div>';
-        }
+          <!-- 6. Khả năng vận động -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>6. Khả năng vận động</span><span class="wizard-group-score">+${wizardForm.mobility}</span>
+            </div>
+            ${[
+              {v: 0, t: "Bình thường", p: "+0"},
+              {v: 1, t: "Bồn chồn / ngọ nguậy", p: "+1"},
+              {v: 2, t: "Lãnh đạm / thờ ơ", p: "+2"},
+              {v: 3, t: "Hạn chế cử động", p: "+3"},
+              {v: 4, t: "Liệt giường / Bất động hồi sức ICU", p: "+4"},
+              {v: 5, t: "Ngồi xe lăn", p: "+5"}
+            ].map(o => `
+              <div onclick="wizardForm.mobility=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.mobility===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.mobility===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
 
-        html += '</div>';
+          <!-- 7. Yếu tố dinh dưỡng -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>7. Yếu tố dinh dưỡng</span><span class="wizard-group-score">+${wizardForm.nutritionDrop + wizardForm.nutritionNpo}</span>
+            </div>
+            <div class="wizard-sub-label">SỤT CÂN KHÔNG CHỦ Ý TRONG 3 – 6 THÁNG QUA</div>
+            ${[
+              {v: 0, t: "Dưới 5% cân nặng", p: "+0"},
+              {v: 1, t: "5 – 10% cân nặng", p: "+1"},
+              {v: 2, t: "Trên 10% cân nặng", p: "+2"}
+            ].map(o => `
+              <div onclick="wizardForm.nutritionDrop=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionDrop===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionDrop===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+
+            <div class="wizard-sub-label" style="margin-top:10px;">NHỊN ĂN TRÊN 5 NGÀY NAY</div>
+            <div onclick="wizardForm.nutritionNpo=0; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionNpo===0?'opt-selected':''}">
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===0?'✓':''}</span><span class="opt-text">Không</span></div>
+              <strong class="opt-points">+0</strong>
+            </div>
+            <div onclick="wizardForm.nutritionNpo=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionNpo===2?'opt-selected':''}">
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===2?'✓':''}</span><span class="opt-text">Có</span></div>
+              <strong class="opt-points">+2</strong>
+            </div>
+          </div>
+
+          <!-- 8. Tổn thương mô -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>8. Tổn thương mô</span><span class="wizard-group-score">+${wizardForm.tissueDamage.reduce((a,b)=>a+b,0)}</span>
+            </div>
+            ${[
+              {v: 8, t: "Suy đa tạng hoặc suy kiệt nặng"},
+              {v: 5, t: "Suy một tạng — gan, thận, tim, phổi..."},
+              {v: 5, t: "Bệnh lý mạch máu ngoại biên"},
+              {v: 2, t: "Thiếu máu — Hb dưới 8 g/dL"},
+              {v: 1, t: "Hút thuốc lá"}
+            ].map(o => {
+              var isSelected = wizardForm.tissueDamage.includes(o.v);
+              return `
+                <div onclick="toggleWizardTissue(${o.v}); renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${isSelected?'opt-selected':''}">
+                  <div style="display:flex; align-items:center;"><span class="opt-circle">${isSelected?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                  <strong class="opt-points">+${o.v}</strong>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- 9. Khiếm khuyết thần kinh -->
+          <div class="step-item-card">
+            <div class="wizard-group-title">
+              <span>9. Khiếm khuyết thần kinh</span><span class="wizard-group-score">+${wizardForm.neuroDeficit}</span>
+            </div>
+            ${[
+              {v: 0, t: "Không có", p: "+0"},
+              {v: 4, t: "Có — mức độ nhẹ", p: "+4"},
+              {v: 5, t: "Có — mức độ trung bình", p: "+5"},
+              {v: 6, t: "Có — mức độ nặng, liệt hai chân / thở máy", p: "+6"}
+            ].map(o => `
+              <div onclick="wizardForm.neuroDeficit=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.neuroDeficit===o.v?'opt-selected':''}">
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.neuroDeficit===o.v?'✓':''}</span><span class="opt-text">${o.t}</span></div>
+                <strong class="opt-points">${o.p}</strong>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } 
+      else if (wizardCurrentStep === 2) {
+        c.innerHTML = `
+          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
+            Khám da và tổn thương <span style="font-size: 12px; color: #64748b; font-weight: 500;">(Bước 2 / 4)</span>
+          </div>
+
+          <div class="step-item-card">
+            <div class="wizard-group-title" style="color:#0284c7; margin-bottom:8px;">
+              <span>DA Quan sát chung</span>
+            </div>
+            <div class="grid-2" style="margin-bottom:8px;">
+              <div>
+                <label style="font-size:11.5px; color:#475569; font-weight:700; margin-bottom:4px; display:block;">Nhiệt độ da</label>
+                <select id="wz-skintemp" onchange="wizardForm.skinTemp=this.value;" style="font-size:12.5px;">
+                  <option ${wizardForm.skinTemp==='Bình thường'?'selected':''}>Bình thường</option>
+                  <option ${wizardForm.skinTemp==='Nóng sốt'?'selected':''}>Nóng sốt</option>
+                  <option ${wizardForm.skinTemp==='Lạnh ẩm'?'selected':''}>Lạnh ẩm</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:11.5px; color:#475569; font-weight:700; margin-bottom:4px; display:block;">Độ chắc của mô</label>
+                <select id="wz-skinfirm" onchange="wizardForm.skinFirm=this.value;" style="font-size:12.5px;">
+                  <option ${wizardForm.skinFirm==='Bình thường'?'selected':''}>Bình thường</option>
+                  <option ${wizardForm.skinFirm==='Phù nề'?'selected':''}>Phù nề</option>
+                  <option ${wizardForm.skinFirm==='Teo nhão'?'selected':''}>Teo nhão</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label style="font-size:11.5px; color:#475569; font-weight:700; margin-bottom:4px; display:block;">Cảm giác</label>
+              <select id="wz-skinsens" onchange="wizardForm.skinSens=this.value;" style="font-size:12.5px;">
+                <option ${wizardForm.skinSens==='Bình thường'?'selected':''}>Bình thường</option>
+                <option ${wizardForm.skinSens==='Giảm cảm giác'?'selected':''}>Giảm cảm giác</option>
+                <option ${wizardForm.skinSens==='Mất cảm giác hoàn toàn'?'selected':''}>Mất cảm giác hoàn toàn</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-item-card">
+            <div class="wizard-group-title" style="color:#0284c7; margin-bottom:4px;">
+              <span>Loét do thiết bị y tế & tì đè</span>
+              <span class="badge-red" style="font-size:10px;">${wizardForm.deviceUlcerLocation ? '1 vị trí' : 'Chưa có'}</span>
+            </div>
+            <div style="font-size:11px; color:#64748b; margin-bottom:8px;">Hệ thống hiện lại vết thương/loét cũ đã lưu, chỉnh sửa cho phù hợp hiện tại:</div>
+
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:10px; margin-bottom:8px;">
+              <div style="margin-bottom:6px;">
+                <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Vị trí tổn thương</label>
+                <input type="text" id="wz-dev-loc" value="${wizardForm.deviceUlcerLocation || ''}" placeholder="vd: Vành tai trái — Dây thở oxy qua mũi" oninput="wizardForm.deviceUlcerLocation=this.value;" style="font-size:12.5px;" />
+              </div>
+              <div class="grid-2" style="margin-bottom:6px;">
+                <div>
+                  <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Phân độ</label>
+                  <select id="wz-dev-grade" onchange="wizardForm.deviceUlcerGrade=this.value;" style="font-size:12.5px;">
+                    <option ${wizardForm.deviceUlcerGrade==='Độ I'?'selected':''}>Độ I</option>
+                    <option ${wizardForm.deviceUlcerGrade==='Độ II'?'selected':''}>Độ II</option>
+                    <option ${wizardForm.deviceUlcerGrade==='Độ III'?'selected':''}>Độ III</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Kích thước (cm)</label>
+                  <input type="text" id="wz-dev-size" value="${wizardForm.deviceUlcerSize || ''}" placeholder="vd: 5 × 2 cm" oninput="wizardForm.deviceUlcerSize=this.value;" style="font-size:12.5px;" />
+                </div>
+              </div>
+              <div>
+                <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Mô tả diễn tiến vết loét</label>
+                <input type="text" id="wz-dev-desc" value="${wizardForm.deviceUlcerDesc || ''}" placeholder="vd: Đang tiến triển tốt, giảm tiết dịch..." oninput="wizardForm.deviceUlcerDesc=this.value;" style="font-size:12.5px;" />
+              </div>
+            </div>
+          </div>
+        `;
       }
+      else {
+        c.innerHTML = `
+          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
+            Kế hoạch phòng ngừa & Ký xác nhận <span style="font-size: 12px; color: #64748b; font-weight: 500;">(Bước 3-4 / 4)</span>
+          </div>
 
-      // Thêm phần Kế hoạch phòng ngừa và Ghi chú điều dưỡng ở cuối bảng
-      html += '<div class="step-item-card">' +
-        '<div class="wizard-group-title" style="color:#0284c7; margin-bottom:6px;">' +
-          '<span>Kế hoạch phòng ngừa tối đa</span>' +
-        '</div>' +
-        '<div style="display:flex; gap:8px; margin-bottom:10px;">' +
-          '<button type="button" onclick="wizardForm.preventiveChecks=[0,1,2,3,4,5,6,7,8,9]; renderWaterlowWizardUI();" class="btn-dark" style="padding:4px 8px; font-size:11px; width:auto;">Đánh dấu tất cả</button>' +
-          '<button type="button" onclick="wizardForm.preventiveChecks=[]; renderWaterlowWizardUI();" class="btn-dark" style="padding:4px 8px; font-size:11px; width:auto;">Bỏ đánh dấu</button>' +
-        '</div>' +
-        '<div style="display:flex; flex-direction:column; gap:6px;">';
+          <div class="step-item-card">
+            <div class="wizard-group-title" style="color:#0284c7; margin-bottom:6px;">
+              <span>Kế hoạch phòng ngừa tối đa</span>
+            </div>
+            <div style="display:flex; gap:8px; margin-bottom:10px;">
+              <button type="button" onclick="wizardForm.preventiveChecks=[0,1,2,3,4,5,6,7,8,9]; renderWizardCurrentStep();" class="btn-dark" style="padding:4px 8px; font-size:11px; width:auto;">Đánh dấu tất cả</button>
+              <button type="button" onclick="wizardForm.preventiveChecks=[]; renderWizardCurrentStep();" class="btn-dark" style="padding:4px 8px; font-size:11px; width:auto;">Bỏ đánh dấu</button>
+            </div>
 
-      for (var k = 0; k < CHECKLIST_ITEMS.length; k++) {
-        var isCheckC = wizardForm.preventiveChecks && wizardForm.preventiveChecks.indexOf(k) > -1;
-        html += '<div onclick="toggleWizardCheckItem(' + k + '); renderWaterlowWizardUI();" style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; padding:8px 10px; border-radius:8px; background:' + (isCheckC?'#f0fdf4':'#f8fafc') + '; border:1px solid ' + (isCheckC?'#22c55e':'#e2e8f0') + '; font-size:12.5px;">' +
-          '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #14b8a6; display:flex; align-items:center; justify-content:center; background:' + (isCheckC?'#14b8a6':'#fff') + '; color:#fff; font-weight:900; font-size:10px; flex-shrink:0; margin-top:2px;">' +
-            (isCheckC?'✓':'') +
-          '</div>' +
-          '<span style="color:' + (isCheckC?'#166534':'#334155') + '; font-weight:' + (isCheckC?'700':'500') + '; line-height:1.4;">' + CHECKLIST_ITEMS[k] + '</span>' +
-        '</div>';
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              ${CHECKLIST_ITEMS.map((text, idx) => {
+                var isC = wizardForm.preventiveChecks.includes(idx);
+                return `
+                  <div onclick="toggleWizardCheckItem(${idx}); renderWizardCurrentStep();" style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; padding:8px 10px; border-radius:8px; background:${isC?'#f0fdf4':'#f8fafc'}; border:1px solid ${isC?'#22c55e':'#e2e8f0'}; font-size:12.5px;">
+                    <div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #14b8a6; display:flex; align-items:center; justify-content:center; background:${isC?'#14b8a6':'#fff'}; color:#fff; font-weight:900; font-size:10px; flex-shrink:0; margin-top:2px;">
+                      ${isC?'✓':''}
+                    </div>
+                    <span style="color:${isC?'#166534':'#334155'}; font-weight:${isC?'700':'500'}; line-height:1.4;">${text}</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <div class="step-item-card">
+            <label class="wizard-group-title" style="margin-bottom:6px; display:block;">Ghi chú của điều dưỡng</label>
+            <textarea id="wz-nursenote" rows="2" placeholder="vd: Đã đặt đệm hơi, hẹn kiểm tra gót chân lúc 14 giờ..." oninput="wizardForm.nurseNote=this.value;" style="font-size:12.5px;">${wizardForm.nurseNote||''}</textarea>
+          </div>
+
+          <div style="background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 12px; padding: 12px; font-size: 11.5px; color: #166534; line-height: 1.5; margin-bottom: 10px;">
+            🛡 <strong>Bấm Hoàn tất và ký</strong> đồng nghĩa <strong>Trần Văn An</strong> xác nhận đã trực tiếp đánh giá người bệnh này. Phiếu sau khi ký <strong>không thể sửa hay xoá</strong>; muốn điều chỉnh phải thực hiện một lượt đánh giá mới.
+          </div>
+        `;
       }
+    }
 
-      html += '</div></div>' +
-        '<div class="step-item-card">' +
-          '<label class="wizard-group-title" style="margin-bottom:6px; display:block;">Ghi chú của điều dưỡng</label>' +
-          '<textarea id="wz-nursenote" rows="2" placeholder="vd: Đã đặt đệm hơi, hẹn kiểm tra gót chân..." oninput="wizardForm.nurseNote=this.value;" style="font-size:12.5px;">' + (wizardForm.nurseNote||'') + '</textarea>' +
-        '</div>' +
-        '<div style="background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 12px; padding: 12px; font-size: 11.5px; color: #166534; line-height: 1.5; margin-bottom: 10px;">' +
-          '🛡 <strong>Bấm Hoàn tất và ký</strong> đồng nghĩa <strong>Trần Văn An</strong> xác nhận đã trực tiếp đánh giá thang điểm Waterlow chuẩn quốc tế. Phiếu sau khi ký không thể sửa hay xoá.' +
-        '</div>';
-
-      c.innerHTML = html;
+    function toggleWizardTissue(val) {
+      if (!wizardForm.tissueDamage) wizardForm.tissueDamage = [];
+      var pos = wizardForm.tissueDamage.indexOf(val);
+      if (pos > -1) wizardForm.tissueDamage.splice(pos, 1);
+      else wizardForm.tissueDamage.push(val);
     }
 
     function toggleWizardCheckItem(idx) {
@@ -2839,20 +2993,14 @@
       else wizardForm.preventiveChecks.push(idx);
     }
 
-    function goNextWizardStep() {
-      finishAndSignWizard();
-    }
-
-    function goPreviousWizardStep() {
-      closeWaterlowAssessmentWizard();
-    }
-
     function finishAndSignWizard() {
       if (!wizardPatient) return;
 
-      var totalScore = calculateWaterlowScore();
+      var totalScore = calculateWizardTotalScore();
 
       wizardPatient.wizardState = JSON.parse(JSON.stringify(wizardForm));
+      wizardPatient.wounds = (wizardForm.deviceUlcerLocation && wizardForm.deviceUlcerLocation.trim() !== '') ? 1 : 0;
+
       wizardPatient.prevWaterlow = (wizardPatient.waterlow !== null) ? wizardPatient.waterlow : totalScore;
       if (wizardPatient.admitWaterlow === null) {
         wizardPatient.admitWaterlow = totalScore;
