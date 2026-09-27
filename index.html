@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       background-color: #f1f5f9;
-      color: #334155;
+      color: #1e293b;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       justify-content: center;
@@ -91,7 +91,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 9px 12px;
-      color: #334155;
+      color: #1e293b;
       font-size: 12px;
       outline: none;
     }
@@ -108,20 +108,20 @@
     }
     .clickable-alert-item:hover { background-color: #f1f5f9; }
 
-    /* Format Họ Tên Header To Rõ */
-    .patient-header-text {
-      color: #0284c7;
+    /* Định dạng Họ Tên Đen Xám Chuẩn Theo Ảnh */
+    .patient-header-dark {
+      color: #1e293b;
       font-weight: 800;
-      font-size: 17.5px;
+      font-size: 15px;
       display: inline-flex;
       align-items: center;
       flex-wrap: wrap;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
     .header-pipe {
-      color: #94a3b8;
+      color: #64748b;
       font-weight: 400;
-      margin: 0 6px;
+      margin: 0 5px;
     }
 
     /* Bảng cuộn ngang */
@@ -195,9 +195,7 @@
     }
     .tbl-clean-link:hover { color: #0284c7 !important; }
 
-    /* ======================================================== */
-    /* PHÂN CẤP CỠ CHỮ CHUẨN XÁC TRONG BẢNG WATERLOW WIZARD    */
-    /* ======================================================== */
+    /* Wizard dialog */
     .step-item-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -206,7 +204,6 @@
       margin-bottom: 12px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.02);
     }
-    /* Tiêu đề mục lớn: Chữ to 14.5px, in đậm */
     .group-header-title {
       font-size: 14.5px;
       font-weight: 800;
@@ -217,7 +214,6 @@
       font-weight: 800;
       color: #0284c7;
     }
-    /* Dòng lựa chọn bên trong: Chữ nhỏ hơn 12.5px - 13px */
     .option-row {
       display: flex;
       align-items: center;
@@ -507,6 +503,7 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
+        <!-- Hai dropdown: Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -549,6 +546,7 @@
           </div>
         </div>
 
+        <!-- Chế độ Thẻ / Bảng -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; cursor: pointer;">Thẻ</button>
@@ -601,12 +599,14 @@
           <button onclick="openNewPatientModal()" style="width: 120px; background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; font-size: 12px; cursor: pointer; shrink: 0;">+ Hồ sơ mới</button>
         </div>
 
+        <!-- 3 Nút lọc trạng thái -->
         <div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">
           <button id="task-pbtn-treating" onclick="setTaskPatientFilter('treating')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đang điều trị<br><span id="count-task-treating" style="font-size: 10px;">12</span></button>
           <button id="task-pbtn-discharged" onclick="setTaskPatientFilter('discharged')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã xuất viện<br><span id="count-task-discharged" style="font-size: 10px;">132</span></button>
           <button id="task-pbtn-all" onclick="setTaskPatientFilter('all')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả<br><span id="count-task-all" style="font-size: 10px;">144</span></button>
         </div>
 
+        <!-- Hai dropdown Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 10px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -628,6 +628,7 @@
           </div>
         </div>
 
+        <!-- Khung lọc giường (Từ - Đến) trang Cần lưu ý -->
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
@@ -673,7 +674,7 @@
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
             <div>
-              <div id="dt-name-header" class="patient-header-text" style="font-size: 18px; margin-bottom: 4px;">
+              <div id="dt-name-header" class="patient-header-dark" style="margin-bottom: 4px;">
                 ĐÀO THỊ THÌN <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nữ
               </div>
               <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
@@ -1022,16 +1023,16 @@
       </div>
     </div>
 
-    <!-- Modal Đánh Giá 4 Bước: STICKY HEADER & CẢNH BÁO MÀU VÀNG IN ĐẬM -->
+    <!-- Modal Đánh Giá 4 Bước -->
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
-        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU, CỠ CHỮ TO RÕ RÀNG (ẢNH) -->
+        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU, CHUẨN XÁC HỌ TÊN | NĂM SINH | GIỚI TÍNH CỠ TO -->
         <div style="position: sticky; top: 0; background: #ffffff; z-index: 30; padding: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #0284c7; font-weight: 800; cursor: pointer;">←</button>
             <div>
-              <div id="wz-patient-name-title" class="patient-header-text" style="font-size: 18px; line-height: 1.3;">
+              <div id="wz-patient-name-title" class="patient-header-dark" style="font-size: 17.5px; line-height: 1.3;">
                 PHAN HỮU HÙNG <span class="header-pipe">|</span> 1948 <span class="header-pipe">|</span> Nam
               </div>
               <div id="wz-patient-sub-title" style="font-size: 11.5px; color: #64748b; font-weight: 700; margin-top: 2px;">Đánh giá · Giường G.7</div>
@@ -1103,7 +1104,7 @@
       return '<span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">xoay trở mỗi 4h</span>';
     }
 
-    // Tên to rõ ràng trên Header
+    // Định dạng Họ và tên | Năm sinh | Giới tính tông màu ĐEN XÁM ĐẬM NÉT chuẩn theo ảnh
     function getPatientFormattedHeader(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1119,10 +1120,10 @@
         birthYear = 2026 - (p.age || 50);
       }
       var gender = p.gender || 'Nam';
-      return '<span class="patient-header-text">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
+      return '<span class="patient-header-dark">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
     }
 
-    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn
+    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn tông màu đen xám
     function getPatientTableFormattedCell(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1139,8 +1140,8 @@
       }
       var gender = p.gender || 'Nam';
       return '<div>' +
-        '<div style="font-weight:700; color:#334155; font-size:13px; line-height:1.3;">' + nameUpper + '</div>' +
-        '<div style="font-size:10.5px; color:#64748b; font-weight:500; margin-top:2px;">' + birthYear + ' <span style="color:#cbd5e1;">|</span> ' + gender + '</div>' +
+        '<div style="font-weight:800; color:#1e293b; font-size:13.5px; line-height:1.3;">' + nameUpper + '</div>' +
+        '<div style="font-size:10.5px; color:#64748b; font-weight:600; margin-top:2px;">' + birthYear + ' <span style="color:#cbd5e1;">|</span> ' + gender + '</div>' +
       '</div>';
     }
 
@@ -1166,6 +1167,26 @@
     }
 
     var patients = [
+      { 
+        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 53, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 50, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 8, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ thấp", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
+      { 
+        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        wizardState: null
+      },
       { 
         id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
         wizardState: {
@@ -1195,15 +1216,7 @@
         }
       },
       { 
-        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
         id: "G.4", code: "26-040235", name: "Phạm Hữu Hùng", bed: "G.4", bedNum: 4, age: 65, gender: "Nam", dob: "1961-11-11", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
@@ -1216,18 +1229,6 @@
       },
       { 
         id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        wizardState: null
-      },
-      { 
-        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
@@ -1398,7 +1399,7 @@
     }
 
     // =========================================================================
-    // HÀM ĐIỀU HƯỚNG TAB CHÍNH (ĐỒNG BỘ HIỂN THỊ TÊN TO RÕ RÀNG Ở HEADER CHI TIẾT)
+    // HÀM ĐIỀU HƯỚNG TAB CHÍNH (ĐỒNG BỘ HIỂN THỊ TÊN ĐEN XÁM ĐẬM NÉT)
     // =========================================================================
     function showTab(tabName) {
       var tabs = ['home', 'patients', 'bulk-turn', 'tasks', 'patient-detail', 'handover', 'account'];
@@ -1429,7 +1430,7 @@
 
       if (tabName === 'patient-detail') {
         if (backBtn) backBtn.style.display = 'block';
-        // Hiển thị to rõ ràng Họ và tên | Năm sinh | Giới tính trên Header chính
+        // Hiển thị to rõ ràng Họ và tên | Năm sinh | Giới tính tông màu đen xám trên Header[cite: 18, 19]
         if (titleEl) titleEl.innerHTML = getPatientFormattedHeader(currentPatient);
         if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
         renderDetail();
@@ -1646,7 +1647,7 @@
         return;
       }
 
-      // 1. CHẾ ĐỘ THẺ
+      // 1. CHẾ ĐỘ THẺ (ẢNH 1: ĐEN XÁM ĐẬM NÉT)
       if (currentViewMode === 'card') {
         var html = '';
         for (var j = 0; j < list.length; j++) {
@@ -1719,11 +1720,9 @@
 
           tbHtml += '<tr style="opacity:' + (isDis ? '0.75' : '1') + ';">' +
             '<td class="sticky-col-color" style="background:' + colorCode + ';"></td>' +
-            
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'overview\')" class="sticky-col-name tbl-clean-link">' +
               cellHtml +
             '</td>' +
-            
             '<td style="color:#64748b;">' + ptt.code + '</td>' +
             '<td style="color:#0284c7; font-weight:800;">' + ptt.bed + '</td>' +
             '<td style="text-align:center;">' + (ptt.stayDays || 9) + ' ngày</td>' +
@@ -1929,9 +1928,9 @@
       renderTasks();
     }
 
-    // =======================================================
-    // RENDER TAB CẦN LƯU Ý
-    // =======================================================
+    // =========================================================================
+    // RENDER TAB CẦN LƯU Ý (ẢNH 2: ĐEN XÁM ĐẬM NÉT)
+    // =========================================================================
     var currentTaskFilter = 'all';
     function setTaskFilter(type) {
       currentTaskFilter = type;
@@ -2016,14 +2015,16 @@
         html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
 
+          // HÀNG TRÊN CÙNG: GIƯỜNG + TÊN | NĂM SINH | GIỚI TÍNH + NÚT MỞ HỒ SƠ (CHUẨN ẢNH 2)[cite: 21]
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">' +
             '<div style="display:flex; align-items:center; gap:6px;">' +
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:800;">' + pt.bed + '</span>' +
-              '<strong>' + headerHtml + '</strong>' +
+              headerHtml +
             '</div>' +
             '<button onclick="openDetailById(\'' + pt.id + '\', \'overview\')" style="background:#ffffff; border:1px solid #0284c7; color:#0284c7; font-weight:700; border-radius:8px; padding:3px 10px; font-size:11px; cursor:pointer;">Mở hồ sơ</button>' +
           '</div>' +
 
+          // HÀNG THỨ 2 NẰM NGANG: WATERLOW + MỤC TIÊU XOAY TRỞ MÀU THEO NGUY CƠ (CHUẨN ẢNH 2)[cite: 21]
           '<div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">' +
             '<div style="font-size:10px; color:#0284c7; font-weight:700; background:#f0f9ff; border:1px solid #bae6fd; display:inline-block; padding:2px 8px; border-radius:6px;">' +
               'Waterlow ' + (pt.waterlow !== null ? pt.waterlow : '--') +
@@ -2303,7 +2304,6 @@
       var turnOd = document.getElementById('dt-turn-overdue');
       var turnProtocol = document.getElementById('dt-turn-protocol-text');
 
-      // Tên to rõ ràng trong thẻ Tổng quan hồ sơ
       if (nameHeader) nameHeader.innerHTML = getPatientFormattedHeader(p);
       if (codeLine) codeLine.innerText = 'Mã hồ sơ: ' + p.code;
       if (bedDiag) bedDiag.innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
@@ -2552,7 +2552,7 @@
     }
 
     // =========================================================================
-    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC: CHUẨN HÓA CỠ CHỮ MỤC LỚN > MỤC CON
+    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC: HEADER TO RÕ RÀNG & MỤC LỚN > MỤC CON
     // =========================================================================
     var wizardPatient = null;
     var wizardCurrentStep = 1;
@@ -2601,7 +2601,7 @@
         wizardForm.nurseNote = "";
       }
 
-      // Cập nhật Họ và tên | Năm sinh | Giới tính cỡ lớn trên đầu modal[cite: 18]
+      // Cập nhật Họ và tên | Năm sinh | Giới tính tông màu ĐEN XÁM ĐẬM NÉT trên đầu modal[cite: 18, 20]
       document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
       document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
 
@@ -2696,7 +2696,6 @@
       }
     }
 
-    // Render từng bước với phân cấp cỡ chữ: Mục lớn chữ lớn hơn, mục nhỏ bên trong chữ nhỏ hơn
     function renderWizardCurrentStep() {
       var c = document.getElementById('wz-steps-container');
       if (!c) return;
@@ -2707,7 +2706,6 @@
             Thang điểm Waterlow <span style="font-size: 11.5px; color: #64748b; font-weight: 600;">(Bước 1 / 4)</span>
           </div>
 
-          <!-- 1. Giới tính: Mục lớn 14.5px, Mục con 12.5px -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">1. Giới tính</span>
@@ -2723,7 +2721,6 @@
             </div>
           </div>
 
-          <!-- 2. Nhóm tuổi -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
               <span class="group-header-title">2. Nhóm tuổi</span>
@@ -2744,7 +2741,6 @@
             `).join('')}
           </div>
 
-          <!-- 3. Thể trạng / BMI -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">3. Thể trạng / BMI</span>
@@ -2763,7 +2759,6 @@
             `).join('')}
           </div>
 
-          <!-- 4. Tình trạng da vùng nguy cơ -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">4. Tình trạng da vùng nguy cơ</span>
@@ -2785,7 +2780,6 @@
             `).join('')}
           </div>
 
-          <!-- 5. Tiêu tiểu -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">5. Tiêu tiểu</span>
@@ -2804,7 +2798,6 @@
             `).join('')}
           </div>
 
-          <!-- 6. Khả năng vận động -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">6. Khả năng vận động</span>
@@ -2825,7 +2818,6 @@
             `).join('')}
           </div>
 
-          <!-- 7. Yếu tố dinh dưỡng -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
               <span class="group-header-title">7. Yếu tố dinh dưỡng</span>
@@ -2854,7 +2846,6 @@
             </div>
           </div>
 
-          <!-- 8. Tổn thương mô -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
               <span class="group-header-title">8. Tổn thương mô</span>
@@ -2878,7 +2869,6 @@
             }).join('')}
           </div>
 
-          <!-- 9. Khiếm khuyết thần kinh -->
           <div class="step-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
               <span class="group-header-title">9. Khiếm khuyết thần kinh</span>
