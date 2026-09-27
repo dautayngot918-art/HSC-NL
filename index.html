@@ -833,12 +833,12 @@
                 </div>
               </div>
 
-              <div id="wound-status-text" style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh dấu vị trí nào — da bình thường</div>
+              <div id="wound-status-text" style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh giá vị trí nào — da bình thường</div>
 
-              <!-- Khung nút + Thêm vị trí tổn thương theo yêu cầu -->
+              <!-- Khung nút + Thêm vị trí tổn thương -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 800; margin-bottom: 12px;">+ Thêm vị trí tổn thương</button>
 
-              <!-- Danh sách các tổn thương đã chọn xuất hiện đầy đủ ở đây -->
+              <!-- Danh sách các tổn thương đã chọn xuất hiện đầy đủ -->
               <div id="saved-wounds-container" style="display: flex; flex-direction: column; gap: 8px;"></div>
             </div>
           </div>
@@ -1131,7 +1131,7 @@
             <input type="text" id="wound-custom-location-input" placeholder="vd: Cánh mũi do sonde dạ dày..." style="font-size: 12.5px;" />
           </div>
 
-          <!-- Ghi nhận thế nào: chữ thuần canh trái, không đóng khung sẵn, đổi sáng viền nền xanh lá khi chọn -->
+          <!-- Ghi nhận thế nào -->
           <div>
             <label style="font-weight: 700; color: #334155; margin-bottom: 6px; display: block;">Ghi nhận thế nào</label>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -1162,7 +1162,7 @@
             </select>
           </div>
 
-          <!-- Nguồn gốc tổn thương: chữ thuần canh trái, đổi sáng viền nền xanh lá khi chọn -->
+          <!-- Nguồn gốc tổn thương -->
           <div>
             <label style="font-weight: 700; color: #334155; margin-bottom: 6px; display: block;">Nguồn gốc tổn thương</label>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -1389,6 +1389,22 @@
       var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '27/09/2026';
       return h + ' · ' + dStr;
     }
+
+    var nodeNameMapping = {
+      "head-f": "Vùng chẩm / Đầu (trước)", "head-b": "Vùng chẩm / Đầu (sau)",
+      "shoulder-l-f": "Bả vai trái", "shoulder-r-f": "Bả vai phải",
+      "shoulder-l-b": "Bả vai trái (sau)", "shoulder-r-b": "Bả vai phải (sau)",
+      "chest-f": "Ngực", "spine-1-b": "Cột sống lưng", "sacrum-b": "Xương cùng",
+      "arm-l-f": "Tay trái", "arm-r-f": "Tay phải", "arm-l-b": "Tay trái (sau)", "arm-r-b": "Tay phải (sau)",
+      "elbow-l-f": "Khuỷu tay trái", "elbow-r-f": "Khuỷu tay phải",
+      "elbow-l-b": "Khuỷu tay trái (sau)", "elbow-r-b": "Khuỷu tay phải (sau)",
+      "hip-l-f": "Hông trái", "hip-r-f": "Hông phải", "hip-l-b": "Hông trái (sau)", "hip-r-b": "Hông phải (sau)",
+      "knee-l-f": "Đầu gối trái", "knee-r-f": "Đầu gối phải",
+      "knee-l-b": "Đầu gối trái (sau)", "knee-r-b": "Đầu gối phải (sau)",
+      "shin1-l-f": "Cẳng chân trái", "shin1-r-f": "Cẳng chân phải",
+      "shin2-l-f": "Cẳng chân trái (dưới)", "shin2-r-f": "Cẳng chân phải (dưới)",
+      "heel-l-b": "Gót chân trái", "heel-r-b": "Gót chân phải"
+    };
 
     var patients = [
       { 
@@ -1805,12 +1821,13 @@
           var colorCode = getRiskColorCode(pt);
           var isDis = pt.status === 'discharged';
           var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
+          var currentWoundsCount = pt.woundList ? pt.woundList.length : 0;
 
           html += '<div onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="card card-click" style="display:flex; justify-content:space-between; align-items:center; position:relative; overflow:hidden; padding-left:14px; opacity:' + (isDis ? '0.75' : '1') + ';">' +
             '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
             '<div>' +
               '<div style="display:flex; align-items:center; gap:6px;">' + getPatientFormattedHeader(pt) + (isDis ? '<span class="badge-discharged" style="font-size:10px; padding:1px 6px;">Đã xuất viện</span>' : '') + '</div>' +
-              '<div style="font-size:11px; color:#64748b; margin:2px 0;">' + pt.code + ' · Giường <strong style="color:#0284c7;">' + pt.bed + '</strong>' + (pt.wounds > 0 ? (' · <span style="color:#dc2626; font-weight:700;">' + pt.wounds + ' tổn thương</span>') : '') + '</div>' +
+              '<div style="font-size:11px; color:#64748b; margin:2px 0;">' + pt.code + ' · Giường <strong style="color:#0284c7;">' + pt.bed + '</strong>' + (currentWoundsCount > 0 ? (' · <span style="color:#dc2626; font-weight:700;">' + currentWoundsCount + ' tổn thương</span>') : '') + '</div>' +
               '<div style="font-size:11px; color:' + (isDis ? '#475569' : '#dc2626') + '; font-weight:600;">' + (isDis ? ('Xuất viện: ' + (pt.dischargeData ? pt.dischargeData.time : 'Đã kết thúc')) : (pt.overdueTurn + ' — mục tiêu mỗi ' + targetH + ' giờ')) + '</div>' +
             '</div>' +
             '<div style="text-align:right; background:#f0f9ff; padding:6px 12px; border-radius:10px; border:1px solid #bae6fd;">' +
@@ -1835,6 +1852,7 @@
           var trendAdmit = calculateTrendText(ptt.waterlow, ptt.admitWaterlow);
           var colorPrev = (trendPrev === 'Tăng') ? '#dc2626' : ((trendPrev === 'Giảm') ? '#16a34a' : '#64748b');
           var colorAdmit = (trendAdmit === 'Tăng') ? '#dc2626' : ((trendAdmit === 'Giảm') ? '#16a34a' : '#64748b');
+          var currentWoundsCount = ptt.woundList ? ptt.woundList.length : 0;
 
           tbHtml += '<tr style="opacity:' + (isDis ? '0.75' : '1') + ';">' +
             '<td class="sticky-col-color" style="background:' + colorCode + ';"></td>' +
@@ -1846,7 +1864,7 @@
             '<td style="color:#475569; font-size:11px;">' + (ptt.latestAssess || 'Mới cập nhật') + '</td>' +
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" style="text-align:center;"><span style="color:#0284c7; font-weight:700;">' + (ptt.selectedPos || 'Ngửa') + '</span></td>' +
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'turn\', \'dt-turn-log-header\')" class="tbl-clean-link" style="color:#0284c7; font-weight:700; text-align:center;">' + (ptt.turns24h || 0) + ' lượt</td>' +
-            '<td onclick="openDetailById(\'' + ptt.id + '\', \'wound\')" class="tbl-clean-link" style="text-align:center;">' + (ptt.wounds > 0 ? '<span style="background:#fee2e2; color:#b91c1c; border:1px solid #f87171; padding:2px 8px; border-radius:6px; font-weight:800;">' + ptt.wounds + '</span>' : '<span style="color:#94a3b8;">Chưa có</span>') + '</td>' +
+            '<td onclick="openDetailById(\'' + ptt.id + '\', \'wound\')" class="tbl-clean-link" style="text-align:center;">' + (currentWoundsCount > 0 ? '<span style="background:#fee2e2; color:#b91c1c; border:1px solid #f87171; padding:2px 8px; border-radius:6px; font-weight:800;">' + currentWoundsCount + '</span>' : '<span style="color:#94a3b8;">Chưa có</span>') + '</td>' +
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'overview\', \'dt-prevention-section\')" class="tbl-clean-link" style="color:' + chkColor + '; font-weight:700; text-align:center;">' + chkCount + '/10</td>' +
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-clean-link" style="color:' + colorPrev + '; font-weight:700; text-align:center;">' + trendPrev + '</td>' +
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-clean-link" style="color:' + colorAdmit + '; font-weight:700; text-align:center;">' + trendAdmit + '</td>' +
@@ -1892,7 +1910,6 @@
         var pt = list[j];
         var curPos = pt.selectedPos || 'Ngửa';
         var isTurned = pt.overdueTurn.indexOf('Vừa xoay') > -1;
-        var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
 
         html += '<div class="card" style="margin-bottom:12px; padding:12px 14px; opacity:' + (isTurned ? '0.6' : '1') + ';">' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">' +
@@ -1902,7 +1919,7 @@
             '</div>' +
           '</div>' +
           '<div style="display:flex; justify-content:space-between; font-size:11px; color:' + (isTurned ? '#16a34a' : '#ea580c') + '; margin-bottom:8px; font-weight:600;">' +
-            '<span>' + pt.overdueTurn + ' (Mục tiêu: mỗi ' + targetH + 'g)</span>' +
+            '<span>' + pt.overdueTurn + '</span>' +
             '<span style="color:#64748b;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
           '</div>' +
           '<div class="grid-4" style="margin-bottom:6px;">' +
@@ -2046,6 +2063,7 @@
         var isTurnOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
         var curPos = pt.selectedPos || 'Ngửa';
         var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
+        var currentWoundsCount = pt.woundList ? pt.woundList.length : 0;
 
         html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
@@ -2078,10 +2096,10 @@
               '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' + (pt.checkedSkin ? '✓' : '') + '</div>' +
               '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
             '</div>' +
-            /* ĐÃ CẬP NHẬT: Nhấp vào Điểm loét tì đè sẽ link trực tiếp qua trang tổn thương */
+            /* ĐÃ LIÊN KẾT TRỰC TIẾP QUA TRANG TỔN THƯƠNG KHI BẤM VÀO ĐIỂM LOÉT TÌ ĐÈ */
             '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
               '<span style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
-              '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + (pt.wounds || 0) + '</span>' +
+              '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
             '</div>' +
           '</div>' +
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
@@ -2104,27 +2122,46 @@
       container.innerHTML = html;
     }
 
+    // ĐỒNG BỘ HÓA TƯƠNG TÁC SƠ ĐỒ CƠ THỂ VÀ DANH SÁCH TỔN THƯƠNG
     function toggleWoundNode(el) {
       var id = el.getAttribute('data-id');
       if (!currentPatient.woundSpots) currentPatient.woundSpots = [];
+      if (!currentPatient.woundList) currentPatient.woundList = [];
+
       var idx = currentPatient.woundSpots.indexOf(id);
+      var readableName = nodeNameMapping[id] || "Vị trí giải phẫu";
+
       if (idx > -1) {
         currentPatient.woundSpots.splice(idx, 1);
         el.setAttribute('stroke', '#94a3b8');
         el.setAttribute('fill', '#ffffff');
+
+        // Xóa mục tương ứng trong woundList nếu bỏ chọn trên hình
+        currentPatient.woundList = currentPatient.woundList.filter(function(item) {
+          return item.location !== readableName;
+        });
       } else {
         currentPatient.woundSpots.push(id);
         el.setAttribute('stroke', '#dc2626');
         el.setAttribute('fill', '#dc2626');
+
+        // Thêm vào woundList tự động tương ứng với điểm trên cơ thể
+        currentPatient.woundList.push({
+          location: readableName,
+          grade: "Độ I",
+          size: "2 × 2 cm",
+          origin: "Phát sinh tại khoa",
+          desc: "Phát hiện qua sơ đồ giải phẫu"
+        });
       }
-      currentPatient.wounds = currentPatient.woundSpots.length;
-      
-      // Tự động mở ngay thư mục con "Ghi nhận tổn thương" khi nhấp vào sơ đồ mô hình cơ thể giống hệt nút + Thêm vị trí tổn thương
+
+      currentPatient.wounds = currentPatient.woundList.length;
+      renderDetail();
+      renderPatients();
       openAddWoundModal();
     }
 
     function openAddWoundModal() {
-      // Đặt giá trị mặc định cho thư mục con
       var sel = document.getElementById('wound-location-select');
       if (sel) sel.value = "Khác";
       onWoundLocationChange("Khác");
@@ -2138,11 +2175,9 @@
       var descInp = document.getElementById('wound-desc-input');
       if (descInp) descInp.value = "";
 
-      // Đặt mặc định radio "Ghi nhận thế nào" là track (ghi thành tổn thương)
       selectWoundMode('track');
       selectWoundOrigin('khoa');
 
-      // Tắt trạng thái chưa ghi nhận bất thường mặc định
       var chkNo = document.getElementById('no-abnormal-chk');
       var rowNo = document.getElementById('no-abnormal-row');
       if (chkNo && rowNo) {
@@ -2153,22 +2188,16 @@
         rowNo.style.background = "#f8fafc";
       }
 
-      var m = document.getElementById('add-wound-modal');
-      if (m) m.style.display = 'flex';
+      document.getElementById('add-wound-modal').style.display = 'flex';
     }
 
     function closeAddWoundModal() {
-      var m = document.getElementById('add-wound-modal');
-      if (m) m.style.display = 'none';
+      document.getElementById('add-wound-modal').style.display = 'none';
     }
 
     function onWoundLocationChange(val) {
       var customBox = document.getElementById('custom-location-box');
-      if (val === 'Khác') {
-        customBox.style.display = 'block';
-      } else {
-        customBox.style.display = 'none';
-      }
+      customBox.style.display = (val === 'Khác') ? 'block' : 'none';
     }
 
     function selectWoundMode(modeVal) {
@@ -2248,21 +2277,16 @@
         return;
       }
 
-      var sel = document.getElementById('wound-location-select');
-      var selVal = sel ? sel.value : 'Khác';
+      var selVal = document.getElementById('wound-location-select').value;
       var locName = selVal;
       if (selVal === 'Khác') {
         var customInp = document.getElementById('wound-custom-location-input');
         locName = customInp && customInp.value.trim() ? customInp.value.trim() : 'Vị trí tùy chỉnh';
       }
 
-      var gradeSel = document.getElementById('wound-grade-select');
-      var grade = gradeSel ? gradeSel.value : 'Độ I';
-      var sizeInp = document.getElementById('wound-size-input');
-      var size = sizeInp && sizeInp.value.trim() ? sizeInp.value.trim() : '3 × 2 cm';
-      var descInp = document.getElementById('wound-desc-input');
-      var desc = descInp ? descInp.value.trim() : '';
-
+      var grade = document.getElementById('wound-grade-select').value;
+      var size = document.getElementById('wound-size-input').value.trim() || '3 × 2 cm';
+      var desc = document.getElementById('wound-desc-input').value.trim();
       var originRadio = document.querySelector('input[name="wound-origin"]:checked');
       var origin = (originRadio && originRadio.value === 'khoa') ? 'Phát sinh tại khoa' : 'Đã có sẵn khi vào khoa';
 
@@ -2276,7 +2300,7 @@
 
       currentPatient.wounds = currentPatient.woundList.length;
       closeAddWoundModal();
-      showToast('Đã lưu tổn thương tại: ' + locName);
+      showToast('Đã thêm tổn thương tại: ' + locName);
       renderDetail();
       renderPatients();
     }
@@ -2416,12 +2440,36 @@
       document.getElementById('dt-single-turntime-h').value = getNowTimeInputValue();
       document.getElementById('dt-single-turntime-d').value = getNowDateInputValue();
 
+      // Đồng bộ chấm đỏ trên SVG từ woundSpots
+      var nodes = document.querySelectorAll('.wound-node');
+      var spots = p.woundSpots || [];
+      for (var i = 0; i < nodes.length; i++) {
+        var nId = nodes[i].getAttribute('data-id');
+        if (spots.indexOf(nId) > -1) {
+          nodes[i].setAttribute('stroke', '#dc2626');
+          nodes[i].setAttribute('fill', '#dc2626');
+        } else {
+          nodes[i].setAttribute('stroke', '#94a3b8');
+          nodes[i].setAttribute('fill', '#ffffff');
+        }
+      }
+
+      var currentWoundsCount = p.woundList ? p.woundList.length : 0;
+      p.wounds = currentWoundsCount;
+
+      var countEl = document.getElementById('wound-spot-count');
+      var statusTextEl = document.getElementById('wound-status-text');
+      if (countEl) countEl.innerText = currentWoundsCount + ' vị trí';
+      if (statusTextEl) {
+        statusTextEl.innerText = currentWoundsCount > 0 ? ('Đã ghi nhận ' + currentWoundsCount + ' vị trí tổn thương') : 'Chưa đánh giá vị trí nào — da bình thường';
+      }
+
       // Hiển thị danh sách tổn thương động đã lưu ngay dưới nút "+ Thêm vị trí tổn thương"
       var savedWoundsContainer = document.getElementById('saved-wounds-container');
       if (savedWoundsContainer) {
         var wList = p.woundList || [];
         if (wList.length > 0) {
-          savedWoundsContainer.innerHTML = wList.map(function(item, idx) {
+          savedWoundsContainer.innerHTML = wList.map(function(item) {
             return '<div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; margin-bottom: 6px;">' +
               '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">' +
                 '<strong style="color: #334155; font-size: 12px;">' + item.location + '</strong>' +
