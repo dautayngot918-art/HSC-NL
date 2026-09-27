@@ -257,13 +257,13 @@
       padding: 20px;
       max-height: 85vh;
       overflow-y: auto;
-      scrollbar-width: none; /* Ẩn thanh trượt trên Firefox */
-      -ms-overflow-style: none; /* Ẩn thanh trượt trên IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      margin-top: -30px; /* Đẩy modal lên cao hơn chút xíu */
+      margin-top: -30px;
     }
     .modal-content::-webkit-scrollbar {
-      display: none; /* Ẩn thanh trượt trên Chrome/Safari */
+      display: none;
     }
 
     #toast {
@@ -560,7 +560,7 @@
         </div>
 
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
-          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 650; color: #0369a1; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 650; color: #0284c7; margin-bottom: 8px;">
             <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
             <span onclick="resetTaskBedRange()" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Đặt lại tất cả</span>
           </div>
@@ -691,7 +691,7 @@
                 <span id="wound-spot-count" style="font-size: 11px; color: #b91c1c; font-weight: 750; background: #fee2e2; border: 1px solid #f87171; padding: 1px 6px; border-radius: 6px;">0 vị trí</span>
               </div>
 
-              <!-- Khung nút + Thêm vị trí tổn thương -->
+              <!-- Khung nút + Thêm vị trí tổn thương (Tạo mới) -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 700; margin-bottom: 8px;">+ Thêm vị trí tổn thương</button>
 
               <!-- Khung "Các tổn thương" (chỉ hiện khi có tổn thương) -->
@@ -2137,7 +2137,7 @@
       var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
 
       if (editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // CẬP NHẬT ĐÈ LÊN VẾT THƯƠNG CŨ
+        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ
         currentPatient.woundList[editIndex] = {
           location: locName,
           grade: grade,
@@ -2319,7 +2319,7 @@
       var countEl = document.getElementById('wound-spot-count');
       if (countEl) countEl.innerText = currentWoundsCount + ' vị trí';
 
-      // HIỂN THỊ KHUNG "Các tổn thương" (Hàng 1: Vị trí + Khung "Sửa" bên phải; Hàng 2: Độ màu không khung)
+      // HIỂN THỊ KHUNG "Các tổn thương" (Hàng 1: Vị trí + Nút "Sửa" bên phải; Hàng 2: Phân độ màu không khung)
       var savedWoundsContainer = document.getElementById('saved-wounds-container');
       var woundCardsList = document.getElementById('wound-cards-list');
       if (savedWoundsContainer && woundCardsList) {
