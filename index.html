@@ -2027,23 +2027,22 @@
         var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
         var isTurnOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
         var curPos = pt.selectedPos || 'Ngửa';
-        var headerHtml = getPatientFormattedHeader(pt);
         var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
 
         html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
 
-          /* Dòng 1: Giường + Họ tên + Khung Waterlow (canh phải) */
+          /* Dòng 1: Giường + Tên bệnh nhân (có link mở hồ sơ) + Khung Waterlow (canh phải) */
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:800;">' + pt.bed + '</span>' +
-              '<strong>' + headerHtml + '</strong>' +
+              '<strong onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="tbl-clean-link" title="Nhấp mở hồ sơ người bệnh">' + getPatientFormattedHeader(pt) + '</strong>' +
             '</div>' +
             '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:800; color:#0284c7; background:#f0f9ff; border:1px solid #bae6fd; padding:3px 10px; border-radius:8px;" title="Nhấp mở bảng Waterlow">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
           '</div>';
 
         if (currentTaskFilter === 'turn') {
-          html += /* Dòng 2: Xoay trở mấy giờ (canh trái) + Quá hạn (canh giữa) + Lần cuối (canh phải) */
+          html += /* Dòng 2: Chu kỳ (canh trái) + Quá hạn (canh giữa) + Lần cuối (canh phải) */
           '<div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:8px; font-weight:600; padding:2px 0;">' +
             '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" title="Nhấp mở trang tư thế">' + targetBadgeHtml + '</span>' +
             '<span style="color:#ea580c; text-align:center;">' + pt.overdueTurn + '</span>' +
@@ -2064,26 +2063,27 @@
 
           (curPos === 'Chưa xoay được' || curPos === 'Khác' ? ('<div style="margin-bottom:6px;"><input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
 
-          '<div style="display:flex; align-items:center; justify-content:space-between; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:6px; font-size:11.5px;">' +
-            '<span onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
-            '<span onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:2px 10px; border-radius:6px;">' + (pt.wounds || 0) + '</span>' +
-          '</div>' +
-
-          '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155; margin-bottom:6px;">' +
-            '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' +
-              (pt.checkedSkin ? '✓' : '') +
+          /* Dòng kiểm tra da (trái) và Điểm loét tì đè đồng bộ (phải) */
+          '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; gap:8px;">' +
+            '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
+              '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' +
+                (pt.checkedSkin ? '✓' : '') +
+              '</div>' +
+              '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
             '</div>' +
-            '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
+            '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:4px 8px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
+              '<span style="font-weight:700; color:#0284c7;">Loét tì đè:</span>' +
+              '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + (pt.wounds || 0) + '</span>' +
+            '</div>' +
           '</div>' +
 
-          '<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:8px;">' +
-            '<label style="font-size:11px; font-weight:700; color:#475569; white-space:nowrap;">Thời gian xoay trở:</label>' +
-            '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:11.5px; padding:4px 6px; font-weight:600; color:#0284c7; width:auto;" />' +
-          '</div>' +
-
-          '<div class="grid-2">' +
-            '<button type="button" onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="btn-dark" style="padding:8px; font-size:12px;">Mở hồ sơ</button>' +
-            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-blue" style="padding:8px; font-size:12px;">Lưu cữ xoay</button>' +
+          /* Dòng thời gian xoay trở (canh trái) + Lưu cữ xoay (ngang hàng, canh phải) */
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
+              '<label style="font-size:11px; font-weight:700; color:#475569; white-space:nowrap;">Thời gian:</label>' +
+              '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:11.5px; padding:4px 6px; font-weight:600; color:#0284c7;" />' +
+            '</div>' +
+            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-blue" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>';
         } else {
           html += '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
