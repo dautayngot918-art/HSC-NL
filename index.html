@@ -136,7 +136,7 @@
     }
     .table-custom {
       width: 100%;
-      min-width: 800px;
+      min-width: 820px;
       border-collapse: separate;
       border-spacing: 0;
       font-size: 12px;
@@ -589,7 +589,7 @@
           <button id="task-pbtn-all" onclick="setTaskPatientFilter('all')" style="background: transparent; color: #64748b; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả<br><span id="count-task-all" style="font-size: 10px;">144</span></button>
         </div>
 
-        <!-- Hai dropdown: Thời gian & Sắp xếp -->
+        <!-- Hai dropdown Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 10px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -611,7 +611,7 @@
           </div>
         </div>
 
-        <!-- Khung lọc giường (Từ - Đến) trang Cần lưu ý -->
+        <!-- Khung lọc giường (Từ - Đến) riêng cho trang Cần lưu ý -->
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
@@ -1012,13 +1012,11 @@
       </div>
     </div>
 
-    <!-- ========================================================================= -->
-    <!-- MODAL ĐÁNH GIÁ 4 BƯỚC: STICKY HEADER & CẢNH BÁO MÀU VÀNG IN ĐẬM          -->
-    <!-- ========================================================================= -->
+    <!-- Modal Đánh Giá 4 Bước -->
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
-        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU DÙ CUỘN XUỐNG DƯỚI (STICKY HEADER) -->
+        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU (STICKY HEADER) -->
         <div style="position: sticky; top: 0; background: #ffffff; z-index: 30; padding: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 18px; color: #64748b; cursor: pointer;">←</button>
@@ -1032,7 +1030,7 @@
           <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
 
-        <!-- KHUNG THÔNG BÁO MÀU VÀNG NHẠT CẢNH BÁO, CHỮ IN ĐẬM (THEO HÌNH ẢNH) -->
+        <!-- KHUNG THÔNG BÁO MÀU VÀNG NHẠT CẢNH BÁO, CHỮ IN ĐẬM -->
         <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
           ℹ Một số mục ít thay đổi đã được điền sẵn từ lần đánh giá trước. Vui lòng soát lại toàn bộ trước khi ký.
         </div>
@@ -1095,7 +1093,6 @@
       return '<span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">xoay trở mỗi 4h</span>';
     }
 
-    // Hàm chuẩn hóa chuỗi Họ và Tên | Năm sinh | Giới tính
     function getPatientFormattedHeader(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1114,7 +1111,7 @@
       return '<span class="patient-header-text">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
     }
 
-    // Format riêng cho Bảng (Họ tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn)
+    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn
     function getPatientTableFormattedCell(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1566,6 +1563,8 @@
 
     // =========================================================================
     // RENDER NGƯỜI BỆNH
+    // - BỎ CỘT TRẠNG THÁI Ở TAB ĐANG ĐIỀU TRỊ VÀ ĐÃ XUẤT VIỆN
+    // - GIỮ CỘT TRẠNG THÁI Ở CUỐI CÙNG TRONG TAB TẤT CẢ (XANH LÁ / XÁM BẠC)
     // =========================================================================
     function renderPatients() {
       var container = document.getElementById('patient-display-container');
@@ -1650,8 +1649,10 @@
         }
         container.innerHTML = html;
       } 
-      // 2. CHẾ ĐỘ BẢNG (BỎ CỘT GIỚI TÍNH DƯ, HỌ TÊN HÀNG TRÊN, NĂM SINH | GIỚI TÍNH HÀNG DƯỚI)
+      // 2. CHẾ ĐỘ BẢNG
       else {
+        var isAllTab = (currentPStatus === 'all');
+
         var tbHtml = '<div class="table-container"><table class="table-custom">' +
           '<thead>' +
             '<tr>' +
@@ -1659,7 +1660,6 @@
               '<th class="sticky-col-name">Tên người bệnh / Năm sinh</th>' +
               '<th>Mã hồ sơ</th>' +
               '<th>Giường</th>' +
-              '<th style="text-align:center;">Trạng thái</th>' +
               '<th style="text-align:center;">Ngày nằm</th>' +
               '<th style="text-align:center;">Waterlow</th>' +
               '<th>Đánh giá gần nhất</th>' +
@@ -1668,6 +1668,7 @@
               '<th style="color:#0284c7; text-align:center;">Kế hoạch phòng ngừa</th>' +
               '<th style="color:#0369a1; text-align:center;">Diễn tiến so với lần trước</th>' +
               '<th style="color:#0284c7; text-align:center;">Diễn tiến so với nhập viện</th>' +
+              (isAllTab ? '<th style="text-align:center;">Trạng thái</th>' : '') +
             '</tr>' +
           '</thead>' +
           '<tbody>';
@@ -1693,7 +1694,6 @@
             '</td>' +
             '<td style="color:#64748b;">' + ptt.code + '</td>' +
             '<td style="color:#0284c7; font-weight:800;">' + ptt.bed + '</td>' +
-            '<td style="text-align:center;">' + (isDis ? '<span class="badge-discharged">Đã xuất viện</span>' : '<span style="color:#16a34a; font-weight:700;">Đang điều trị</span>') + '</td>' +
             '<td style="text-align:center;">' + (ptt.stayDays || 9) + ' ngày</td>' +
             '<td style="font-weight:800; text-align:center; color:#0284c7;">' + (ptt.waterlow !== null ? ptt.waterlow : '--') + '</td>' +
             '<td style="color:#475569; font-size:11px;">' + (ptt.latestAssess || 'Mới cập nhật') + '</td>' +
@@ -1714,6 +1714,13 @@
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-clean-link" style="color:' + colorAdmit + '; font-weight:700; text-align:center;">' +
               trendAdmit +
             '</td>' +
+            (isAllTab ? 
+              ('<td style="text-align:center;">' + 
+                (isDis 
+                  ? '<span class="badge-discharged">Đã xuất viện</span>' 
+                  : '<span class="badge-yellow">Đang điều trị</span>') + 
+              '</td>') 
+            : '') +
           '</tr>';
         }
 
@@ -2540,7 +2547,6 @@
         wizardForm.nurseNote = "";
       }
 
-      // ĐỒNG BỘ HIỂN THỊ HỌ TÊN | NĂM SINH | GIỚI TÍNH TRÊN ĐẦU MODAL ĐÁNH GIÁ
       document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
       document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
 
@@ -2975,6 +2981,7 @@
       renderTasks();
     }
 
+    // Khởi động đồng bộ dữ liệu ban đầu
     updateDynamicDashboardCounts();
     renderPatients();
   </script>
