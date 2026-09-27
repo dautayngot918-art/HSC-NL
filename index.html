@@ -1946,15 +1946,6 @@
       renderTasks();
     }
 
-    function updateTaskWounds(patientId, val) {
-      for (var i = 0; i < patients.length; i++) {
-        if (patients[i].id === patientId) {
-          patients[i].wounds = parseInt(val) || 0;
-          break;
-        }
-      }
-    }
-
     // =======================================================
     // RENDER TAB CẦN LƯU Ý
     // =======================================================
@@ -2042,19 +2033,21 @@
         html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
 
+          /* Dòng 1: Giường + Họ tên + Khung Waterlow (canh phải) */
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:800;">' + pt.bed + '</span>' +
               '<strong>' + headerHtml + '</strong>' +
-              '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:10.5px; color:#0284c7; font-weight:800; background:#f0f9ff; border:1px solid #bae6fd; padding:1px 6px; border-radius:6px;" title="Nhấp mở bảng Waterlow">Waterlow ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
-              '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" title="Nhấp mở trang tư thế">' + targetBadgeHtml + '</span>' +
             '</div>' +
+            '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:800; color:#0284c7; background:#f0f9ff; border:1px solid #bae6fd; padding:3px 10px; border-radius:8px;" title="Nhấp mở bảng Waterlow">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
           '</div>';
 
         if (currentTaskFilter === 'turn') {
-          html += '<div style="display:flex; justify-content:space-between; font-size:11px; color:#ea580c; margin-bottom:6px; font-weight:600;">' +
-            '<span>' + pt.overdueTurn + '</span>' +
-            '<span style="color:#64748b;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
+          html += /* Dòng 2: Xoay trở mấy giờ (canh trái) + Quá hạn (canh giữa) + Lần cuối (canh phải) */
+          '<div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:8px; font-weight:600; padding:2px 0;">' +
+            '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" title="Nhấp mở trang tư thế">' + targetBadgeHtml + '</span>' +
+            '<span style="color:#ea580c; text-align:center;">' + pt.overdueTurn + '</span>' +
+            '<span style="color:#64748b; text-align:right;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
           '</div>' +
 
           '<div class="grid-4" style="margin-bottom:6px;">' +
@@ -2073,7 +2066,7 @@
 
           '<div style="display:flex; align-items:center; justify-content:space-between; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:6px; font-size:11.5px;">' +
             '<span onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
-            '<input type="number" min="0" value="' + (pt.wounds || 0) + '" oninput="updateTaskWounds(\'' + pt.id + '\', this.value)" style="width:55px; padding:4px 6px; text-align:center; font-weight:700; color:#0284c7;" />' +
+            '<span onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:2px 10px; border-radius:6px;">' + (pt.wounds || 0) + '</span>' +
           '</div>' +
 
           '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155; margin-bottom:6px;">' +
