@@ -518,7 +518,6 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
-        <!-- Hai dropdown: Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -540,7 +539,6 @@
           </div>
         </div>
 
-        <!-- Khung lọc giường (Từ - Đến) -->
         <div id="bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường bệnh (G.1 – G.50):</span>
@@ -561,7 +559,6 @@
           </div>
         </div>
 
-        <!-- Chế độ Thẻ / Bảng -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; cursor: pointer;">Thẻ</button>
@@ -974,7 +971,7 @@
       </button>
 
       <button onclick="showTab('handover')" id="nav-handover" class="nav-btn">
-        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2 z"/></svg>
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         <span>Giao ban</span>
       </button>
 
@@ -1043,7 +1040,6 @@
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
-        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU -->
         <div style="position: sticky; top: 0; background: #ffffff; z-index: 30; padding: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 18px; color: #64748b; cursor: pointer;">←</button>
@@ -1057,14 +1053,12 @@
           <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
 
-        <!-- KHUNG THÔNG BÁO VÀNG NHẠT IN ĐẬM -->
         <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
           ℹ Một số mục ít thay đổi đã được điền sẵn từ lần đánh giá trước. Vui lòng soát lại toàn bộ trước khi ký.
         </div>
 
         <div id="wz-steps-container"></div>
 
-        <!-- THANH BOTTOM BAR GHIM DƯỚI ĐÁY -->
         <div style="position: sticky; bottom: -60px; left: 0; right: 0; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(2,132,199,0.12); margin-top: 14px; z-index: 25;">
           <div>
             <div style="font-size: 10px; color: #64748b; font-weight: 700; text-transform: uppercase;">TỔNG ĐIỂM WATERLOW</div>
@@ -2049,18 +2043,12 @@
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
 
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
-            '<div style="display:flex; align-items:center; gap:6px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:800;">' + pt.bed + '</span>' +
               '<strong>' + headerHtml + '</strong>' +
+              '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:10.5px; color:#0284c7; font-weight:800; background:#f0f9ff; border:1px solid #bae6fd; padding:1px 6px; border-radius:6px;" title="Nhấp mở bảng Waterlow">Waterlow ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
+              '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" title="Nhấp mở trang tư thế">' + targetBadgeHtml + '</span>' +
             '</div>' +
-            '<button onclick="openDetailById(\'' + pt.id + '\', \'overview\')" style="background:#ffffff; border:1px solid #0284c7; color:#0284c7; font-weight:700; border-radius:8px; padding:3px 10px; font-size:11px; cursor:pointer;">Mở hồ sơ</button>' +
-          '</div>' +
-
-          '<div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">' +
-            '<div style="font-size:10px; color:#0284c7; font-weight:700; background:#f0f9ff; border:1px solid #bae6fd; display:inline-block; padding:2px 8px; border-radius:6px;">' +
-              'Waterlow ' + (pt.waterlow !== null ? pt.waterlow : '--') +
-            '</div>' +
-            targetBadgeHtml +
           '</div>';
 
         if (currentTaskFilter === 'turn') {
@@ -2083,8 +2071,8 @@
 
           (curPos === 'Chưa xoay được' || curPos === 'Khác' ? ('<div style="margin-bottom:6px;"><input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
 
-          '<div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:6px; font-size:11.5px;">' +
-            '<span style="font-weight:700; color:#334155;">Điểm loét tì đè:</span>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:6px; font-size:11.5px;">' +
+            '<span onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
             '<input type="number" min="0" value="' + (pt.wounds || 0) + '" oninput="updateTaskWounds(\'' + pt.id + '\', this.value)" style="width:55px; padding:4px 6px; text-align:center; font-weight:700; color:#0284c7;" />' +
           '</div>' +
 
@@ -2095,16 +2083,15 @@
             '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
           '</div>' +
 
-          '<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:8px;">' +
-            '<label style="font-size:11px; font-weight:700; color:#475569; display:block; margin-bottom:2px;">' +
-              'Thời gian xoay trở (bỏ trống tự lấy giờ hiện tại):' +
-            '</label>' +
-            '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:11.5px; padding:6px 8px; font-weight:600; color:#0284c7;" />' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; margin-bottom:8px;">' +
+            '<label style="font-size:11px; font-weight:700; color:#475569; white-space:nowrap;">Thời gian xoay trở:</label>' +
+            '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:11.5px; padding:4px 6px; font-weight:600; color:#0284c7; width:auto;" />' +
           '</div>' +
 
-          '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-blue" style="padding:8px; font-size:12px;">' +
-            'Lưu cữ xoay' +
-          '</button>';
+          '<div class="grid-2">' +
+            '<button type="button" onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="btn-dark" style="padding:8px; font-size:12px;">Mở hồ sơ</button>' +
+            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-blue" style="padding:8px; font-size:12px;">Lưu cữ xoay</button>' +
+          '</div>';
         } else {
           html += '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
             (pt.notes ? 
