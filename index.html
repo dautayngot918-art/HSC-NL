@@ -721,7 +721,7 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương (Đã chuyển tông màu sáng và bổ sung đầy đủ các mục theo yêu cầu) -->
+        <!-- Subtab 2: Tổn thương (Giao diện tông sáng chuẩn, sơ đồ cơ thể có thể tích chọn điểm) -->
         <div id="subtab-wound-content" style="display: none;">
           <div class="card" style="background: #ffffff; color: #334155; border: 1px solid #e2e8f0; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -763,83 +763,77 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Sơ đồ cơ thể chuẩn 2 mặt trước và sau với các mốc vòng tròn) -->
+            <!-- Vị trí bất thường (Sơ đồ cơ thể chuẩn như hình ảnh, tích chọn đổi màu đỏ trực tiếp) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                 <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
-                <span style="font-size: 11px; color: #64748b; font-weight: 700;">0 vị trí</span>
+                <span id="wound-spot-count" style="font-size: 11px; color: #b91c1c; font-weight: 800; background: #fee2e2; border: 1px solid #f87171; padding: 1px 6px; border-radius: 6px;">0 vị trí</span>
               </div>
-              <div style="font-size: 11px; color: #475569; margin-bottom: 10px;">Bấm Thêm vị trí để ghi, hoặc chạm thẳng vào vị trí trên hình. Vị trí đã ghi hiện chấm đỏ; chạm vào chấm đỏ để sửa.</div>
+              <div style="font-size: 11px; color: #475569; margin-bottom: 10px;">Bấm vào các vòng tròn trên hình mô hình để đánh dấu vị trí tổn thương (chuyển đỏ).</div>
               
               <div class="grid-2" style="text-align: center; font-size: 11px; color: #334155; gap: 10px; margin-bottom: 10px;">
-                <!-- Sơ đồ trước -->
+                <!-- Nhìn từ phía trước -->
                 <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía trước</div>
                   <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
                     <!-- Đầu & Cổ -->
                     <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="50" cy="18" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="head-f" cx="50" cy="18" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
                     <!-- Thân -->
                     <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="50" cy="65" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="shoulder-l-f" cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shoulder-r-f" cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="chest-f" cx="50" cy="65" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Vai / Tay -->
-                    <circle cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="arm-l-f" cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="arm-r-f" cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
                     <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="elbow-l-f" cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="elbow-r-f" cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Chân -->
                     <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
                     <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="hip-l-f" cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="hip-r-f" cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-l-f" cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-r-f" cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin-l-f" cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin-r-f" cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                   </svg>
                 </div>
-                <!-- Sơ đồ sau -->
+                <!-- Nhìn từ phía sau -->
                 <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía sau</div>
                   <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
                     <!-- Đầu & Cổ -->
                     <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="50" cy="18" r="5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="head-b" cx="50" cy="18" r="5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
                     <!-- Thân -->
                     <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="50" cy="58" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="50" cy="72" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="shoulder-l-b" cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shoulder-r-b" cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="spine-1-b" cx="50" cy="58" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="sacrum-b" cx="50" cy="72" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Vai / Tay -->
-                    <circle cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="arm-l-b" cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="arm-r-b" cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
                     <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="elbow-l-b" cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="elbow-r-b" cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Chân -->
                     <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
                     <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <circle cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-                    <circle cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle class="wound-node" data-id="heel-l-b" cx="38" cy="140" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="heel-r-b" cx="62" cy="140" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                   </svg>
                 </div>
               </div>
 
-              <div style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh dấu vị trí nào — da bình thường</div>
-              <div style="border: 1px dashed #cbd5e1; border-radius: 8px; padding: 12px; text-align: center; color: #64748b; font-size: 11px; margin-bottom: 8px;">Chưa ghi nhận vị trí nào.</div>
-              <button onclick="showToast('Đã mở công cụ chấm vị trí bất thường')" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7;">+ Thêm vị trí tổn thương</button>
+              <div id="wound-status-text" style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh dấu vị trí nào — da bình thường</div>
             </div>
 
             <!-- Loét do thiết bị y tế -->
@@ -1304,7 +1298,7 @@
 
     var patients = [
       { 
-        id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
+        id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", woundSpots: [], checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
         wizardState: {
           gender: 1, ageGroup: 2, bmi: 0, skinStatus: 2, continence: 0, mobility: 4, nutritionDrop: 0, nutritionNpo: 2, tissueDamage: [5], neuroDeficit: 4, surgeryTrauma: 0,
           skinTemp: "Bình thường", skinFirm: "Phù nề", skinSens: "Giảm cảm giác",
@@ -1318,7 +1312,7 @@
         }
       },
       { 
-        id: "G.3", code: "26-040234", name: "Phan Thu Linh", bed: "G.3", bedNum: 3, age: 49, gender: "Nữ", dob: "1977-06-05", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. phải", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.3", code: "26-040234", name: "Phan Thu Linh", bed: "G.3", bedNum: 3, age: 49, gender: "Nữ", dob: "1977-06-05", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. phải", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: {
           gender: 2, ageGroup: 1, bmi: 0, skinStatus: 1, continence: 0, mobility: 4, nutritionDrop: 1, nutritionNpo: 2, tissueDamage: [5], neuroDeficit: 4, surgeryTrauma: 0,
           skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
@@ -1332,43 +1326,43 @@
         }
       },
       { 
-        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.4", code: "26-040235", name: "Phạm Hữu Hùng", bed: "G.4", bedNum: 4, age: 65, gender: "Nam", dob: "1961-11-11", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [],
+        id: "G.4", code: "26-040235", name: "Phạm Hữu Hùng", bed: "G.4", bedNum: 4, age: 65, gender: "Nam", dob: "1961-11-11", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", turnReason: "", woundSpots: [], checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "G.10", bedNum: 10, age: 42, gender: "Nam", dob: "1984-09-14", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "G.10", bedNum: 10, age: 42, gender: "Nam", dob: "1984-09-14", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 26/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       },
       { 
-        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", turnReason: "", woundSpots: [], checkedSkin: false, notes: "", dischargeData: null, turnLogs: [],
         wizardState: null
       }
     ];
@@ -2068,6 +2062,29 @@
       renderTasks();
     }
 
+    function toggleWoundNode(el) {
+      var id = el.getAttribute('data-id');
+      if (!currentPatient.woundSpots) currentPatient.woundSpots = [];
+      var idx = currentPatient.woundSpots.indexOf(id);
+      if (idx > -1) {
+        currentPatient.woundSpots.splice(idx, 1);
+        el.setAttribute('stroke', '#0284c7');
+        el.removeAttribute('fill');
+      } else {
+        currentPatient.woundSpots.push(id);
+        el.setAttribute('stroke', '#dc2626');
+        el.setAttribute('fill', '#dc2626');
+      }
+      currentPatient.wounds = currentPatient.woundSpots.length;
+      var countEl = document.getElementById('wound-spot-count');
+      var statusTextEl = document.getElementById('wound-status-text');
+      if (countEl) countEl.innerText = currentPatient.woundSpots.length + ' vị trí';
+      if (statusTextEl) {
+        statusTextEl.innerText = currentPatient.woundSpots.length > 0 ? ('Đã đánh dấu ' + currentPatient.woundSpots.length + ' vị trí bất thường') : 'Chưa đánh dấu vị trí nào — da bình thường';
+      }
+      renderPatients();
+    }
+
     // =======================================================
     // RENDER TAB CẦN LƯU Ý
     // =======================================================
@@ -2351,6 +2368,7 @@
         notes: "",
         selectedPos: "Ngửa",
         turnReason: "",
+        woundSpots: [],
         checkedSkin: true,
         dischargeData: null,
         turnLogs: [],
@@ -2458,6 +2476,26 @@
       var dtTimeD = document.getElementById('dt-single-turntime-d');
       if (dtTimeH) dtTimeH.value = getNowTimeInputValue();
       if (dtTimeD) dtTimeD.value = getNowDateInputValue();
+
+      // Đồng bộ trạng thái chấm đỏ trên sơ đồ cơ thể khi mở bệnh nhân
+      var nodes = document.querySelectorAll('.wound-node');
+      var spots = p.woundSpots || [];
+      for (var i = 0; i < nodes.length; i++) {
+        var nId = nodes[i].getAttribute('data-id');
+        if (spots.includes(nId)) {
+          nodes[i].setAttribute('stroke', '#dc2626');
+          nodes[i].setAttribute('fill', '#dc2626');
+        } else {
+          nodes[i].setAttribute('stroke', '#0284c7');
+          nodes[i].removeAttribute('fill');
+        }
+      }
+      var countEl = document.getElementById('wound-spot-count');
+      var statusTextEl = document.getElementById('wound-status-text');
+      if (countEl) countEl.innerText = spots.length + ' vị trí';
+      if (statusTextEl) {
+        statusTextEl.innerText = spots.length > 0 ? ('Đã đánh dấu ' + spots.length + ' vị trí bất thường') : 'Chưa đánh dấu vị trí nào — da bình thường';
+      }
 
       var turnLogContainer = document.getElementById('dt-turn-log-table');
       if (turnLogContainer) {
