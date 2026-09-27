@@ -194,95 +194,6 @@
     }
     .tbl-clean-link:hover { color: #0284c7 !important; }
 
-    /* Wizard dialog */
-    .step-item-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 14px 12px;
-      margin-bottom: 12px;
-    }
-    
-    .wizard-group-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14.5px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 4px;
-      line-height: 1.4;
-    }
-    .wizard-group-score {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #0284c7;
-    }
-    .wizard-sub-label {
-      font-size: 11.5px;
-      color: #475569;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      margin: 8px 0 4px 0;
-    }
-
-    .option-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 12px;
-      border-radius: 10px;
-      margin-top: 6px;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      cursor: pointer;
-      transition: 0.15s;
-    }
-    .option-row.opt-selected {
-      background: #f0fdf4;
-      border-color: #22c55e;
-      box-shadow: 0 2px 6px rgba(34,197,94,0.15);
-    }
-    .opt-text {
-      font-size: 12.8px;
-      color: #334155;
-      font-weight: 500;
-      line-height: 1.35;
-    }
-    .option-row.opt-selected .opt-text {
-      color: #15803d;
-      font-weight: 700;
-    }
-    .opt-circle {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-      flex-shrink: 0;
-      margin-right: 9px;
-    }
-    .option-row.opt-selected .opt-circle {
-      border-color: #14b8a6;
-      background: #14b8a6;
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 11px;
-    }
-    .opt-points {
-      font-size: 12px;
-      color: #64748b;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-left: 8px;
-    }
-    .option-row.opt-selected .opt-points {
-      color: #0284c7;
-    }
-
     /* Bottom Navigation Bar */
     nav {
       position: fixed;
@@ -838,8 +749,8 @@
               <!-- Khung nút + Thêm vị trí tổn thương -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 800; margin-bottom: 12px;">+ Thêm vị trí tổn thương</button>
 
-              <!-- Danh sách các tổn thương đã chọn xuất hiện đầy đủ -->
-              <div id="saved-wounds-container" style="display: flex; flex-direction: column; gap: 8px;"></div>
+              <!-- PHÍA DƯỚI KHUNG +THÊM VỊ TRÍ TỔN THƯƠNG: Chỉ hiện khung này khi có tổn thương -->
+              <div id="saved-wounds-container" style="display: none; flex-direction: column; gap: 8px; margin-top: 8px;"></div>
             </div>
           </div>
         </div>
@@ -2096,9 +2007,9 @@
               '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' + (pt.checkedSkin ? '✓' : '') + '</div>' +
               '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
             '</div>' +
-            /* ĐÃ LIÊN KẾT TRỰC TIẾP QUA TRANG TỔN THƯƠNG KHI BẤM VÀO ĐIỂM LOÉT TÌ ĐÈ */
+            /* ĐÃ SỬA TÊN THÀNH "Loét / Tổn thương" VÀ LINK TRỰC TIẾP QUA TRANG TỔN THƯƠNG */
             '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
-              '<span style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
+              '<span style="font-weight:700; color:#0284c7;">Loét / Tổn thương:</span>' +
               '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
             '</div>' +
           '</div>' +
@@ -2136,7 +2047,6 @@
         el.setAttribute('stroke', '#94a3b8');
         el.setAttribute('fill', '#ffffff');
 
-        // Xóa mục tương ứng trong woundList nếu bỏ chọn trên hình
         currentPatient.woundList = currentPatient.woundList.filter(function(item) {
           return item.location !== readableName;
         });
@@ -2145,7 +2055,6 @@
         el.setAttribute('stroke', '#dc2626');
         el.setAttribute('fill', '#dc2626');
 
-        // Thêm vào woundList tự động tương ứng với điểm trên cơ thể
         currentPatient.woundList.push({
           location: readableName,
           grade: "Độ I",
@@ -2464,27 +2373,28 @@
         statusTextEl.innerText = currentWoundsCount > 0 ? ('Đã ghi nhận ' + currentWoundsCount + ' vị trí tổn thương') : 'Chưa đánh giá vị trí nào — da bình thường';
       }
 
-      // Hiển thị danh sách tổn thương động đã lưu ngay dưới nút "+ Thêm vị trí tổn thương"
+      // HIỂN THỊ HOẶC ẨN KHUNG GHI CHÚ TỔN THƯƠNG NGẮN GỌN (CHỈ HIỆN KHI CÓ TỔN THƯƠNG)
       var savedWoundsContainer = document.getElementById('saved-wounds-container');
       if (savedWoundsContainer) {
         var wList = p.woundList || [];
         if (wList.length > 0) {
+          savedWoundsContainer.style.display = 'flex';
           savedWoundsContainer.innerHTML = wList.map(function(item) {
-            return '<div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; margin-bottom: 6px;">' +
-              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">' +
+            return '<div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
+              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">' +
                 '<strong style="color: #334155; font-size: 12px;">' + item.location + '</strong>' +
                 '<span style="background: #e2e8f0; color: #334155; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">' + item.grade + '</span>' +
               '</div>' +
-              '<div style="display: flex; gap: 6px; margin-bottom: 6px; font-size: 10.5px;">' +
+              '<div style="display: flex; gap: 6px; margin-bottom: 4px; font-size: 10.5px;">' +
                 '<span style="background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; font-weight: 700;">' + item.origin + '</span>' +
                 '<span style="background: #f1f5f9; color: #64748b; padding: 2px 6px; border-radius: 4px;">' + item.size + '</span>' +
               '</div>' +
-              '<div style="font-size: 11px; color: #475569; margin-bottom: 8px;">' + (item.desc || 'Không có mô tả thêm') + '</div>' +
-              '<div style="border: 1px dashed #cbd5e1; border-radius: 8px; padding: 8px; text-align: center; color: #0284c7; font-size: 11px; background: #f8fafc; cursor: pointer;" onclick="showToast(\'Mở máy ảnh chụp tổn thương\')">📷 Chụp ảnh tổn thương</div>' +
+              '<div style="font-size: 11px; color: #475569;">' + (item.desc || 'Không có mô tả thêm') + '</div>' +
             '</div>';
           }).join('');
         } else {
-          savedWoundsContainer.innerHTML = '<div style="font-size:11px; color:#64748b; text-align:center; padding:8px;">Chưa có vị trí tổn thương nào được lưu. Da nguyên vẹn.</div>';
+          savedWoundsContainer.style.display = 'none';
+          savedWoundsContainer.innerHTML = '';
         }
       }
 
