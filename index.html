@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       background-color: #f1f5f9;
-      color: #334155;
+      color: #1e293b;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       justify-content: center;
@@ -63,13 +63,6 @@
     .badge-gray { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; white-space: nowrap; }
     .badge-discharged { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 
-    /* Alert Boxes */
-    .alert-box-red { background: #fef2f2; border: 1.5px solid #ef4444; border-radius: 16px; padding: 16px; color: #991b1b; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.08); }
-    .alert-box-yellow { background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 16px; padding: 16px; color: #92400e; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08); }
-    .alert-box-green { background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 16px; padding: 16px; color: #166534; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.08); }
-    .alert-box-purple { background: #faf5ff; border: 1.5px solid #a855f7; border-radius: 16px; padding: 16px; color: #6b21a8; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.08); }
-    .alert-box-discharged { background: #f8fafc; border: 1.5px solid #94a3b8; border-radius: 16px; padding: 16px; color: #334155; margin-bottom: 12px; }
-
     .section-title { font-size: 15px; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 6px; }
     .section-indicator { width: 4px; height: 16px; background: #0284c7; border-radius: 4px; }
 
@@ -91,7 +84,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 9px 12px;
-      color: #334155;
+      color: #1e293b;
       font-size: 12px;
       outline: none;
     }
@@ -108,18 +101,18 @@
     }
     .clickable-alert-item:hover { background-color: #f1f5f9; }
 
-    /* ĐỊNH DẠNG HỌ VÀ TÊN DỊU MẮT, THANH MẢNH CHUẨN XÁC THEO HÌNH */
-    .patient-header-clean {
-      color: #334155;
-      font-weight: 700;
-      font-size: 14.5px;
+    /* Định dạng Họ Tên Đen Xám Chuẩn Theo Ảnh */
+    .patient-header-dark {
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 15px;
       display: inline-flex;
       align-items: center;
       flex-wrap: wrap;
-      letter-spacing: 0.1px;
+      letter-spacing: 0.2px;
     }
     .header-pipe {
-      color: #94a3b8;
+      color: #64748b;
       font-weight: 400;
       margin: 0 5px;
     }
@@ -546,7 +539,6 @@
           </div>
         </div>
 
-        <!-- Chế độ Thẻ / Bảng -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; cursor: pointer;">Thẻ</button>
@@ -626,6 +618,7 @@
           </div>
         </div>
 
+        <!-- Khung lọc giường trang Cần lưu ý -->
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
             <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
@@ -671,7 +664,7 @@
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
             <div>
-              <div id="dt-name-header" class="patient-header-clean" style="margin-bottom: 4px;">
+              <div id="dt-name-header" class="patient-header-dark" style="margin-bottom: 4px;">
                 ĐÀO THỊ THÌN <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nữ
               </div>
               <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
@@ -803,7 +796,6 @@
               </div>
             </div>
 
-            <!-- Đồ thị SVG -->
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-bottom: 4px;">
                 <span>39</span>
@@ -1020,7 +1012,7 @@
       </div>
     </div>
 
-    <!-- Modal Đánh Giá 4 Bước -->
+    <!-- Modal Đánh Giá 4 Bước: STICKY HEADER & CẢNH BÁO MÀU VÀNG IN ĐẬM -->
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
@@ -1028,7 +1020,7 @@
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #0284c7; font-weight: 800; cursor: pointer;">←</button>
             <div>
-              <div id="wz-patient-name-title" class="patient-header-clean" style="font-size: 16px; line-height: 1.3;">
+              <div id="wz-patient-name-title" class="patient-header-dark" style="font-size: 16px; line-height: 1.3;">
                 PHAN HỮU HÙNG <span class="header-pipe">|</span> 1948 <span class="header-pipe">|</span> Nam
               </div>
               <div id="wz-patient-sub-title" style="font-size: 11.5px; color: #64748b; font-weight: 700; margin-top: 2px;">Đánh giá · Giường G.7</div>
@@ -1098,7 +1090,7 @@
       return '<span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">xoay trở mỗi 4h</span>';
     }
 
-    // ĐỊNH DẠNG HỌ TÊN THANH MẢNH DỊU MẮT THEO HÌNH
+    // Định dạng Họ và tên | Năm sinh | Giới tính tông màu ĐEN XÁM ĐẬM NÉT chuẩn theo ảnh 1 & 2
     function getPatientFormattedHeader(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1114,10 +1106,10 @@
         birthYear = 2026 - (p.age || 50);
       }
       var gender = p.gender || 'Nam';
-      return '<span class="patient-header-clean">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
+      return '<span class="patient-header-dark">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
     }
 
-    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn
+    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn tông màu đen xám
     function getPatientTableFormattedCell(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1134,7 +1126,7 @@
       }
       var gender = p.gender || 'Nam';
       return '<div>' +
-        '<div style="font-weight:700; color:#334155; font-size:13px; line-height:1.3;">' + nameUpper + '</div>' +
+        '<div style="font-weight:800; color:#1e293b; font-size:13.5px; line-height:1.3;">' + nameUpper + '</div>' +
         '<div style="font-size:10.5px; color:#64748b; font-weight:600; margin-top:2px;">' + birthYear + ' <span style="color:#cbd5e1;">|</span> ' + gender + '</div>' +
       '</div>';
     }
