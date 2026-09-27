@@ -369,7 +369,7 @@
     <header>
       <div id="header-box" style="display: flex; align-items: center; gap: 8px;">
         <div id="back-btn-box" style="display: none;">
-          <button onclick="showTab('patients')" style="background: none; border: none; color: #0284c7; font-size: 20px; font-weight: 700; cursor: pointer; padding-right: 6px;">←</button>
+          <button onclick="goBackFromDetail()" style="background: none; border: none; color: #0284c7; font-size: 20px; font-weight: 700; cursor: pointer; padding-right: 6px;">←</button>
         </div>
         <div>
           <div id="page-title" class="header-title">Tổng quan</div>
@@ -721,23 +721,85 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương -->
+        <!-- Subtab 2: Tổn thương (Cập nhật chuẩn đầy đủ theo hình mẫu yêu cầu) -->
         <div id="subtab-wound-content" style="display: none;">
-          <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <div class="section-title">
-                <span class="section-indicator"></span>
-                <span>Da và tổn thương</span>
+          <div class="card" style="background: #0f172a; color: #f8fafc; border: none; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <div style="font-size: 15px; font-weight: 800; color: #ffffff;">Khám da và tổn thương</div>
+              <span style="font-size: 11px; color: #94a3b8; font-weight: 700;">Bước 3 / 4</span>
+            </div>
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 12px; font-size: 11.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 14px;">
+              ℹ Quy trình Bước 1: khám da toàn diện cùng lúc với chấm điểm Waterlow. Quan sát toàn bộ điểm tì đè và vùng da dưới mọi thiết bị y tế.
+            </div>
+
+            <!-- Quan sát chung -->
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 10px;">DA Quan sát chung</div>
+              <div class="grid-2" style="margin-bottom: 10px;">
+                <div>
+                  <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Nhiệt độ da</label>
+                  <select id="dt-wound-temp" onchange="currentPatient.wizardState.skinTemp=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                    <option>Bình thường</option>
+                    <option>Nóng sốt</option>
+                    <option>Lạnh ẩm</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Độ chắc của mô</label>
+                  <select id="dt-wound-firm" onchange="currentPatient.wizardState.skinFirm=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                    <option>Bình thường</option>
+                    <option>Phù nề</option>
+                    <option>Teo nhão</option>
+                  </select>
+                </div>
               </div>
-              <span id="dt-wound-badge" class="badge-gray">Chưa có tổn thương</span>
+              <div>
+                <label style="font-size: 11px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Cảm giác</label>
+                <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#0f172a; color:#f8fafc; border-color:#334155;">
+                  <option>Bình thường</option>
+                  <option>Giảm cảm giác</option>
+                  <option>Mất cảm giác hoàn toàn</option>
+                </select>
+              </div>
             </div>
-            <div id="dt-wound-desc" style="font-size: 12px; color: #64748b; margin-bottom: 12px; line-height: 1.5;">
-              Đợt điều trị này chưa ghi nhận vị trí loét hay tổn thương da tì đè nào.
+
+            <!-- Vị trí bất thường (Sơ đồ cơ thể) -->
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">VT Vị trí bất thường</span>
+                <span style="font-size: 11px; color: #94a3b8; font-weight: 700;">0 vị trí</span>
+              </div>
+              <div style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">Bấm Thêm vị trí để ghi, hoặc chạm thẳng vào vị trí trên hình.</div>
+              <div class="grid-2" style="text-align: center; font-size: 11px; color: #94a3b8;">
+                <div style="background: #0f172a; border: 1px dashed #334155; border-radius: 8px; padding: 20px;">Nhìn từ phía trước</div>
+                <div style="background: #0f172a; border: 1px dashed #334155; border-radius: 8px; padding: 20px;">Nhìn từ phía sau</div>
+              </div>
+              <button onclick="showToast('Đã mở công cụ chấm vị trí bất thường')" class="btn-dark" style="margin-top: 10px; background: #0f172a; color: #38bdf8; border-color: #334155;">+ Thêm vị trí tổn thương</button>
             </div>
-            <div style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px; text-align: center; color: #64748b; font-size: 12px; margin-bottom: 12px; background: #f8fafc;">
-              <div id="dt-wound-list-box">Chưa có ghi nhận tổn thương mô mềm hoặc tì đè.</div>
+
+            <!-- Loét do thiết bị y tế -->
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">TB Loét do thiết bị y tế</span>
+                <span style="font-size: 11px; color: #f8fafc; background: #0f172a; border: 1px solid #334155; padding: 2px 8px; border-radius: 6px; font-weight: 700;">1 vị trí</span>
+              </div>
+              <div style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; line-height: 1.4;">Sau tai do dây oxy, sống mũi do mặt nạ, mép miệng và môi do ống nội khí quản...</div>
+              
+              <div style="background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <strong style="color: #ffffff; font-size: 12px;" id="dt-wound-loc-title">Vành tai trái — Dây thở oxy qua mũi</strong>
+                  <span style="background: #334155; color: #ffffff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Độ I</span>
+                </div>
+                <div style="display: flex; gap: 6px; margin-bottom: 6px; font-size: 10.5px;">
+                  <span style="background: #7c2d12; color: #ffedd5; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Phát sinh tại khoa</span>
+                  <span style="background: #1e293b; color: #94a3b8; padding: 2px 6px; border-radius: 4px;">5 × 2 cm · 0 ảnh</span>
+                </div>
+                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Do dây oxy gọng mũi tì lâu</div>
+                <div style="border: 1px dashed #334155; border-radius: 8px; padding: 12px; text-align: center; color: #64748b; font-size: 11px;">📷 Chụp ảnh tổn thương</div>
+              </div>
+
+              <button onclick="addNewWoundRecord()" class="btn-dark" style="background: #0f172a; color: #38bdf8; border-color: #334155;">+ Thêm tổn thương do thiết bị</button>
             </div>
-            <button onclick="addNewWoundRecord()" class="btn-dark">+ Ghi nhận tổn thương mới</button>
           </div>
         </div>
 
@@ -762,7 +824,7 @@
               <button onclick="selectSingleDetailPos('Chưa xoay được / Khác')" id="sdt-pos-chua" class="pos-btn" style="grid-column: span 2;">Chưa xoay được / Khác</button>
             </div>
             <div id="sdt-reason-box" style="display: none; margin-bottom: 10px;">
-              <input type="text" id="sdt-reason-input" placeholder="Nhập lý do chưa xoay được / khác..." style="font-size: 12px; padding: 8px 10px;" />
+              <input type="text" id="sdt-reason-input" placeholder="Lý do / Ghi chú..." oninput="currentPatient.turnReason=this.value" style="font-size: 12px; padding: 8px 10px;" />
             </div>
 
             <div onclick="toggleSingleDetailSkinCheck()" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #334155; margin-bottom: 10px;">
@@ -772,9 +834,10 @@
               <span style="font-weight: 600;">đã xem da điểm tì đè</span>
             </div>
 
-            <div style="margin-bottom: 10px;">
-              <label style="font-size: 11px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Ngày giờ thực hiện xoay trở (bỏ trống = lấy giờ hiện tại):</label>
-              <input type="datetime-local" id="dt-single-turntime" style="font-size: 12px; padding: 8px 10px;" />
+            <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; white-space: nowrap;">Thời gian:</label>
+              <input type="time" id="dt-single-turntime-h" style="font-size: 12px; padding: 6px; font-weight: 700; color: #0284c7; background: #f0f9ff; border: 1.5px solid #bae6fd; width: 90px; text-align: center;" />
+              <input type="date" id="dt-single-turntime-d" style="font-size: 12px; padding: 6px; font-weight: 700; color: #0284c7; background: #f0f9ff; border: 1.5px solid #bae6fd; width: 130px; text-align: center;" />
             </div>
 
             <button onclick="handleDetailTurnAction()" class="btn-blue" style="margin-bottom: 14px;">
@@ -1246,6 +1309,7 @@
     ];
 
     var currentPatient = patients[0];
+    var navHistory = []; // Lưu lịch sử điều hướng các tab để quay lại đúng trang trước
     var isFilteringBedRange = false;
     var bedFrom = 1;
     var bedTo = 50;
@@ -1406,7 +1470,13 @@
       }
     }
 
+    var currentActiveTab = 'home';
     function showTab(tabName) {
+      if (currentActiveTab !== tabName) {
+        navHistory.push(currentActiveTab);
+      }
+      currentActiveTab = tabName;
+
       var tabs = ['home', 'patients', 'bulk-turn', 'tasks', 'patient-detail', 'handover', 'account'];
       for (var i = 0; i < tabs.length; i++) {
         var el = document.getElementById('tab-' + tabs[i]);
@@ -1439,25 +1509,30 @@
         if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
         renderDetail();
       } else if (tabName === 'bulk-turn') {
-        if (backBtn) {
-          backBtn.style.display = 'block';
-          backBtn.querySelector('button').setAttribute('onclick', "showTab('home')");
-        }
+        if (backBtn) backBtn.style.display = 'block';
         if (titleEl) titleEl.innerText = 'Xoay trở buồng bệnh';
         if (subEl) { subEl.innerText = '12:44 · 26/09/2026'; subEl.style.color = '#64748b'; }
         renderBulkTurnList();
       } else {
         if (backBtn) {
-          backBtn.style.display = 'none';
-          backBtn.querySelector('button').setAttribute('onclick', "showTab('patients')");
+          backBtn.style.display = (tabName === 'home') ? 'none' : 'block';
         }
         if (subEl) subEl.style.color = '#64748b';
         var treatingNum = patients.filter(function(p){ return p.status==='treating'; }).length;
-        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) subEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; }
+        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) subEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
         if (tabName === 'patients') { if (titleEl) titleEl.innerText = 'Người bệnh'; if (subEl) subEl.innerText = treatingNum + ' đang điều trị'; renderPatients(); }
         if (tabName === 'tasks') { if (titleEl) titleEl.innerText = 'Cần lưu ý'; if (subEl) subEl.innerText = 'Khoa Hồi sức tích cực'; renderTasks(); }
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) subEl.innerText = 'Khoa Hồi sức tích cực'; }
         if (tabName === 'account') { if (titleEl) titleEl.innerText = 'Tài khoản'; if (subEl) subEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; }
+      }
+    }
+
+    function goBackFromDetail() {
+      if (navHistory.length > 0) {
+        var prevTab = navHistory.pop();
+        showTab(prevTab);
+      } else {
+        showTab('tasks');
       }
     }
 
@@ -1840,9 +1915,8 @@
             '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
-          '<div class="grid-2" style="margin-bottom:8px;">' +
-            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
-            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
+          '<div style="margin-bottom:8px;">' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '" style="width:100%;">Chưa xoay được / Khác</button>' +
           '</div>' +
 
           '<div onclick="toggleBulkPatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155; padding-top:2px;">' +
@@ -1882,12 +1956,13 @@
         if (patients[i].status === 'treating') {
           patients[i].overdueTurn = "Vừa xoay";
           var pos = patients[i].selectedPos || "Ngửa";
-          patients[i].lastTurnNote = pos + " lúc " + nowDisplay.split('·')[0].trim();
+          var reasonText = patients[i].turnReason ? (' (' + patients[i].turnReason + ')') : '';
+          patients[i].lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split('·')[0].trim();
           patients[i].turns24h = (patients[i].turns24h || 0) + 1;
           if (!patients[i].turnLogs) patients[i].turnLogs = [];
           patients[i].turnLogs.unshift({
             time: nowDisplay,
-            pos: pos,
+            pos: pos + reasonText,
             skin: patients[i].checkedSkin
           });
         }
@@ -2039,13 +2114,13 @@
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
-          /* Dòng chứa nút "Chưa xoay được / Khác" (trái) và Khung trắng "Lý do / Ghi chú" (phải) */
+          /* Dòng nút "Chưa xoay được / Khác" gọn bên trái & Khung trắng "Lý do / Ghi chú" bên phải */
           '<div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:6px; margin-bottom:6px;">' +
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
             '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' +
           '</div>' +
 
-          /* Dòng kiểm tra da (trái) và Điểm loét tì đè đồng bộ (phải) */
+          /* Dòng kiểm tra da (trái) và Điểm loét tì đè (phải) link trực tiếp sang trang tổn thương */
           '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
             '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
               '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' +
@@ -2059,7 +2134,7 @@
             '</div>' +
           '</div>' +
 
-          /* Dòng thời gian xoay trở (giờ trước, ngày sau, tách 2 khung, đổi màu sáng rõ) + Lưu cữ xoay canh phải */
+          /* Dòng thời gian xoay trở (giờ trước, ngày sau) + Lưu cữ xoay canh phải */
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
             '<div style="display:flex; align-items:center; gap:4px; flex:1;">' +
               '<label style="font-size:11px; font-weight:700; color:#0284c7; white-space:nowrap;">Thời gian:</label>' +
@@ -2261,6 +2336,14 @@
           else el.classList.remove('pos-active');
         }
       }
+      var rBox = document.getElementById('sdt-reason-box');
+      if (rBox) {
+        if (pos === 'Chưa xoay được / Khác') {
+          rBox.style.display = 'block';
+        } else {
+          rBox.style.display = 'none';
+        }
+      }
     }
 
     function toggleSingleDetailSkinCheck() {
@@ -2297,6 +2380,8 @@
       if (careBox) careBox.style.display = isDis ? 'none' : 'block';
 
       selectSingleDetailPos(p.selectedPos || 'Ngửa');
+      var reasonInput = document.getElementById('sdt-reason-input');
+      if (reasonInput) reasonInput.value = p.turnReason || '';
 
       var skinBox = document.getElementById('sdt-skin-box');
       if (skinBox) {
@@ -2304,17 +2389,19 @@
         skinBox.innerText = p.checkedSkin ? '✓' : '';
       }
 
-      var dtTimeInput = document.getElementById('dt-single-turntime');
-      if (dtTimeInput) dtTimeInput.value = getNowDateTimeInputValue();
+      var dtTimeH = document.getElementById('dt-single-turntime-h');
+      var dtTimeD = document.getElementById('dt-single-turntime-d');
+      if (dtTimeH) dtTimeH.value = getNowTimeInputValue();
+      if (dtTimeD) dtTimeD.value = getNowDateInputValue();
 
       var turnLogContainer = document.getElementById('dt-turn-log-table');
       if (turnLogContainer) {
         if (p.turnLogs && p.turnLogs.length > 0) {
           turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
-            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
+            return '<div style="border-bottom:1px solid #334155; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
           }).join('');
         } else {
-          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
+          turnLogContainer.innerHTML = '<div style="color:#94a3b8;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
         }
       }
 
