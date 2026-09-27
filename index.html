@@ -721,7 +721,7 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương (Chuẩn y hệt mẫu ảnh bạn gửi, tương tác mượt mà) -->
+        <!-- Subtab 2: Tổn thương (Sơ đồ cơ thể y hệt ảnh mẫu, tích chọn chuyển đỏ & nút + Thêm vị trí tổn thương) -->
         <div id="subtab-wound-content" style="display: none;">
           <div class="card" style="background: #ffffff; color: #334155; border: 1px solid #e2e8f0; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -763,7 +763,7 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Sơ đồ mô hình chuẩn theo ảnh gửi, chấm chọn đổi màu đỏ) -->
+            <!-- Vị trí bất thường (Sơ đồ mô hình chuẩn y hệt ảnh gửi, tích chọn chuyển đỏ) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                 <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
@@ -842,6 +842,7 @@
               </div>
 
               <div id="wound-status-text" style="font-size: 11px; color: #64748b; text-align: center; margin-bottom: 8px;">Chưa đánh dấu vị trí nào — da bình thường</div>
+              <button onclick="openSubWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 800;">+ Thêm vị trí tổn thương</button>
             </div>
 
             <!-- Loét do thiết bị y tế -->
@@ -1080,6 +1081,126 @@
         </div>
       </div>
     </main>
+
+    <!-- Modal Thư Mục Con Thêm Vị Trí Tổn Thương (Giống ảnh mẫu) -->
+    <div id="sub-wound-modal" class="modal-overlay" style="z-index: 70;">
+      <div class="modal-content" style="max-height: 90vh;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+          <div style="font-size: 16px; font-weight: 800; color: #0f172a;">Tổn thương do tì đè</div>
+          <button onclick="closeSubWoundModal()" style="background: none; border: none; color: #64748b; font-size: 22px; cursor: pointer;">✕</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Vị trí</label>
+            <select id="sub-wound-loc-select" style="font-size: 13px; font-weight: 600; color: #0284c7; background: #f0f9ff; border-color: #bae6fd;">
+              <option>Vùng chẩm</option>
+              <option>Vành tai phải</option>
+              <option>Vành tai trái</option>
+              <option>Bả vai phải</option>
+              <option>Bả vai trái</option>
+              <option>Khuỷu tay phải</option>
+              <option>Khuỷu tay trái</option>
+              <option>Cột sống — đoạn lưng</option>
+              <option>Xương cùng</option>
+              <option>Xương cụt</option>
+              <option>Mào chậu phải</option>
+              <option>Mào chậu trái</option>
+              <option>Mấu chuyển lớn phải</option>
+              <option>Mấu chuyển lớn trái</option>
+              <option>Ụ ngồi phải</option>
+              <option>Ụ ngồi trái</option>
+              <option>Đùi phải</option>
+              <option>Đùi trái</option>
+              <option>Đầu gối phải</option>
+              <option>Đầu gối trái</option>
+              <option>Cẳng chân phải</option>
+              <option>Cẳng chân trái</option>
+              <option>Mắt cá phải</option>
+              <option>Mắt cá trái</option>
+              <option>Gót chân phải</option>
+              <option>Gót chân trái</option>
+              <option>Ngón chân phải</option>
+              <option>Ngón chân trái</option>
+              <option value="khac">Vị trí khác (Nhập thủ công)...</option>
+            </select>
+          </div>
+
+          <div id="sub-wound-custom-box" style="display: none;">
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Nhập tên vị trí khác</label>
+            <input type="text" id="sub-wound-custom-input" placeholder="Nhập tên vị trí tổn thương..." />
+          </div>
+
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Ghi nhận thế nào</label>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer;">
+                <input type="radio" name="sub-type" value="quan-sat" /> Chỉ ghi nhận quan sát
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 8px; cursor: pointer;">
+                <input type="radio" name="sub-type" value="ton-thuong" checked /> Ghi thành tổn thương — theo dõi diễn tiến, thêm ảnh, đánh dấu đã lành
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Phân độ (NPIAP / EPUAP)</label>
+            <select id="sub-wound-grade" style="font-size: 12.5px;">
+              <option>Chưa phân độ</option>
+              <option>Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn</option>
+              <option>Độ II — mất một phần bề dày da, lộ trung bì, có thể có bóng nước</option>
+              <option>Độ III — mất toàn bộ bề dày da, lộ mô mỡ dưới da</option>
+              <option>Độ IV — mất toàn bộ mô, lộ gân, cơ hoặc xương</option>
+              <option>Không phân loại được — đáy vết phủ mô hoại tử</option>
+              <option>Nghi ngờ tổn thương mô sâu — vùng tím sẫm, không mất màu khi ấn</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Nguồn gốc tổn thương</label>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 8px; cursor: pointer;">
+                <input type="radio" name="sub-origin" value="moi" checked /> Mới phát sinh tại khoa
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer;">
+                <input type="radio" name="sub-origin" value="co-san" /> Đã có sẵn khi người bệnh vào khoa
+              </label>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Kích thước (dài × rộng)</label>
+              <input type="text" id="sub-wound-size" placeholder="vd: 3 × 2 cm" />
+            </div>
+            <div>
+              <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Ngày phát hiện</label>
+              <input type="text" id="sub-wound-date" value="ngày 27 thg 9, 2026" />
+            </div>
+          </div>
+
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Độ sâu</label>
+            <select style="font-size: 12px;">
+              <option>Da còn nguyên vẹn</option>
+              <option>Trợt nông</option>
+              <option>Mất bề dày da</option>
+              <option>Lộ mỡ / sâu dưới da</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Mô tả thêm</label>
+            <textarea rows="2" placeholder="vd: đáy vết đỏ, dịch tiết ít, bờ không hoại tử"></textarea>
+          </div>
+
+          <div class="grid-2" style="margin-top: 10px;">
+            <button onclick="closeSubWoundModal()" class="btn-dark">Huỷ</button>
+            <button onclick="saveSubWoundRecord()" class="btn-blue" style="background: #059669;">Thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bottom Navigation Bar -->
     <nav>
@@ -2262,6 +2383,34 @@
       }
       renderPatients();
     }
+
+    function openSubWoundModal() {
+      var m = document.getElementById('sub-wound-modal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeSubWoundModal() {
+      var m = document.getElementById('sub-wound-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    function saveSubWoundRecord() {
+      currentPatient.wounds = (currentPatient.wounds || 0) + 1;
+      showToast('Đã thêm vị trí tổn thương mới cho ' + currentPatient.name);
+      closeSubWoundModal();
+      renderDetail();
+      renderPatients();
+    }
+
+    // Lắng nghe thay đổi chọn vị trí khác trong modal con
+    document.addEventListener('change', function(e) {
+      if (e.target && e.target.id === 'sub-wound-loc-select') {
+        var cBox = document.getElementById('sub-wound-custom-box');
+        if (cBox) {
+          cBox.style.display = (e.target.value === 'khac') ? 'block' : 'none';
+        }
+      }
+    });
 
     function saveTaskTurnWithTime(id) {
       var timeHInput = document.getElementById('turntime-h-' + id);
