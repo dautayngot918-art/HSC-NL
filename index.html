@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       background-color: #f1f5f9;
-      color: #0f172a;
+      color: #1e293b;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       justify-content: center;
@@ -91,7 +91,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 9px 12px;
-      color: #0f172a;
+      color: #1e293b;
       font-size: 12px;
       outline: none;
     }
@@ -141,7 +141,7 @@
       border-bottom: 1px solid #f1f5f9;
       vertical-align: middle;
       white-space: nowrap;
-      color: #1e293b;
+      color: #334155;
       background: #ffffff;
     }
     .table-custom tr:hover td { background-color: #f8fafc; }
@@ -467,7 +467,7 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
-        <!-- Hai dropdown: Thời gian & Sắp xếp (ĐÃ ĐIỀU CHỈNH CHUẨN ẢNH 40) -->
+        <!-- Hai dropdown: Thời gian & Sắp xếp (THỨ TỰ CHUẨN ẢNH 40) -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -480,7 +480,7 @@
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Sắp xếp</span>
             <select id="patient-sort-select" onchange="onPatientSortChange(this.value)" style="font-size: 12px; padding: 8px 10px; border-color: #0284c7; font-weight: 600;">
-              <option value="bed-asc">Theo giường: Thấp → Cao</option>
+              <option value="bed-asc" selected>Theo giường: Thấp → Cao</option>
               <option value="bed-desc">Theo giường: Cao → Thấp</option>
               <option value="bed-range">Theo giường: Lọc (Từ – Đến)...</option>
               <option value="waterlow-tiered">Điểm Waterlow: Cao → Thấp</option>
@@ -587,7 +587,7 @@
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Sắp xếp</span>
             <select id="task-sort-select" onchange="onTaskSortChange(this.value)" style="font-size: 12px; padding: 8px 10px; border-color: #0284c7; font-weight: 600;">
-              <option value="bed-asc">Theo giường: Thấp → Cao</option>
+              <option value="bed-asc" selected>Theo giường: Thấp → Cao</option>
               <option value="bed-desc">Theo giường: Cao → Thấp</option>
               <option value="bed-range">Theo giường: Lọc (Từ – Đến)...</option>
               <option value="waterlow-tiered">Điểm Waterlow: Cao → Thấp</option>
@@ -596,10 +596,10 @@
           </div>
         </div>
 
-        <!-- Khung lọc giường (Từ - Đến) riêng cho trang Cần lưu ý -->
+        <!-- Khung lọc giường (Từ - Đến) trang Cần lưu ý -->
         <div id="task-bed-range-box" class="card" style="display: none; padding: 12px; margin-bottom: 10px; background: #f0f9ff; border: 1.5px solid #0284c7;">
           <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #0369a1; margin-bottom: 8px;">
-            <span>Lọc khoảng giường việc cần làm:</span>
+            <span>Lọc khoảng giường việc cần làm (G.1 – G.50):</span>
             <span onclick="resetTaskBedRange()" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Đặt lại tất cả</span>
           </div>
           <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155;">
@@ -644,9 +644,9 @@
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
             <div>
-              <div id="dt-name-header" style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 2px;">ĐÀO THỊ THÌN | 1963 | Nữ</div>
-              <div id="dt-code-line" style="font-size: 12px; color: #475569; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
-              <div id="dt-bed-diag" style="font-size: 13px; color: #0f172a; margin-bottom: 4px;">Giường <strong style="color: #0284c7;">G.8</strong> · Viêm não</div>
+              <div id="dt-name-header" style="font-size: 15px; font-weight: 700; color: #334155; margin-bottom: 2px;">ĐÀO THỊ THÌN | 1963 | Nữ</div>
+              <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
+              <div id="dt-bed-diag" style="font-size: 13px; color: #334155; margin-bottom: 4px;">Giường <strong style="color: #0284c7;">G.8</strong> · Viêm não</div>
               <div id="dt-stay-days" style="font-size: 11px; color: #64748b;">Nhập khoa 17:21 · ngày điều trị thứ 9</div>
             </div>
           </div>
@@ -774,7 +774,6 @@
               </div>
             </div>
 
-            <!-- Đồ thị SVG -->
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-bottom: 4px;">
                 <span>39</span>
@@ -950,7 +949,7 @@
 
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div>
-            <label style="font-size: 12px; color: #334155; font-weight: 700; margin-bottom: 4px; display: block;">Họ và tên</label>
+            <label style="font-size: 12px; color: #334155; font-weight: 700; margin-bottom: 4px; display: block;">Họ và tên (In hoa tự động)</label>
             <input type="text" id="inp-p-name" placeholder="vd: ĐÀO THỊ THÌN" value="" style="text-transform: uppercase;" />
           </div>
 
@@ -1002,7 +1001,7 @@
           <div style="display: flex; align-items: center; gap: 8px;">
             <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 18px; color: #64748b; cursor: pointer;">←</button>
             <div>
-              <div id="wz-patient-name-title" style="font-size: 15px; font-weight: 800; color: #0f172a;">PHAN ĐỨC THẮNG | 1966 | Nam</div>
+              <div id="wz-patient-name-title" style="font-size: 15px; font-weight: 700; color: #334155;">PHAN ĐỨC THẮNG | 1966 | Nam</div>
               <div id="wz-patient-sub-title" style="font-size: 11px; color: #64748b;">Đánh giá · Giường G.2</div>
             </div>
           </div>
@@ -1040,12 +1039,9 @@
   </div>
 
   <script>
-    var patientSortMode = "bed-asc";
-    var taskSortMode = "bed-asc";
-
     // Xử lý đổi sắp xếp ở trang Người bệnh
     function onPatientSortChange(val) {
-      patientSortMode = val;
+      currentSortMode = val;
       var rangeBox = document.getElementById('bed-range-box');
       if (val === 'bed-range') {
         if (rangeBox) rangeBox.style.display = 'block';
@@ -1057,13 +1053,12 @@
       renderPatients();
     }
 
-    // Xử lý đổi sắp xếp ở trang Cần lưu ý (ĐỒNG BỘ CHUẨN ẢNH 40)
+    // Xử lý đổi sắp xếp ở trang Cần lưu ý (ĐỒNG BỘ 100% THỨ TỰ VÀ MẶC ĐỊNH CHUẨN ẢNH 40)
     var isTaskFilteringBedRange = false;
     var taskBedFrom = 1;
     var taskBedTo = 50;
 
     function onTaskSortChange(val) {
-      taskSortMode = val;
       var rangeBox = document.getElementById('task-bed-range-box');
       if (val === 'bed-range') {
         if (rangeBox) rangeBox.style.display = 'block';
@@ -1095,7 +1090,6 @@
       if (rangeBox) rangeBox.style.display = 'none';
       var sSelect = document.getElementById('task-sort-select');
       if (sSelect) sSelect.value = 'bed-asc';
-      taskSortMode = 'bed-asc';
       renderTasks();
       showToast('Đã đặt lại danh sách tất cả giường');
     }
