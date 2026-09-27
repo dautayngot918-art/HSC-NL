@@ -1980,7 +1980,7 @@
 
       if (editIndex !== undefined && editIndex >= 0 && currentPatient.woundList[editIndex]) {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = editIndex; // Ghi nhớ đúng chỉ mục đang sửa
+        if (editInp) editInp.value = editIndex; // LƯU ĐÚNG CHỈ MỤC ĐỂ GHI ĐÈ
         var item = currentPatient.woundList[editIndex];
 
         var foundOption = false;
@@ -2011,7 +2011,7 @@
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
       } else {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = "-1"; // Đặt -1 để hệ thống hiểu là THÊM MỚI
+        if (editInp) editInp.value = "-1"; // ĐẶT LÀ -1 ĐỂ HIỂU LÀ TẠO MỚI KHI BẤM + THÊM
         sel.value = "Khác";
         customInput.value = "";
         if (sizeInp) sizeInp.value = "";
@@ -2137,7 +2137,7 @@
       var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
 
       if (editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ
+        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ (CẬP NHẬT TRỰC TIẾP)
         currentPatient.woundList[editIndex] = {
           location: locName,
           grade: grade,
@@ -2145,9 +2145,9 @@
           origin: origin,
           desc: desc
         };
-        showToast('Đã cập nhật tổn thương');
+        showToast('Đã cập nhật thành công tổn thương');
       } else {
-        // THÊM MỚI TỔN THƯƠNG KHI BẤM TỪ NÚT +THÊM
+        // TẠO MỚI KHI BẤM NÚT + THÊM VỊ TRÍ TỔN THƯƠNG
         currentPatient.woundList.push({
           location: locName,
           grade: grade,
@@ -2169,7 +2169,7 @@
       if (editIndex >= 0 && currentPatient.woundList && currentPatient.woundList[editIndex]) {
         currentPatient.woundList.splice(editIndex, 1);
         currentPatient.wounds = currentPatient.woundList.length;
-        showToast('Đã xóa tổn thương');
+        showToast('Đã xóa tổn thương thành công');
       } else {
         showToast('Không có tổn thương nào để xóa');
       }
