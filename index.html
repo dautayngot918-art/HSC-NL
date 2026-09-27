@@ -721,7 +721,7 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương (Giao diện sáng sạch, sơ đồ mẫu chuẩn y hệt ảnh) -->
+        <!-- Subtab 2: Tổn thương (Chuẩn y hệt mẫu ảnh bạn gửi, tương tác mượt mà) -->
         <div id="subtab-wound-content" style="display: none;">
           <div class="card" style="background: #ffffff; color: #334155; border: 1px solid #e2e8f0; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -763,17 +763,19 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Sơ đồ cơ thể y hệt ảnh gửi, các vòng tròn có thể tích chọn chuyển đỏ) -->
+            <!-- Vị trí bất thường (Sơ đồ mô hình chuẩn theo ảnh gửi, chấm chọn đổi màu đỏ) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                 <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
                 <span id="wound-spot-count" style="font-size: 11px; color: #b91c1c; font-weight: 800; background: #fee2e2; border: 1px solid #f87171; padding: 1px 6px; border-radius: 6px;">0 vị trí</span>
               </div>
-              <div style="font-size: 11px; color: #475569; margin-bottom: 10px; line-height: 1.4;">Chạm vào các vòng tròn trên mô hình để đánh dấu vị trí bất thường (chuyển đỏ).</div>
+              <div style="font-size: 11px; color: #475569; margin-bottom: 10px; line-height: 1.4;">
+                Bấm Thêm vị trí để ghi, hoặc chạm thẳng vào vị trí trên hình.<br>Vị trí đã ghi hiện chấm đỏ; chạm vào chấm đỏ để sửa.
+              </div>
               
               <div class="grid-2" style="text-align: center; font-size: 11px; color: #334155; gap: 10px; margin-bottom: 10px;">
                 <!-- Nhìn từ phía trước -->
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
+                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía trước</div>
                   <svg viewBox="0 0 100 170" style="width: 100%; height: 135px;">
                     <!-- Đầu -->
@@ -806,7 +808,7 @@
                   </svg>
                 </div>
                 <!-- Nhìn từ phía sau -->
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
+                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía sau</div>
                   <svg viewBox="0 0 100 170" style="width: 100%; height: 135px;">
                     <!-- Đầu -->
@@ -2236,6 +2238,29 @@
         html += '</div>';
       }
       container.innerHTML = html;
+    }
+
+    function toggleWoundNode(el) {
+      var id = el.getAttribute('data-id');
+      if (!currentPatient.woundSpots) currentPatient.woundSpots = [];
+      var idx = currentPatient.woundSpots.indexOf(id);
+      if (idx > -1) {
+        currentPatient.woundSpots.splice(idx, 1);
+        el.setAttribute('stroke', '#94a3b8');
+        el.setAttribute('fill', '#ffffff');
+      } else {
+        currentPatient.woundSpots.push(id);
+        el.setAttribute('stroke', '#dc2626');
+        el.setAttribute('fill', '#dc2626');
+      }
+      currentPatient.wounds = currentPatient.woundSpots.length;
+      var countEl = document.getElementById('wound-spot-count');
+      var statusTextEl = document.getElementById('wound-status-text');
+      if (countEl) countEl.innerText = currentPatient.woundSpots.length + ' vị trí';
+      if (statusTextEl) {
+        statusTextEl.innerText = currentPatient.woundSpots.length > 0 ? ('Đã đánh dấu ' + currentPatient.woundSpots.length + ' vị trí bất thường') : 'Chưa đánh giá vị trí nào — da bình thường';
+      }
+      renderPatients();
     }
 
     function saveTaskTurnWithTime(id) {
