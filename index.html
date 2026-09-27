@@ -721,7 +721,7 @@
           </div>
         </div>
 
-        <!-- Subtab 2: Tổn thương (Giao diện tông sáng chuẩn, sơ đồ cơ thể có thể tích chọn điểm) -->
+        <!-- Subtab 2: Tổn thương (Giao diện sáng sạch, sơ đồ mẫu chuẩn y hệt ảnh) -->
         <div id="subtab-wound-content" style="display: none;">
           <div class="card" style="background: #ffffff; color: #334155; border: 1px solid #e2e8f0; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -763,72 +763,78 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Sơ đồ cơ thể chuẩn như hình ảnh, tích chọn đổi màu đỏ trực tiếp) -->
+            <!-- Vị trí bất thường (Sơ đồ cơ thể y hệt ảnh gửi, các vòng tròn có thể tích chọn chuyển đỏ) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                 <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
                 <span id="wound-spot-count" style="font-size: 11px; color: #b91c1c; font-weight: 800; background: #fee2e2; border: 1px solid #f87171; padding: 1px 6px; border-radius: 6px;">0 vị trí</span>
               </div>
-              <div style="font-size: 11px; color: #475569; margin-bottom: 10px;">Bấm vào các vòng tròn trên hình mô hình để đánh dấu vị trí tổn thương (chuyển đỏ).</div>
+              <div style="font-size: 11px; color: #475569; margin-bottom: 10px; line-height: 1.4;">Chạm vào các vòng tròn trên mô hình để đánh dấu vị trí bất thường (chuyển đỏ).</div>
               
               <div class="grid-2" style="text-align: center; font-size: 11px; color: #334155; gap: 10px; margin-bottom: 10px;">
                 <!-- Nhìn từ phía trước -->
-                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía trước</div>
-                  <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
-                    <!-- Đầu & Cổ -->
-                    <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="head-f" cx="50" cy="18" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
+                  <svg viewBox="0 0 100 170" style="width: 100%; height: 135px;">
+                    <!-- Đầu -->
+                    <circle cx="50" cy="18" r="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="head-f" cx="50" cy="18" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <rect x="46" y="32" width="8" height="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
                     <!-- Thân -->
-                    <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="shoulder-l-f" cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="shoulder-r-f" cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="chest-f" cx="50" cy="65" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <!-- Vai / Tay -->
-                    <circle class="wound-node" data-id="arm-l-f" cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="arm-r-f" cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="elbow-l-f" cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="elbow-r-f" cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <rect x="28" y="38" width="44" height="52" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="shoulder-l-f" cx="38" cy="48" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shoulder-r-f" cx="62" cy="48" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="chest-f" cx="50" cy="65" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <!-- Tay -->
+                    <circle class="wound-node" data-id="arm-l-f" cx="20" cy="44" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="arm-r-f" cx="80" cy="44" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <line x1="28" y1="42" x2="16" y2="72" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="72" y1="42" x2="84" y2="72" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="elbow-l-f" cx="16" cy="76" r="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="elbow-r-f" cx="84" cy="76" r="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Chân -->
-                    <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="hip-l-f" cx="38" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="hip-r-f" cx="62" cy="98" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="knee-l-f" cx="38" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="knee-r-f" cx="62" cy="115" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="shin-l-f" cx="38" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="shin-r-f" cx="62" cy="132" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <line x1="38" y1="90" x2="38" y2="155" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="62" y1="90" x2="62" y2="155" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="hip-l-f" cx="38" cy="98" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="hip-r-f" cx="62" cy="98" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-l-f" cx="38" cy="114" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-r-f" cx="62" cy="114" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin1-l-f" cx="38" cy="129" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin1-r-f" cx="62" cy="129" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin2-l-f" cx="38" cy="144" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shin2-r-f" cx="62" cy="144" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                   </svg>
                 </div>
                 <!-- Nhìn từ phía sau -->
-                <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px;">
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
                   <div style="font-weight: 700; color: #64748b; margin-bottom: 8px;">Nhìn từ phía sau</div>
-                  <svg viewBox="0 0 100 160" style="width: 100%; height: 120px;">
-                    <!-- Đầu & Cổ -->
-                    <circle cx="50" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="head-b" cx="50" cy="18" r="5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <rect x="46" y="32" width="8" height="6" fill="#94a3b8"/>
+                  <svg viewBox="0 0 100 170" style="width: 100%; height: 135px;">
+                    <!-- Đầu -->
+                    <circle cx="50" cy="18" r="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="head-b" cx="50" cy="18" r="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <rect x="46" y="32" width="8" height="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
                     <!-- Thân -->
-                    <rect x="30" y="38" width="40" height="50" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="shoulder-l-b" cx="40" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="shoulder-r-b" cx="60" cy="48" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="spine-1-b" cx="50" cy="58" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="sacrum-b" cx="50" cy="72" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <!-- Vai / Tay -->
-                    <circle class="wound-node" data-id="arm-l-b" cx="22" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="arm-r-b" cx="78" cy="42" r="4" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <line x1="30" y1="40" x2="18" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <line x1="70" y1="40" x2="82" y2="70" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="elbow-l-b" cx="18" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="elbow-r-b" cx="82" cy="74" r="3.5" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <rect x="28" y="38" width="44" height="52" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="shoulder-l-b" cx="38" cy="48" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="shoulder-r-b" cx="62" cy="48" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="spine-1-b" cx="50" cy="58" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="sacrum-b" cx="50" cy="72" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <!-- Tay -->
+                    <circle class="wound-node" data-id="arm-l-b" cx="20" cy="44" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="arm-r-b" cx="80" cy="44" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <line x1="28" y1="42" x2="16" y2="72" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="72" y1="42" x2="84" y2="72" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="elbow-l-b" cx="16" cy="76" r="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="elbow-r-b" cx="84" cy="76" r="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                     <!-- Chân -->
-                    <line x1="38" y1="88" x2="38" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <line x1="62" y1="88" x2="62" y2="145" stroke="#94a3b8" stroke-width="2"/>
-                    <circle class="wound-node" data-id="heel-l-b" cx="38" cy="140" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
-                    <circle class="wound-node" data-id="heel-r-b" cx="62" cy="140" r="3" fill="none" stroke="#0284c7" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <line x1="38" y1="90" x2="38" y2="155" stroke="#94a3b8" stroke-width="2"/>
+                    <line x1="62" y1="90" x2="62" y2="155" stroke="#94a3b8" stroke-width="2"/>
+                    <circle class="wound-node" data-id="hip-l-b" cx="38" cy="98" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="hip-r-b" cx="62" cy="98" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-l-b" cx="38" cy="114" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="knee-r-b" cx="62" cy="114" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="heel-l-b" cx="38" cy="142" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
+                    <circle class="wound-node" data-id="heel-r-b" cx="62" cy="142" r="3.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" onclick="toggleWoundNode(this)" style="cursor:pointer;"/>
                   </svg>
                 </div>
               </div>
@@ -2062,29 +2068,6 @@
       renderTasks();
     }
 
-    function toggleWoundNode(el) {
-      var id = el.getAttribute('data-id');
-      if (!currentPatient.woundSpots) currentPatient.woundSpots = [];
-      var idx = currentPatient.woundSpots.indexOf(id);
-      if (idx > -1) {
-        currentPatient.woundSpots.splice(idx, 1);
-        el.setAttribute('stroke', '#0284c7');
-        el.removeAttribute('fill');
-      } else {
-        currentPatient.woundSpots.push(id);
-        el.setAttribute('stroke', '#dc2626');
-        el.setAttribute('fill', '#dc2626');
-      }
-      currentPatient.wounds = currentPatient.woundSpots.length;
-      var countEl = document.getElementById('wound-spot-count');
-      var statusTextEl = document.getElementById('wound-status-text');
-      if (countEl) countEl.innerText = currentPatient.woundSpots.length + ' vị trí';
-      if (statusTextEl) {
-        statusTextEl.innerText = currentPatient.woundSpots.length > 0 ? ('Đã đánh dấu ' + currentPatient.woundSpots.length + ' vị trí bất thường') : 'Chưa đánh dấu vị trí nào — da bình thường';
-      }
-      renderPatients();
-    }
-
     // =======================================================
     // RENDER TAB CẦN LƯU Ý
     // =======================================================
@@ -2477,7 +2460,7 @@
       if (dtTimeH) dtTimeH.value = getNowTimeInputValue();
       if (dtTimeD) dtTimeD.value = getNowDateInputValue();
 
-      // Đồng bộ trạng thái chấm đỏ trên sơ đồ cơ thể khi mở bệnh nhân
+      // Đồng bộ chấm đỏ trên sơ đồ
       var nodes = document.querySelectorAll('.wound-node');
       var spots = p.woundSpots || [];
       for (var i = 0; i < nodes.length; i++) {
@@ -2486,15 +2469,15 @@
           nodes[i].setAttribute('stroke', '#dc2626');
           nodes[i].setAttribute('fill', '#dc2626');
         } else {
-          nodes[i].setAttribute('stroke', '#0284c7');
-          nodes[i].removeAttribute('fill');
+          nodes[i].setAttribute('stroke', '#94a3b8');
+          nodes[i].setAttribute('fill', '#ffffff');
         }
       }
       var countEl = document.getElementById('wound-spot-count');
       var statusTextEl = document.getElementById('wound-status-text');
       if (countEl) countEl.innerText = spots.length + ' vị trí';
       if (statusTextEl) {
-        statusTextEl.innerText = spots.length > 0 ? ('Đã đánh dấu ' + spots.length + ' vị trí bất thường') : 'Chưa đánh dấu vị trí nào — da bình thường';
+        statusTextEl.innerText = spots.length > 0 ? ('Đã đánh dấu ' + spots.length + ' vị trí bất thường') : 'Chưa đánh giá vị trí nào — da bình thường';
       }
 
       var turnLogContainer = document.getElementById('dt-turn-log-table');
