@@ -36,7 +36,7 @@
       top: 0;
       z-index: 30;
     }
-    .header-title { font-size: 18px; font-weight: 800; color: #0284c7; line-height: 1.3; }
+    .header-title { font-size: 16px; font-weight: 800; color: #0284c7; line-height: 1.3; }
     .header-sub { font-size: 11px; color: #64748b; font-weight: 500; }
     main { padding: 12px 16px; flex: 1; }
 
@@ -108,20 +108,19 @@
     }
     .clickable-alert-item:hover { background-color: #f1f5f9; }
 
-    /* Format Họ Tên Header To Rõ */
+    /* Format Họ Tên Dịu Mắt */
     .patient-header-text {
-      color: #0284c7;
-      font-weight: 800;
-      font-size: 17.5px;
+      color: #334155;
+      font-weight: 700;
+      font-size: 13.5px;
       display: inline-flex;
       align-items: center;
       flex-wrap: wrap;
-      letter-spacing: 0.3px;
     }
     .header-pipe {
       color: #94a3b8;
       font-weight: 400;
-      margin: 0 6px;
+      margin: 0 5px;
     }
 
     /* Bảng cuộn ngang */
@@ -195,34 +194,19 @@
     }
     .tbl-clean-link:hover { color: #0284c7 !important; }
 
-    /* ======================================================== */
-    /* PHÂN CẤP CỠ CHỮ CHUẨN XÁC TRONG BẢNG WATERLOW WIZARD    */
-    /* ======================================================== */
+    /* Wizard dialog */
     .step-item-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 14px;
-      padding: 12px 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      padding: 12px;
+      margin-bottom: 10px;
     }
-    /* Tiêu đề mục lớn: Chữ to 14.5px, in đậm */
-    .group-header-title {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-    .group-header-score {
-      font-size: 14px;
-      font-weight: 800;
-      color: #0284c7;
-    }
-    /* Dòng lựa chọn bên trong: Chữ nhỏ hơn 12.5px - 13px */
     .option-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
+      padding: 9px 12px;
       border-radius: 10px;
       margin-top: 6px;
       border: 1px solid #e2e8f0;
@@ -235,26 +219,9 @@
       border-color: #22c55e;
       box-shadow: 0 2px 6px rgba(34,197,94,0.15);
     }
-    .option-label {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #334155;
-    }
-    .option-row.opt-selected .option-label {
-      color: #166534;
-      font-weight: 700;
-    }
-    .option-points {
-      font-size: 12px;
-      font-weight: 700;
-      color: #64748b;
-    }
-    .option-row.opt-selected .option-points {
-      color: #15803d;
-    }
     .opt-circle {
-      width: 17px;
-      height: 17px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       border: 2px solid #94a3b8;
       display: flex;
@@ -269,7 +236,7 @@
       background: #14b8a6;
       color: #ffffff;
       font-weight: 900;
-      font-size: 10px;
+      font-size: 11px;
     }
 
     /* Bottom Navigation Bar */
@@ -507,6 +474,7 @@
           <button onclick="clearRiskFilter()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #475569; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Xem tất cả</button>
         </div>
 
+        <!-- Hai dropdown: Thời gian & Sắp xếp -->
         <div class="grid-2" style="margin-bottom: 8px;">
           <div>
             <span style="font-size: 11px; color: #0284c7; font-weight: 700; display: block; margin-bottom: 4px;">Thời gian</span>
@@ -549,6 +517,7 @@
           </div>
         </div>
 
+        <!-- Chế độ Thẻ / Bảng -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <div style="display: flex; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 2px;">
             <button id="view-card-btn" onclick="setViewMode('card')" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; cursor: pointer;">Thẻ</button>
@@ -673,7 +642,7 @@
         <div id="subtab-overview-content" style="display: block;">
           <div class="card">
             <div>
-              <div id="dt-name-header" class="patient-header-text" style="font-size: 18px; margin-bottom: 4px;">
+              <div id="dt-name-header" class="patient-header-text" style="font-size: 15px; margin-bottom: 4px;">
                 ĐÀO THỊ THÌN <span class="header-pipe">|</span> 1963 <span class="header-pipe">|</span> Nữ
               </div>
               <div id="dt-code-line" style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Mã hồ sơ: 26-040239</div>
@@ -769,6 +738,7 @@
               Lưu cữ xoay
             </button>
 
+            <!-- Mục theo dõi tổng xoay trở 24h -->
             <div id="dt-turn-log-header" style="font-size: 12px; font-weight: 700; color: #0284c7; margin-bottom: 6px; border-top: 1px solid #e2e8f0; padding-top: 10px;">
               Nhật ký theo dõi tổng xoay trở (24 giờ qua):
             </div>
@@ -1022,26 +992,26 @@
       </div>
     </div>
 
-    <!-- Modal Đánh Giá 4 Bước: STICKY HEADER & CẢNH BÁO MÀU VÀNG IN ĐẬM -->
+    <!-- Modal Đánh Giá 4 Bước -->
     <div id="waterlow-wizard-modal" class="modal-overlay" style="z-index: 60;">
       <div class="modal-content" style="max-height: 95vh; padding: 0 14px 75px 14px; position: relative;">
         
-        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU, CỠ CHỮ TO RÕ RÀNG (ẢNH) -->
+        <!-- HEADER CỐ ĐỊNH TRÊN ĐẦU -->
         <div style="position: sticky; top: 0; background: #ffffff; z-index: 30; padding: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #0284c7; font-weight: 800; cursor: pointer;">←</button>
+            <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 18px; color: #64748b; cursor: pointer;">←</button>
             <div>
-              <div id="wz-patient-name-title" class="patient-header-text" style="font-size: 18px; line-height: 1.3;">
+              <div id="wz-patient-name-title" class="patient-header-text" style="font-size: 15px;">
                 PHAN HỮU HÙNG <span class="header-pipe">|</span> 1948 <span class="header-pipe">|</span> Nam
               </div>
-              <div id="wz-patient-sub-title" style="font-size: 11.5px; color: #64748b; font-weight: 700; margin-top: 2px;">Đánh giá · Giường G.7</div>
+              <div id="wz-patient-sub-title" style="font-size: 11px; color: #64748b; font-weight: 600;">Đánh giá · Giường G.7</div>
             </div>
           </div>
-          <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 22px; color: #64748b; cursor: pointer;">✕</button>
+          <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
 
         <!-- KHUNG THÔNG BÁO VÀNG NHẠT IN ĐẬM -->
-        <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px 14px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
+        <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
           ℹ Một số mục ít thay đổi đã được điền sẵn từ lần đánh giá trước. Vui lòng soát lại toàn bộ trước khi ký.
         </div>
 
@@ -1103,7 +1073,6 @@
       return '<span style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">xoay trở mỗi 4h</span>';
     }
 
-    // Tên to rõ ràng trên Header
     function getPatientFormattedHeader(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1122,7 +1091,6 @@
       return '<span class="patient-header-text">' + nameUpper + ' <span class="header-pipe">|</span> ' + birthYear + ' <span class="header-pipe">|</span> ' + gender + '</span>';
     }
 
-    // Format Bảng: Tên hàng trên, Năm sinh | Giới tính hàng dưới nhỏ hơn
     function getPatientTableFormattedCell(p) {
       var nameUpper = (p.name || '').toUpperCase();
       var birthYear = '';
@@ -1398,7 +1366,7 @@
     }
 
     // =========================================================================
-    // HÀM ĐIỀU HƯỚNG TAB CHÍNH (ĐỒNG BỘ HIỂN THỊ TÊN TO RÕ RÀNG Ở HEADER CHI TIẾT)
+    // HÀM ĐIỀU HƯỚNG TAB CHÍNH (ĐẦY ĐỦ 100% CẬP NHẬT HEADER CHI TIẾT ĐỦ HỌ TÊN/NĂM SINH/GIỚI TÍNH)
     // =========================================================================
     function showTab(tabName) {
       var tabs = ['home', 'patients', 'bulk-turn', 'tasks', 'patient-detail', 'handover', 'account'];
@@ -1429,7 +1397,7 @@
 
       if (tabName === 'patient-detail') {
         if (backBtn) backBtn.style.display = 'block';
-        // Hiển thị to rõ ràng Họ và tên | Năm sinh | Giới tính trên Header chính
+        // Hiển thị đầy đủ Họ tên | Năm sinh | Giới tính trên Header ứng dụng[cite: 18, 19]
         if (titleEl) titleEl.innerHTML = getPatientFormattedHeader(currentPatient);
         if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
         renderDetail();
@@ -1576,6 +1544,9 @@
       renderPatients();
     }
 
+    // =========================================================================
+    // HÀM CHUYỂN TAB VÀ CUỘN ĐẾN PHẦN CẦN THIẾT
+    // =========================================================================
     function openPatientSubSection(patientId, subTabName, scrollToElementId) {
       openDetailById(patientId, subTabName);
       if (scrollToElementId) {
@@ -1590,6 +1561,9 @@
 
     // =========================================================================
     // RENDER NGƯỜI BỆNH
+    // - BỔ SUNG CỘT "TƯ THẾ HIỆN TẠI" TRƯỚC CỘT "TỔNG XOAY TRỞ 24H"
+    // - NHẤP VÀO ĐIỂM WATERLOW -> MỞ BẢNG ĐÁNH GIÁ 4 BƯỚC TRỰC TIẾP
+    // - NHẤP VÀO TƯ THẾ / XOAY TRỞ -> MỞ ĐÚNG MỤC TƯ THẾ / THEO DÕI TỔNG XOAY
     // =========================================================================
     function renderPatients() {
       var container = document.getElementById('patient-display-container');
@@ -1713,6 +1687,7 @@
           var colorPrev = (trendPrev === 'Tăng') ? '#dc2626' : ((trendPrev === 'Giảm') ? '#16a34a' : '#64748b');
           var colorAdmit = (trendAdmit === 'Tăng') ? '#dc2626' : ((trendAdmit === 'Giảm') ? '#16a34a' : '#64748b');
 
+          // Tư thế hiện tại
           var currentPosDisplay = isDis 
             ? '<span style="color:#94a3b8; font-weight:500;">Xuất viện</span>' 
             : ('<span style="color:#0284c7; font-weight:700;">' + (ptt.selectedPos || 'Ngửa') + '</span>');
@@ -1720,6 +1695,7 @@
           tbHtml += '<tr style="opacity:' + (isDis ? '0.75' : '1') + ';">' +
             '<td class="sticky-col-color" style="background:' + colorCode + ';"></td>' +
             
+            // Tên người bệnh: nhấp mở tab Tổng quan
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'overview\')" class="sticky-col-name tbl-clean-link">' +
               cellHtml +
             '</td>' +
@@ -1728,41 +1704,41 @@
             '<td style="color:#0284c7; font-weight:800;">' + ptt.bed + '</td>' +
             '<td style="text-align:center;">' + (ptt.stayDays || 9) + ' ngày</td>' +
 
-            // Bấm vào điểm Waterlow -> Mở bảng đánh giá
+            // Điểm Waterlow: NHẤP TRỰC TIẾP MỞ BẢNG ĐÁNH GIÁ 4 BƯỚC
             '<td onclick="openWaterlowAssessmentWizard(\'' + ptt.id + '\')" class="tbl-clean-link" style="font-weight:800; text-align:center; color:#0284c7;" title="Nhấp xem và đánh giá bảng Waterlow">' +
               (ptt.waterlow !== null ? ptt.waterlow : '--') +
             '</td>' +
 
             '<td style="color:#475569; font-size:11px;">' + (ptt.latestAssess || 'Mới cập nhật') + '</td>' +
 
-            // Cột Tư thế hiện tại
+            // Cột TƯ THẾ HIỆN TẠI (Trước cột Tổng xoay trở 24h, link thẳng vào tab Xoay trở)[cite: 4]
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link" style="text-align:center;" title="Nhấp mở trang tư thế">' +
               currentPosDisplay +
             '</td>' +
 
-            // Cột Tổng xoay trở 24h
+            // Cột TỔNG XOAY TRỞ 24H: nhấp link thẳng vào mục theo dõi tổng xoay trở
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'turn\', \'dt-turn-log-header\')" class="tbl-clean-link" style="color:#0284c7; font-weight:700; text-align:center;" title="Nhấp xem nhật ký xoay trở 24h">' +
               (ptt.turns24h || 0) + ' lượt' +
             '</td>' +
 
-            // Cột Tổn thương
+            // Cột Tổn thương: nhấp mở tab Tổn thương
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'wound\')" class="tbl-clean-link" style="text-align:center;">' +
               (ptt.wounds > 0 
                 ? '<span style="background:#fee2e2; color:#b91c1c; border:1px solid #f87171; padding:2px 8px; border-radius:6px; font-weight:800;">' + ptt.wounds + '</span>' 
                 : '<span style="color:#94a3b8;">Chưa có</span>') +
             '</td>' +
 
-            // Kế hoạch phòng ngừa
+            // Kế hoạch phòng ngừa: nhấp mở mục phòng ngừa
             '<td onclick="openPatientSubSection(\'' + ptt.id + '\', \'overview\', \'dt-prevention-section\')" class="tbl-clean-link" style="color:' + chkColor + '; font-weight:700; text-align:center;">' +
               chkCount + '/10 ' + (chkCount === 10 ? 'Đủ' : '') +
             '</td>' +
 
-            // Diễn tiến so với lần trước
+            // Diễn tiến so với lần trước: nhấp mở tab Diễn tiến
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-clean-link" style="color:' + colorPrev + '; font-weight:700; text-align:center;">' +
               trendPrev +
             '</td>' +
 
-            // Diễn tiến so với nhập viện
+            // Diễn tiến so với nhập viện: nhấp mở tab Diễn tiến
             '<td onclick="openDetailById(\'' + ptt.id + '\', \'trend\')" class="tbl-clean-link" style="color:' + colorAdmit + '; font-weight:700; text-align:center;">' +
               trendAdmit +
             '</td>' +
@@ -2303,7 +2279,6 @@
       var turnOd = document.getElementById('dt-turn-overdue');
       var turnProtocol = document.getElementById('dt-turn-protocol-text');
 
-      // Tên to rõ ràng trong thẻ Tổng quan hồ sơ
       if (nameHeader) nameHeader.innerHTML = getPatientFormattedHeader(p);
       if (codeLine) codeLine.innerText = 'Mã hồ sơ: ' + p.code;
       if (bedDiag) bedDiag.innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
@@ -2552,7 +2527,7 @@
     }
 
     // =========================================================================
-    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC: CHUẨN HÓA CỠ CHỮ MỤC LỚN > MỤC CON
+    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC
     // =========================================================================
     var wizardPatient = null;
     var wizardCurrentStep = 1;
@@ -2601,7 +2576,6 @@
         wizardForm.nurseNote = "";
       }
 
-      // Cập nhật Họ và tên | Năm sinh | Giới tính cỡ lớn trên đầu modal[cite: 18]
       document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
       document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
 
@@ -2696,40 +2670,34 @@
       }
     }
 
-    // Render từng bước với phân cấp cỡ chữ: Mục lớn chữ lớn hơn, mục nhỏ bên trong chữ nhỏ hơn
     function renderWizardCurrentStep() {
       var c = document.getElementById('wz-steps-container');
       if (!c) return;
 
       if (wizardCurrentStep === 1) {
         c.innerHTML = `
-          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
-            Thang điểm Waterlow <span style="font-size: 11.5px; color: #64748b; font-weight: 600;">(Bước 1 / 4)</span>
+          <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+            Thang điểm Waterlow <span style="font-size: 11px; color: #64748b; font-weight: 500;">(Bước 1 / 4)</span>
           </div>
 
-          <!-- 1. Giới tính: Mục lớn 14.5px, Mục con 12.5px -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">1. Giới tính</span>
-              <span class="group-header-score">+${wizardForm.gender}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>1. Giới tính</span><span style="color:#0284c7;">+${wizardForm.gender}</span>
             </div>
             <div onclick="wizardForm.gender=1; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.gender===1?'opt-selected':''}">
-              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===1?'✓':''}</span><span class="option-label">Nam</span></div>
-              <strong class="option-points">+1</strong>
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===1?'✓':''}</span><span>Nam</span></div>
+              <strong style="color:#64748b;">+1</strong>
             </div>
             <div onclick="wizardForm.gender=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.gender===2?'opt-selected':''}">
-              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===2?'✓':''}</span><span class="option-label">Nữ</span></div>
-              <strong class="option-points">+2</strong>
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.gender===2?'✓':''}</span><span>Nữ</span></div>
+              <strong style="color:#64748b;">+2</strong>
             </div>
           </div>
 
-          <!-- 2. Nhóm tuổi -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
-              <span class="group-header-title">2. Nhóm tuổi</span>
-              <span class="group-header-score">+${wizardForm.ageGroup}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>2. Nhóm tuổi</span><span style="color:#0284c7;">+${wizardForm.ageGroup}</span>
             </div>
-            <div style="font-size:11px; color:#64748b; margin-bottom:6px;">Hệ thống tự gợi ý theo ngày sinh, điều dưỡng xác nhận lại.</div>
             ${[
               {v: 1, t: "14 – 49 tuổi", p: "+1"},
               {v: 2, t: "50 – 64 tuổi", p: "+2"},
@@ -2738,17 +2706,15 @@
               {v: 5, t: "≥ 81 tuổi", p: "+5"}
             ].map(o => `
               <div onclick="wizardForm.ageGroup=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.ageGroup===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.ageGroup===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.ageGroup===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
 
-          <!-- 3. Thể trạng / BMI -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">3. Thể trạng / BMI</span>
-              <span class="group-header-score">+${wizardForm.bmi}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>3. Thể trạng / BMI</span><span style="color:#0284c7;">+${wizardForm.bmi}</span>
             </div>
             ${[
               {v: 0, t: "Trung bình (BMI 20 - 24.9)", p: "+0"},
@@ -2757,17 +2723,15 @@
               {v: 3, t: "Dưới trung bình (BMI < 20)", p: "+3"}
             ].map(o => `
               <div onclick="wizardForm.bmi=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.bmi===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.bmi===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.bmi===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
 
-          <!-- 4. Tình trạng da vùng nguy cơ -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">4. Tình trạng da vùng nguy cơ</span>
-              <span class="group-header-score">+${wizardForm.skinStatus}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>4. Tình trạng da vùng nguy cơ</span><span style="color:#0284c7;">+${wizardForm.skinStatus}</span>
             </div>
             ${[
               {v: 0, t: "Bình thường", p: "+0"},
@@ -2779,17 +2743,15 @@
               {v: 3, t: "Có bóng nước hoặc trợt da — loét độ II", p: "+3"}
             ].map(o => `
               <div onclick="wizardForm.skinStatus=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.skinStatus===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.skinStatus===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.skinStatus===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
 
-          <!-- 5. Tiêu tiểu -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">5. Tiêu tiểu</span>
-              <span class="group-header-score">+${wizardForm.continence}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>5. Tiêu tiểu</span><span style="color:#0284c7;">+${wizardForm.continence}</span>
             </div>
             ${[
               {v: 0, t: "Có sonde tiểu hoặc sonde trực tràng", p: "+0"},
@@ -2798,17 +2760,15 @@
               {v: 3, t: "Tiêu tiểu không tự chủ cả hai", p: "+3"}
             ].map(o => `
               <div onclick="wizardForm.continence=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.continence===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.continence===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.continence===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
 
-          <!-- 6. Khả năng vận động -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">6. Khả năng vận động</span>
-              <span class="group-header-score">+${wizardForm.mobility}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>6. Khả năng vận động</span><span style="color:#0284c7;">+${wizardForm.mobility}</span>
             </div>
             ${[
               {v: 0, t: "Bình thường", p: "+0"},
@@ -2819,48 +2779,43 @@
               {v: 5, t: "Ngồi xe lăn", p: "+5"}
             ].map(o => `
               <div onclick="wizardForm.mobility=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.mobility===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.mobility===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.mobility===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
 
-          <!-- 7. Yếu tố dinh dưỡng -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-              <span class="group-header-title">7. Yếu tố dinh dưỡng</span>
-              <span class="group-header-score">+${wizardForm.nutritionDrop + wizardForm.nutritionNpo}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>7. Yếu tố dinh dưỡng</span><span style="color:#0284c7;">+${wizardForm.nutritionDrop + wizardForm.nutritionNpo}</span>
             </div>
-            <div style="font-size:11.5px; color:#475569; font-weight:700; margin:6px 0 2px 0;">SỤT CÂN KHÔNG CHỦ Ý TRONG 3 – 6 THÁNG QUA</div>
+            <div style="font-size:11px; color:#475569; font-weight:700; margin:6px 0 2px 0;">SỤT CÂN KHÔNG CHỦ Ý TRONG 3 – 6 THÁNG QUA</div>
             ${[
               {v: 0, t: "Dưới 5% cân nặng", p: "+0"},
               {v: 1, t: "5 – 10% cân nặng", p: "+1"},
               {v: 2, t: "Trên 10% cân nặng", p: "+2"}
             ].map(o => `
               <div onclick="wizardForm.nutritionDrop=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionDrop===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionDrop===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionDrop===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
 
-            <div style="font-size:11.5px; color:#475569; font-weight:700; margin:10px 0 2px 0;">NHỊN ĂN TRÊN 5 NGÀY NAY</div>
+            <div style="font-size:11px; color:#475569; font-weight:700; margin:10px 0 2px 0;">NHỊN ĂN TRÊN 5 NGÀY NAY</div>
             <div onclick="wizardForm.nutritionNpo=0; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionNpo===0?'opt-selected':''}">
-              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===0?'✓':''}</span><span class="option-label">Không</span></div>
-              <strong class="option-points">+0</strong>
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===0?'✓':''}</span><span>Không</span></div>
+              <strong style="color:#64748b;">+0</strong>
             </div>
             <div onclick="wizardForm.nutritionNpo=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.nutritionNpo===2?'opt-selected':''}">
-              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===2?'✓':''}</span><span class="option-label">Có</span></div>
-              <strong class="option-points">+2</strong>
+              <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.nutritionNpo===2?'✓':''}</span><span>Có</span></div>
+              <strong style="color:#64748b;">+2</strong>
             </div>
           </div>
 
-          <!-- 8. Tổn thương mô -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
-              <span class="group-header-title">8. Tổn thương mô</span>
-              <span class="group-header-score">+${wizardForm.tissueDamage.reduce((a,b)=>a+b,0)}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>8. Tổn thương mô</span><span style="color:#0284c7;">+${wizardForm.tissueDamage.reduce((a,b)=>a+b,0)}</span>
             </div>
-            <div style="font-size:11px; color:#64748b; margin-bottom:6px;">Chọn tất cả các tình trạng người bệnh đang có.</div>
             ${[
               {v: 8, t: "Suy đa tạng hoặc suy kiệt nặng"},
               {v: 5, t: "Suy một tạng — gan, thận, tim, phổi..."},
@@ -2871,20 +2826,17 @@
               var isSelected = wizardForm.tissueDamage.includes(o.v);
               return `
                 <div onclick="toggleWizardTissue(${o.v}); renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${isSelected?'opt-selected':''}">
-                  <div style="display:flex; align-items:center;"><span class="opt-circle">${isSelected?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                  <strong class="option-points">+${o.v}</strong>
+                  <div style="display:flex; align-items:center;"><span class="opt-circle">${isSelected?'✓':''}</span><span>${o.t}</span></div>
+                  <strong style="color:#64748b;">+${o.v}</strong>
                 </div>
               `;
             }).join('')}
           </div>
 
-          <!-- 9. Khiếm khuyết thần kinh -->
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;">
-              <span class="group-header-title">9. Khiếm khuyết thần kinh</span>
-              <span class="group-header-score">+${wizardForm.neuroDeficit}</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e293b; font-size:12px;">
+              <span>9. Khiếm khuyết thần kinh</span><span style="color:#0284c7;">+${wizardForm.neuroDeficit}</span>
             </div>
-            <div style="font-size:11px; color:#64748b; margin-bottom:6px;">Đái tháo đường · tai biến · mất cảm giác đau · an thần ICU.</div>
             ${[
               {v: 0, t: "Không có", p: "+0"},
               {v: 4, t: "Có — mức độ nhẹ", p: "+4"},
@@ -2892,8 +2844,8 @@
               {v: 6, t: "Có — mức độ nặng, liệt hai chân / thở máy", p: "+6"}
             ].map(o => `
               <div onclick="wizardForm.neuroDeficit=${o.v}; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ${wizardForm.neuroDeficit===o.v?'opt-selected':''}">
-                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.neuroDeficit===o.v?'✓':''}</span><span class="option-label">${o.t}</span></div>
-                <strong class="option-points">${o.p}</strong>
+                <div style="display:flex; align-items:center;"><span class="opt-circle">${wizardForm.neuroDeficit===o.v?'✓':''}</span><span>${o.t}</span></div>
+                <strong style="color:#64748b;">${o.p}</strong>
               </div>
             `).join('')}
           </div>
@@ -2901,15 +2853,15 @@
       } 
       else if (wizardCurrentStep === 2) {
         c.innerHTML = `
-          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
-            Khám da và tổn thương <span style="font-size: 11.5px; color: #64748b; font-weight: 600;">(Bước 2 / 4)</span>
+          <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+            Khám da và tổn thương <span style="font-size: 11px; color: #64748b; font-weight: 500;">(Bước 2 / 4)</span>
           </div>
 
           <div class="step-item-card">
-            <div class="group-header-title" style="color:#0284c7; margin-bottom:6px;">DA Quan sát chung</div>
+            <div style="font-weight:700; color:#0284c7; font-size:12px; margin-bottom:6px;">DA Quan sát chung</div>
             <div class="grid-2" style="margin-bottom:8px;">
               <div>
-                <label style="font-size:11.5px; color:#475569; font-weight:700;">Nhiệt độ da</label>
+                <label style="font-size:11px; color:#475569; font-weight:700;">Nhiệt độ da</label>
                 <select id="wz-skintemp" onchange="wizardForm.skinTemp=this.value;">
                   <option ${wizardForm.skinTemp==='Bình thường'?'selected':''}>Bình thường</option>
                   <option ${wizardForm.skinTemp==='Nóng sốt'?'selected':''}>Nóng sốt</option>
@@ -2917,7 +2869,7 @@
                 </select>
               </div>
               <div>
-                <label style="font-size:11.5px; color:#475569; font-weight:700;">Độ chắc của mô</label>
+                <label style="font-size:11px; color:#475569; font-weight:700;">Độ chắc của mô</label>
                 <select id="wz-skinfirm" onchange="wizardForm.skinFirm=this.value;">
                   <option ${wizardForm.skinFirm==='Bình thường'?'selected':''}>Bình thường</option>
                   <option ${wizardForm.skinFirm==='Phù nề'?'selected':''}>Phù nề</option>
@@ -2926,7 +2878,7 @@
               </div>
             </div>
             <div>
-              <label style="font-size:11.5px; color:#475569; font-weight:700;">Cảm giác</label>
+              <label style="font-size:11px; color:#475569; font-weight:700;">Cảm giác</label>
               <select id="wz-skinsens" onchange="wizardForm.skinSens=this.value;">
                 <option ${wizardForm.skinSens==='Bình thường'?'selected':''}>Bình thường</option>
                 <option ${wizardForm.skinSens==='Giảm cảm giác'?'selected':''}>Giảm cảm giác</option>
@@ -2936,20 +2888,20 @@
           </div>
 
           <div class="step-item-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-              <span class="group-header-title" style="color:#14b8a6;">TB Loét do thiết bị y tế & tì đè</span>
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#14b8a6; font-size:12px; margin-bottom:4px;">
+              <span>TB Loét do thiết bị y tế & tì đè</span>
               <span class="badge-red" style="font-size:10px;">${wizardForm.deviceUlcerLocation ? '1 vị trí' : 'Chưa có'}</span>
             </div>
             <div style="font-size:11px; color:#64748b; margin-bottom:8px;">Hệ thống hiện lại vết thương/loét cũ đã lưu, chỉnh sửa cho phù hợp hiện tại:</div>
 
             <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:10px; margin-bottom:8px;">
               <div style="margin-bottom:6px;">
-                <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Vị trí tổn thương</label>
+                <label style="font-size:11px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Vị trí tổn thương</label>
                 <input type="text" id="wz-dev-loc" value="${wizardForm.deviceUlcerLocation || ''}" placeholder="vd: Vành tai trái — Dây thở oxy qua mũi" oninput="wizardForm.deviceUlcerLocation=this.value;" />
               </div>
               <div class="grid-2" style="margin-bottom:6px;">
                 <div>
-                  <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Phân độ</label>
+                  <label style="font-size:11px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Phân độ</label>
                   <select id="wz-dev-grade" onchange="wizardForm.deviceUlcerGrade=this.value;">
                     <option ${wizardForm.deviceUlcerGrade==='Độ I'?'selected':''}>Độ I</option>
                     <option ${wizardForm.deviceUlcerGrade==='Độ II'?'selected':''}>Độ II</option>
@@ -2957,12 +2909,12 @@
                   </select>
                 </div>
                 <div>
-                  <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Kích thước (cm)</label>
+                  <label style="font-size:11px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Kích thước (cm)</label>
                   <input type="text" id="wz-dev-size" value="${wizardForm.deviceUlcerSize || ''}" placeholder="vd: 5 × 2 cm" oninput="wizardForm.deviceUlcerSize=this.value;" />
                 </div>
               </div>
               <div>
-                <label style="font-size:11.5px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Mô tả diễn tiến vết loét</label>
+                <label style="font-size:11px; font-weight:700; color:#334155; display:block; margin-bottom:2px;">Mô tả diễn tiến vết loét</label>
                 <input type="text" id="wz-dev-desc" value="${wizardForm.deviceUlcerDesc || ''}" placeholder="vd: Đang tiến triển tốt, giảm tiết dịch..." oninput="wizardForm.deviceUlcerDesc=this.value;" />
               </div>
             </div>
@@ -2971,14 +2923,12 @@
       }
       else {
         c.innerHTML = `
-          <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 10px;">
-            Kế hoạch phòng ngừa & Ký xác nhận <span style="font-size: 11.5px; color: #64748b; font-weight: 600;">(Bước 3-4 / 4)</span>
+          <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+            Kế hoạch phòng ngừa & Ký xác nhận <span style="font-size: 11px; color: #64748b; font-weight: 500;">(Bước 3-4 / 4)</span>
           </div>
 
           <div class="step-item-card">
-            <div class="group-header-title" style="color:#0284c7; margin-bottom:4px;">Kế hoạch phòng ngừa tối đa</div>
-            <div style="font-size:11px; color:#64748b; margin-bottom:8px;">Đánh dấu những can thiệp đã thực hiện tại thời điểm này.</div>
-
+            <div style="font-weight:700; color:#0284c7; font-size:12px; margin-bottom:4px;">Kế hoạch phòng ngừa tối đa</div>
             <div style="display:flex; gap:8px; margin-bottom:10px;">
               <button type="button" onclick="wizardForm.preventiveChecks=[0,1,2,3,4,5,6,7,8,9]; renderWizardCurrentStep();" class="btn-dark" style="padding:4px 8px; font-size:10px; width:auto;">Đánh dấu tất cả</button>
               <button type="button" onclick="wizardForm.preventiveChecks=[]; renderWizardCurrentStep();" class="btn-dark" style="padding:4px 8px; font-size:10px; width:auto;">Bỏ đánh dấu</button>
@@ -3060,7 +3010,6 @@
       renderTasks();
     }
 
-    // Khởi động đồng bộ dữ liệu ban đầu
     updateDynamicDashboardCounts();
     renderPatients();
   </script>
