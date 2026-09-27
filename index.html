@@ -74,7 +74,7 @@
     .section-indicator { width: 4px; height: 16px; background: #0284c7; border-radius: 4px; }
 
     /* Buttons */
-    .btn-blue { background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; width: 100%; transition: 0.15s; }
+    .btn-blue { background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; padding: 8px 14px; font-size: 11.5px; cursor: pointer; text-align: center; transition: 0.15s; }
     .btn-blue:active { background: #0369a1; }
     .btn-dark { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-weight: 700; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; width: 100%; }
     .btn-dark:active { background: #e2e8f0; }
@@ -1840,12 +1840,11 @@
             '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
-          '<div class="grid-2" style="margin-bottom:8px;">' +
-            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
-            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
+          '<div style="margin-bottom:8px;">' +
+            '<button onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '" style="width:100%;">Chưa xoay được / Khác</button>' +
           '</div>' +
 
-          (curPos === 'Chưa xoay được' || curPos === 'Khác' ? ('<div style="margin-bottom:8px;"><input type="text" id="bulk-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateBulkReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
+          (curPos === 'Chưa xoay được / Khác' ? ('<div style="margin-bottom:8px;"><input type="text" id="bulk-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateBulkReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
 
           '<div onclick="toggleBulkPatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:12px; color:#334155; padding-top:2px;">' +
             '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:12px;">' +
@@ -1862,7 +1861,7 @@
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === id) {
           patients[i].selectedPos = posName;
-          if (posName !== 'Chưa xoay được' && posName !== 'Khác') {
+          if (posName !== 'Chưa xoay được / Khác') {
             patients[i].turnReason = '';
           }
           break;
@@ -1896,7 +1895,7 @@
         if (patients[i].status === 'treating') {
           patients[i].overdueTurn = "Vừa xoay";
           var pos = patients[i].selectedPos || "Ngửa";
-          var reasonText = (pos === 'Chưa xoay được' || pos === 'Khác') && patients[i].turnReason ? (' (' + patients[i].turnReason + ')') : '';
+          var reasonText = (pos === 'Chưa xoay được / Khác') && patients[i].turnReason ? (' (' + patients[i].turnReason + ')') : '';
           patients[i].lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split('·')[0].trim();
           patients[i].turns24h = (patients[i].turns24h || 0) + 1;
           if (!patients[i].turnLogs) patients[i].turnLogs = [];
@@ -1918,7 +1917,7 @@
       for (var i = 0; i < patients.length; i++) {
         if (patients[i].id === patientId) {
           patients[i].selectedPos = posName;
-          if (posName !== 'Chưa xoay được' && posName !== 'Khác') {
+          if (posName !== 'Chưa xoay được / Khác') {
             patients[i].turnReason = '';
           }
           break;
@@ -2056,29 +2055,28 @@
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
 
-          '<div class="grid-2" style="margin-bottom:6px;">' +
-            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được\')" class="pos-btn ' + (curPos==='Chưa xoay được'?'pos-active':'') + '">chưa xoay được</button>' +
-            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Khác\')" class="pos-btn ' + (curPos==='Khác'?'pos-active':'') + '">khác</button>' +
+          '<div style="margin-bottom:6px;">' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '" style="width:100%;">Chưa xoay được / Khác</button>' +
           '</div>' +
 
-          (curPos === 'Chưa xoay được' || curPos === 'Khác' ? ('<div style="margin-bottom:6px;"><input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
+          (curPos === 'Chưa xoay được / Khác' ? ('<div style="margin-bottom:6px;"><input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do chưa xoay được / khác..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" /></div>') : '') +
 
           /* Dòng kiểm tra da (trái) và Điểm loét tì đè đồng bộ (phải) */
-          '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; gap:8px;">' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
             '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
               '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:900; font-size:11px;">' +
                 (pt.checkedSkin ? '✓' : '') +
               '</div>' +
               '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
             '</div>' +
-            '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:4px 8px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
-              '<span style="font-weight:700; color:#0284c7;">Loét tì đè:</span>' +
+            '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
+              '<span style="font-weight:700; color:#0284c7;">Điểm loét tì đè:</span>' +
               '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + (pt.wounds || 0) + '</span>' +
             '</div>' +
           '</div>' +
 
-          /* Dòng thời gian xoay trở (canh trái) + Lưu cữ xoay (ngang hàng, canh phải) */
-          '<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px;">' +
+          /* Dòng thời gian xoay trở (canh trái) + Lưu cữ xoay (ngang hàng, canh phải, không viền khung) */
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding-top:4px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
               '<label style="font-size:11px; font-weight:700; color:#475569; white-space:nowrap;">Thời gian:</label>' +
               '<input type="datetime-local" id="turntime-' + pt.id + '" value="' + defaultNowInput + '" style="font-size:11.5px; padding:4px 6px; font-weight:600; color:#0284c7;" />' +
@@ -2124,7 +2122,7 @@
         if (patients[i].id === id) {
           var p = patients[i];
           var pos = p.selectedPos || "Ngửa";
-          var reasonText = (pos === 'Chưa xoay được' || pos === 'Khác') && p.turnReason ? (' (' + p.turnReason + ')') : '';
+          var reasonText = (pos === 'Chưa xoay được / Khác') && p.turnReason ? (' (' + p.turnReason + ')') : '';
           p.overdueTurn = "Vừa xoay";
           p.lastTurnNote = pos + reasonText + " lúc " + recordTimeDisplay.split('·')[0].trim();
           p.turns24h = (p.turns24h || 0) + 1;
@@ -2266,8 +2264,8 @@
 
     function selectSingleDetailPos(pos) {
       currentPatient.selectedPos = pos;
-      var arr = ['Ngh. trái', 'Ngửa', 'Ngh. phải', 'Nửa ngồi', 'Chưa xoay được', 'Khác'];
-      var ids = ['sdt-pos-trai', 'sdt-pos-ngua', 'sdt-pos-phai', 'sdt-pos-ngoi', 'sdt-pos-chua', 'sdt-pos-khac'];
+      var arr = ['Ngh. trái', 'Ngửa', 'Ngh. phải', 'Nửa ngồi', 'Chưa xoay được / Khác'];
+      var ids = ['sdt-pos-trai', 'sdt-pos-ngua', 'sdt-pos-phai', 'sdt-pos-ngoi', 'sdt-pos-chua'];
       for (var i = 0; i < arr.length; i++) {
         var el = document.getElementById(ids[i]);
         if (el) {
@@ -2277,7 +2275,7 @@
       }
       var rBox = document.getElementById('sdt-reason-box');
       if (rBox) {
-        if (pos === 'Chưa xoay được' || pos === 'Khác') {
+        if (pos === 'Chưa xoay được / Khác') {
           rBox.style.display = 'block';
         } else {
           rBox.style.display = 'none';
@@ -2541,7 +2539,7 @@
       var pos = currentPatient.selectedPos || "Ngửa";
       var reasonInput = document.getElementById('sdt-reason-input');
       if (reasonInput) currentPatient.turnReason = reasonInput.value;
-      var reasonText = (pos === 'Chưa xoay được' || pos === 'Khác') && currentPatient.turnReason ? (' (' + currentPatient.turnReason + ')') : '';
+      var reasonText = (pos === 'Chưa xoay được / Khác') && currentPatient.turnReason ? (' (' + currentPatient.turnReason + ')') : '';
 
       currentPatient.overdueTurn = "Vừa xoay";
       currentPatient.lastTurnNote = pos + reasonText + " lúc " + recordTime.split('·')[0].trim();
