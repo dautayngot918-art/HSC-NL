@@ -80,7 +80,8 @@
     .btn-dark:active { background: #e2e8f0; }
     .btn-orange { background: #ea580c; color: #fff; font-weight: 700; border: none; border-radius: 14px; padding: 14px; font-size: 14px; cursor: pointer; text-align: center; width: 100%; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2); }
     .btn-orange:active { background: #c2410c; }
-    .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 700; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; }
+    .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 700; border-radius: 12px; padding: 10px; font-size: 12px; cursor: pointer; text-align: center; width: 100%; }
+    .btn-danger:active { background: #fecaca; }
 
     .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
     .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 700; border-color: #0284c7; box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2); }
@@ -674,7 +675,7 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Đã xóa bỏ hoàn toàn phần hình ảnh SVG phức tạp theo yêu cầu) -->
+            <!-- Vị trí bất thường -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <span style="font-size: 12px; font-weight: 800; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
@@ -684,7 +685,7 @@
               <!-- Khung nút + Thêm vị trí tổn thương -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 800; margin-bottom: 8px;">+ Thêm vị trí tổn thương</button>
 
-              <!-- PHÍA DƯỚI KHUNG +THÊM VỊ TRÍ TỔN THƯƠNG: Khung "Các tổn thương" (chỉ hiện khi có tổn thương) -->
+              <!-- Khung "Các tổn thương" (chỉ hiện khi có tổn thương) -->
               <div id="saved-wounds-container" style="display: none; flex-direction: column; gap: 8px; margin-top: 10px;">
                 <div style="font-size: 12px; font-weight: 800; color: #0284c7; margin-bottom: 2px;">Các tổn thương:</div>
                 <div id="wound-cards-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
@@ -933,11 +934,11 @@
       </button>
     </nav>
 
-    <!-- Modal Thư mục con: Ghi nhận tổn thương & Cho phép chỉnh sửa khi nhấp vào thẻ -->
+    <!-- Modal Thư mục con: GHI NHẬN TỔN THƯƠNG (Thêm mới hoặc Chỉnh sửa & Xóa) -->
     <div id="add-wound-modal" class="modal-overlay" style="z-index: 70;">
       <div class="modal-content" style="max-height: 90vh;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-          <div id="wound-modal-title" style="font-size: 16px; font-weight: 800; color: #0284c7;">Ghi nhận tổn thương</div>
+          <div id="wound-modal-title" style="font-size: 16px; font-weight: 800; color: #0284c7;">GHI NHẬN TỔN THƯƠNG</div>
           <button onclick="closeAddWoundModal()" style="background: none; border: none; color: #64748b; font-size: 22px; cursor: pointer;">✕</button>
         </div>
 
@@ -1053,7 +1054,7 @@
           </div>
 
           <div class="grid-2" style="margin-top: 6px;">
-            <button onclick="closeAddWoundModal()" class="btn-dark">Huỷ</button>
+            <button onclick="deleteCurrentWound()" class="btn-danger">Xóa tổn thương</button>
             <button onclick="saveNewWoundDetails()" class="btn-blue" style="background: #0f766e; color: #fff;">Lưu tổn thương</button>
           </div>
         </div>
@@ -1245,7 +1246,7 @@
       { 
         id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
         woundList: [
-          { location: "Vành tai trái", grade: "Độ I", size: "5 × 2 cm", origin: "Phát sinh tại khoa", desc: "Do dây oxy gọng mũi tì lâu" }
+          { location: "Vành tai trái", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "5 × 2 cm", origin: "Phát sinh tại khoa", desc: "Do dây oxy gọng mũi tì lâu" }
         ],
         wizardState: null
       },
@@ -1254,7 +1255,7 @@
       },
       { 
         id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        woundList: [{ location: "Xương cùng", grade: "Độ I", size: "2 × 2 cm", origin: "Phát sinh tại khoa", desc: "Hồng ban không mất màu" }],
+        woundList: [{ location: "Xương cùng", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "2 × 2 cm", origin: "Phát sinh tại khoa", desc: "Hồng ban không mất màu" }],
         wizardState: null
       },
       { 
@@ -1907,7 +1908,7 @@
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:800;">' + pt.bed + '</span>' +
               '<strong onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="tbl-clean-link">' + getPatientFormattedHeader(pt) + '</strong>' +
             '</div>' +
-            '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:800; color:#0284c7; background:#f0f9ff; border:1px solid #bae6fd; padding:3px 10px; border-radius:8px;">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
+            '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:800; color:#0284c7; background:#f0f9ff; border:1.5px solid #bae6fd; padding:3px 10px; border-radius:8px;">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
           '</div>';
 
         if (currentTaskFilter === 'turn') {
@@ -1934,7 +1935,7 @@
             /* ĐÃ SỬA CHUẨN TÊN THÀNH "Loét / Tổn thương" VÀ LINK TRỰC TIẾP QUA TRANG TỔN THƯƠNG */
             '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
               '<span style="font-weight:700; color:#0284c7;">Loét / Tổn thương:</span>' +
-              '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
+              '<span style="font-weight:800; color:#b91c1c; background:#fee2e2; border:1.5px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
             '</div>' +
           '</div>' +
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
@@ -1969,8 +1970,7 @@
       var gradeSel = document.getElementById('wound-grade-select');
 
       if (editIndex !== undefined && editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // Chế độ chỉnh sửa tổn thương đã có
-        if (modalTitle) modalTitle.innerText = "Chỉnh sửa tổn thương";
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
         if (editInp) editInp.value = editIndex;
         var item = currentPatient.woundList[editIndex];
 
@@ -1989,13 +1989,19 @@
           customInput.value = "";
         }
 
-        if (gradeSel) gradeSel.value = item.grade || "Độ I";
+        if (gradeSel) {
+          for (var g = 0; g < gradeSel.options.length; g++) {
+            if (item.grade && gradeSel.options[g].text.indexOf(item.grade.split('—')[0].trim()) > -1) {
+              gradeSel.selectedIndex = g;
+              break;
+            }
+          }
+        }
         if (sizeInp) sizeInp.value = item.size || "";
         if (descInp) descInp.value = item.desc || "";
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
       } else {
-        // Chế độ thêm mới tổn thương
-        if (modalTitle) modalTitle.innerText = "Ghi nhận tổn thương";
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
         if (editInp) editInp.value = "-1";
         sel.value = "Khác";
         customInput.value = "";
@@ -2122,7 +2128,6 @@
       var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
 
       if (editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // Cập nhật tổn thương hiện tại
         currentPatient.woundList[editIndex] = {
           location: locName,
           grade: grade,
@@ -2130,9 +2135,8 @@
           origin: origin,
           desc: desc
         };
-        showToast('Đã cập nhật tổn thương tại: ' + locName);
+        showToast('Đã cập nhật tổn thương');
       } else {
-        // Thêm mới tổn thương
         currentPatient.woundList.push({
           location: locName,
           grade: grade,
@@ -2140,10 +2144,24 @@
           origin: origin,
           desc: desc
         });
-        showToast('Đã thêm tổn thương tại: ' + locName);
+        showToast('Đã thêm tổn thương mới');
       }
 
       currentPatient.wounds = currentPatient.woundList.length;
+      closeAddWoundModal();
+      renderDetail();
+      renderPatients();
+    }
+
+    function deleteCurrentWound() {
+      var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
+      if (editIndex >= 0 && currentPatient.woundList && currentPatient.woundList[editIndex]) {
+        currentPatient.woundList.splice(editIndex, 1);
+        currentPatient.wounds = currentPatient.woundList.length;
+        showToast('Đã xóa tổn thương');
+      } else {
+        showToast('Đã hủy thao tác');
+      }
       closeAddWoundModal();
       renderDetail();
       renderPatients();
@@ -2290,7 +2308,7 @@
       var countEl = document.getElementById('wound-spot-count');
       if (countEl) countEl.innerText = currentWoundsCount + ' vị trí';
 
-      // HIỂN THỊ KHUNG "Các tổn thương" DƯỚI DẠNG GHI CHÚ NGẮN GỌN (CHỈ HIỆN KHI CÓ TỔN THƯƠNG)
+      // HIỂN THỊ KHUNG "Các tổn thương" THEO ĐÚNG Ý BẠN (Hàng 1: Vị trí, Hàng 2: Độ + chi tiết màu không đóng khung)
       var savedWoundsContainer = document.getElementById('saved-wounds-container');
       var woundCardsList = document.getElementById('wound-cards-list');
       if (savedWoundsContainer && woundCardsList) {
@@ -2300,10 +2318,8 @@
           woundCardsList.innerHTML = wList.map(function(item, index) {
             return '<div onclick="openAddWoundModal(' + index + ')" class="card-click" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px; display: flex; justify-content: space-between; align-items: center;">' +
               '<div>' +
-                '<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 3px;">' +
-                  '<strong style="color: #0284c7; font-size: 13px;">• ' + item.location + '</strong>' +
-                  '<span style="background: #fee2e2; color: #b91c1c; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">' + item.grade + '</span>' +
-                '</div>' +
+                '<div style="font-weight: 800; color: #0284c7; font-size: 13.5px; margin-bottom: 2px;">• ' + item.location + '</div>' +
+                '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
                 '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
               '</div>' +
               '<div style="font-size: 11px; color: #0284c7; font-weight: 700;">Sửa →</div>' +
