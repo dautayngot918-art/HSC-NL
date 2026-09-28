@@ -84,12 +84,12 @@
     .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 600; border-radius: 10px; padding: 8px 14px; font-size: 11.5px; cursor: pointer; text-align: center; width: 100%; }
     .btn-danger:active { background: #fecaca; }
 
-    /* Nút Lưu Cữ Xoay - Màu hồng nhẹ nhàng, nhã nhặn */
+    /* Nút Lưu Cữ Xoay - Màu sắc nhẹ nhàng, nhã nhặn không bị nhầm lẫn */
     .btn-save-turn {
-      background: #fdf2f8;
-      color: #db2777;
-      font-weight: 650;
-      border: 1.5px solid #f472b6;
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      border: 1.5px solid #cbd5e1;
       border-radius: 10px;
       padding: 7px 14px;
       font-size: 11.5px;
@@ -97,7 +97,7 @@
       text-align: center;
       transition: 0.15s;
     }
-    .btn-save-turn:active { background: #fce7f3; }
+    .btn-save-turn:active { background: #e2e8f0; border-color: #94a3b8; }
 
     .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
     .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 600; border-color: #0284c7; box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2); }
@@ -114,22 +114,21 @@
     }
     input:focus, select:focus, textarea:focus { border-color: #0284c7; }
 
-    /* Trường thời gian, ngày: giảm đậm, hài hòa, không khung */
+    /* Trường thời gian, ngày không khung, sắc nét rõ ràng */
     .time-date-clean-input {
       background: transparent !important;
       border: none !important;
-      border-bottom: 1px solid #cbd5e1 !important;
+      border-bottom: 1.5px solid #94a3b8 !important;
       border-radius: 0 !important;
-      padding: 3px 2px !important;
+      padding: 4px 2px !important;
       font-size: 12px !important;
-      font-weight: 550 !important;
-      color: #475569 !important;
+      font-weight: 750 !important;
+      color: #0f172a !important;
       outline: none !important;
       box-shadow: none !important;
     }
     .time-date-clean-input:focus {
       border-bottom-color: #0284c7 !important;
-      color: #0f172a !important;
     }
 
     .clickable-alert-item {
@@ -713,7 +712,7 @@
                 <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
-                  <option>Mất cảm giác hoàn toàn</option>
+                  <option>M mất cảm giác hoàn toàn</option>
                 </select>
               </div>
             </div>
@@ -781,11 +780,11 @@
               <span style="font-weight: 600;">đã xem da điểm tì đè</span>
             </div>
 
-            <!-- THỜI GIAN, NGÀY: Sắc nét, không khung, giờ phút (bỏ giây) -->
+            <!-- THỜI GIAN, NGÀY: Sắc nét, không khung -->
             <div style="margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
               <label style="font-size: 11px; font-weight: 650; color: #475569; white-space: nowrap;">Thời gian:</label>
-              <input type="time" id="dt-single-turntime-h" class="time-date-clean-input" step="60" style="width: 75px;" />
-              <input type="date" id="dt-single-turntime-d" class="time-date-clean-input" style="width: 120px;" />
+              <input type="time" id="dt-single-turntime-h" class="time-date-clean-input" style="width: 85px;" />
+              <input type="date" id="dt-single-turntime-d" class="time-date-clean-input" style="width: 125px;" />
             </div>
 
             <button onclick="handleDetailTurnAction()" class="btn-save-turn" style="margin-bottom: 14px; width: 100%;">
@@ -2038,7 +2037,7 @@
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
               '<label style="font-size:11px; font-weight:650; color:#475569; white-space:nowrap;">Thời gian:</label>' +
-              '<input type="time" id="turntime-h-' + pt.id + '" class="time-date-clean-input" step="60" style="width:80px;" />' +
+              '<input type="time" id="turntime-h-' + pt.id + '" class="time-date-clean-input" style="width:80px;" />' +
               '<input type="date" id="turntime-d-' + pt.id + '" class="time-date-clean-input" style="width:120px;" />' +
             '</div>' +
             '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-save-turn" style="width:auto; shrink:0;">Lưu cữ xoay</button>' +
@@ -2054,6 +2053,7 @@
       }
       container.innerHTML = html;
       
+      // Gán giá trị mặc định cho time và date input vừa render
       for (var l = 0; l < list.length; l++) {
         var pItem = list[l];
         if (currentTaskFilter === 'turn') {
@@ -2065,6 +2065,7 @@
       }
     }
 
+    // BIẾN QUẢN LÝ LOẠI TỔN THƯƠNG ĐANG CHỈNH SỬA ('skin' HOẶC 'device')
     var activeWoundType = 'skin';
 
     function openAddWoundModal(editIndex) {
@@ -2180,6 +2181,7 @@
         if (editInp) editInp.value = editIndex;
         var item = currentPatient.deviceWoundList[editIndex];
 
+        // Xử lý thiết bị
         var foundDev = false;
         for (var d = 0; d < deviceTypeSelect.options.length; d++) {
           if (deviceTypeSelect.options[d].value === item.deviceType) {
@@ -2196,6 +2198,7 @@
         }
         onDeviceTypeChange(deviceTypeSelect.value);
 
+        // Xử lý Vị trí
         var foundOption = false;
         for (var i = 0; i < sel.options.length; i++) {
           if (sel.options[i].value === item.location) {
