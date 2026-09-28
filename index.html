@@ -684,32 +684,35 @@
               </div>
             </div>
 
-            <!-- Vị trí bất thường (Nút + Thêm chuyển xuống cuối, xóa tiêu đề "Các tổn thương") -->
+            <!-- Vị trí bất thường (Đã đưa nút + Thêm xuống cuối) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <span style="font-size: 12px; font-weight: 750; color: #0284c7; text-transform: uppercase;">Vị trí bất thường</span>
                 <span id="wound-spot-count" style="font-size: 11px; font-weight: 750; padding: 2px 8px; border-radius: 6px;">Chưa ghi nhận</span>
               </div>
 
-              <!-- Danh sách các tổn thương hiển thị ở phía trên -->
+              <!-- Danh sách các tổn thương -->
               <div id="saved-wounds-container" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 10px;">
                 <div id="wound-cards-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
               </div>
 
-              <!-- Khung nút + Thêm vị trí tổn thương chuyển xuống cuối cùng của mục này -->
+              <!-- Khung nút + Thêm vị trí tổn thương nằm ở cuối cùng -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 700;">+ Thêm vị trí tổn thương</button>
             </div>
 
-            <!-- MỤC DƯỚI CÙNG: LOÉT DO THIẾT BỊ Y TẾ (ĐÃ CHỈNH SỬA Y HỆT YÊU CẦU HÌNH ẢNH) -->
+            <!-- LOÉT DO THIẾT BỊ Y TẾ (ĐỒNG BỘ 100% GIAO DIỆN VÀ TÍNH NĂNG VỚI VỊ TRÍ BẤT THƯỜNG) -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-top: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <span style="font-size: 12px; font-weight: 750; color: #0284c7; text-transform: uppercase;">Loét do thiết bị y tế</span>
                 <span id="device-wound-count" style="font-size: 11px; font-weight: 750; padding: 2px 8px; border-radius: 6px;">Chưa ghi nhận</span>
               </div>
-              <div style="font-size: 11px; color: #64748b; margin-bottom: 10px; line-height: 1.4;">Sau tai do dây oxy, sống mũi do mặt nạ, mép miệng và môi do ống nội khí quản, cổ tay do vòng cố định...</div>
 
-              <div id="device-wound-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;"></div>
+              <!-- Danh sách loét thiết bị hiển thị ở phía trên -->
+              <div id="saved-device-container" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 10px;">
+                <div id="device-cards-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+              </div>
 
+              <!-- Nút thêm tổn thương do thiết bị nằm ở cuối cùng -->
               <button onclick="openAddDeviceWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 700;">+ Thêm tổn thương do thiết bị</button>
             </div>
           </div>
@@ -991,7 +994,7 @@
             <input type="text" id="device-other-input" placeholder="Nhập tên thiết bị..." style="font-size: 12.5px;" />
           </div>
 
-          <!-- Trường Vị trí (Dùng cho vị trí bất thường, "Khác" được đưa xuống cuối cùng) -->
+          <!-- MỤC VỊ TRÍ (Đã chuyển "Khác (Nhập tùy chỉnh vị trí)" xuống cuối cùng) -->
           <div id="skin-location-box" style="display: block;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Vị trí</label>
             <select id="wound-location-select" onchange="onWoundLocationChange(this.value)" style="font-size: 12.5px; font-weight: 600; color: #0284c7;">
@@ -1025,6 +1028,7 @@
             </select>
           </div>
 
+          <!-- Khung trống nhập tùy chỉnh vị trí chỉ hiện khi chọn "Khác" -->
           <div id="custom-location-box" style="display: none;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Nhập tên vị trí tùy chỉnh</label>
             <input type="text" id="wound-custom-location-input" placeholder="vd: Xương cùng, sống mũi..." style="font-size: 12.5px;" />
@@ -1045,6 +1049,7 @@
                 </label>
               </div>
             </div>
+            <span style="font-size: 10.5px; color: #64748b; margin-top: 4px; display: block;">Chỉ quan sát thì nằm trong phiếu khám da thôi, không vào danh sách tổn thương và không tính vào chỉ số loét của khoa.</span>
           </div>
 
           <div>
@@ -1069,7 +1074,7 @@
                   <input type="radio" name="wound-origin" value="khoa" checked style="width: auto;" /> Mới phát sinh tại khoa
                 </label>
               </div>
-              <div onclick="selectWoundOrigin('ngoai')" id="origin-ngoai-row" style="padding: 6px 4px; cursor: pointer; border-radius: 6px; transition: 0.15s;">
+              <div onclick="selectWoundOrigin('ngoai')" id="origin-ngoai-row" style="padding: 6px 4px; cursor: pointer; border-radius: 8px; transition: 0.15s;">
                 <label style="display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; pointer-events: none;">
                   <input type="radio" name="wound-origin" value="ngoai" style="width: auto;" /> Đã có sẵn khi người bệnh vào khoa
                 </label>
@@ -1086,6 +1091,17 @@
               <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày phát hiện</label>
               <input type="text" id="wound-date-input" value="ngày 27 thg 9, 2026" />
             </div>
+          </div>
+
+          <!-- BỔ SUNG MỤC ĐỘ SÂU THEO YÊU CẦU -->
+          <div>
+            <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Độ sâu</label>
+            <select id="wound-depth-select" style="font-size: 12.5px;">
+              <option>Da còn nguyên vẹn</option>
+              <option>Nông - mất một phần bề dày da</option>
+              <option>Sâu - mất toàn bộ bề dày da</option>
+              <option>Không đánh giá được</option>
+            </select>
           </div>
 
           <div>
@@ -1292,7 +1308,7 @@
       { 
         id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
         woundList: [
-          { location: "Vành tai trái", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "5 × 2 cm", origin: "Phát sinh tại khoa", desc: "Do dây oxy gọng mũi tì lâu" }
+          { location: "Vành tai trái", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "5 × 2 cm", origin: "Phát sinh tại khoa", depth: "Da còn nguyên vẹn", desc: "Do dây oxy gọng mũi tì lâu" }
         ],
         deviceWoundList: [],
         wizardState: null
@@ -1302,7 +1318,7 @@
       },
       { 
         id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
-        woundList: [{ location: "Xương cùng", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "2 × 2 cm", origin: "Phát sinh tại khoa", desc: "Hồng ban không mất màu" }],
+        woundList: [{ location: "Xương cùng", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "2 × 2 cm", origin: "Phát sinh tại khoa", depth: "Da còn nguyên vẹn", desc: "Hồng ban không mất màu" }],
         deviceWoundList: [],
         wizardState: null
       },
@@ -2022,15 +2038,18 @@
       var sizeInp = document.getElementById('wound-size-input');
       var descInp = document.getElementById('wound-desc-input');
       var gradeSel = document.getElementById('wound-grade-select');
+      var depthSel = document.getElementById('wound-depth-select');
       var deviceSelectorBox = document.getElementById('device-selector-box');
+      var deviceOtherBox = document.getElementById('device-other-box');
       var skinLocationBox = document.getElementById('skin-location-box');
 
       if (deviceSelectorBox) deviceSelectorBox.style.display = 'none';
+      if (deviceOtherBox) deviceOtherBox.style.display = 'none';
       if (skinLocationBox) skinLocationBox.style.display = 'block';
 
       if (editIndex !== undefined && editIndex !== null && !isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList[editIndex]) {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = editIndex; // GHI NHẬN ĐÚNG CHỈ MỤC ĐỂ SỬA / GHI ĐÈ
+        if (editInp) editInp.value = editIndex;
         var item = currentPatient.woundList[editIndex];
 
         var foundOption = false;
@@ -2056,17 +2075,26 @@
             }
           }
         }
+        if (depthSel && item.depth) {
+          for (var dp = 0; dp < depthSel.options.length; dp++) {
+            if (depthSel.options[dp].value.indexOf(item.depth.split('-')[0].trim()) > -1) {
+              depthSel.selectedIndex = dp;
+              break;
+            }
+          }
+        }
         if (sizeInp) sizeInp.value = item.size || "";
         if (descInp) descInp.value = item.desc || "";
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
       } else {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = "-1"; // TẠO MỚI KHI BẤM + THÊM
+        if (editInp) editInp.value = "-1";
         sel.value = "Vùng chẩm";
         customInput.value = "";
         if (sizeInp) sizeInp.value = "";
         if (descInp) descInp.value = "";
         if (gradeSel) gradeSel.selectedIndex = 1;
+        if (depthSel) depthSel.selectedIndex = 0;
         selectWoundMode('track');
         selectWoundOrigin('khoa');
       }
@@ -2093,13 +2121,14 @@
       var modalTitle = document.getElementById('wound-modal-title');
       var editInp = document.getElementById('edit-wound-index');
       var deviceSelectorBox = document.getElementById('device-selector-box');
+      var deviceOtherBox = document.getElementById('device-other-box');
       var skinLocationBox = document.getElementById('skin-location-box');
       var deviceTypeSelect = document.getElementById('device-type-select');
-      var deviceOtherBox = document.getElementById('device-other-box');
       var deviceOtherInput = document.getElementById('device-other-input');
       var sizeInp = document.getElementById('wound-size-input');
       var descInp = document.getElementById('wound-desc-input');
       var gradeSel = document.getElementById('wound-grade-select');
+      var depthSel = document.getElementById('wound-depth-select');
 
       if (deviceSelectorBox) deviceSelectorBox.style.display = 'block';
       if (skinLocationBox) skinLocationBox.style.display = 'none';
@@ -2132,6 +2161,14 @@
             }
           }
         }
+        if (depthSel && item.depth) {
+          for (var dp = 0; dp < depthSel.options.length; dp++) {
+            if (depthSel.options[dp].value.indexOf(item.depth.split('-')[0].trim()) > -1) {
+              depthSel.selectedIndex = dp;
+              break;
+            }
+          }
+        }
         if (sizeInp) sizeInp.value = item.size || "";
         if (descInp) descInp.value = item.desc || "";
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
@@ -2143,6 +2180,7 @@
         if (sizeInp) sizeInp.value = "";
         if (descInp) descInp.value = "";
         if (gradeSel) gradeSel.selectedIndex = 1;
+        if (depthSel) depthSel.selectedIndex = 0;
         selectWoundMode('track');
         selectWoundOrigin('khoa');
       }
@@ -2269,6 +2307,7 @@
       }
 
       var grade = document.getElementById('wound-grade-select').value;
+      var depth = document.getElementById('wound-depth-select').value;
       var size = document.getElementById('wound-size-input').value.trim() || '3 × 2 cm';
       var desc = document.getElementById('wound-desc-input').value.trim();
       var originRadio = document.querySelector('input[name="wound-origin"]:checked');
@@ -2278,12 +2317,10 @@
       var targetList = (activeWoundType === 'device') ? (currentPatient.deviceWoundList = currentPatient.deviceWoundList || []) : (currentPatient.woundList = currentPatient.woundList || []);
 
       if (!isNaN(editIndex) && editIndex >= 0 && targetList[editIndex]) {
-        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ
-        targetList[editIndex] = { location: locName, grade: grade, size: size, origin: origin, desc: desc };
-        showToast('Đã cập nhật đè chính xác vết thương cũ');
+        targetList[editIndex] = { location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc };
+        showToast('Đã cập nhật tổn thương thành công');
       } else {
-        // THÊM MỚI TỔN THƯƠNG
-        targetList.push({ location: locName, grade: grade, size: size, origin: origin, desc: desc });
+        targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         showToast('Đã thêm tổn thương mới');
       }
 
@@ -2475,7 +2512,7 @@
                 '<button onclick="openAddWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
               '</div>' +
               '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
+              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
             '</div>';
           }).join('');
         } else {
@@ -2486,30 +2523,31 @@
 
       // 2. Cập nhật mục "Loét do thiết bị y tế" ở cuối cùng
       var deviceCountEl = document.getElementById('device-wound-count');
-      var deviceListEl = document.getElementById('device-wound-list');
-      if (deviceCountEl && deviceListEl) {
+      var savedDeviceContainer = document.getElementById('saved-device-container');
+      var deviceCardsList = document.getElementById('device-cards-list');
+      if (deviceCountEl && savedDeviceContainer && deviceCardsList) {
         var dList = p.deviceWoundList || [];
         if (dList.length > 0) {
           deviceCountEl.innerText = dList.length + ' vị trí';
           deviceCountEl.style.color = '#b91c1c';
           deviceCountEl.style.background = '#fee2e2';
-          deviceListEl.style.display = 'flex';
-          deviceListEl.innerHTML = dList.map(function(item, index) {
+          savedDeviceContainer.style.display = 'flex';
+          deviceCardsList.innerHTML = dList.map(function(item, index) {
             return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
               '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
                 '<strong style="color: #0f172a; font-size: 13.5px;">• ' + item.location + '</strong>' +
                 '<button onclick="openAddDeviceWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
               '</div>' +
               '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
+              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
             '</div>';
           }).join('');
         } else {
           deviceCountEl.innerText = 'Chưa ghi nhận';
           deviceCountEl.style.color = '#15803d';
           deviceCountEl.style.background = '#dcfce7';
-          deviceListEl.style.display = 'none';
-          deviceListEl.innerHTML = '';
+          savedDeviceContainer.style.display = 'none';
+          deviceCardsList.innerHTML = '';
         }
       }
 
