@@ -40,18 +40,17 @@
     .header-sub { font-size: 11px; color: #64748b; font-weight: 500; }
     main { padding: 12px 16px; flex: 1; }
 
-    /* Card styling với độ bóng đổ nhẹ giúp dễ phân biệt giữa các bệnh nhân */
+    /* Card styling */
     .card {
       background-color: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-      transition: box-shadow 0.2s ease, transform 0.1s ease;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     }
-    .card-click { cursor: pointer; }
-    .card-click:active { background-color: #f8fafc; transform: scale(0.99); }
+    .card-click { cursor: pointer; transition: 0.15s; }
+    .card-click:active { background-color: #f8fafc; }
 
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -84,21 +83,6 @@
     .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 600; border-radius: 10px; padding: 8px 14px; font-size: 11.5px; cursor: pointer; text-align: center; width: 100%; }
     .btn-danger:active { background: #fecaca; }
 
-    /* Nút Lưu Cữ Xoay - Màu hồng nhẹ nhàng */
-    .btn-save-turn {
-      background: #fdf2f8;
-      color: #db2777;
-      font-weight: 650;
-      border: 1.5px solid #f472b6;
-      border-radius: 10px;
-      padding: 7px 14px;
-      font-size: 11.5px;
-      cursor: pointer;
-      text-align: center;
-      transition: 0.15s;
-    }
-    .btn-save-turn:active { background: #fce7f3; }
-
     .pos-btn { background: #f8fafc; border: 1px solid #cbd5e1; color: #475569; border-radius: 8px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: 0.15s; }
     .pos-btn.pos-active { background: #0284c7; color: #ffffff; font-weight: 600; border-color: #0284c7; box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2); }
 
@@ -114,22 +98,21 @@
     }
     input:focus, select:focus, textarea:focus { border-color: #0284c7; }
 
-    /* Trường thời gian, ngày: giảm đậm, hài hòa, không khung */
+    /* Trường thời gian, ngày không khung, sắc nét rõ ràng */
     .time-date-clean-input {
       background: transparent !important;
       border: none !important;
-      border-bottom: 1px solid #cbd5e1 !important;
+      border-bottom: 1.5px solid #94a3b8 !important;
       border-radius: 0 !important;
-      padding: 3px 2px !important;
+      padding: 4px 2px !important;
       font-size: 12px !important;
-      font-weight: 550 !important;
-      color: #475569 !important;
+      font-weight: 750 !important;
+      color: #0f172a !important;
       outline: none !important;
       box-shadow: none !important;
     }
     .time-date-clean-input:focus {
       border-bottom-color: #0284c7 !important;
-      color: #0f172a !important;
     }
 
     .clickable-alert-item {
@@ -167,7 +150,7 @@
       background: #ffffff;
       margin-bottom: 12px;
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
     .table-custom {
       width: 100%;
@@ -781,7 +764,7 @@
               <span style="font-weight: 600;">đã xem da điểm tì đè</span>
             </div>
 
-            <!-- THỜI GIAN, NGÀY: Sắc nét, không khung, giờ:phút (không giây) -->
+            <!-- THỜI GIAN, NGÀY: Giờ:phút (không giây) · ngày/tháng/năm -->
             <div style="margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
               <label style="font-size: 11px; font-weight: 650; color: #475569; white-space: nowrap;">Thời gian:</label>
               <input type="time" id="dt-single-turntime-h" class="time-date-clean-input" style="width: 75px;" />
@@ -901,7 +884,7 @@
                   </div>
                   <div>
                     <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày giờ xuất viện</label>
-                    <input type="text" id="dis-time" value="14:00 · 26/09/2026" />
+                    <input type="text" id="dis-time" value="14:00 · 28/09/2026" />
                   </div>
                 </div>
 
@@ -925,7 +908,7 @@
                 <div>• Kết quả: <strong id="view-dis-condition">Khỏi bệnh</strong></div>
                 <div>• Tình trạng da: <strong id="view-dis-skin">Không loét</strong></div>
                 <div>• Lý do: <span id="view-dis-reason">Đủ điều kiện</span></div>
-                <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 26/09/2026</strong></div>
+                <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 28/09/2026</strong></div>
                 <div id="view-dis-note-box" style="margin-top: 4px; color: #64748b; font-size: 11px;"></div>
               </div>
             </div>
@@ -1121,7 +1104,7 @@
             </div>
             <div>
               <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày phát hiện</label>
-              <input type="text" id="wound-date-input" value="ngày 27 thg 9, 2026" />
+              <input type="text" id="wound-date-input" value="ngày 28 thg 9, 2026" />
             </div>
           </div>
 
@@ -1329,11 +1312,16 @@
       return now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
     }
 
+    // Chỉ ghi nhận giờ:phút - ngày/tháng/năm (bỏ giây)
     function formatTimeDateDisplay(timeVal, dateVal) {
       var h = timeVal || "12:00";
+      // Cắt bỏ giây nếu chuỗi thời gian có dạng HH:MM:SS
+      if (h.length > 5) {
+        h = h.substring(0, 5);
+      }
       var dParts = dateVal ? dateVal.split('-') : [];
       var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '28/09/2026';
-      return h + '   ' + dStr;
+      return h + ' - ' + dStr;
     }
 
     var patients = [
@@ -1894,7 +1882,7 @@
           p.overdueTurn = "Vừa xoay";
           var pos = p.selectedPos || "Ngửa";
           var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
-          p.lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split('   ')[0].trim();
+          p.lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split(' - ')[0].trim();
           p.turns24h = (p.turns24h || 0) + 1;
           if (!p.turnLogs) p.turnLogs = [];
           p.turnLogs.unshift({ time: nowDisplay, pos: pos + reasonText, skin: p.checkedSkin });
@@ -1911,7 +1899,6 @@
       var p = patients.find(function(x) { return x.id === patientId; });
       if (p) {
         p.selectedPos = posName;
-        // Kiểm tra nếu bấm chọn "Chưa xoay được / Khác", hiển thị ô nhập lý do thu gọn bên phải
         var reasonContainer = document.getElementById('task-reason-container-' + patientId);
         var btnOther = document.getElementById('task-btn-other-' + patientId);
         if (reasonContainer && btnOther) {
@@ -2036,7 +2023,7 @@
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
-          /* Mục "chưa xoay được/khác": thu gọn 1 bên trái và nổi khung trắng bên phải khi chọn */
+          /* Mục "chưa xoay được/khác" */
           '<div style="display:flex; gap:6px; margin-bottom:8px; align-items:center;">' +
             '<button type="button" id="task-btn-other-' + pt.id + '" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (isOtherSelected?'pos-active':'') + '" style="width:' + (isOtherSelected ? '120px' : '100%') + '; transition: width 0.2s ease;">Chưa xoay được / Khác</button>' +
             '<div id="task-reason-container-' + pt.id + '" style="flex:1; display:' + (isOtherSelected ? 'block' : 'none') + ';">' +
