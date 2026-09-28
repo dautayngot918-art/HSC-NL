@@ -40,7 +40,7 @@
     .header-sub { font-size: 11px; color: #64748b; font-weight: 500; }
     main { padding: 12px 16px; flex: 1; }
 
-    /* Card styling với độ bóng đổ nhẹ */
+    /* Card styling với độ bóng đổ nhẹ giúp dễ phân biệt giữa các bệnh nhân */
     .card {
       background-color: #ffffff;
       border: 1px solid #e2e8f0;
@@ -84,7 +84,7 @@
     .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-weight: 600; border-radius: 10px; padding: 8px 14px; font-size: 11.5px; cursor: pointer; text-align: center; width: 100%; }
     .btn-danger:active { background: #fecaca; }
 
-    /* Nút Lưu Cữ Xoay - Màu hồng nhẹ nhàng, nhã nhặn */
+    /* Nút Lưu Cữ Xoay - Màu hồng nhẹ nhàng */
     .btn-save-turn {
       background: #fdf2f8;
       color: #db2777;
@@ -781,10 +781,10 @@
               <span style="font-weight: 600;">đã xem da điểm tì đè</span>
             </div>
 
-            <!-- THỜI GIAN, NGÀY: Sắc nét, không khung, giờ phút (bỏ giây) -->
+            <!-- THỜI GIAN, NGÀY: Sắc nét, không khung, giờ:phút (không giây) -->
             <div style="margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
               <label style="font-size: 11px; font-weight: 650; color: #475569; white-space: nowrap;">Thời gian:</label>
-              <input type="time" id="dt-single-turntime-h" class="time-date-clean-input" step="60" style="width: 75px;" />
+              <input type="time" id="dt-single-turntime-h" class="time-date-clean-input" style="width: 75px;" />
               <input type="date" id="dt-single-turntime-d" class="time-date-clean-input" style="width: 120px;" />
             </div>
 
@@ -1332,8 +1332,8 @@
     function formatTimeDateDisplay(timeVal, dateVal) {
       var h = timeVal || "12:00";
       var dParts = dateVal ? dateVal.split('-') : [];
-      var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '27/09/2026';
-      return h + ' · ' + dStr;
+      var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '28/09/2026';
+      return h + '   ' + dStr;
     }
 
     var patients = [
@@ -1557,7 +1557,7 @@
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
         if (titleEl) titleEl.innerText = 'Xoay trở buồng bệnh';
-        if (subEl) { subEl.innerText = '12:44 · 27/09/2026'; subEl.style.color = '#64748b'; }
+        if (subEl) { subEl.innerText = '12:44 · 28/09/2026'; subEl.style.color = '#64748b'; }
         renderBulkTurnList();
       } else {
         if (backBtn) {
@@ -1894,7 +1894,7 @@
           p.overdueTurn = "Vừa xoay";
           var pos = p.selectedPos || "Ngửa";
           var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
-          p.lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split('·')[0].trim();
+          p.lastTurnNote = pos + reasonText + " lúc " + nowDisplay.split('   ')[0].trim();
           p.turns24h = (p.turns24h || 0) + 1;
           if (!p.turnLogs) p.turnLogs = [];
           p.turnLogs.unshift({ time: nowDisplay, pos: pos + reasonText, skin: p.checkedSkin });
@@ -1909,7 +1909,21 @@
 
     function selectTaskPos(patientId, posName) {
       var p = patients.find(function(x) { return x.id === patientId; });
-      if (p) p.selectedPos = posName;
+      if (p) {
+        p.selectedPos = posName;
+        // Kiểm tra nếu bấm chọn "Chưa xoay được / Khác", hiển thị ô nhập lý do thu gọn bên phải
+        var reasonContainer = document.getElementById('task-reason-container-' + patientId);
+        var btnOther = document.getElementById('task-btn-other-' + patientId);
+        if (reasonContainer && btnOther) {
+          if (posName === 'Chưa xoay được / Khác') {
+            btnOther.style.width = '120px';
+            reasonContainer.style.display = 'block';
+          } else {
+            btnOther.style.width = '100%';
+            reasonContainer.style.display = 'none';
+          }
+        }
+      }
       renderTasks();
     }
 
@@ -1996,6 +2010,7 @@
         var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
         var isTurnOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
         var curPos = pt.selectedPos || 'Ngửa';
+        var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
         var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
         var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
 
@@ -2021,9 +2036,12 @@
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
-          '<div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:6px; margin-bottom:6px;">' +
-            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
-            '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' +
+          /* Mục "chưa xoay được/khác": thu gọn 1 bên trái và nổi khung trắng bên phải khi chọn */
+          '<div style="display:flex; gap:6px; margin-bottom:8px; align-items:center;">' +
+            '<button type="button" id="task-btn-other-' + pt.id + '" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (isOtherSelected?'pos-active':'') + '" style="width:' + (isOtherSelected ? '120px' : '100%') + '; transition: width 0.2s ease;">Chưa xoay được / Khác</button>' +
+            '<div id="task-reason-container-' + pt.id + '" style="flex:1; display:' + (isOtherSelected ? 'block' : 'none') + ';">' +
+              '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Nhập lý do / ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px; background:#ffffff; border:1px solid #0284c7;" />' +
+            '</div>' +
           '</div>' +
           '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
             '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
@@ -2038,7 +2056,7 @@
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
               '<label style="font-size:11px; font-weight:650; color:#475569; white-space:nowrap;">Thời gian:</label>' +
-              '<input type="time" id="turntime-h-' + pt.id + '" class="time-date-clean-input" step="60" style="width:80px;" />' +
+              '<input type="time" id="turntime-h-' + pt.id + '" class="time-date-clean-input" step="60" style="width:75px;" />' +
               '<input type="date" id="turntime-d-' + pt.id + '" class="time-date-clean-input" style="width:120px;" />' +
             '</div>' +
             '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-save-turn" style="width:auto; shrink:0;">Lưu cữ xoay</button>' +
@@ -2053,7 +2071,7 @@
         html += '</div>';
       }
       container.innerHTML = html;
-      
+
       for (var l = 0; l < list.length; l++) {
         var pItem = list[l];
         if (currentTaskFilter === 'turn') {
@@ -2414,435 +2432,6 @@
       closeAddWoundModal();
       renderDetail();
       renderPatients();
-    }
-
-    function saveTaskTurnWithTime(id) {
-      var timeVal = document.getElementById('turntime-h-' + id).value || "12:00";
-      var dateVal = document.getElementById('turntime-d-' + id).value || getNowDateInputValue();
-      var recordTimeDisplay = formatTimeDateDisplay(timeVal, dateVal);
-
-      var p = patients.find(function(x) { return x.id === id; });
-      if (p) {
-        var pos = p.selectedPos || "Ngửa";
-        var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
-        p.overdueTurn = "Vừa xoay";
-        p.lastTurnNote = pos + reasonText + " lúc " + timeVal;
-        p.turns24h = (p.turns24h || 0) + 1;
-
-        if (!p.turnLogs) p.turnLogs = [];
-        p.turnLogs.unshift({ time: recordTimeDisplay, pos: pos + reasonText, skin: p.checkedSkin !== false });
-
-        showToast("Đã lưu cữ xoay giường " + p.bed);
-      }
-
-      updateDynamicDashboardCounts();
-      renderTasks();
-      renderPatients();
-    }
-
-    function openNewPatientModal() {
-      document.getElementById('inp-p-name').value = "";
-      document.getElementById('inp-p-code').value = "";
-      document.getElementById('inp-p-dob').value = "";
-      document.getElementById('inp-p-bed-num').value = "";
-      document.getElementById('inp-p-diag').value = "";
-      document.getElementById('new-patient-modal').style.display = 'flex';
-    }
-
-    function closeNewPatientModal() {
-      document.getElementById('new-patient-modal').style.display = 'none';
-    }
-
-    function saveNewPatient() {
-      var name = document.getElementById('inp-p-name').value.trim();
-      var code = document.getElementById('inp-p-code').value.trim() || ('26-' + Math.floor(100000 + Math.random() * 900000));
-      var dob = document.getElementById('inp-p-dob').value;
-      var bedNum = parseInt(document.getElementById('inp-p-bed-num').value) || 1;
-      var bed = "G." + bedNum;
-      var diag = document.getElementById('inp-p-diag').value.trim() || 'Theo dõi hồi sức ICU';
-      var gender = document.getElementById('inp-p-gender').value;
-
-      if (!name) { alert('Vui lòng nhập họ và tên người bệnh!'); return; }
-
-      var calculatedAge = dob ? (2026 - new Date(dob).getFullYear()) : 50;
-
-      var newP = {
-        id: bed, code: code, name: name, bed: bed, bedNum: bedNum, age: calculatedAge, gender: gender, dob: dob || "1976-01-01", diag: diag, stayDays: 1, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Vừa nhận bệnh", notes: "", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
-      };
-
-      patients.unshift(newP);
-      closeNewPatientModal();
-      showToast('Đã nhận bệnh ' + name.toUpperCase() + ' vào giường ' + bed);
-      updateDynamicDashboardCounts();
-      openDetailById(newP.id, 'overview');
-    }
-
-    function openDetailById(id, subTabName) {
-      var p = patients.find(function(x) { return x.id === id; });
-      if (p) currentPatient = p;
-      showTab('patient-detail');
-      setSubTab(subTabName || 'overview');
-    }
-
-    var currentSubTab = 'overview';
-    function setSubTab(sub) {
-      currentSubTab = sub;
-      var subs = ['overview', 'wound', 'turn', 'trend'];
-      for (var i = 0; i < subs.length; i++) {
-        var el = document.getElementById('subtab-' + subs[i] + '-content');
-        var btn = document.getElementById('st-' + subs[i] + '-btn');
-        if (el) el.style.display = (subs[i] === sub) ? 'block' : 'none';
-        if (btn) {
-          btn.style.background = (subs[i] === sub) ? '#0284c7' : 'transparent';
-          btn.style.color = (subs[i] === sub) ? '#ffffff' : '#64748b';
-        }
-      }
-    }
-
-    function selectSingleDetailPos(pos) {
-      currentPatient.selectedPos = pos;
-      var arr = ['Ngh. trái', 'Ngửa', 'Ngh. phải', 'Nửa ngồi', 'Chưa xoay được / Khác'];
-      var ids = ['sdt-pos-trai', 'sdt-pos-ngua', 'sdt-pos-phai', 'sdt-pos-ngoi', 'sdt-pos-chua'];
-      for (var i = 0; i < arr.length; i++) {
-        var el = document.getElementById(ids[i]);
-        if (el) {
-          if (arr[i] === pos) el.classList.add('pos-active');
-          else el.classList.remove('pos-active');
-        }
-      }
-      var rBox = document.getElementById('sdt-reason-box');
-      if (rBox) rBox.style.display = (pos === 'Chưa xoay được / Khác') ? 'block' : 'none';
-    }
-
-    function toggleSingleDetailSkinCheck() {
-      currentPatient.checkedSkin = !currentPatient.checkedSkin;
-      var box = document.getElementById('sdt-skin-box');
-      if (box) {
-        box.style.background = currentPatient.checkedSkin ? '#0284c7' : 'transparent';
-        box.innerText = currentPatient.checkedSkin ? '✓' : '';
-      }
-    }
-
-    function renderDetail() {
-      var p = currentPatient;
-      var isDis = p.status === 'discharged';
-      var targetH = getTurnTargetHours(p.waterlow, p.risk);
-
-      document.getElementById('dt-name-header').innerHTML = getPatientFormattedHeader(p);
-      document.getElementById('dt-code-line').innerText = 'Mã hồ sơ: ' + p.code;
-      document.getElementById('dt-bed-diag').innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
-      document.getElementById('dt-stay-days').innerText = 'Nhập khoa 17:21 · ngày điều trị thứ ' + (p.stayDays || 9);
-      document.getElementById('dt-assess-overdue').innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
-      document.getElementById('dt-turn-overdue').innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + targetH + ' giờ';
-      document.getElementById('dt-turn-protocol-text').innerText = 'quy trình mỗi ' + targetH + ' giờ · ' + p.risk.toLowerCase();
-
-      document.getElementById('dt-care-box').style.display = isDis ? 'none' : 'block';
-
-      selectSingleDetailPos(p.selectedPos || 'Ngửa');
-      var reasonInput = document.getElementById('sdt-reason-input');
-      if (reasonInput) reasonInput.value = p.turnReason || '';
-
-      var skinBox = document.getElementById('sdt-skin-box');
-      if (skinBox) {
-        skinBox.style.background = p.checkedSkin ? '#0284c7' : 'transparent';
-        skinBox.innerText = p.checkedSkin ? '✓' : '';
-      }
-
-      document.getElementById('dt-single-turntime-h').value = getNowTimeInputValue();
-      document.getElementById('dt-single-turntime-d').value = getNowDateInputValue();
-
-      var skinCount = p.woundList ? p.woundList.length : 0;
-      var deviceCount = p.deviceWoundList ? p.deviceWoundList.length : 0;
-      p.wounds = skinCount + deviceCount;
-
-      // 1. Cập nhật mục "Vị trí bất thường" (Tổn thương da)
-      var countEl = document.getElementById('wound-spot-count');
-      if (countEl) {
-        if (skinCount > 0) {
-          countEl.innerText = skinCount + ' vị trí';
-          countEl.style.color = '#b91c1c';
-          countEl.style.background = '#fee2e2';
-        } else {
-          countEl.innerText = 'Chưa ghi nhận';
-          countEl.style.color = '#15803d';
-          countEl.style.background = '#dcfce7';
-        }
-      }
-
-      var savedWoundsContainer = document.getElementById('saved-wounds-container');
-      var woundCardsList = document.getElementById('wound-cards-list');
-      if (savedWoundsContainer && woundCardsList) {
-        var wList = p.woundList || [];
-        if (wList.length > 0) {
-          savedWoundsContainer.style.display = 'flex';
-          woundCardsList.innerHTML = wList.map(function(item, index) {
-            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
-              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
-                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + item.location + '</strong>' +
-                '<button onclick="openAddWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
-              '</div>' +
-              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          savedWoundsContainer.style.display = 'none';
-          woundCardsList.innerHTML = '';
-        }
-      }
-
-      // 2. Cập nhật mục "Loét do thiết bị y tế" ở cuối cùng
-      var deviceCountEl = document.getElementById('device-wound-count');
-      var savedDeviceContainer = document.getElementById('saved-device-container');
-      var deviceCardsList = document.getElementById('device-cards-list');
-      if (deviceCountEl && savedDeviceContainer && deviceCardsList) {
-        var dList = p.deviceWoundList || [];
-        if (dList.length > 0) {
-          deviceCountEl.innerText = dList.length + ' vị trí';
-          deviceCountEl.style.color = '#b91c1c';
-          deviceCountEl.style.background = '#fee2e2';
-          savedDeviceContainer.style.display = 'flex';
-          deviceCardsList.innerHTML = dList.map(function(item, index) {
-            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
-              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
-                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + (item.deviceType ? (item.deviceType + ' (' + item.location + ')') : item.location) + '</strong>' +
-                '<button onclick="openAddDeviceWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
-              '</div>' +
-              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          deviceCountEl.innerText = 'Chưa ghi nhận';
-          deviceCountEl.style.color = '#15803d';
-          deviceCountEl.style.background = '#dcfce7';
-          savedDeviceContainer.style.display = 'none';
-          deviceCardsList.innerHTML = '';
-        }
-      }
-
-      var turnLogContainer = document.getElementById('dt-turn-log-table');
-      if (turnLogContainer) {
-        if (p.turnLogs && p.turnLogs.length > 0) {
-          turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
-            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
-          }).join('');
-        } else {
-          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
-        }
-      }
-
-      var alertBox = document.getElementById('patient-alert-container');
-      if (alertBox) {
-        if (isDis) {
-          alertBox.innerHTML = '<div class="alert-box-discharged"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">HỒ SƠ ĐÃ XUẤT VIỆN KHOA HỒI SỨC</div><div style="font-size:20px; font-weight:750; margin:4px 0; color:#0f172a;">ĐÃ KẾT THÚC ĐIỀU TRỊ</div></div>';
-        } else if (p.risk === 'Nguy cơ rất cao') {
-          alertBox.innerHTML = '<div class="alert-box-red"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🔴 CẢNH BÁO NGUY CƠ RẤT CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b91c1c;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else if (p.risk === 'Nguy cơ cao') {
-          alertBox.innerHTML = '<div class="alert-box-yellow"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟡 CẢNH BÁO NGUY CƠ CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b45309;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else if (p.risk === 'Có nguy cơ') {
-          alertBox.innerHTML = '<div class="alert-box-green"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟢 CẢNH BÁO CÓ NGUY CƠ</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#15803d;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else {
-          alertBox.innerHTML = '<div class="alert-box-purple"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟣 CHƯA ĐÁNH GIÁ THANG ĐIỂM</div><div style="font-size:24px; font-weight:800; margin:4px 0; color:#7e22ce;">-- ĐIỂM</div></div>';
-        }
-      }
-
-      var trendPrev = calculateTrendText(p.waterlow, p.prevWaterlow);
-      var trendAdmit = calculateTrendText(p.waterlow, p.admitWaterlow);
-
-      document.getElementById('trend-compare-prev').innerText = trendPrev;
-      document.getElementById('trend-compare-prev-desc').innerText = (p.prevWaterlow !== null) ? ('(' + p.prevWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
-      document.getElementById('trend-compare-admit').innerText = trendAdmit;
-      document.getElementById('trend-compare-admit-desc').innerText = (p.admitWaterlow !== null) ? ('(' + p.admitWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
-
-      document.getElementById('discharge-inputs-box').style.display = isDis ? 'none' : 'flex';
-      document.getElementById('discharged-info-view').style.display = isDis ? 'block' : 'none';
-
-      if (isDis && p.dischargeData) {
-        document.getElementById('view-dis-condition').innerText = p.dischargeData.condition;
-        document.getElementById('view-dis-skin').innerText = p.dischargeData.skin;
-        document.getElementById('view-dis-reason').innerText = p.dischargeData.reason;
-        document.getElementById('view-dis-time').innerText = p.dischargeData.time;
-        document.getElementById('view-dis-note-box').innerText = p.dischargeData.note ? ('• Dặn dò: ' + p.dischargeData.note) : '';
-      }
-
-      document.getElementById('dt-trend-change-badge').innerText = trendPrev;
-      document.getElementById('trend-box-score').innerText = (p.waterlow !== null ? p.waterlow : '--');
-
-      renderChecklist();
-    }
-
-    function confirmDischargeFromTrend() {
-      var p = currentPatient;
-      if (confirm('Xác nhận hoàn tất xuất viện cho người bệnh ' + p.name + '?')) {
-        p.status = 'discharged';
-        p.dischargeData = {
-          condition: document.getElementById('dis-condition').value,
-          skin: document.getElementById('dis-skin').value,
-          reason: document.getElementById('dis-reason').value,
-          time: document.getElementById('dis-time').value,
-          note: document.getElementById('dis-note').value
-        };
-        showToast('Đã hoàn tất xuất viện');
-        updateDynamicDashboardCounts();
-        renderDetail();
-        renderPatients();
-        setTimeout(function() {
-          setPatientFilterStatus('discharged');
-          showTab('patients');
-        }, 1200);
-      }
-    }
-
-    function renderChecklist() {
-      var box = document.getElementById('dt-checklist-box');
-      if (!box) return;
-      var chk = currentPatient.checked || [];
-      document.getElementById('dt-checklist-count').innerText = chk.length + '/10';
-
-      var html = '';
-      for (var i = 0; i < CHECKLIST_ITEMS.length; i++) {
-        var isC = chk.indexOf(i) > -1;
-        html += '<div onclick="toggleCheckOneItem(' + i + ')" class="card" style="padding:10px; margin-bottom:0; display:flex; align-items:flex-start; gap:10px; cursor:pointer; background:' + (isC ? '#f0f9ff' : '#ffffff') + '; border-color:' + (isC ? '#0284c7' : '#e2e8f0') + ';">' +
-          '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (isC ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:800; font-size:12px;">' + (isC ? '✓' : '') + '</div>' +
-          '<div style="font-size:12px; color:' + (isC ? '#0284c7' : '#334155') + '; font-weight:' + (isC ? '650' : '500') + '; line-height:1.4;">' + CHECKLIST_ITEMS[i] + '</div>' +
-        '</div>';
-      }
-      box.innerHTML = html;
-    }
-
-    function toggleCheckOneItem(idx) {
-      if (!currentPatient.checked) currentPatient.checked = [];
-      var pos = currentPatient.checked.indexOf(idx);
-      if (pos > -1) currentPatient.checked.splice(pos, 1);
-      else currentPatient.checked.push(idx);
-      renderChecklist();
-      renderPatients();
-    }
-
-    function toggleCheckAll() {
-      if (currentPatient.checked && currentPatient.checked.length === 10) currentPatient.checked = [];
-      else currentPatient.checked = [0,1,2,3,4,5,6,7,8,9];
-      renderChecklist();
-      renderPatients();
-    }
-
-    function handleDetailTurnAction() {
-      var tVal = document.getElementById('dt-single-turntime-h').value || "12:00";
-      var dVal = document.getElementById('dt-single-turntime-d').value || getNowDateInputValue();
-      var recordTime = formatTimeDateDisplay(tVal, dVal);
-      var pos = currentPatient.selectedPos || "Ngửa";
-      var reasonText = currentPatient.turnReason ? (' (' + currentPatient.turnReason + ')') : '';
-
-      currentPatient.overdueTurn = "Vừa xoay";
-      currentPatient.lastTurnNote = pos + reasonText + " lúc " + tVal;
-      currentPatient.turns24h = (currentPatient.turns24h || 0) + 1;
-
-      if (!currentPatient.turnLogs) currentPatient.turnLogs = [];
-      currentPatient.turnLogs.unshift({ time: recordTime, pos: pos + reasonText, skin: currentPatient.checkedSkin !== false });
-
-      showToast("Đã ghi xoay trở");
-      updateDynamicDashboardCounts();
-      renderDetail();
-      renderPatients();
-      renderTasks();
-    }
-
-    // =========================================================================
-    // QUY TRÌNH ĐÁNH GIÁ 4 BƯỚC
-    // =========================================================================
-    var wizardPatient = null;
-    var wizardCurrentStep = 1;
-    var wizardForm = {
-      gender: 1, ageGroup: 1, bmi: 0, skinStatus: 0, continence: 0, mobility: 0,
-      nutritionDrop: 0, nutritionNpo: 0, tissueDamage: [], neuroDeficit: 0, surgeryTrauma: 0,
-      skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
-      deviceUlcerLocation: "", deviceUlcerGrade: "Độ I", deviceUlcerSize: "", deviceUlcerOrigin: "Phát sinh tại khoa", deviceUlcerDesc: "",
-      preventiveChecks: [], nurseNote: ""
-    };
-
-    function openWaterlowAssessmentWizard(patientId) {
-      wizardPatient = patients.find(function(x) { return x.id === patientId; });
-      if (!wizardPatient) return;
-      wizardCurrentStep = 1;
-      document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
-      document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
-      renderWizardCurrentStep();
-      updateWizardLiveBottomBar();
-      document.getElementById('waterlow-wizard-modal').style.display = 'flex';
-    }
-
-    function closeWaterlowAssessmentWizard() {
-      document.getElementById('waterlow-wizard-modal').style.display = 'none';
-    }
-
-    function calculateWizardTotalScore() {
-      var total = (parseInt(wizardForm.gender) || 0) + (parseInt(wizardForm.ageGroup) || 0) + (parseInt(wizardForm.bmi) || 0) + (parseInt(wizardForm.skinStatus) || 0) + (parseInt(wizardForm.continence) || 0) + (parseInt(wizardForm.mobility) || 0) + (parseInt(wizardForm.nutritionDrop) || 0) + (parseInt(wizardForm.nutritionNpo) || 0) + (wizardForm.tissueDamage || []).reduce(function(a,b){return a+b;},0) + (parseInt(wizardForm.neuroDeficit) || 0) + (parseInt(wizardForm.surgeryTrauma) || 0);
-      return total;
-    }
-
-    function updateWizardLiveBottomBar() {
-      var score = calculateWizardTotalScore();
-      document.getElementById('wz-bottom-score').innerText = score;
-      var badgeEl = document.getElementById('wz-bottom-risk-badge');
-      if (score >= 20) { badgeEl.className = "badge-red"; badgeEl.innerText = "Nguy cơ rất cao"; }
-      else if (score >= 15) { badgeEl.className = "badge-orange"; badgeEl.innerText = "Nguy cơ cao"; }
-      else if (score >= 10) { badgeEl.className = "badge-yellow"; badgeEl.innerText = "Có nguy cơ"; }
-      else { badgeEl.className = "badge-gray"; badgeEl.innerText = "Nguy cơ thấp"; }
-
-      document.getElementById('wz-back-step-btn').style.display = (wizardCurrentStep > 1) ? 'block' : 'none';
-      document.getElementById('wz-next-step-btn').innerText = (wizardCurrentStep === 4) ? "Hoàn tất và ký" : "Tiếp tục";
-    }
-
-    function goNextWizardStep() {
-      if (wizardCurrentStep < 4) {
-        wizardCurrentStep++;
-        renderWizardCurrentStep();
-        updateWizardLiveBottomBar();
-        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
-      } else {
-        finishAndSignWizard();
-      }
-    }
-
-    function goPreviousWizardStep() {
-      if (wizardCurrentStep > 1) {
-        wizardCurrentStep--;
-        renderWizardCurrentStep();
-        updateWizardLiveBottomBar();
-        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
-      }
-    }
-
-    function renderWizardCurrentStep() {
-      var c = document.getElementById('wz-steps-container');
-      if (!c) return;
-      if (wizardCurrentStep === 1) {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Thang điểm Waterlow (Bước 1 / 4)</div>' +
-        '<div class="step-item-card"><div class="wizard-group-title"><span>1. Giới tính</span><span class="wizard-group-score">+' + wizardForm.gender + '</span></div>' +
-        '<div onclick="wizardForm.gender=1; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===1?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===1?'✓':'') + '</span><span class="opt-text">Nam</span></div><strong class="opt-points">+1</strong></div>' +
-        '<div onclick="wizardForm.gender=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===2?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===2?'✓':'') + '</span><span class="opt-text">Nữ</span></div><strong class="opt-points">+2</strong></div></div>';
-      } else if (wizardCurrentStep === 2) {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Khám da và tổn thương (Bước 2 / 4)</div>';
-      } else {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Kế hoạch phòng ngừa & Ký xác nhận (Bước 3-4 / 4)</div>';
-      }
-    }
-
-    function finishAndSignWizard() {
-      if (!wizardPatient) return;
-      var totalScore = calculateWizardTotalScore();
-      wizardPatient.waterlow = totalScore;
-      wizardPatient.risk = totalScore >= 20 ? "Nguy cơ rất cao" : (totalScore >= 15 ? "Nguy cơ cao" : (totalScore >= 10 ? "Có nguy cơ" : "Nguy cơ thấp"));
-      wizardPatient.overdueAssess = "";
-      wizardPatient.assessDateTime = formatTimeDateDisplay(getNowTimeInputValue(), getNowDateInputValue());
-      wizardPatient.latestAssess = "Hôm nay " + wizardPatient.assessDateTime.split('·')[0].trim();
-      closeWaterlowAssessmentWizard();
-      showToast("Đã hoàn tất đánh giá Waterlow " + totalScore + " điểm");
-      updateDynamicDashboardCounts();
-      if (currentPatient && currentPatient.id === wizardPatient.id) renderDetail();
-      renderPatients();
-      renderTasks();
     }
 
     updateDynamicDashboardCounts();
