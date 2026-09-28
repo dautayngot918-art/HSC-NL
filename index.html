@@ -661,8 +661,8 @@
                   <label style="font-size: 11px; color: #475569; font-weight: 650; display: block; margin-bottom: 4px;">Nhiệt độ da</label>
                   <select id="dt-wound-temp" onchange="currentPatient.wizardState.skinTemp=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                     <option>Bình thường</option>
-                    <option>Nóng sốt</option>
-                    <option>Lạnh ẩm</option>
+                    <option>Ấm hơn vùng xung quanh</option>
+                    <option>Lạnh hơn vùng xung quanh</option>
                   </select>
                 </div>
                 <div>
@@ -687,8 +687,8 @@
             <!-- Vị trí bất thường -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span style="font-size: 12px; font-weight: 750; color: #0284c7; text-transform: uppercase;">VT Vị trí bất thường</span>
-                <span id="wound-spot-count" style="font-size: 11px; color: #b91c1c; font-weight: 750; background: #fee2e2; border: 1px solid #f87171; padding: 1px 6px; border-radius: 6px;">0 vị trí</span>
+                <span style="font-size: 12px; font-weight: 750; color: #0284c7; text-transform: uppercase;">Vị trí bất thường</span>
+                <span id="wound-spot-count" style="font-size: 11px; font-weight: 750; padding: 2px 8px; border-radius: 6px;">Chưa ghi nhận</span>
               </div>
 
               <!-- Khung nút + Thêm vị trí tổn thương (Tạo mới) -->
@@ -989,7 +989,7 @@
 
           <div id="custom-location-box" style="display: block;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Nhập tên vị trí tùy chỉnh</label>
-            <input type="text" id="wound-custom-location-input" placeholder="vd: Cánh mũi do sonde dạ dày..." style="font-size: 12.5px;" />
+            <input type="text" id="wound-custom-location-input" placeholder="vd: Xương cùng, sống mũi..." style="font-size: 12.5px;" />
           </div>
 
           <!-- Ghi nhận thế nào -->
@@ -1978,9 +1978,9 @@
       var descInp = document.getElementById('wound-desc-input');
       var gradeSel = document.getElementById('wound-grade-select');
 
-      if (editIndex !== undefined && editIndex >= 0 && currentPatient.woundList[editIndex]) {
+      if (editIndex !== undefined && editIndex !== null && !isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList[editIndex]) {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = editIndex; // Ghi nhớ đúng vị trí index đang sửa
+        if (editInp) editInp.value = editIndex; // GHI NHẬN ĐÚNG CHỈ MỤC SỬA
         var item = currentPatient.woundList[editIndex];
 
         var foundOption = false;
@@ -2011,7 +2011,7 @@
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
       } else {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = "-1"; // -1 ĐỂ HIỂU LÀ TẠO MỚI VẾT THƯƠNG
+        if (editInp) editInp.value = "-1"; // TẠO MỚI KHI KHÔNG CÓ INDEX TRUYỀN VÀO
         sel.value = "Khác";
         customInput.value = "";
         if (sizeInp) sizeInp.value = "";
@@ -2137,7 +2137,7 @@
       var editIndex = parseInt(document.getElementById('edit-wound-index').value, 10);
 
       if (!isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ
+        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ (CẬP NHẬT TRỰC TIẾP)
         currentPatient.woundList[editIndex] = {
           location: locName,
           grade: grade,
@@ -2145,9 +2145,9 @@
           origin: origin,
           desc: desc
         };
-        showToast('Đã cập nhật đè lên tổn thương cũ');
+        showToast('Đã cập nhật đè chính xác vết thương cũ');
       } else {
-        // THÊM MỚI TỔN THƯƠNG
+        // TẠO MỚI TỔN THƯƠNG KHI BẤM NÚT + THÊM VỊ TRÍ TỔN THƯƠNG
         currentPatient.woundList.push({
           location: locName,
           grade: grade,
@@ -2317,7 +2317,17 @@
       p.wounds = currentWoundsCount;
 
       var countEl = document.getElementById('wound-spot-count');
-      if (countEl) countEl.innerText = currentWoundsCount + ' vị trí';
+      if (countEl) {
+        if (currentWoundsCount > 0) {
+          countEl.innerText = currentWoundsCount + ' vị trí';
+          countEl.style.color = '#b91c1c';
+          countEl.style.background = '#fee2e2';
+        } else {
+          countEl.innerText = 'Chưa ghi nhận';
+          countEl.style.color = '#15803d';
+          countEl.style.background = '#dcfce7';
+        }
+      }
 
       // HIỂN THỊ KHUNG "Các tổn thương" (Hàng 1: Vị trí + Nút "Sửa" bên phải; Hàng 2: Phân độ màu không khung)
       var savedWoundsContainer = document.getElementById('saved-wounds-container');
