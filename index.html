@@ -1980,7 +1980,7 @@
 
       if (editIndex !== undefined && editIndex >= 0 && currentPatient.woundList[editIndex]) {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = editIndex; // LƯU ĐÚNG CHỈ MỤC ĐỂ GHI ĐÈ
+        if (editInp) editInp.value = editIndex; // Ghi nhớ đúng vị trí index đang sửa
         var item = currentPatient.woundList[editIndex];
 
         var foundOption = false;
@@ -2011,7 +2011,7 @@
         selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
       } else {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
-        if (editInp) editInp.value = "-1"; // ĐẶT LÀ -1 ĐỂ HIỂU LÀ TẠO MỚI KHI BẤM + THÊM
+        if (editInp) editInp.value = "-1"; // -1 ĐỂ HIỂU LÀ TẠO MỚI VẾT THƯƠNG
         sel.value = "Khác";
         customInput.value = "";
         if (sizeInp) sizeInp.value = "";
@@ -2134,10 +2134,10 @@
       var originRadio = document.querySelector('input[name="wound-origin"]:checked');
       var origin = (originRadio && originRadio.value === 'khoa') ? 'Phát sinh tại khoa' : 'Đã có sẵn khi vào khoa';
 
-      var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
+      var editIndex = parseInt(document.getElementById('edit-wound-index').value, 10);
 
-      if (editIndex >= 0 && currentPatient.woundList[editIndex]) {
-        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ (CẬP NHẬT TRỰC TIẾP)
+      if (!isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList[editIndex]) {
+        // GHI ĐÈ CHÍNH XÁC LÊN VẾT THƯƠNG CŨ
         currentPatient.woundList[editIndex] = {
           location: locName,
           grade: grade,
@@ -2145,9 +2145,9 @@
           origin: origin,
           desc: desc
         };
-        showToast('Đã cập nhật thành công tổn thương');
+        showToast('Đã cập nhật đè lên tổn thương cũ');
       } else {
-        // TẠO MỚI KHI BẤM NÚT + THÊM VỊ TRÍ TỔN THƯƠNG
+        // THÊM MỚI TỔN THƯƠNG
         currentPatient.woundList.push({
           location: locName,
           grade: grade,
@@ -2165,8 +2165,8 @@
     }
 
     function deleteCurrentWound() {
-      var editIndex = parseInt(document.getElementById('edit-wound-index').value) || -1;
-      if (editIndex >= 0 && currentPatient.woundList && currentPatient.woundList[editIndex]) {
+      var editIndex = parseInt(document.getElementById('edit-wound-index').value, 10);
+      if (!isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList && currentPatient.woundList[editIndex]) {
         currentPatient.woundList.splice(editIndex, 1);
         currentPatient.wounds = currentPatient.woundList.length;
         showToast('Đã xóa tổn thương thành công');
