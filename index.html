@@ -587,7 +587,7 @@
 
           <div id="dt-care-box" class="card" style="background: #fffbeb; border: 1.5px solid #fde68a;">
             <div class="section-title" style="color: #b45309; margin-bottom: 6px;">
-              <span>⚠️️ CẦN LÀM TRONG CA</span>
+              <span>⚠️ CẦN LÀM TRONG CA</span>
             </div>
             <div style="font-size: 12px; color: #78350f; line-height: 1.6; margin-bottom: 10px;">
               <div id="dt-assess-overdue">• Quá hạn đánh giá 3 ngày 16 giờ</div>
@@ -650,7 +650,7 @@
                 <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
-                  <option>M mất cảm giác hoàn toàn</option>
+                  <option>Mất cảm giác hoàn toàn</option>
                 </select>
               </div>
             </div>
@@ -1825,11 +1825,14 @@
       var container = document.getElementById('bulk-turn-container');
       if (!container) return;
 
+      var treatingList = patients.filter(function(p) { return p.status === 'treating'; });
+      var countAll = treatingList.length;
+      var countOverdue = treatingList.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
+      var countNormal = countAll - countOverdue;
+
       var list = [];
-      for (var i = 0; i < patients.length; i++) {
-        var p = patients[i];
-        if (p.status !== 'treating') continue;
-        
+      for (var i = 0; i < treatingList.length; i++) {
+        var p = treatingList[i];
         var isOverdue = p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1;
         if (bulkTurnFilterStatus === 'overdue' && !isOverdue) continue;
         if (bulkTurnFilterStatus === 'normal' && isOverdue) continue;
@@ -1853,9 +1856,9 @@
       }
 
       var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
-        '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả</button>' +
-        '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã tới lúc xoay</button>' +
-        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc xoay</button>' +
+        '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
+        '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">đã tới lúc xoay-' + countOverdue + '</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc-' + countNormal + '</button>' +
       '</div>';
 
       if (list.length === 0) {
