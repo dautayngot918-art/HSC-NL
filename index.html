@@ -932,15 +932,17 @@
 
     <!-- Modal Cảnh Báo Trùng Lặp Hồ Sơ Mới -->
     <div id="duplicate-warning-modal" class="modal-overlay" style="z-index: 90;">
-      <div class="modal-content" style="max-width: 380px; text-align: center; padding: 24px 20px; background: #e0f2fe; border: 2px solid #0284c7;">
-        <div id="dup-warning-header" style="font-size: 15px; font-weight: 750; color: #dc2626; margin-bottom: 6px;">Họ và tên "..." bạn vừa tạo</div>
-        <div style="font-size: 20px; font-weight: 800; color: #dc2626; margin-bottom: 8px;">BỊ TRÙNG VỚI</div>
-        <div id="dup-warning-patient-info" style="font-size: 13.5px; font-weight: 700; color: #dc2626; margin-bottom: 6px;">BN: PHẠM VĂN V | 1976 | Nam</div>
-        <div id="dup-warning-meta" style="font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 16px;">Mã hồ sơ: 26-864206 &nbsp;&nbsp; Giường G.1</div>
-        <div id="dup-warning-question" style="font-size: 12.5px; color: #0f172a; font-weight: 650; margin-bottom: 20px;">Bạn có muốn tiếp tục tạo hồ sơ mới với thông tin này không</div>
-        <div class="grid-2" style="gap: 12px;">
-          <button onclick="confirmDuplicatePatient(false)" style="background: #dc2626; color: #ffffff; font-weight: 750; border: none; border-radius: 10px; padding: 10px; font-size: 13px; cursor: pointer; box-shadow: 0 3px 10px rgba(220,38,38,0.3);">KHÔNG</button>
-          <button onclick="confirmDuplicatePatient(true)" style="background: #16a34a; color: #ffffff; font-weight: 750; border: none; border-radius: 10px; padding: 10px; font-size: 13px; cursor: pointer; box-shadow: 0 3px 10px rgba(22,163,74,0.3);">CÓ</button>
+      <div class="modal-content" style="max-width: 400px; text-align: center; background: #e0f2fe; border: 2px solid #0284c7; padding: 24px 20px; border-radius: 16px;">
+        <div id="dup-msg-header" style="font-size: 14px; font-weight: 700; color: #dc2626; margin-bottom: 4px;">Họ và tên "..." bạn vừa tạo</div>
+        <div style="font-size: 18px; font-weight: 800; color: #dc2626; margin-bottom: 8px; text-transform: uppercase;">BỊ TRÙNG VỚI</div>
+        <div id="dup-msg-patient" style="font-size: 14px; font-weight: 700; color: #dc2626; margin-bottom: 4px;">BN: ... | 1976 | Nam</div>
+        <div id="dup-msg-info" style="font-size: 14px; font-weight: 700; color: #dc2626; margin-bottom: 16px;">Mã hồ sơ: ... Giường G.x</div>
+        <div id="dup-msg-question" style="font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 20px;">Bạn có muốn tiếp tục tạo hồ sơ mới với "..." này không</div>
+        <input type="hidden" id="dup-step-index" value="0" />
+        <input type="hidden" id="dup-conflicts-json" value="" />
+        <div class="grid-2" style="gap: 16px;">
+          <button onclick="handleDuplicateChoice(true)" style="background: #16a34a; color: #ffffff; font-weight: 750; border: none; border-radius: 8px; padding: 12px; font-size: 14px; cursor: pointer; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">CÓ</button>
+          <button onclick="handleDuplicateChoice(false)" style="background: #dc2626; color: #ffffff; font-weight: 750; border: none; border-radius: 8px; padding: 12px; font-size: 14px; cursor: pointer; box-shadow: 0 4px 10px rgba(220,38,38,0.3);">KHÔNG</button>
         </div>
       </div>
     </div>
@@ -1541,7 +1543,7 @@
         }
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
-          headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option><option value="turn-overdue"' + (bulkTurnSortMode==='turn-overdue'?' selected':'') + '>Đã tới lúc xoay trở</option><option value="turn-normal"' + (bulkTurnSortMode==='turn-normal'?' selected':'') + '>Chưa tới lúc xoay trở</option></select>';
+          headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option><option value="overdue"' + (bulkTurnSortMode==='overdue'?' selected':'') + '>Đã tới lúc xoay trở</option><option value="normal"' + (bulkTurnSortMode==='normal'?' selected':'') + '>Chưa tới lúc xoay trở</option></select>';
         }
         renderBulkTurnList();
       } else {
@@ -1601,19 +1603,16 @@
     }
 
     function onBulkSortChange(val) {
-      if (val === 'turn-overdue') {
+      if (val === 'overdue') {
         bulkTurnFilterStatus = 'overdue';
-        bulkTurnSortMode = 'bed-asc';
-      } else if (val === 'turn-normal') {
+        var titleEl = document.getElementById('page-title');
+        if (titleEl) titleEl.innerText = 'Đã tới lúc xoay trở';
+      } else if (val === 'normal') {
         bulkTurnFilterStatus = 'normal';
-        bulkTurnSortMode = 'bed-asc';
+        var titleEl = document.getElementById('page-title');
+        if (titleEl) titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
       } else {
         bulkTurnSortMode = val;
-      }
-      var titleEl = document.getElementById('page-title');
-      if (titleEl) {
-        if (bulkTurnFilterStatus === 'overdue') titleEl.innerText = 'Đã tới lúc xoay trở';
-        else titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
       }
       renderBulkTurnList();
     }
@@ -1865,11 +1864,28 @@
         list.sort(function(a, b) { return getLastName(a.name).localeCompare(getLastName(b.name), 'vi'); });
       } else if (bulkTurnSortMode === 'bed-desc') {
         list.sort(function(a, b) { return b.bedNum - a.bedNum; });
+      } else if (bulkTurnSortMode === 'overdue') {
+        list = list.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; });
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      } else if (bulkTurnSortMode === 'normal') {
+        list = list.filter(function(p) { return !p.overdueTurn || p.overdueTurn.indexOf('Vừa xoay') > -1; });
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
       } else {
         list.sort(function(a, b) { return a.bedNum - b.bedNum; });
       }
 
-      var html = '';
+      var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">' +
+        '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả</button>' +
+        '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã tới lúc xoay</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Chưa tới lúc</button>' +
+      '</div>';
+
+      if (list.length === 0) {
+        container.innerHTML = filterBarHtml + '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không có người bệnh nào phù hợp.</div>';
+        return;
+      }
+
+      var html = filterBarHtml;
       var currentDateDefault = getNowDateInputValue();
 
       for (var j = 0; j < list.length; j++) {
@@ -1883,7 +1899,7 @@
         var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
 
         var cardStyle = 'margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;';
-        if (bulkTurnFilterStatus === 'all' || bulkTurnFilterStatus === 'normal') {
+        if (bulkTurnFilterStatus !== 'overdue') {
           cardStyle += ' border-top: 1.5px solid ' + boxBorderColor + '; border-bottom: 1.5px solid ' + boxBorderColor + '; border-right: 1.5px solid ' + boxBorderColor + ';';
         }
 
@@ -2547,6 +2563,109 @@
       renderPatients();
     }
 
+    // --- LOGIC DUPLICATE CHECK KHI TẠO HỒ SƠ NGƯỜI BỆNH MỚI ---
+    var pendingNewPatientData = null;
+    var duplicateConflictsList = [];
+    var currentConflictStep = 0;
+
+    function validateAndSaveNewPatient() {
+      var name = document.getElementById('inp-p-name').value.trim();
+      var code = document.getElementById('inp-p-code').value.trim();
+      var dob = document.getElementById('inp-p-dob').value;
+      var bedNum = parseInt(document.getElementById('inp-p-bed-num').value) || 1;
+      var bed = "G." + bedNum;
+      var diag = document.getElementById('inp-p-diag').value.trim() || 'Theo dõi hồi sức ICU';
+      var gender = document.getElementById('inp-p-gender').value;
+
+      if (!name) { alert('Vui lòng nhập họ và tên người bệnh!'); return; }
+
+      var conflicts = [];
+      for (var i = 0; i < patients.length; i++) {
+        var existing = patients[i];
+        if (existing.status !== 'treating') continue;
+
+        if (name && existing.name && existing.name.toUpperCase() === name.toUpperCase()) {
+          conflicts.push({ type: 'name', value: name.toUpperCase(), matchPatient: existing });
+        }
+        if (code && existing.code && existing.code.toUpperCase() === code.toUpperCase()) {
+          conflicts.push({ type: 'code', value: code, matchPatient: existing });
+        }
+        if (bed && existing.bed && existing.bed.toUpperCase() === bed.toUpperCase()) {
+          conflicts.push({ type: 'bed', value: bed, matchPatient: existing });
+        }
+      }
+
+      pendingNewPatientData = {
+        id: bed, code: code || ('26-' + Math.floor(100000 + Math.random() * 900000)), name: name, bed: bed, bedNum: bedNum, age: dob ? (2026 - new Date(dob).getFullYear()) : 50, gender: gender, dob: dob || "1976-01-01", diag: diag, stayDays: 1, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Vừa nhận bệnh", notes: "", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+      };
+
+      if (conflicts.length > 0) {
+        duplicateConflictsList = conflicts;
+        currentConflictStep = 0;
+        showNextDuplicateModalStep();
+      } else {
+        commitNewPatientCreation(pendingNewPatientData);
+      }
+    }
+
+    function showNextDuplicateModalStep() {
+      if (currentConflictStep >= duplicateConflictsList.length) {
+        document.getElementById('duplicate-warning-modal').style.display = 'none';
+        commitNewPatientCreation(pendingNewPatientData);
+        return;
+      }
+
+      var conf = duplicateConflictsList[currentConflictStep];
+      var mp = conf.matchPatient;
+      var birthYr = '';
+      if (mp.dob) {
+        var d = new Date(mp.dob);
+        birthYr = !isNaN(d.getFullYear()) ? d.getFullYear() : mp.dob.substring(0, 4);
+      }
+      if (!birthYr) birthYr = 2026 - (mp.age || 50);
+
+      var headerText = "";
+      var questionText = "";
+
+      if (conf.type === 'name') {
+        headerText = 'Họ và tên “ ' + conf.value + ' ” bạn vừa tạo';
+        questionText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “họ và tên” này không';
+      } else if (conf.type === 'code') {
+        headerText = 'Mã hồ sơ “ ' + conf.value + ' ” bạn vừa tạo';
+        questionText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “Mã hồ sơ” này không';
+      } else if (conf.type === 'bed') {
+        headerText = 'Giường “ ' + conf.value + ' ” bạn vừa nhập';
+        questionText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “giường” này không';
+      }
+
+      document.getElementById('dup-msg-header').innerText = headerText;
+      document.getElementById('dup-msg-patient').innerText = 'BN: ' + mp.name.toUpperCase() + ' | ' + birthYr + ' | ' + (mp.gender || 'Nam');
+      document.getElementById('dup-msg-info').innerText = 'Mã hồ sơ: ' + mp.code + '   Giường ' + mp.bed;
+      document.getElementById('dup-msg-question').innerText = questionText;
+
+      document.getElementById('duplicate-warning-modal').style.display = 'flex';
+    }
+
+    function handleDuplicateChoice(isYes) {
+      if (!isYes) {
+        document.getElementById('duplicate-warning-modal').style.display = 'none';
+        closeNewPatientModal();
+        showToast('Đã hủy tạo hồ sơ mới');
+      } else {
+        currentConflictStep++;
+        showNextDuplicateModalStep();
+      }
+    }
+
+    function commitNewPatientCreation(pData) {
+      patients.unshift(pData);
+      closeNewPatientModal();
+      showToast('Đã nhận bệnh ' + pData.name.toUpperCase() + ' vào giường ' + pData.bed);
+      updateDynamicDashboardCounts();
+      openDetailById(pData.id, 'overview');
+    }
+    // -------------------------------------------------------------
+
     function openNewPatientModal() {
       document.getElementById('inp-p-name').value = "";
       document.getElementById('inp-p-code').value = "";
@@ -2558,126 +2677,6 @@
 
     function closeNewPatientModal() {
       document.getElementById('new-patient-modal').style.display = 'none';
-    }
-
-    var pendingNewPatientData = null;
-
-    function validateAndSaveNewPatient() {
-      var name = document.getElementById('inp-p-name').value.trim();
-      var code = document.getElementById('inp-p-code').value.trim();
-      var bedNum = parseInt(document.getElementById('inp-p-bed-num').value) || 0;
-      var bed = "G." + bedNum;
-
-      if (!name) { alert('Vui lòng nhập họ và tên người bệnh!'); return; }
-
-      var duplicateMatch = null;
-      var duplicateType = "";
-      for (var i = 0; i < patients.length; i++) {
-        var existing = patients[i];
-        if (existing.status === 'treating') {
-          if (name && existing.name.toUpperCase() === name.toUpperCase()) {
-            duplicateMatch = existing;
-            duplicateType = "họ và tên";
-            break;
-          }
-          if (code && existing.code.toLowerCase() === code.toLowerCase()) {
-            duplicateMatch = existing;
-            duplicateType = "mã hồ sơ";
-            break;
-          }
-          if (bedNum > 0 && existing.bed.toLowerCase() === bed.toLowerCase()) {
-            duplicateMatch = existing;
-            duplicateType = "giường";
-            break;
-          }
-        }
-      }
-
-      var dob = document.getElementById('inp-p-dob').value;
-      var gender = document.getElementById('inp-p-gender').value;
-      var diag = document.getElementById('inp-p-diag').value.trim() || 'Theo dõi hồi sức ICU';
-      var calculatedAge = dob ? (2026 - new Date(dob).getFullYear()) : 50;
-
-      pendingNewPatientData = {
-        id: bedNum > 0 ? bed : ('G.' + Math.floor(10 + Math.random() * 90)),
-        code: code || ('26-' + Math.floor(100000 + Math.random() * 900000)),
-        name: name,
-        bed: bedNum > 0 ? bed : 'G.1',
-        bedNum: bedNum > 0 ? bedNum : 1,
-        age: calculatedAge,
-        gender: gender,
-        dob: dob || "1976-01-01",
-        diag: diag,
-        stayDays: 1,
-        status: "treating",
-        waterlow: null,
-        admitWaterlow: null,
-        prevWaterlow: null,
-        risk: "Chưa đánh giá",
-        assessDateTime: "Chưa thực hiện",
-        overdueAssess: "Chưa đánh giá lần đầu",
-        latestAssess: "Chưa đánh giá lần đầu",
-        turns24h: 0,
-        wounds: 0,
-        checked: [],
-        overdueTurn: "Vừa nhận bệnh",
-        notes: "",
-        selectedPos: "Ngửa",
-        turnReason: "",
-        checkedSkin: false,
-        dischargeData: null,
-        turnLogs: [],
-        woundList: [],
-        deviceWoundList: [],
-        wizardState: null
-      };
-
-      if (duplicateMatch) {
-        var birthYear = '';
-        if (duplicateMatch.dob) {
-          var d = new Date(duplicateMatch.dob);
-          birthYear = !isNaN(d.getFullYear()) ? d.getFullYear() : duplicateMatch.dob.substring(0, 4);
-        }
-        if (!birthYear) birthYear = 2026 - (duplicateMatch.age || 50);
-
-        var titleMsg = '';
-        if (duplicateType === 'họ và tên') {
-          titleMsg = 'Họ và tên BN “ ' + pendingNewPatientData.name.toUpperCase() + ' ” bạn vừa tạo';
-          document.getElementById('dup-warning-question').innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với "họ và tên" này không';
-        } else if (duplicateType === 'mã hồ sơ') {
-          titleMsg = 'Mã hồ sơ “ ' + pendingNewPatientData.code + ' ” bạn vừa tạo';
-          document.getElementById('dup-warning-question').innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với "Mã hồ sơ" này không';
-        } else {
-          titleMsg = 'Giường “ ' + pendingNewPatientData.bed + ' ” bạn vừa nhập';
-          document.getElementById('dup-warning-question').innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với "giường" này không';
-        }
-
-        document.getElementById('dup-warning-header').innerText = titleMsg;
-        document.getElementById('dup-warning-patient-info').innerText = 'BN: ' + duplicateMatch.name.toUpperCase() + ' | ' + birthYear + ' | ' + duplicateMatch.gender;
-        document.getElementById('dup-warning-meta').innerText = 'Mã hồ sơ: ' + duplicateMatch.code + '   Giường ' + duplicateMatch.bed;
-        document.getElementById('duplicate-warning-modal').style.display = 'flex';
-        return;
-      }
-
-      commitNewPatient(pendingNewPatientData);
-    }
-
-    function confirmDuplicatePatient(isYes) {
-      document.getElementById('duplicate-warning-modal').style.display = 'none';
-      if (isYes && pendingNewPatientData) {
-        commitNewPatient(pendingNewPatientData);
-      } else {
-        closeNewPatientModal();
-      }
-      pendingNewPatientData = null;
-    }
-
-    function commitNewPatient(newP) {
-      patients.unshift(newP);
-      closeNewPatientModal();
-      showToast('Đã nhận bệnh ' + newP.name.toUpperCase() + ' vào giường ' + newP.bed);
-      updateDynamicDashboardCounts();
-      openDetailById(newP.id, 'overview');
     }
 
     function openDetailById(id, subTabName) {
