@@ -307,8 +307,10 @@
           <div id="page-subtitle" class="header-sub">Bệnh viện Bệnh Nhiệt đới</div>
         </div>
       </div>
-      <div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;">
-        <svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <div id="header-right-action" style="display: flex; align-items: center;">
+        <div id="header-sun-icon" style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;">
+          <svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
       </div>
     </header>
 
@@ -499,7 +501,7 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG "ĐÃ TỚI LÚC XOAY TRỞ" (Độc lập, không chuyển hướng, đồng bộ hoàn toàn với mục Xoay trở) -->
+      <!-- TAB 3: TRANG "NB ĐÃ TỚI LÚC XOAY TRỞ" (Độc lập, tiêu đề canh trái, góc phải có bộ lọc sắp xếp) -->
       <div id="tab-bulk-turn" style="display: none;">
         <div id="bulk-turn-container"></div>
       </div>
@@ -1348,6 +1350,7 @@
 
     var patientSortMode = "bed-asc";
     var taskSortMode = "bed-asc";
+    var bulkTurnSortMode = "bed-asc";
 
     var currentViewMode = "card";
     var taskPatientStatus = "treating";
@@ -1499,6 +1502,7 @@
       var titleEl = document.getElementById('page-title');
       var subEl = document.getElementById('page-subtitle');
       var backBtn = document.getElementById('back-btn-box');
+      var headerRightAction = document.getElementById('header-right-action');
 
       updateDynamicDashboardCounts();
 
@@ -1506,19 +1510,28 @@
         if (backBtn) backBtn.style.display = 'block';
         if (titleEl) titleEl.innerHTML = getPatientFormattedHeader(currentPatient);
         if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
+        if (headerRightAction) {
+          headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
+        }
         renderDetail();
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = 'Xoay trở buồng bệnh';
-        if (subEl) { subEl.innerText = '12:44 · 27/09/2026'; subEl.style.color = '#64748b'; }
+        if (titleEl) titleEl.innerText = 'NB đã tới lúc xoay trở';
+        if (subEl) { subEl.innerText = ''; subEl.style.display = 'none'; }
+        if (headerRightAction) {
+          headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
+        }
         renderBulkTurnList();
       } else {
         if (backBtn) {
           backBtn.style.display = (tabName === 'home') ? 'none' : 'block';
         }
-        if (subEl) subEl.style.color = '#64748b';
+        if (subEl) { subEl.style.display = 'block'; subEl.style.color = '#64748b'; }
+        if (headerRightAction) {
+          headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
+        }
         var treatingNum = patients.filter(function(p){ return p.status==='treating'; }).length;
-        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
+        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) subEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
         if (tabName === 'patients') { if (titleEl) titleEl.innerText = 'Người bệnh'; if (subEl) titleEl.innerText = treatingNum + ' đang điều trị'; renderPatients(); }
         if (tabName === 'tasks') { if (titleEl) titleEl.innerText = 'Cần lưu ý'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; renderTasks(); }
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; }
@@ -1551,6 +1564,11 @@
         isFilteringBedRange = false;
       }
       renderPatients();
+    }
+
+    function onBulkSortChange(val) {
+      bulkTurnSortMode = val;
+      renderBulkTurnList();
     }
 
     function applyBedRangeFilter() {
@@ -1776,7 +1794,20 @@
         }
       }
 
-      list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      if (bulkTurnSortMode === 'waterlow-tiered') {
+        list.sort(function(a, b) {
+          var scoreA = (a.waterlow !== null) ? a.waterlow : -1;
+          var scoreB = (b.waterlow !== null) ? b.waterlow : -1;
+          if (scoreB !== scoreA) return scoreB - scoreA;
+          return (b.age || 0) - (a.age || 0);
+        });
+      } else if (bulkTurnSortMode === 'az') {
+        list.sort(function(a, b) { return getLastName(a.name).localeCompare(getLastName(b.name), 'vi'); });
+      } else if (bulkTurnSortMode === 'bed-desc') {
+        list.sort(function(a, b) { return b.bedNum - a.bedNum; });
+      } else {
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      }
 
       if (list.length === 0) {
         container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Tất cả người bệnh đã được xoay trở đúng hạn.</div>';
