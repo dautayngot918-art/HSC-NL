@@ -551,13 +551,6 @@
           </div>
         </div>
 
-        <div class="grid-4 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">
-          <button id="t-btn-all" onclick="setTaskFilter('all')" style="background: #0284c7; color: #ffffff; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Tất cả</button>
-          <button id="t-btn-turn" onclick="setTaskFilter('turn')" style="background: transparent; color: #64748b; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Xoay trở</button>
-          <button id="t-btn-assess" onclick="setTaskFilter('assess')" style="background: transparent; color: #64748b; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Đánh giá</button>
-          <button id="t-btn-note" onclick="setTaskFilter('note')" style="background: transparent; color: #64748b; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Lưu ý</button>
-        </div>
-
         <div id="tasks-display-container"></div>
       </div>
 
@@ -1539,6 +1532,14 @@
           headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp -> Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao -> Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ- đến)</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm waterlow: cao ->thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A->Z</option></select>';
         }
         renderBulkTurnList();
+      } else if (tabName === 'tasks') {
+        if (backBtn) backBtn.style.display = 'block';
+        if (titleEl) titleEl.innerText = 'Cần lưu ý';
+        if (subEl) { subEl.style.display = 'block'; subEl.style.color = '#64748b'; subEl.innerText = 'Khoa Hồi sức tích cực'; }
+        if (headerRightAction) {
+          headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
+        }
+        renderTasks();
       } else {
         if (backBtn) {
           backBtn.style.display = (tabName === 'home') ? 'none' : 'block';
@@ -1550,7 +1551,6 @@
         var treatingNum = patients.filter(function(p){ return p.status==='treating'; }).length;
         if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
         if (tabName === 'patients') { if (titleEl) titleEl.innerText = 'Người bệnh'; if (subEl) titleEl.innerText = treatingNum + ' đang điều trị'; renderPatients(); }
-        if (tabName === 'tasks') { if (titleEl) titleEl.innerText = 'Cần lưu ý'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; renderTasks(); }
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; }
         if (tabName === 'account') { if (titleEl) titleEl.innerText = 'Tài khoản'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; }
       }
@@ -1858,7 +1858,7 @@
       var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
         '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
         '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">đã tới lúc xoay-' + countOverdue + '</button>' +
-        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc-' + countNormal + '</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTrustFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc xoay-' + countNormal + '</button>' +
       '</div>';
 
       if (list.length === 0) {
@@ -2030,6 +2030,22 @@
     function renderTasks() {
       var container = document.getElementById('tasks-display-container');
       if (!container) return;
+
+      var treatingList = patients.filter(function(p) { return p.status === 'treating'; });
+      var countAll = treatingList.length;
+      var countTurn = treatingList.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
+      var countAssess = treatingList.filter(function(p) { return p.overdueAssess && p.overdueAssess.trim() !== ''; }).length;
+      var countNote = treatingList.filter(function(p) { return p.notes && p.notes.trim() !== ''; }).length;
+
+      var btnAll = document.getElementById('t-btn-all');
+      var btnTurn = document.getElementById('t-btn-turn');
+      var btnAssess = document.getElementById('t-btn-assess');
+      var btnNote = document.getElementById('t-btn-note');
+
+      if (btnAll) btnAll.innerText = 'Tất cả-' + countAll;
+      if (btnTurn) btnTurn.innerText = 'xoay trở-' + countTurn;
+      if (btnAssess) btnAssess.innerText = 'đánh giá-' + countAssess;
+      if (btnNote) btnNote.innerText = 'lưu ý-' + countNote;
 
       var search = document.getElementById('task-search-input').value.toLowerCase().trim();
       var sort = document.getElementById('task-sort-select').value;
@@ -2470,7 +2486,7 @@
         if (activeWoundType === 'device') {
           targetList.push({ deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         } else {
-          targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
+          targetList.push({ location: locName, grade: grade, depth: grade, depth: depth, size: size, origin: origin, desc: desc });
         }
         showToast('Đã thêm tổn thương mới');
       }
