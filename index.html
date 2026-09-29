@@ -551,6 +551,7 @@
           </div>
         </div>
 
+        <div id="tasks-filter-container-sticky" style="position: sticky; top: 53px; z-index: 25; background: #ffffff; padding-bottom: 6px;"></div>
         <div id="tasks-display-container"></div>
       </div>
 
@@ -1533,7 +1534,7 @@
         }
         renderBulkTurnList();
       } else if (tabName === 'tasks') {
-        if (backBtn) backBtn.style.display = 'block';
+        if (backBtn) backBtn.style.display = (tabName === 'home') ? 'none' : 'block';
         if (titleEl) titleEl.innerText = 'Cần lưu ý';
         if (subEl) { subEl.style.display = 'block'; subEl.style.color = '#64748b'; subEl.innerText = 'Khoa Hồi sức tích cực'; }
         if (headerRightAction) {
@@ -1858,7 +1859,7 @@
       var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
         '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
         '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">đã tới lúc xoay-' + countOverdue + '</button>' +
-        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTrustFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc xoay-' + countNormal + '</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc-' + countNormal + '</button>' +
       '</div>';
 
       if (list.length === 0) {
@@ -2029,23 +2030,21 @@
 
     function renderTasks() {
       var container = document.getElementById('tasks-display-container');
-      if (!container) return;
+      var filterStickyContainer = document.getElementById('tasks-filter-container-sticky');
+      if (!container || !filterStickyContainer) return;
 
-      var treatingList = patients.filter(function(p) { return p.status === 'treating'; });
-      var countAll = treatingList.length;
-      var countTurn = treatingList.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
-      var countAssess = treatingList.filter(function(p) { return p.overdueAssess && p.overdueAssess.trim() !== ''; }).length;
-      var countNote = treatingList.filter(function(p) { return p.notes && p.notes.trim() !== ''; }).length;
+      var treatingPatients = patients.filter(function(p) { return p.status === 'treating'; });
+      var countAll = treatingPatients.length;
+      var countTurn = treatingPatients.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
+      var countAssess = treatingPatients.filter(function(p) { return p.overdueAssess && p.overdueAssess.trim() !== ''; }).length;
+      var countNote = treatingPatients.filter(function(p) { return p.notes && p.notes.trim() !== ''; }).length;
 
-      var btnAll = document.getElementById('t-btn-all');
-      var btnTurn = document.getElementById('t-btn-turn');
-      var btnAssess = document.getElementById('t-btn-assess');
-      var btnNote = document.getElementById('t-btn-note');
-
-      if (btnAll) btnAll.innerText = 'Tất cả-' + countAll;
-      if (btnTurn) btnTurn.innerText = 'xoay trở-' + countTurn;
-      if (btnAssess) btnAssess.innerText = 'đánh giá-' + countAssess;
-      if (btnNote) btnNote.innerText = 'lưu ý-' + countNote;
+      filterStickyContainer.innerHTML = '<div class="grid-4 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">' +
+        '<button id="t-btn-all" onclick="setTaskFilter(\'all\')" style="background:' + (currentTaskFilter==='all'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
+        '<button id="t-btn-turn" onclick="setTaskFilter(\'turn\')" style="background:' + (currentTaskFilter==='turn'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='turn'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">xoay trở-' + countTurn + '</button>' +
+        '<button id="t-btn-assess" onclick="setTaskFilter(\'assess\')" style="background:' + (currentTaskFilter==='assess'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='assess'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">đánh giá-' + countAssess + '</button>' +
+        '<button id="t-btn-note" onclick="setTaskFilter(\'note\')" style="background:' + (currentTaskFilter==='note'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='note'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">lưu ý-' + countNote + '</button>' +
+      '</div>';
 
       var search = document.getElementById('task-search-input').value.toLowerCase().trim();
       var sort = document.getElementById('task-sort-select').value;
@@ -2486,7 +2485,7 @@
         if (activeWoundType === 'device') {
           targetList.push({ deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         } else {
-          targetList.push({ location: locName, grade: grade, depth: grade, depth: depth, size: size, origin: origin, desc: desc });
+          targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         }
         showToast('Đã thêm tổn thương mới');
       }
