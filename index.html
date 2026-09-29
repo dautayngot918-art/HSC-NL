@@ -499,6 +499,11 @@
         <div id="patient-display-container"></div>
       </div>
 
+      <!-- TAB 3: TRANG GHI XOAY TRỞ CẢ BUỒNG (Đồng bộ danh sách trực tiếp với mục Xoay trở) -->
+      <div id="tab-bulk-turn" style="display: none;">
+        <div id="bulk-turn-container"></div>
+      </div>
+
       <!-- TAB 4: CẦN LƯU Ý -->
       <div id="tab-tasks" style="display: none;">
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
@@ -1762,28 +1767,19 @@
       var container = document.getElementById('bulk-turn-container');
       if (!container) return;
 
-      var search = document.getElementById('turn-search-input').value.toLowerCase().trim();
-      var sort = document.getElementById('turn-sort-select').value;
-
       var list = [];
       for (var i = 0; i < patients.length; i++) {
         var p = patients[i];
         if (p.status !== 'treating') continue;
-        if (!search || p.name.toLowerCase().indexOf(search) > -1 || p.bed.toLowerCase().indexOf(search) > -1) {
+        if (p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1) {
           list.push(p);
         }
       }
 
-      if (sort === 'az') list.sort(function(a, b) { return getLastName(a.name).localeCompare(getLastName(b.name), 'vi'); });
-      else if (sort === 'bed-desc') list.sort(function(a, b) { return b.bedNum - a.bedNum; });
-      else list.sort(function(a, b) { return a.bedNum - b.bedNum; });
-
-      var needTurnList = list.filter(function(p){ return p.overdueTurn.indexOf('Vừa xoay') === -1; });
-      document.getElementById('will-save-count').innerText = needTurnList.length;
-      document.getElementById('bulk-turn-header-count').innerText = needTurnList.length + ' người bệnh cần xoay · ghi lúc 12:44';
+      list.sort(function(a, b) { return a.bedNum - b.bedNum; });
 
       if (list.length === 0) {
-        container.innerHTML = '<div class="card" style="text-align:center; color:#64748b; font-size:12px;">Tất cả người bệnh đã được xoay trở đúng hạn.</div>';
+        container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Tất cả người bệnh đã được xoay trở đúng hạn.</div>';
         return;
       }
 
@@ -1840,6 +1836,7 @@
               '<span style="font-weight:500; color:#94a3b8;">-</span>' +
               '<input type="date" id="bulkm-d-' + pt.id + '" value="' + currentDateDefault + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
             '</div>' +
+            '<button type="button" onclick="saveBulkTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>' +
         '</div>';
       }
@@ -1863,49 +1860,51 @@
       renderBulkTurnList();
     }
 
-    function saveAllBulkTurn() {
-      var needTurnList = patients.filter(function(p){ return p.status === 'treating' && p.overdueTurn.indexOf('Vừa xoay') === -1; });
-      
-      for (var i = 0; i < needTurnList.length; i++) {
-        var p = needTurnList[i];
-        var hVal = document.getElementById('bulkm-h-' + p.id).value;
-        var dVal = document.getElementById('bulkm-d-' + p.id).value;
-        if (!hVal || hVal.trim() === "" || !dVal || dVal.trim() === "") {
-          document.getElementById('pending-turn-patient-id').value = "BULK_ALL";
-          document.getElementById('time-warning-modal').style.display = 'flex';
-          return;
-        }
+    function saveBulkTurnWithTime(id) {
+      var timeInpVal = document.getElementById('bulkm-h-' + id).value;
+      var dateInpVal = document.getElementById('bulkm-d-' + id).value;
+
+      if (!timeInpVal || timeInpVal.trim() === "" || !dateInpVal || dateInpVal.trim() === "") {
+        document.getElementById('pending-turn-patient-id').value = id;
+        document.getElementById('time-warning-modal').style.display = 'flex';
+        return;
       }
 
-      executeBulkSaveAll(false);
+      executeSaveBulkTurn(id, timeInpVal, dateInpVal);
     }
 
-    function executeBulkSaveAll(useDeviceDefault) {
-      var needTurnList = patients.filter(function(p){ return p.status === 'treating' && p.overdueTurn.indexOf('Vừa xoay') === -1; });
-      var defH = getNowTimeInputValue();
-      var defD = getNowDateInputValue();
+    function confirmPendingTurnTime() {
+      var id = document.getElementById('pending-turn-patient-id').value;
+      document.getElementById('time-warning-modal').style.display = 'none';
+      executeSaveBulkTurn(id, getNowTimeInputValue(), getNowDateInputValue());
+    }
 
-      for (var i = 0; i < needTurnList.length; i++) {
-        var p = needTurnList[i];
-        var hVal = useDeviceDefault ? "" : document.getElementById('bulkm-h-' + p.id).value;
-        var dVal = useDeviceDefault ? "" : document.getElementById('bulkm-d-' + p.id).value;
-        var recordTime = formatTimeDateDisplay(hVal, dVal);
-        var activeTimeOnly = (hVal && hVal.trim() !== "") ? hVal : defH;
+    function cancelPendingTurnTime() {
+      document.getElementById('time-warning-modal').style.display = 'none';
+    }
 
-        p.overdueTurn = "Vừa xoay";
+    function executeSaveBulkTurn(id, timeInpVal, dateInpVal) {
+      var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
+      var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
+
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) {
         var pos = p.selectedPos || "Ngửa";
         var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
+        p.overdueTurn = "Vừa xoay";
         p.lastTurnNote = pos + reasonText + " lúc " + activeTimeOnly;
         p.turns24h = (p.turns24h || 0) + 1;
+
         if (!p.turnLogs) p.turnLogs = [];
-        p.turnLogs.unshift({ time: recordTime, pos: pos + reasonText, skin: p.checkedSkin !== false });
+        p.turnLogs.unshift({ time: recordTimeDisplay, pos: pos + reasonText, skin: p.checkedSkin !== false });
+
+        showToast("Đã lưu cữ xoay giường " + p.bed);
       }
 
-      showToast("Đã lưu xoay trở thành công cho cả buồng!");
       updateDynamicDashboardCounts();
-      showTab('home');
-      renderPatients();
+      renderBulkTurnList();
       renderTasks();
+      renderPatients();
     }
 
     function selectTaskPos(patientId, posName) {
@@ -2425,11 +2424,7 @@
     function confirmPendingTurnTime() {
       var id = document.getElementById('pending-turn-patient-id').value;
       document.getElementById('time-warning-modal').style.display = 'none';
-      if (id === "BULK_ALL") {
-        executeBulkSaveAll(true);
-      } else {
-        executeSaveTaskTurn(id, getNowTimeInputValue(), getNowDateInputValue());
-      }
+      executeSaveTaskTurn(id, getNowTimeInputValue(), getNowDateInputValue());
     }
 
     function cancelPendingTurnTime() {
@@ -2456,35 +2451,8 @@
 
       updateDynamicDashboardCounts();
       renderTasks();
+      renderBulkTurnList();
       renderPatients();
-    }
-
-    function executeBulkSaveAll(useDeviceDefault) {
-      var needTurnList = patients.filter(function(p){ return p.status === 'treating' && p.overdueTurn.indexOf('Vừa xoay') === -1; });
-      var defH = getNowTimeInputValue();
-      var defD = getNowDateInputValue();
-
-      for (var i = 0; i < needTurnList.length; i++) {
-        var p = needTurnList[i];
-        var hVal = useDeviceDefault ? "" : document.getElementById('bulkm-h-' + p.id).value;
-        var dVal = useDeviceDefault ? "" : document.getElementById('bulkm-d-' + p.id).value;
-        var recordTime = formatTimeDateDisplay(hVal, dVal);
-        var activeTimeOnly = (hVal && hVal.trim() !== "") ? hVal : defH;
-
-        p.overdueTurn = "Vừa xoay";
-        var pos = p.selectedPos || "Ngửa";
-        var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
-        p.lastTurnNote = pos + reasonText + " lúc " + activeTimeOnly;
-        p.turns24h = (p.turns24h || 0) + 1;
-        if (!p.turnLogs) p.turnLogs = [];
-        p.turnLogs.unshift({ time: recordTime, pos: pos + reasonText, skin: p.checkedSkin !== false });
-      }
-
-      showToast("Đã lưu xoay trở thành công cho cả buồng!");
-      updateDynamicDashboardCounts();
-      showTab('home');
-      renderPatients();
-      renderTasks();
     }
 
     function openNewPatientModal() {
