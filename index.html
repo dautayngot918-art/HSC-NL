@@ -499,41 +499,6 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG GHI XOAY TRỞ CẢ BUỒNG (Đã tích hợp đồng bộ hiển thị chuẩn như mục Xoay trở ở tab Cần lưu ý) -->
-      <div id="tab-bulk-turn" style="display: none;">
-        <div class="card" style="margin-bottom: 12px; background: #f0f9ff; border: 1.5px solid #bae6fd;">
-          <div class="section-title" style="margin-bottom: 2px;">
-            <span class="section-indicator"></span>
-            <span>Ghi xoay trở cả buồng</span>
-          </div>
-          <div id="bulk-turn-header-count" style="font-size: 11px; color: #64748b; margin-bottom: 8px;">12 người bệnh · ghi lúc 12:44</div>
-          <div style="font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 6px;">
-            Tư thế đã gợi ý sẵn. Chỉ sửa ca nào khác gợi ý, rồi bấm lưu một lần. Lượt ghi mang <strong>đúng giờ bấm nút</strong>.
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-          <input type="text" id="turn-search-input" placeholder="🔍 Tìm theo tên hoặc giường..." oninput="renderBulkTurnList()" />
-          <select id="turn-sort-select" onchange="renderBulkTurnList()" style="width: 140px; font-size: 11px; padding: 6px 8px; font-weight: 600;">
-            <option value="bed-asc">Theo giường: Thấp → Cao</option>
-            <option value="bed-desc">Theo giường: Cao → Thấp</option>
-            <option value="az">Tên A → Z</option>
-          </select>
-        </div>
-
-        <div id="bulk-turn-container"></div>
-
-        <div style="position: sticky; bottom: 85px; z-index: 35; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(2,132,199,0.15); margin-top: 14px;">
-          <div>
-            <span style="font-size: 11px; color: #64748b; font-weight: 650; text-transform: uppercase;">SẼ LƯU</span>
-            <div id="will-save-count" style="font-size: 20px; font-weight: 750; color: #0284c7;">12</div>
-          </div>
-          <button onclick="saveAllBulkTurn()" style="background: #0284c7; color: #ffffff; font-weight: 650; border: none; border-radius: 12px; padding: 10px 22px; font-size: 13px; cursor: pointer;">
-            Lưu cả buồng
-          </button>
-        </div>
-      </div>
-
       <!-- TAB 4: CẦN LƯU Ý -->
       <div id="tab-tasks" style="display: none;">
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
