@@ -1517,10 +1517,12 @@
         renderDetail();
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
-        if (bulkTurnFilterStatus === 'overdue') {
-          if (titleEl) titleEl.innerText = 'Đã tới lúc xoay trở';
-        } else {
-          if (titleEl) titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
+        if (titleEl) {
+          if (bulkTurnFilterStatus === 'overdue') {
+            titleEl.innerText = 'Đã tới lúc xoay trở';
+          } else {
+            titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
+          }
         }
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
@@ -1861,7 +1863,12 @@
         var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
         var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
 
-        html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px; border-top: 1.5px solid ' + boxBorderColor + '; border-bottom: 1.5px solid ' + boxBorderColor + '; border-right: 1.5px solid ' + boxBorderColor + ';">' +
+        var cardStyle = 'margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;';
+        if (bulkTurnFilterStatus === 'all' || bulkTurnFilterStatus === 'normal') {
+          cardStyle += ' border-top: 1.5px solid ' + boxBorderColor + '; border-bottom: 1.5px solid ' + boxBorderColor + '; border-right: 1.5px solid ' + boxBorderColor + ';';
+        }
+
+        html += '<div class="card" style="' + cardStyle + '">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + getRiskColorCode(pt) + ';"></div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
