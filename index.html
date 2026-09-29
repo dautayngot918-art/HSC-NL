@@ -353,7 +353,7 @@
             <div style="font-size: 11px; color: #64748b;">ca chưa đánh giá lại</div>
           </div>
 
-          <div onclick="showTab('bulk-turn')" class="card card-click">
+          <div onclick="openOverdueTurnPage()" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Đã tới lúc xoay trở</span>
               <span style="color: #ea580c;">Xem →</span>
@@ -501,7 +501,7 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG "THEO DÕI TƯ THẾ NB TẠI KHOA" / "ĐÃ TỚI LÚC XOAY TRỞ" -->
+      <!-- TAB 3: TRANG QUẢN LÝ XOAY TRỞ (HIỂN THỊ ĐỘNG THEO CHẾ ĐỘ ĐÃ CHỌN) -->
       <div id="tab-bulk-turn" style="display: none;">
         <div id="bulk-turn-container"></div>
       </div>
@@ -1517,7 +1517,7 @@
         renderDetail();
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = 'Đã tới lúc xoay trở';
+        if (titleEl) titleEl.innerText = bulkTurnFilterStatus === 'all' ? 'Theo dõi tư thế NB tại khoa' : 'Đã tới lúc xoay trở';
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
@@ -1538,6 +1538,11 @@
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; }
         if (tabName === 'account') { if (titleEl) titleEl.innerText = 'Tài khoản'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; }
       }
+    }
+
+    function openOverdueTurnPage() {
+      bulkTurnFilterStatus = 'overdue';
+      showTab('bulk-turn');
     }
 
     function openAllPatientsTurnPage() {
@@ -1579,17 +1584,9 @@
 
     function setBulkTurnFilter(filterType) {
       bulkTurnFilterStatus = filterType;
-      var btnAll = document.getElementById('bulk-filter-all');
-      var btnOverdue = document.getElementById('bulk-filter-overdue');
-      var btnNormal = document.getElementById('bulk-filter-normal');
-      
-      if (btnAll && btnOverdue && btnNormal) {
-        btnAll.style.background = (filterType === 'all') ? '#0284c7' : 'transparent';
-        btnAll.style.color = (filterType === 'all') ? '#ffffff' : '#64748b';
-        btnOverdue.style.background = (filterType === 'overdue') ? '#0284c7' : 'transparent';
-        btnOverdue.style.color = (filterType === 'overdue') ? '#ffffff' : '#64748b';
-        btnNormal.style.background = (filterType === 'normal') ? '#0284c7' : 'transparent';
-        btnNormal.style.color = (filterType === 'normal') ? '#ffffff' : '#64748b';
+      var titleEl = document.getElementById('page-title');
+      if (titleEl) {
+        titleEl.innerText = (filterType === 'all') ? 'Theo dõi tư thế NB tại khoa' : 'Đã tới lúc xoay trở';
       }
       renderBulkTurnList();
     }
@@ -1851,15 +1848,16 @@
 
       for (var j = 0; j < list.length; j++) {
         var pt = list[j];
-        var colorCode = getRiskColorCode(pt);
+        var isOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
+        var borderColor = isOverdue ? '#ef4444' : '#22c55e';
         var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
         var curPos = pt.selectedPos || 'Ngửa';
         var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
         var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
         var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
 
-        html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
-          '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
+        html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px; border: 1.5px solid ' + borderColor + ';">' +
+          '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + borderColor + ';"></div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
               '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:750;">' + pt.bed + '</span>' +
@@ -1869,7 +1867,7 @@
           '</div>' +
           '<div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:8px; font-weight:600; padding:2px 0;">' +
             '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link">' + targetBadgeHtml + '</span>' +
-            '<span style="color:#ea580c; text-align:center;">' + pt.overdueTurn + '</span>' +
+            '<span style="color:' + (isOverdue ? '#ea580c' : '#16a34a') + '; text-align:center;">' + pt.overdueTurn + '</span>' +
             '<span style="color:#64748b; text-align:right;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
           '</div>' +
           '<div class="grid-4" style="margin-bottom:6px;">' +
@@ -2471,9 +2469,9 @@
       renderPatients();
     }
 
-    function saveTaskTurnWithTime(id) {
-      var timeInpVal = document.getElementById('turntime-h-' + id).value;
-      var dateInpVal = document.getElementById('turntime-d-' + id).value;
+    function saveBulkTurnWithTime(id) {
+      var timeInpVal = document.getElementById('bulkm-h-' + id).value;
+      var dateInpVal = document.getElementById('bulkm-d-' + id).value;
 
       if (!timeInpVal || timeInpVal.trim() === "" || !dateInpVal || dateInpVal.trim() === "") {
         document.getElementById('pending-turn-patient-id').value = id;
@@ -2481,20 +2479,20 @@
         return;
       }
 
-      executeSaveTaskTurn(id, timeInpVal, dateInpVal);
+      executeSaveBulkTurn(id, timeInpVal, dateInpVal);
     }
 
     function confirmPendingTurnTime() {
       var id = document.getElementById('pending-turn-patient-id').value;
       document.getElementById('time-warning-modal').style.display = 'none';
-      executeSaveTaskTurn(id, getNowTimeInputValue(), getNowDateInputValue());
+      executeSaveBulkTurn(id, getNowTimeInputValue(), getNowDateInputValue());
     }
 
     function cancelPendingTurnTime() {
       document.getElementById('time-warning-modal').style.display = 'none';
     }
 
-    function executeSaveTaskTurn(id, timeInpVal, dateInpVal) {
+    function executeSaveBulkTurn(id, timeInpVal, dateInpVal) {
       var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
       var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
 
@@ -2513,8 +2511,8 @@
       }
 
       updateDynamicDashboardCounts();
-      renderTasks();
       renderBulkTurnList();
+      renderTasks();
       renderPatients();
     }
 
