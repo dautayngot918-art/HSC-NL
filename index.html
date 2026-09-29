@@ -687,7 +687,7 @@
                 <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
-                  <option>M mất cảm giác hoàn toàn</option>
+                  <option>Mất cảm giác hoàn toàn</option>
                 </select>
               </div>
             </div>
@@ -1970,6 +1970,7 @@
       }
 
       var html = '';
+      var currentDateDefault = getNowDateInputValue();
 
       for (var j = 0; j < list.length; j++) {
         var pt = list[j];
@@ -2023,7 +2024,7 @@
               '<label style="font-size:11.5px; font-weight:550; color:#475569; white-space:nowrap;">thời gian:</label>' +
               '<input type="time" id="turntime-h-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
               '<span style="font-weight:500; color:#94a3b8;">-</span>' +
-              '<input type="date" id="turntime-d-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
+              '<input type="date" id="turntime-d-' + pt.id + '" value="' + currentDateDefault + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
             '</div>' +
             '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>';
