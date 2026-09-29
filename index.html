@@ -958,6 +958,23 @@
       </button>
     </nav>
 
+    <!-- Modal Cảnh Báo Thiếu Thời Gian -->
+    <div id="missing-time-modal" class="modal-overlay" style="z-index: 80;">
+      <div class="modal-content" style="max-width: 340px; text-align: center; padding: 24px 20px;">
+        <div style="font-size: 15px; font-weight: 800; color: #b91c1c; line-height: 1.4; margin-bottom: 8px;">
+          BẠN CHƯA NHẬP THỜI GIAN - BẠN CÓ MUỐN LƯU KHÔNG?
+        </div>
+        <div style="font-size: 12px; color: #64748b; line-height: 1.4; margin-bottom: 20px;">
+          Nếu bạn không nhập thời gian sẽ là mặc định thời gian của thiết bị
+        </div>
+        <input type="hidden" id="pending-save-patient-id" value="" />
+        <div class="grid-2">
+          <button onclick="closeMissingTimeModal()" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-weight: 700; border-radius: 10px; padding: 10px; font-size: 12px; cursor: pointer;">KHÔNG LƯU</button>
+          <button onclick="confirmSaveMissingTime()" class="btn-blue" style="font-weight: 750; border-radius: 10px; padding: 10px; font-size: 12px;">ĐỒNG Ý LƯU</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal Thư mục con: GHI NHẬN TỔN THƯƠNG / LOÉT DO THIẾT BỊ -->
     <div id="add-wound-modal" class="modal-overlay" style="z-index: 70;">
       <div class="modal-content">
@@ -1952,6 +1969,7 @@
         return;
       }
 
+      var defaultDateVal = getNowDateInputValue();
       var html = '';
 
       for (var j = 0; j < list.length; j++) {
@@ -2004,11 +2022,11 @@
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
               '<label style="font-size:11.5px; font-weight:550; color:#475569; white-space:nowrap;">thời gian:</label>' +
-              '<input type="time" id="turntime-h-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
+              '<input type="time" id="turntime-h-' + pt.id + '" value="" placeholder="--:--" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
               '<span style="font-weight:500; color:#94a3b8;">-</span>' +
-              '<input type="date" id="turntime-d-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
+              '<input type="date" id="turntime-d-' + pt.id + '" value="' + defaultDateVal + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
             '</div>' +
-            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
+            '<button type="button" onclick="checkAndSaveTaskTurn(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>';
         } else {
           html += '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
@@ -2020,6 +2038,52 @@
         html += '</div>';
       }
       container.innerHTML = html;
+    }
+
+    function checkAndSaveTaskTurn(id) {
+      var timeInp = document.getElementById('turntime-h-' + id);
+      if (!timeInp || !timeInp.value || timeInp.value.trim() === "") {
+        document.getElementById('pending-save-patient-id').value = id;
+        document.getElementById('missing-time-modal').style.display = 'flex';
+        return;
+      }
+      executeSaveTaskTurn(id, timeInp.value);
+    }
+
+    function closeMissingTimeModal() {
+      document.getElementById('missing-time-modal').style.display = 'none';
+    }
+
+    function confirmSaveMissingTime() {
+      var id = document.getElementById('pending-save-patient-id').value;
+      closeMissingTimeModal();
+      var autoTime = getNowTimeInputValue();
+      var timeInp = document.getElementById('turntime-h-' + id);
+      if (timeInp) timeInp.value = autoTime;
+      executeSaveTaskTurn(id, autoTime);
+    }
+
+    function executeSaveTaskTurn(id, timeVal) {
+      var dateInpVal = document.getElementById('turntime-d-' + id).value || getNowDateInputValue();
+      var recordTimeDisplay = formatTimeDateDisplay(timeVal, dateInpVal);
+
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) {
+        var pos = p.selectedPos || "Ngửa";
+        var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
+        p.overdueTurn = "Vừa xoay";
+        p.lastTurnNote = pos + reasonText + " lúc " + timeVal;
+        p.turns24h = (p.turns24h || 0) + 1;
+
+        if (!p.turnLogs) p.turnLogs = [];
+        p.turnLogs.unshift({ time: recordTimeDisplay, pos: pos + reasonText, skin: p.checkedSkin !== false });
+
+        showToast("Đã lưu cữ xoay giường " + p.bed);
+      }
+
+      updateDynamicDashboardCounts();
+      renderTasks();
+      renderPatients();
     }
 
     var activeWoundType = 'skin';
