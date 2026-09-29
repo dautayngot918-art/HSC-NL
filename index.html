@@ -40,17 +40,18 @@
     .header-sub { font-size: 11px; color: #64748b; font-weight: 500; }
     main { padding: 12px 16px; flex: 1; }
 
-    /* Card styling */
+    /* Card styling - Đã tăng độ bóng đổ nhẹ giúp dễ phân biệt giữa các bệnh nhân */
     .card {
       background-color: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 14px;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease, transform 0.1s ease;
     }
-    .card-click { cursor: pointer; transition: 0.15s; }
-    .card-click:active { background-color: #f8fafc; }
+    .card-click { cursor: pointer; }
+    .card-click:active { background-color: #f8fafc; transform: scale(0.99); }
 
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -133,7 +134,7 @@
       background: #ffffff;
       margin-bottom: 12px;
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
     .table-custom {
       width: 100%;
@@ -696,11 +697,10 @@
                 <div id="wound-cards-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
               </div>
 
-              <!-- Khung nút + Thêm vị trí tổn thương nằm ở cuối cùng -->
               <button onclick="openAddWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 700;">+ Thêm vị trí tổn thương</button>
             </div>
 
-            <!-- LOÉT DO THIẾT BỊ Y TẾ (CẬP NHẬT CHUẨN XÁC THEO HÌNH MẪU CỦA BẠN) -->
+            <!-- LOÉT DO THIẾT BỊ Y TẾ -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; margin-top: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <span style="font-size: 12px; font-weight: 750; color: #0284c7; text-transform: uppercase;">Loét do thiết bị y tế</span>
@@ -712,7 +712,6 @@
                 <div id="device-cards-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
               </div>
 
-              <!-- Nút thêm tổn thương do thiết bị nằm ở cuối cùng -->
               <button onclick="openAddDeviceWoundModal()" class="btn-dark" style="background: #ffffff; color: #0284c7; border-color: #0284c7; font-weight: 700;">+ Thêm tổn thương do thiết bị</button>
             </div>
           </div>
@@ -970,7 +969,7 @@
 
         <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
           
-          <!-- Trường Thiết bị gây tì đè (Chỉ hiện ở mục Loét do thiết bị y tế và nằm TRÊN CÙNG) -->
+          <!-- Trường Thiết bị gây tì đè (Nằm TRÊN CÙNG trong thư mục con loét thiết bị) -->
           <div id="device-selector-box" style="display: none;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Thiết bị gây tì đè</label>
             <select id="device-type-select" onchange="onDeviceTypeChange(this.value)" style="font-size: 12.5px; font-weight: 600; color: #0284c7;">
@@ -994,7 +993,7 @@
             <input type="text" id="device-other-input" placeholder="Nhập tên thiết bị..." style="font-size: 12.5px;" />
           </div>
 
-          <!-- MỤC VỊ TRÍ (Áp dụng cho cả tổn thương da và loét thiết bị y tế theo yêu cầu) -->
+          <!-- MỤC VỊ TRÍ (Nằm ngay dưới Thiết bị gây tì đè) -->
           <div id="skin-location-box" style="display: block;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Vị trí</label>
             <select id="wound-location-select" onchange="onWoundLocationChange(this.value)" style="font-size: 12.5px; font-weight: 600; color: #0284c7;">
@@ -1024,7 +1023,7 @@
               <option value="Mắt cá trái">Mắt cá trái</option>
               <option value="Gót chân phải">Gót chân phải</option>
               <option value="Gót chân trái">Gót chân trái</option>
-              <option value="Khác">Vị trí khác (Nhập tùy chỉnh)</option>
+              <option value="Khác">Vị trí khác (Nhập tùy chỉnh vị trí)</option>
             </select>
           </div>
 
@@ -2132,7 +2131,7 @@
       var depthSel = document.getElementById('wound-depth-select');
 
       if (deviceSelectorBox) deviceSelectorBox.style.display = 'block';
-      if (skinLocationBox) skinLocationBox.style.display = 'block'; // Bổ sung mục Vị trí ngay phía dưới Thiết bị gây tì đè
+      if (skinLocationBox) skinLocationBox.style.display = 'block'; // Bổ sung mục Vị trí ngay dưới Thiết bị gây tì đè
 
       if (editIndex !== undefined && editIndex !== null && !isNaN(editIndex) && editIndex >= 0 && currentPatient.deviceWoundList[editIndex]) {
         if (modalTitle) modalTitle.innerText = "GHI NHẬN LOÉT DO THIẾT BỊ";
