@@ -423,11 +423,11 @@
         <div style="margin-top: 10px;">
           <div class="section-title" style="margin-bottom: 2px;">
             <span class="section-indicator"></span>
-            <span>Xoay trở buồng bệnh</span>
+            <span>Theo dõi tư thế NB tại khoa</span>
           </div>
           <div id="home-turn-subtitle" style="font-size: 12px; color: #64748b; margin-bottom: 8px;">12 người bệnh đã tới lúc xoay</div>
           <button onclick="showTab('bulk-turn')" id="home-turn-button" class="btn-orange">
-            🔄 Ghi xoay trở cả buồng (12 người bệnh)
+            🔄 Tư thế NB tại khoa (<span id="home-turn-btn-count">12</span> người bệnh)
           </button>
         </div>
       </div>
@@ -501,7 +501,7 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG "NB ĐÃ TỚI LÚC XOAY TRỞ" (Độc lập, tiêu đề canh trái, góc phải có bộ lọc sắp xếp) -->
+      <!-- TAB 3: TRANG "THEO DÕI TƯ THẾ NB TẠI KHOA" -->
       <div id="tab-bulk-turn" style="display: none;">
         <div id="bulk-turn-container"></div>
       </div>
@@ -1415,7 +1415,7 @@
       var elTurn = document.getElementById('stat-home-turn');
       var elNote = document.getElementById('stat-home-note');
       var elTurnSub = document.getElementById('home-turn-subtitle');
-      var elTurnBtn = document.getElementById('home-turn-button');
+      var elTurnBtnCount = document.getElementById('home-turn-btn-count');
 
       if (elTreat) elTreat.innerText = treatingNum;
       if (elHigh) elHigh.innerText = highRiskNum + ' ca nguy cơ cao trở lên';
@@ -1423,7 +1423,7 @@
       if (elTurn) elTurn.innerText = needTurnNum;
       if (elNote) elNote.innerText = needNoteNum;
       if (elTurnSub) elTurnSub.innerText = needTurnNum + ' người bệnh đã tới lúc xoay';
-      if (elTurnBtn) elTurnBtn.innerText = '🔄 Ghi xoay trở cả buồng (' + needTurnNum + ' người bệnh)';
+      if (elTurnBtnCount) elTurnBtnCount.innerText = needTurnNum;
 
       var legVeryHigh = document.getElementById('legend-count-veryhigh');
       var legHigh = document.getElementById('legend-count-high');
@@ -1509,7 +1509,7 @@
       if (tabName === 'patient-detail') {
         if (backBtn) backBtn.style.display = 'block';
         if (titleEl) titleEl.innerHTML = getPatientFormattedHeader(currentPatient);
-        if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; }
+        if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; subEl.style.display = 'block'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
         }
@@ -1517,7 +1517,7 @@
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
         if (titleEl) titleEl.innerText = 'NB đã tới lúc xoay trở';
-        if (subEl) { subEl.innerText = ''; subEl.style.display = 'none'; }
+        if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
         }
@@ -1531,7 +1531,7 @@
           headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
         }
         var treatingNum = patients.filter(function(p){ return p.status==='treating'; }).length;
-        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) subEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
+        if (tabName === 'home') { if (titleEl) titleEl.innerText = 'Tổng quan'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; if (backBtn) backBtn.style.display = 'none'; }
         if (tabName === 'patients') { if (titleEl) titleEl.innerText = 'Người bệnh'; if (subEl) titleEl.innerText = treatingNum + ' đang điều trị'; renderPatients(); }
         if (tabName === 'tasks') { if (titleEl) titleEl.innerText = 'Cần lưu ý'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; renderTasks(); }
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; }
