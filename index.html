@@ -687,7 +687,7 @@
                 <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
-                  <option>Mất cảm giác hoàn toàn</option>
+                  <option>M mất cảm giác hoàn toàn</option>
                 </select>
               </div>
             </div>
@@ -959,14 +959,18 @@
     </nav>
 
     <!-- Modal Cảnh Báo Thiếu Thời Gian -->
-    <div id="missing-time-modal" class="modal-overlay" style="z-index: 80;">
-      <div class="modal-content" style="max-width: 380px; text-align: center; padding: 24px 20px;">
-        <div id="missing-time-title" style="font-size: 15px; font-weight: 800; color: #b91c1c; margin-bottom: 8px; line-height: 1.4;">BẠN CHƯA NHẬP THỜI GIAN - BẠN CÓ MUỐN LƯU KHÔNG</div>
-        <div id="missing-time-sub" style="font-size: 12px; color: #475569; line-height: 1.5; margin-bottom: 20px;">Nếu bạn không nhập thời gian sẽ là mặc định thời gian của thiết bị</div>
+    <div id="time-warning-modal" class="modal-overlay" style="z-index: 80;">
+      <div class="modal-content" style="max-width: 360px; text-align: center; padding: 24px 20px;">
+        <div style="font-size: 16px; font-weight: 800; color: #b91c1c; line-height: 1.4; margin-bottom: 8px;">
+          BẠN CHƯA NHẬP THỜI GIAN - BẠN CÓ MUỐN LƯU KHÔNG
+        </div>
+        <div style="font-size: 12px; color: #64748b; line-height: 1.5; margin-bottom: 20px;">
+          Nếu bạn không nhập thời gian sẽ là mặc định thời gian của thiết bị
+        </div>
         <input type="hidden" id="pending-turn-patient-id" value="" />
-        <div class="grid-2">
-          <button onclick="closeMissingTimeModal()" class="btn-dark" style="background: #f1f5f9; color: #334155; font-weight: 650;">KHÔNG LƯU</button>
-          <button onclick="confirmSaveMissingTime()" class="btn-blue" style="font-weight: 700;">ĐỒNG Ý LƯU</button>
+        <div class="grid-2" style="gap: 10px;">
+          <button onclick="cancelPendingTurnTime()" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-weight: 700; border-radius: 10px; padding: 10px; font-size: 12px; cursor: pointer;">KHÔNG LƯU</button>
+          <button onclick="confirmPendingTurnTime()" style="background: #0284c7; color: #ffffff; font-weight: 700; border: none; border-radius: 10px; padding: 10px; font-size: 12px; cursor: pointer;">ĐỒNG Ý LƯU</button>
         </div>
       </div>
     </div>
@@ -2389,26 +2393,27 @@
     function saveTaskTurnWithTime(id) {
       var timeInpVal = document.getElementById('turntime-h-' + id).value;
       var dateInpVal = document.getElementById('turntime-d-' + id).value;
-      
-      if (!timeInpVal || timeInpVal.trim() === "") {
+
+      if (!timeInpVal || timeInpVal.trim() === "" || !dateInpVal || dateInpVal.trim() === "") {
         document.getElementById('pending-turn-patient-id').value = id;
-        document.getElementById('missing-time-modal').style.display = 'flex';
+        document.getElementById('time-warning-modal').style.display = 'flex';
         return;
       }
-      executeTaskTurnSave(id, timeInpVal, dateInpVal);
+
+      executeSaveTaskTurn(id, timeInpVal, dateInpVal);
     }
 
-    function closeMissingTimeModal() {
-      document.getElementById('missing-time-modal').style.display = 'none';
-    }
-
-    function confirmSaveMissingTime() {
+    function confirmPendingTurnTime() {
       var id = document.getElementById('pending-turn-patient-id').value;
-      closeMissingTimeModal();
-      executeTaskTurnSave(id, "", "");
+      document.getElementById('time-warning-modal').style.display = 'none';
+      executeSaveTaskTurn(id, getNowTimeInputValue(), getNowDateInputValue());
     }
 
-    function executeTaskTurnSave(id, timeInpVal, dateInpVal) {
+    function cancelPendingTurnTime() {
+      document.getElementById('time-warning-modal').style.display = 'none';
+    }
+
+    function executeSaveTaskTurn(id, timeInpVal, dateInpVal) {
       var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
       var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
 
