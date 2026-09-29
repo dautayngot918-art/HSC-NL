@@ -1958,6 +1958,8 @@
         var curPos = pt.selectedPos || 'Ngửa';
         var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
         var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
+        
+        var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
 
         html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
           '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
@@ -1981,9 +1983,9 @@
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
             '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
           '</div>' +
-          '<div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:6px; margin-bottom:6px;">' +
-            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (curPos==='Chưa xoay được / Khác'?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
-            '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' +
+          '<div style="display:grid; grid-template-columns:' + (isOtherSelected ? '1fr 1.2fr' : '1fr') + '; gap:6px; margin-bottom:6px;">' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (isOtherSelected?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
+            (isOtherSelected ? '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' : '') +
           '</div>' +
           '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
             '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
