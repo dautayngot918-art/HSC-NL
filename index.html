@@ -1423,7 +1423,7 @@
       if (elTurn) elTurn.innerText = needTurnNum;
       if (elNote) elNote.innerText = needNoteNum;
       if (elTurnSub) elTurnSub.innerText = needTurnNum + ' người bệnh đã tới lúc xoay';
-      if (elTurnBtnCount) elTurnBtnCount.innerText = needTurnNum;
+      if (elTurnBtnCount) elTurnBtnCount.innerText = treatingNum;
 
       var legVeryHigh = document.getElementById('legend-count-veryhigh');
       var legHigh = document.getElementById('legend-count-high');
@@ -1516,7 +1516,7 @@
         renderDetail();
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = 'NB đã tới lúc xoay trở';
+        if (titleEl) titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
@@ -1788,8 +1788,7 @@
       var list = [];
       for (var i = 0; i < patients.length; i++) {
         var p = patients[i];
-        if (p.status !== 'treating') continue;
-        if (p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1) {
+        if (p.status === 'treating') {
           list.push(p);
         }
       }
@@ -1810,7 +1809,7 @@
       }
 
       if (list.length === 0) {
-        container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Tất cả người bệnh đã được xoay trở đúng hạn.</div>';
+        container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không có người bệnh nào đang điều trị.</div>';
         return;
       }
 
