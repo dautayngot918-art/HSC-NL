@@ -351,7 +351,7 @@
             <div style="font-size: 11px; color: #64748b;">ca chưa đánh giá lại</div>
           </div>
 
-          <div onclick="showTabWithTaskFilter('turn')" class="card card-click">
+          <div onclick="showTab('bulk-turn')" class="card card-click">
             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 600;">
               <span>Đã tới lúc xoay trở</span>
               <span style="color: #ea580c;">Xem →</span>
@@ -424,7 +424,7 @@
             <span>Xoay trở buồng bệnh</span>
           </div>
           <div id="home-turn-subtitle" style="font-size: 12px; color: #64748b; margin-bottom: 8px;">12 người bệnh đã tới lúc xoay</div>
-          <button onclick="showTabWithTaskFilter('turn')" id="home-turn-button" class="btn-orange">
+          <button onclick="showTab('bulk-turn')" id="home-turn-button" class="btn-orange">
             🔄 Ghi xoay trở cả buồng (12 người bệnh)
           </button>
         </div>
@@ -499,7 +499,7 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG GHI XOAY TRỞ CẢ BUỒNG (Đồng bộ danh sách trực tiếp với mục Xoay trở) -->
+      <!-- TAB 3: TRANG "ĐÃ TỚI LÚC XOAY TRỞ" (Độc lập, không chuyển hướng, đồng bộ hoàn toàn với mục Xoay trở) -->
       <div id="tab-bulk-turn" style="display: none;">
         <div id="bulk-turn-container"></div>
       </div>
