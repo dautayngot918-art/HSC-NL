@@ -1540,14 +1540,14 @@
           if (bulkTurnFilterStatus === 'overdue') {
             titleEl.innerText = 'Đã tới lúc xoay';
           } else if (bulkTurnFilterStatus === 'normal') {
-            titleEl.innerText = 'Chưa tới lúc xoay';
+            titleEl.innerText = 'chưa tới lúc xoay';
           } else {
             titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
           }
         }
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
-          headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
+          headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp -> Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao -> Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ- đến)</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm waterlow: cao ->thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A->Z</option></select>';
         }
         renderBulkTurnList();
       } else {
@@ -1616,7 +1616,7 @@
       var titleEl = document.getElementById('page-title');
       if (titleEl) {
         if (filterType === 'overdue') titleEl.innerText = 'Đã tới lúc xoay';
-        else if (filterType === 'normal') titleEl.innerText = 'Chưa tới lúc xoay';
+        else if (filterType === 'normal') titleEl.innerText = 'chưa tới lúc xoay';
         else titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
       }
       renderBulkTurnList();
@@ -1863,7 +1863,7 @@
         list.sort(function(a, b) { return a.bedNum - b.bedNum; });
       }
 
-      var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">' +
+      var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
         '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả</button>' +
         '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã tới lúc xoay</button>' +
         '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Chưa tới lúc</button>' +
