@@ -426,7 +426,7 @@
             <span>Theo dõi tư thế NB tại khoa</span>
           </div>
           <div id="home-turn-subtitle" style="font-size: 12px; color: #64748b; margin-bottom: 8px;">12 người bệnh đã tới lúc xoay</div>
-          <button onclick="showTab('bulk-turn')" id="home-turn-button" class="btn-orange">
+          <button onclick="openAllPatientsTurnPage()" id="home-turn-button" class="btn-orange">
             🔄 Tư thế NB tại khoa (<span id="home-turn-btn-count">12</span> người bệnh)
           </button>
         </div>
@@ -501,7 +501,7 @@
         <div id="patient-display-container"></div>
       </div>
 
-      <!-- TAB 3: TRANG "THEO DÕI TƯ THẾ NB TẠI KHOA" -->
+      <!-- TAB 3: TRANG "THEO DÕI TƯ THẾ NB TẠI KHOA" / "ĐÃ TỚI LÚC XOAY TRỞ" -->
       <div id="tab-bulk-turn" style="display: none;">
         <div id="bulk-turn-container"></div>
       </div>
@@ -1334,7 +1334,7 @@
         id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Vừa xoay", lastTurnNote: "Ngh. trái lúc 11:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       }
     ];
 
@@ -1351,6 +1351,7 @@
     var patientSortMode = "bed-asc";
     var taskSortMode = "bed-asc";
     var bulkTurnSortMode = "bed-asc";
+    var bulkTurnFilterStatus = "all";
 
     var currentViewMode = "card";
     var taskPatientStatus = "treating";
@@ -1516,7 +1517,7 @@
         renderDetail();
       } else if (tabName === 'bulk-turn') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = 'Theo dõi tư thế NB tại khoa';
+        if (titleEl) titleEl.innerText = 'Đã tới lúc xoay trở';
         if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<select id="bulk-sort-select" onchange="onBulkSortChange(this.value)" style="font-size: 11px; padding: 6px 10px; border-color: #0284c7; font-weight: 600; width: auto; background: #ffffff;"><option value="bed-asc"' + (bulkTurnSortMode==='bed-asc'?' selected':'') + '>Theo giường: Thấp → Cao</option><option value="bed-desc"' + (bulkTurnSortMode==='bed-desc'?' selected':'') + '>Theo giường: Cao → Thấp</option><option value="bed-range"' + (bulkTurnSortMode==='bed-range'?' selected':'') + '>Theo giường: Lọc (Từ – Đến)...</option><option value="waterlow-tiered"' + (bulkTurnSortMode==='waterlow-tiered'?' selected':'') + '>Điểm Waterlow: Cao → Thấp</option><option value="az"' + (bulkTurnSortMode==='az'?' selected':'') + '>Tên A → Z</option></select>';
@@ -1537,6 +1538,11 @@
         if (tabName === 'handover') { if (titleEl) titleEl.innerText = 'Giao ban ca'; if (subEl) titleEl.innerText = 'Khoa Hồi sức tích cực'; }
         if (tabName === 'account') { if (titleEl) titleEl.innerText = 'Tài khoản'; if (subEl) titleEl.innerText = 'Bệnh viện Bệnh Nhiệt đới'; }
       }
+    }
+
+    function openAllPatientsTurnPage() {
+      bulkTurnFilterStatus = 'all';
+      showTab('bulk-turn');
     }
 
     function goBackFromDetail() {
@@ -1568,6 +1574,23 @@
 
     function onBulkSortChange(val) {
       bulkTurnSortMode = val;
+      renderBulkTurnList();
+    }
+
+    function setBulkTurnFilter(filterType) {
+      bulkTurnFilterStatus = filterType;
+      var btnAll = document.getElementById('bulk-filter-all');
+      var btnOverdue = document.getElementById('bulk-filter-overdue');
+      var btnNormal = document.getElementById('bulk-filter-normal');
+      
+      if (btnAll && btnOverdue && btnNormal) {
+        btnAll.style.background = (filterType === 'all') ? '#0284c7' : 'transparent';
+        btnAll.style.color = (filterType === 'all') ? '#ffffff' : '#64748b';
+        btnOverdue.style.background = (filterType === 'overdue') ? '#0284c7' : 'transparent';
+        btnOverdue.style.color = (filterType === 'overdue') ? '#ffffff' : '#64748b';
+        btnNormal.style.background = (filterType === 'normal') ? '#0284c7' : 'transparent';
+        btnNormal.style.color = (filterType === 'normal') ? '#ffffff' : '#64748b';
+      }
       renderBulkTurnList();
     }
 
@@ -1788,9 +1811,13 @@
       var list = [];
       for (var i = 0; i < patients.length; i++) {
         var p = patients[i];
-        if (p.status === 'treating') {
-          list.push(p);
-        }
+        if (p.status !== 'treating') continue;
+        
+        var isOverdue = p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1;
+        if (bulkTurnFilterStatus === 'overdue' && !isOverdue) continue;
+        if (bulkTurnFilterStatus === 'normal' && isOverdue) continue;
+
+        list.push(p);
       }
 
       if (bulkTurnSortMode === 'waterlow-tiered') {
@@ -1808,12 +1835,18 @@
         list.sort(function(a, b) { return a.bedNum - b.bedNum; });
       }
 
+      var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">' +
+        '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả</button>' +
+        '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã tới lúc xoay</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Chưa tới lúc</button>' +
+      '</div>';
+
       if (list.length === 0) {
-        container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không có người bệnh nào đang điều trị.</div>';
+        container.innerHTML = filterBarHtml + '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không có người bệnh nào phù hợp.</div>';
         return;
       }
 
-      var html = '';
+      var html = filterBarHtml;
       var currentDateDefault = getNowDateInputValue();
 
       for (var j = 0; j < list.length; j++) {
