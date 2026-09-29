@@ -1290,15 +1290,21 @@
     }
 
     function formatTimeDateDisplay(timeVal, dateVal) {
-      var h = timeVal || "20 : 30";
-      var dParts = dateVal ? dateVal.split('-') : [];
-      var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '22/08/2026';
+      var now = new Date();
+      var defaultTime = String(now.getHours()).padStart(2, '0') + ' : ' + String(now.getMinutes()).padStart(2, '0');
+      var defaultDate = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+
+      var h = (timeVal && timeVal.trim() !== "") ? timeVal : defaultTime;
+      var dVal = (dateVal && dateVal.trim() !== "") ? dateVal : defaultDate;
+      var dParts = dVal.split('-');
+      var dStr = (dParts.length === 3) ? (dParts[2] + '/' + dParts[1] + '/' + dParts[0]) : '29/09/2026';
+      
       return 'thời gian: ' + h + ' - ' + dStr;
     }
 
     var patients = [
       { 
-        id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
+        id: "G.2", code: "26-040233", name: "Phan Đức Thắng", bed: "G.2", bedNum: 2, age: 60, gender: "Nam", dob: "1966-03-22", diag: "Nhiễm trùng huyết", stayDays: 10, status: "treating", waterlow: 20, admitWaterlow: 20, prevWaterlow: 20, risk: "Nguy cơ rất cao", assessDateTime: "15:20 · 24/09/2026", overdueAssess: "2 ngày 5 giờ trước", latestAssess: "2 ngày 5 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. trái lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: false, notes: "1 lưu ý chưa ghi kết quả", dischargeData: null, turnLogs: [],
         woundList: [
           { location: "Vành tai trái", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "5 × 2 cm", origin: "Phát sinh tại khoa", depth: "Da còn nguyên vẹn", desc: "Do dây oxy gọng mũi tì lâu" }
         ],
@@ -1306,37 +1312,37 @@
         wizardState: null
       },
       { 
-        id: "G.3", code: "26-040234", name: "Phan Thu Linh", bed: "G.3", bedNum: 3, age: 49, gender: "Nữ", dob: "1977-06-05", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. phải", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.3", code: "26-040234", name: "Phan Thu Linh", bed: "G.3", bedNum: 3, age: 49, gender: "Nữ", dob: "1977-06-05", diag: "Viêm cơ tim cấp", stayDays: 17, status: "treating", waterlow: 23, admitWaterlow: 23, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "10:15 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5], overdueTurn: "Quá hạn 3 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 19:00", selectedPos: "Ngh. phải", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [],
+        id: "G.1", code: "26-040232", name: "Lê Tấn Khoa", bed: "G.1", bedNum: 1, age: 63, gender: "Nam", dob: "1963-02-02", diag: "Cúm A biến chứng", stayDays: 14, status: "treating", waterlow: 19, admitWaterlow: 19, prevWaterlow: 19, risk: "Nguy cơ cao", assessDateTime: "09:00 · 22/09/2026", overdueAssess: "4 ngày 20 giờ trước", latestAssess: "4 ngày 20 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 4 ngày 20 giờ", lastTurnNote: "Ngửa lúc 16:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [],
         woundList: [{ location: "Xương cùng", grade: "Độ I — hồng ban không mất màu khi ấn, da còn nguyên vẹn", size: "2 × 2 cm", origin: "Phát sinh tại khoa", depth: "Da còn nguyên vẹn", desc: "Hồng ban không mất màu" }],
         deviceWoundList: [],
         wizardState: null
       },
       { 
-        id: "G.4", code: "26-040235", name: "Phạm Hữu Hùng", bed: "G.4", bedNum: 4, age: 65, gender: "Nam", dob: "1961-11-11", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: true, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.4", code: "26-040235", name: "Phạm Hữu Hùng", bed: "G.4", bedNum: 4, age: 65, gender: "Nam", dob: "1961-11-11", diag: "Suy hô hấp ARDS", stayDays: 8, status: "treating", waterlow: 19, admitWaterlow: 15, prevWaterlow: 17, risk: "Nguy cơ cao", assessDateTime: "08:45 · 22/09/2026", overdueAssess: "4 ngày 13 giờ trước", latestAssess: "4 ngày 13 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngửa lúc 18:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: false, notes: "1 lưu ý chưa tiếp nhận", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.11", code: "26-040242", name: "Đỗ Ngọc Hoa", bed: "G.11", bedNum: 11, age: 71, gender: "Nữ", dob: "1955-04-12", diag: "Uốn ván nặng", stayDays: 13, status: "treating", waterlow: 31, admitWaterlow: 20, prevWaterlow: 29, risk: "Nguy cơ rất cao", assessDateTime: "11:20 · 23/09/2026", overdueAssess: "3 ngày 14 giờ trước", latestAssess: "3 ngày 14 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "G.10", bedNum: 10, age: 42, gender: "Nam", dob: "1984-09-14", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.10", code: "26-040241", name: "Nguyễn Thanh Khoa", bed: "G.10", bedNum: 10, age: 42, gender: "Nam", dob: "1984-09-14", diag: "Sốt xuất huyết nặng", stayDays: 16, status: "treating", waterlow: 29, admitWaterlow: 18, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "16:00 · 23/09/2026", overdueAssess: "3 ngày 12 giờ trước", latestAssess: "3 ngày 12 giờ trước", turns24h: 0, wounds: 1, checked: [0,1,2,3], overdueTurn: "Quá hạn 3 ngày 12 giờ", lastTurnNote: "Ngh. trái lúc 21:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.7", code: "26-040238", name: "Phan Hữu Hùng", bed: "G.7", bedNum: 7, age: 78, gender: "Nam", dob: "1948-01-20", diag: "Sốc nhiễm trùng", stayDays: 11, status: "treating", waterlow: 25, admitWaterlow: 19, prevWaterlow: 22, risk: "Nguy cơ rất cao", assessDateTime: "14:30 · 23/09/2026", overdueAssess: "3 ngày 13 giờ trước", latestAssess: "3 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2,3,4], overdueTurn: "Quá hạn 2 ngày 14 giờ", lastTurnNote: "Ngh. trái lúc 22:00", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 27/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.15", code: "26-066069", name: "Phan Tú Linh", bed: "G.15", bedNum: 15, age: 50, gender: "Nam", dob: "1976-03-12", diag: "Viêm phổi nặng, sốc nhiễm khuẩn", stayDays: 5, status: "treating", waterlow: 24, admitWaterlow: 28, prevWaterlow: 26, risk: "Nguy cơ rất cao", assessDateTime: "09:30 · 27/09/2026", overdueAssess: "Quá hạn 3 ngày 15 giờ", latestAssess: "Hôm nay 09:30", turns24h: 2, wounds: 1, checked: [0,1,2,3,4,5,6,7,8,9], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.8", code: "26-040239", name: "Nguyễn Thị Dung", bed: "G.8", bedNum: 8, age: 49, gender: "Nữ", dob: "1976-12-08", diag: "Viêm não", stayDays: 9, status: "treating", waterlow: 23, admitWaterlow: 14, prevWaterlow: 23, risk: "Nguy cơ rất cao", assessDateTime: "11:21 · 22/09/2026", overdueAssess: "3 ngày 16 giờ trước", latestAssess: "3 ngày 16 giờ trước", turns24h: 0, wounds: 0, checked: [0,1], overdueTurn: "Quá hạn 3 ngày 15 giờ", lastTurnNote: "Nửa ngồi lúc 20:00", selectedPos: "Nửa ngồi", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.5", code: "26-040236", name: "Dương Công Cường", bed: "G.5", bedNum: 5, age: 58, gender: "Nam", dob: "1968-08-30", diag: "Sốc nhiễm trùng Gram âm", stayDays: 12, status: "treating", waterlow: 19, admitWaterlow: 25, prevWaterlow: 22, risk: "Nguy cơ cao", assessDateTime: "17:00 · 24/09/2026", overdueAssess: "2 ngày 13 giờ trước", latestAssess: "2 ngày 13 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Ngh. phải lúc 20:00", selectedPos: "Ngh. trái", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
-        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: "G.12", code: "26-040243", name: "Ngô Thanh Chi", bed: "G.12", bedNum: 12, age: 52, gender: "Nữ", dob: "1973-10-19", diag: "Nhiễm khuẩn huyết từ da", stayDays: 10, status: "treating", waterlow: 14, admitWaterlow: 14, prevWaterlow: 14, risk: "Có nguy cơ", assessDateTime: "08:15 · 23/09/2026", overdueAssess: "3 ngày 20 giờ trước", latestAssess: "3 ngày 20 giờ trước", turns24h: 0, wounds: 0, checked: [0,1,2], overdueTurn: "Quá hạn 2 ngày 15 giờ", lastTurnNote: "Ngh. phải lúc 21:10", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       },
       { 
         id: "G.9", code: "26-040240", name: "Nguyễn Minh Nam", bed: "G.9", bedNum: 9, age: 55, gender: "Nam", dob: "1971-07-15", diag: "Viêm màng não mủ", stayDays: 3, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Quá hạn 2 ngày 13 giờ", lastTurnNote: "Chưa xoay", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, notes: "", dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
@@ -1946,8 +1952,6 @@
         return;
       }
 
-      var defaultTimeVal = getNowTimeInputValue();
-      var defaultDateVal = getNowDateInputValue();
       var html = '';
 
       for (var j = 0; j < list.length; j++) {
@@ -2000,9 +2004,9 @@
           '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
             '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
               '<label style="font-size:11.5px; font-weight:550; color:#475569; white-space:nowrap;">thời gian:</label>' +
-              '<input type="time" id="turntime-h-' + pt.id + '" value="' + defaultTimeVal + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
+              '<input type="time" id="turntime-h-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
               '<span style="font-weight:500; color:#94a3b8;">-</span>' +
-              '<input type="date" id="turntime-d-' + pt.id + '" value="' + defaultDateVal + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
+              '<input type="date" id="turntime-d-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
             '</div>' +
             '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>';
@@ -2370,16 +2374,18 @@
     }
 
     function saveTaskTurnWithTime(id) {
-      var timeVal = document.getElementById('turntime-h-' + id).value || "20 : 30";
-      var dateVal = document.getElementById('turntime-d-' + id).value || getNowDateInputValue();
-      var recordTimeDisplay = formatTimeDateDisplay(timeVal, dateVal);
+      var timeInpVal = document.getElementById('turntime-h-' + id).value;
+      var dateInpVal = document.getElementById('turntime-d-' + id).value;
+      
+      var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
+      var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
 
       var p = patients.find(function(x) { return x.id === id; });
       if (p) {
         var pos = p.selectedPos || "Ngửa";
         var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
         p.overdueTurn = "Vừa xoay";
-        p.lastTurnNote = pos + reasonText + " lúc " + timeVal;
+        p.lastTurnNote = pos + reasonText + " lúc " + activeTimeOnly;
         p.turns24h = (p.turns24h || 0) + 1;
 
         if (!p.turnLogs) p.turnLogs = [];
@@ -2420,7 +2426,7 @@
       var calculatedAge = dob ? (2026 - new Date(dob).getFullYear()) : 50;
 
       var newP = {
-        id: bed, code: code, name: name, bed: bed, bedNum: bedNum, age: calculatedAge, gender: gender, dob: dob || "1976-01-01", diag: diag, stayDays: 1, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Vừa nhận bệnh", notes: "", selectedPos: "Ngửa", turnReason: "", checkedSkin: true, dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
+        id: bed, code: code, name: name, bed: bed, bedNum: bedNum, age: calculatedAge, gender: gender, dob: dob || "1976-01-01", diag: diag, stayDays: 1, status: "treating", waterlow: null, admitWaterlow: null, prevWaterlow: null, risk: "Chưa đánh giá", assessDateTime: "Chưa thực hiện", overdueAssess: "Chưa đánh giá lần đầu", latestAssess: "Chưa đánh giá lần đầu", turns24h: 0, wounds: 0, checked: [], overdueTurn: "Vừa nhận bệnh", notes: "", selectedPos: "Ngửa", turnReason: "", checkedSkin: false, dischargeData: null, turnLogs: [], woundList: [], deviceWoundList: [], wizardState: null
       };
 
       patients.unshift(newP);
@@ -2679,7 +2685,7 @@
     }
 
     function handleDetailTurnAction() {
-      var tVal = document.getElementById('dt-single-turntime-h').value || "20 : 30";
+      var tVal = document.getElementById('dt-single-turntime-h').value || getNowTimeInputValue();
       var dVal = document.getElementById('dt-single-turntime-d').value || getNowDateInputValue();
       var recordTime = formatTimeDateDisplay(tVal, dVal);
       var pos = currentPatient.selectedPos || "Ngửa";
