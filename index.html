@@ -421,17 +421,6 @@
             </div>
           </div>
         </div>
-
-        <div style="margin-top: 10px;">
-          <div class="section-title" style="margin-bottom: 2px;">
-            <span class="section-indicator"></span>
-            <span>Theo dõi tư thế NB tại khoa</span>
-          </div>
-          <div id="home-turn-subtitle" style="font-size: 12px; color: #64748b; margin-bottom: 8px;">12 người bệnh đã tới lúc xoay</div>
-          <button onclick="openAllPatientsTurnPage()" id="home-turn-button" class="btn-orange">
-            🔄 Tư thế NB tại khoa (<span id="home-turn-btn-count">12</span> người bệnh)
-          </button>
-        </div>
       </div>
 
       <!-- TAB 2: NGƯỜI BỆNH -->
@@ -598,7 +587,7 @@
 
           <div id="dt-care-box" class="card" style="background: #fffbeb; border: 1.5px solid #fde68a;">
             <div class="section-title" style="color: #b45309; margin-bottom: 6px;">
-              <span>⚠️ CẦN LÀM TRONG CA</span>
+              <span>⚠️️ CẦN LÀM TRONG CA</span>
             </div>
             <div style="font-size: 12px; color: #78350f; line-height: 1.6; margin-bottom: 10px;">
               <div id="dt-assess-overdue">• Quá hạn đánh giá 3 ngày 16 giờ</div>
@@ -661,7 +650,7 @@
                 <select id="dt-wound-sens" onchange="currentPatient.wizardState.skinSens=this.value" style="background:#ffffff; color:#334155; border-color:#cbd5e1;">
                   <option>Bình thường</option>
                   <option>Giảm cảm giác</option>
-                  <option>Mất cảm giác hoàn toàn</option>
+                  <option>M mất cảm giác hoàn toàn</option>
                 </select>
               </div>
             </div>
@@ -1866,7 +1855,7 @@
       var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
         '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả</button>' +
         '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Đã tới lúc xoay</button>' +
-        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Chưa tới lúc</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc xoay</button>' +
       '</div>';
 
       if (list.length === 0) {
