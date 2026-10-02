@@ -557,11 +557,12 @@
 
       <!-- TAB 5: CHI TIẾT NGƯỜI BỆNH -->
       <div id="tab-patient-detail" style="display: none;">
-        <div class="card" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; margin-bottom: 10px;">
-          <div style="font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 2px;" id="dt-line1">LÊ TẤN KHOA | 1963 | Nam</div>
-          <div style="font-size: 12px; color: #64748b; margin-bottom: 2px;" id="dt-line2">26-040232 - Giường: G.1</div>
-          <div style="font-size: 12px; color: #334155; margin-bottom: 2px;" id="dt-line3">Chẩn đoán: Cúm A biến chứng</div>
-          <div style="font-size: 11.5px; color: #0284c7; font-weight: 600;" id="dt-line4">Nhập khoa: 17:21 - 18/09/2026 - Ngày điều trị thứ: 9</div>
+        <!-- Phần thông tin đầu trang mới theo yêu cầu -->
+        <div class="card" style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 14px; margin-bottom: 12px;">
+          <div id="dt-info-line1" style="font-size: 14px; font-weight: 750; color: #0f172a; margin-bottom: 3px;">LÊ TẤN KHOA | 1963 | Nam</div>
+          <div id="dt-info-line2" style="font-size: 12px; color: #0284c7; font-weight: 700; margin-bottom: 3px;">26-040232 - Giường: G.1</div>
+          <div id="dt-info-line3" style="font-size: 11.5px; color: #334155; margin-bottom: 3px;">Chẩn đoán: Cúm A biến chứng</div>
+          <div id="dt-info-line4" style="font-size: 11px; color: #64748b;">Nhập khoa: 17:21 - 18/09/2026 - Ngày điều trị thứ: 9</div>
         </div>
 
         <div class="grid-4" style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 4px; margin-bottom: 12px;">
@@ -1507,8 +1508,8 @@
 
       if (tabName === 'patient-detail') {
         if (backBtn) backBtn.style.display = 'block';
-        if (titleEl) titleEl.innerText = 'Chi tiết người bệnh';
-        if (subEl) { subEl.innerText = currentPatient.code + ' · Giường ' + currentPatient.bed; subEl.style.color = '#0284c7'; subEl.style.display = 'block'; }
+        if (titleEl) titleEl.innerText = '';
+        if (subEl) { subEl.style.display = 'none'; }
         if (headerRightAction) {
           headerRightAction.innerHTML = '<div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px;"><svg width="18" height="18" fill="none" stroke="#0284c7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>';
         }
@@ -2143,7 +2144,7 @@
               '<span style="font-weight:500; color:#94a3b8;">-</span>' +
               '<input type="date" id="turntime-d-' + pt.id + '" value="' + currentDateDefault + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
             '</div>' +
-            '<button type="button" onclick="saveTaskTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
+            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
           '</div>';
         } else {
           html += '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
@@ -2508,7 +2509,7 @@
       renderPatients();
     }
 
-    function saveTaskTaskTurnWithTime(id) {
+    function saveTaskTurnWithTime(id) {
       var timeInpVal = document.getElementById('turntime-h-' + id).value;
       var dateInpVal = document.getElementById('turntime-d-' + id).value;
 
@@ -2769,17 +2770,21 @@
       var birthYear = '';
       if (p.dob) {
         var d = new Date(p.dob);
-        birthYear = !isNaN(d.getFullYear()) ? d.getFullYear() : p.dob.substring(0, 4);
+        if (!isNaN(d.getFullYear())) {
+          birthYear = d.getFullYear();
+        } else {
+          birthYear = p.dob.substring(0, 4);
+        }
       }
-      if (!birthYear) birthYear = 2026 - (p.age || 50);
+      if (!birthYear) {
+        birthYear = 2026 - (p.age || 50);
+      }
+      var gender = p.gender || 'Nam';
 
-      document.getElementById('dt-line1').innerText = (p.name || '').toUpperCase() + ' | ' + birthYear + ' | ' + (p.gender || 'Nam');
-      document.getElementById('dt-line2').innerText = p.code + ' - Giường: ' + p.bed;
-      document.getElementById('dt-line3').innerText = 'Chẩn đoán: ' + (p.diag || 'Theo dõi hồi sức ICU');
-
-      var admitDateStr = p.admitDateStr || '18/09/2026';
-      var admitTimeStr = p.admitTimeStr || '17:21';
-      document.getElementById('dt-line4').innerText = 'Nhập khoa: ' + admitTimeStr + ' - ' + admitDateStr + ' - Ngày điều trị thứ: ' + (p.stayDays || 9);
+      document.getElementById('dt-info-line1').innerText = (p.name || '').toUpperCase() + ' | ' + birthYear + ' | ' + gender;
+      document.getElementById('dt-info-line2').innerText = p.code + ' - Giường: ' + p.bed;
+      document.getElementById('dt-info-line3').innerText = 'Chẩn đoán: ' + (p.diag || 'Đang theo dõi');
+      document.getElementById('dt-info-line4').innerText = 'Nhập khoa: 17:21 - 18/09/2026 - Ngày điều trị thứ: ' + (p.stayDays || 9);
 
       document.getElementById('dt-assess-overdue').innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
       document.getElementById('dt-turn-overdue').innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + targetH + ' giờ';
