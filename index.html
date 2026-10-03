@@ -581,7 +581,7 @@
 
           <div id="dt-care-box" class="card" style="background: #fffbeb; border: 1.5px solid #fde68a;">
             <div class="section-title" style="color: #b45309; margin-bottom: 6px;">
-              <span>⚠️️ CẦN LÀM TRONG CA</span>
+              <span>⚠️ CẦN LÀM TRONG CA</span>
             </div>
             <div style="font-size: 12px; color: #78350f; line-height: 1.6; margin-bottom: 10px;">
               <div id="dt-assess-overdue">• Quá hạn đánh giá 3 ngày 16 giờ</div>
@@ -739,7 +739,7 @@
               </div>
               <span id="dt-trend-change-badge" style="font-size: 12px; font-weight: 750; color: #0284c7;">Không đổi</span>
             </div>
-            <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">6 lượt · đợt điều trị hiện tại[cite: 9]</div>
+            <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">6 lượt · đợt điều trị hiện tại</div>
 
             <div class="grid-2" style="margin-bottom: 12px;">
               <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 10px; text-align: center;">
@@ -767,13 +767,12 @@
                 <line x1="0" y1="20" x2="300" y2="20" stroke="#fca5a5" stroke-dasharray="3,3" />
                 <line x1="0" y1="45" x2="300" y2="45" stroke="#fde68a" stroke-dasharray="3,3" />
                 <line x1="0" y1="70" x2="300" y2="70" stroke="#bbf7d0" stroke-dasharray="3,3" />
-                <polyline points="20,25 70,30 130,28 190,15 250,65 280,62" fill="none" stroke="#0284c7" stroke-width="2.5" />
-                <circle cx="20" cy="25" r="4" fill="#ea580c" />
-                <circle cx="70" cy="30" r="4" fill="#ea580c" />
-                <circle cx="130" cy="28" r="4" fill="#ea580c" />
-                <circle cx="190" cy="15" r="4" fill="#ea580c" />
-                <circle cx="250" cy="65" r="4" fill="#ea580c" />
-                <circle cx="280" cy="62" r="4" fill="#0284c7" />
+                <polyline points="20,25 80,32 140,28 210,12 280,62" fill="none" stroke="#0f766e" stroke-width="2.5" />
+                <circle cx="20" cy="25" r="4" fill="#0f766e" />
+                <circle cx="80" cy="32" r="4" fill="#0f766e" />
+                <circle cx="140" cy="28" r="4" fill="#0f766e" />
+                <circle cx="210" cy="12" r="4" fill="#0f766e" />
+                <circle cx="280" cy="62" r="4" fill="#0f766e" />
               </svg>
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-top: 6px;">
                 <span>13/09</span>
@@ -781,169 +780,165 @@
               </div>
             </div>
 
-            <!-- Lịch sử đánh giá chi tiết theo hình ảnh mẫu -->
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
-              <!-- 19 điểm - 21/09/2026 -->
-              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                  <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">19</span>
-                  <span class="badge-orange">Nguy cơ cao</span>[cite: 9]
-                  <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px;">1 tổn thương</span>[cite: 9]
-                  <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">6 yếu tố hồi sức</span>[cite: 9]
-                </div>
-                <div style="font-size: 11px; color: #64748b; margin-bottom: 6px;">14:21 · 21/09/2026 · Lê Thị Bình[cite: 9]</div>
-                <div style="font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 10px;">Đã kê gót chân treo, đặt đệm hơi, hẹn kiểm tra lại lúc 14 giờ.[cite: 9]</div>
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                  <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu đánh giá 19 điểm')">Xem chi tiết phiếu</span>[cite: 9]
-                  <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 9]
-                </div>
+            <!-- Thẻ đánh giá mới nhất -->
+            <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">19</span>
+                <span class="badge-orange">Nguy cơ cao</span>
+                <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 650; padding: 2px 8px; border-radius: 6px;">1 tổn thương</span>
+                <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 650; padding: 2px 8px; border-radius: 6px;">6 yếu tố hồi sức</span>
+              </div>
+              <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">14:21 · 21/09/2026 · Lê Thị Bình</div>
+              <div style="font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 10px;">
+                Đã kê gót chân treo, đặt đệm hơi, hẹn kiểm tra lại lúc 14 giờ.
+              </div>
+              <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
+                <span onclick="showToast('Mở chi tiết phiếu đánh giá đã ký')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                <span onclick="showToast('Mở phiếu theo dõi điều dưỡng')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+              </div>
+            </div>
+
+            <!-- Khung accordion 5 lượt đánh giá cũ hơn -->
+            <div class="card" style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 12px; font-weight: 750; color: #334155;" onclick="toggleOldTrends()">
+                <span>5 lượt đánh giá cũ hơn</span>
+                <span style="color: #64748b; font-size: 11px; font-weight: 600;">từ 13/09/2026 <span id="old-trends-arrow">▼</span></span>
               </div>
 
-              <!-- Nút accordion cho 5 lượt đánh giá cũ hơn -->
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleOldHistory()">
-                <span style="font-size: 12px; font-weight: 700; color: #334155;">5 lượt đánh giá cũ hơn</span>[cite: 9]
-                <span style="font-size: 11px; color: #64748b;" id="old-history-sub">từ 13/09/2026 ∧</span>[cite: 9]
-              </div>
-
-              <!-- Danh sách cũ hơn (Ẩn/Hiện) -->
-              <div id="old-history-container" style="display: flex; flex-direction: column; gap: 10px;">
-                <!-- 17 điểm -->
-                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                    <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">17</span>
-                    <span class="badge-orange">Nguy cơ cao</span>[cite: 9]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px;">1 tổn thương</span>[cite: 9]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">5 yếu tố hồi sức</span>[cite: 9]
+              <div id="old-trends-list" style="display: none; flex-direction: column; gap: 10px; margin-top: 12px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+                <!-- 1 -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                    <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 6px;">17</span>
+                    <span class="badge-orange">Nguy cơ cao</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">1 tổn thương</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">5 yếu tố hồi sức</span>
                   </div>
-                  <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">07:19 · 21/09/2026 · Phạm Thị Dung[cite: 9]</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu 17 điểm')">Xem chi tiết phiếu</span>[cite: 9]
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 9]
+                  <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">07:19 · 21/09/2026 · Phạm Thị Dung</div>
+                  <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
-
-                <!-- 33 điểm -->
-                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">33</span>
-                    <span class="badge-red">Nguy cơ rất cao</span>[cite: 9]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">6 yếu tố hồi sức</span>[cite: 9]
+                <!-- 2 -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 6px;">33</span>
+                    <span class="badge-red">Nguy cơ rất cao</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">6 yếu tố hồi sức</span>
                   </div>
-                  <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">00:37 · 21/09/2026 · Trần Văn An[cite: 9]</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu 33 điểm')">Xem chi tiết phiếu</span>[cite: 9]
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 9]
-                  </div>
-                </div>
-
-                <!-- 24 điểm -->
-                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">24</span>
-                    <span class="badge-red">Nguy cơ rất cao</span>[cite: 10]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">6 yếu tố hồi sức</span>[cite: 10]
-                  </div>
-                  <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">18:16 · 20/09/2026 · Huỳnh Minh Khoa[cite: 10]</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu 24 điểm')">Xem chi tiết phiếu</span>[cite: 10]
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 10]
+                  <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">00:37 · 21/09/2026 · Trần Văn An</div>
+                  <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
-
-                <!-- 23 điểm -->
-                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">23</span>
-                    <span class="badge-red">Nguy cơ rất cao</span>[cite: 10]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">5 yếu tố hồi sức</span>[cite: 10]
+                <!-- 3 -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 6px;">24</span>
+                    <span class="badge-red">Nguy cơ rất cao</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">6 yếu tố hồi sức</span>
                   </div>
-                  <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">11:23 · 20/09/2026 · Trần Văn An[cite: 10]</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu 23 điểm')">Xem chi tiết phiếu</span>[cite: 10]
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 10]
+                  <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">18:16 · 20/09/2026 · Huỳnh Minh Khoa</div>
+                  <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
-
-                <!-- 26 điểm -->
-                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
-                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 13px; font-weight: 800; padding: 2px 8px; border-radius: 6px;">26</span>
-                    <span class="badge-red">Nguy cơ rất cao</span>[cite: 10]
-                    <span style="background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: auto;">3 yếu tố hồi sức</span>[cite: 10]
+                <!-- 4 -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 6px;">23</span>
+                    <span class="badge-red">Nguy cơ rất cao</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">5 yếu tố hồi sức</span>
                   </div>
-                  <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">09:21 · 13/09/2026 · Phạm Thị Dung[cite: 10]</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11.5px; font-weight: 650;">
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Xem chi tiết phiếu 26 điểm')">Xem chi tiết phiếu</span>[cite: 10]
-                    <span style="color: #0284c7; cursor: pointer;" onclick="showToast('Mở phiếu theo dõi điều dưỡng')">Phiếu theo dõi</span>[cite: 10]
+                  <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">11:23 · 20/09/2026 · Trần Văn An</div>
+                  <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                  </div>
+                </div>
+                <!-- 5 -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                    <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 6px;">26</span>
+                    <span class="badge-red">Nguy cơ rất cao</span>
+                    <span style="background: #f1f5f9; color: #334155; font-size: 10.5px; font-weight: 650; padding: 1px 6px; border-radius: 6px;">3 yếu tố hồi sức</span>
+                  </div>
+                  <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
+                  <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Mục Xuất Viện -->
-          <div id="discharge-form-container" class="card" style="margin-top: 14px; border: 1.5px solid #0284c7; background: #f8fafc; padding: 16px;">
-            <div class="section-title" style="margin-bottom: 6px; color: #0284c7;">
-              <span class="section-indicator"></span>
-              <span>Hồ sơ xuất viện & Kết thúc điều trị</span>
-            </div>
-            <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
-              Ghi nhận tình trạng bệnh nhân trước khi xuất khoa. Sau khi lưu, hồ sơ sẽ được chuyển thẳng vào danh sách <strong>Đã xuất viện</strong>.
-            </div>
-
-            <div id="discharge-inputs-box" style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
-              <div>
-                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng xuất viện / Bệnh</label>
-                <select id="dis-condition">
-                  <option value="Đỡ giảm, ổn định">Bệnh đỡ giảm, huyết động ổn định</option>
-                  <option value="Khỏi hoàn toàn">Khỏi bệnh hoàn toàn</option>
-                  <option value="Không giảm, xin chuyển viện">Bệnh không giảm, xin chuyển viện</option>
-                  <option value="Nặng hơn xin về">Bệnh nặng hơn xin về</option>
-                </select>
+            <!-- Mục Xuất Viện -->
+            <div id="discharge-form-container" class="card" style="margin-top: 14px; border: 1.5px solid #0284c7; background: #f8fafc; padding: 16px;">
+              <div class="section-title" style="margin-bottom: 6px; color: #0284c7;">
+                <span class="section-indicator"></span>
+                <span>Hồ sơ xuất viện & Kết thúc điều trị</span>
+              </div>
+              <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
+                Ghi nhận tình trạng bệnh nhân trước khi xuất khoa. Sau khi lưu, hồ sơ sẽ được chuyển thẳng vào danh sách <strong>Đã xuất viện</strong>.
               </div>
 
-              <div>
-                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng da & Loét tì đè khi xuất viện</label>
-                <select id="dis-skin">
-                  <option value="Da nguyên vẹn, không loét">Da nguyên vẹn, không có loét tì đè</option>
-                  <option value="Đỏ da độ I đang hồi phục">Đỏ da độ I đang hồi phục tốt</option>
-                  <option value="Có loét độ II, III bàn giao chăm sóc">Còn vết loét, đã hướng dẫn chăm sóc tại nhà</option>
-                </select>
-              </div>
-
-              <div class="grid-2">
+              <div id="discharge-inputs-box" style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
                 <div>
-                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Lý do xuất viện</label>
-                  <input type="text" id="dis-reason" value="Đủ điều kiện ra viện" />
+                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng xuất viện / Bệnh</label>
+                  <select id="dis-condition">
+                    <option value="Đỡ giảm, ổn định">Bệnh đỡ giảm, huyết động ổn định</option>
+                    <option value="Khỏi hoàn toàn">Khỏi bệnh hoàn toàn</option>
+                    <option value="Không giảm, xin chuyển viện">Bệnh không giảm, xin chuyển viện</option>
+                    <option value="Nặng hơn xin về">Bệnh nặng hơn xin về</option>
+                  </select>
                 </div>
+
                 <div>
-                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày giờ xuất viện</label>
-                  <input type="text" id="dis-time" value="14:00 · 26/09/2026" />
+                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng da & Loét tì đè khi xuất viện</label>
+                  <select id="dis-skin">
+                    <option value="Da nguyên vẹn, không loét">Da nguyên vẹn, không có loét tì đè</option>
+                    <option value="Đỏ da độ I đang hồi phục">Đỏ da độ I đang hồi phục tốt</option>
+                    <option value="Có loét độ II, III bàn giao chăm sóc">Còn vết loét, đã hướng dẫn chăm sóc tại nhà</option>
+                  </select>
+                </div>
+
+                <div class="grid-2">
+                  <div>
+                    <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Lý do xuất viện</label>
+                    <input type="text" id="dis-reason" value="Đủ điều kiện ra viện" />
+                  </div>
+                  <div>
+                    <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày giờ xuất viện</label>
+                    <input type="text" id="dis-time" value="14:00 · 26/09/2026" />
+                  </div>
+                </div>
+
+                <div>
+                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Dặn dò & hướng dẫn chăm sóc phòng loét</label>
+                  <textarea id="dis-note" rows="2" placeholder="Dặn dò chế độ dinh dưỡng, cách xoay trở tại nhà..."></textarea>
+                </div>
+
+                <div style="margin-top: 6px;">
+                  <button onclick="confirmDischargeFromTrend()" class="btn-blue" style="padding: 12px; font-size: 13px;">
+                    ✓ Xác nhận xuất viện & Hoàn tất hồ sơ
+                  </button>
                 </div>
               </div>
 
-              <div>
-                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Dặn dò & hướng dẫn chăm sóc phòng loét</label>
-                <textarea id="dis-note" rows="2" placeholder="Dặn dò chế độ dinh dưỡng, cách xoay trở tại nhà..."></textarea>
+              <div id="discharged-info-view" style="display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; line-height: 1.7;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <strong style="color: #0284c7; font-size: 13px;">HỒ SƠ ĐÃ KẾT THÚC ĐIỀU TRỊ</strong>
+                  <span class="badge-discharged">Đã xuất viện</span>
+                </div>
+                <div>• Kết quả: <strong id="view-dis-condition">Khỏi bệnh</strong></div>
+                <div>• Tình trạng da: <strong id="view-dis-skin">Không loét</strong></div>
+                <div>• Lý do: <span id="view-dis-reason">Đủ điều kiện</span></div>
+                <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 26/09/2026</strong></div>
+                <div id="view-dis-note-box" style="margin-top: 4px; color: #64748b; font-size: 11px;"></div>
               </div>
-
-              <div style="margin-top: 6px;">
-                <button onclick="confirmDischargeFromTrend()" class="btn-blue" style="padding: 12px; font-size: 13px;">
-                  ✓ Xác nhận xuất viện & Hoàn tất hồ sơ
-                </button>
-              </div>
-            </div>
-
-            <div id="discharged-info-view" style="display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; line-height: 1.7;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <strong style="color: #0284c7; font-size: 13px;">HỒ SƠ ĐÃ KẾT THÚC ĐIỀU TRỊ</strong>
-                <span class="badge-discharged">Đã xuất viện</span>
-              </div>
-              <div>• Kết quả: <strong id="view-dis-condition">Khỏi bệnh</strong></div>
-              <div>• Tình trạng da: <strong id="view-dis-skin">Không loét</strong></div>
-              <div>• Lý do: <span id="view-dis-reason">Đủ điều kiện</span></div>
-              <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 26/09/2026</strong></div>
-              <div id="view-dis-note-box" style="margin-top: 4px; color: #64748b; font-size: 11px;"></div>
             </div>
           </div>
         </div>
@@ -1451,17 +1446,6 @@
 
     var pendingNewPatientData = null;
     var duplicateCheckQueue = [];
-    var showOldHistory = false;
-
-    function toggleOldHistory() {
-      showOldHistory = !showOldHistory;
-      var el = document.getElementById('old-history-container');
-      var sub = document.getElementById('old-history-sub');
-      if (el && sub) {
-        el.style.display = showOldHistory ? 'flex' : 'none';
-        sub.innerText = showOldHistory ? 'từ 13/09/2026 V' : 'từ 13/09/2026 ∧';
-      }
-    }
 
     function calculateTrendText(currentVal, compareVal) {
       if (currentVal === null || compareVal === null || currentVal === undefined || compareVal === undefined) return "--";
@@ -2819,6 +2803,383 @@
       showToast('Đã nhận bệnh ' + data.name + ' vào giường ' + data.bed);
       updateDynamicDashboardCounts();
       openDetailById(newP.id, 'overview');
+    }
+
+    function openDetailById(id, subTabName) {
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) currentPatient = p;
+      showTab('patient-detail');
+      setSubTab(subTabName || 'overview');
+    }
+
+    var currentSubTab = 'overview';
+    function setSubTab(sub) {
+      currentSubTab = sub;
+      var subs = ['overview', 'wound', 'turn', 'trend'];
+      for (var i = 0; i < subs.length; i++) {
+        var el = document.getElementById('subtab-' + subs[i] + '-content');
+        var btn = document.getElementById('st-' + subs[i] + '-btn');
+        if (el) el.style.display = (subs[i] === sub) ? 'block' : 'none';
+        if (btn) {
+          btn.style.background = (subs[i] === sub) ? '#0284c7' : 'transparent';
+          btn.style.color = (subs[i] === sub) ? '#ffffff' : '#64748b';
+        }
+      }
+    }
+
+    function toggleOldTrends() {
+      var listEl = document.getElementById('old-trends-list');
+      var arrowEl = document.getElementById('old-trends-arrow');
+      if (listEl && arrowEl) {
+        if (listEl.style.display === 'flex') {
+          listEl.style.display = 'none';
+          arrowEl.innerText = '▼';
+        } else {
+          listEl.style.display = 'flex';
+          arrowEl.innerText = '▲';
+        }
+      }
+    }
+
+    function selectSingleDetailPos(pos) {
+      currentPatient.selectedPos = pos;
+      var arr = ['Ngh. trái', 'Ngửa', 'Ngh. phải', 'Nửa ngồi', 'Chưa xoay được / Khác'];
+      var ids = ['sdt-pos-trai', 'sdt-pos-ngua', 'sdt-pos-phai', 'sdt-pos-ngoi', 'sdt-pos-chua'];
+      for (var i = 0; i < arr.length; i++) {
+        var el = document.getElementById(ids[i]);
+        if (el) {
+          if (arr[i] === pos) el.classList.add('pos-active');
+          else el.classList.remove('pos-active');
+        }
+      }
+      var rBox = document.getElementById('sdt-reason-box');
+      if (rBox) rBox.style.display = (pos === 'Chưa xoay được / Khác') ? 'block' : 'none';
+    }
+
+    function toggleSingleDetailSkinCheck() {
+      currentPatient.checkedSkin = !currentPatient.checkedSkin;
+      var box = document.getElementById('sdt-skin-box');
+      if (box) {
+        box.style.background = currentPatient.checkedSkin ? '#0284c7' : 'transparent';
+        box.innerText = currentPatient.checkedSkin ? '✓' : '';
+      }
+    }
+
+    function renderDetail() {
+      var p = currentPatient;
+      var isDis = p.status === 'discharged';
+      var targetH = getTurnTargetHours(p.waterlow, p.risk);
+
+      document.getElementById('dt-name-header').innerHTML = getPatientFormattedHeader(p);
+      document.getElementById('dt-code-line').innerText = 'Mã hồ sơ: ' + p.code;
+      document.getElementById('dt-bed-diag').innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
+      document.getElementById('dt-stay-days').innerText = 'Nhập khoa 17:21 · ngày điều trị thứ ' + (p.stayDays || 9);
+      document.getElementById('dt-assess-overdue').innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
+      document.getElementById('dt-turn-overdue').innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + targetH + ' giờ';
+      document.getElementById('dt-turn-protocol-text').innerText = 'quy trình mỗi ' + targetH + ' giờ · ' + p.risk.toLowerCase();
+
+      document.getElementById('dt-care-box').style.display = isDis ? 'none' : 'block';
+
+      selectSingleDetailPos(p.selectedPos || 'Ngửa');
+      var reasonInput = document.getElementById('sdt-reason-input');
+      if (reasonInput) reasonInput.value = p.turnReason || '';
+
+      var skinBox = document.getElementById('sdt-skin-box');
+      if (skinBox) {
+        skinBox.style.background = p.checkedSkin ? '#0284c7' : 'transparent';
+        skinBox.innerText = p.checkedSkin ? '✓' : '';
+      }
+
+      document.getElementById('dt-single-turntime-h').value = getNowTimeInputValue();
+      document.getElementById('dt-single-turntime-d').value = getNowDateInputValue();
+
+      var skinCount = p.woundList ? p.woundList.length : 0;
+      var deviceCount = p.deviceWoundList ? p.deviceWoundList.length : 0;
+      p.wounds = skinCount + deviceCount;
+
+      var countEl = document.getElementById('wound-spot-count');
+      if (countEl) {
+        if (skinCount > 0) {
+          countEl.innerText = skinCount + ' vị trí';
+          countEl.style.color = '#b91c1c';
+          countEl.style.background = '#fee2e2';
+        } else {
+          countEl.innerText = 'Chưa ghi nhận';
+          countEl.style.color = '#15803d';
+          countEl.style.background = '#dcfce7';
+        }
+      }
+
+      var savedWoundsContainer = document.getElementById('saved-wounds-container');
+      var woundCardsList = document.getElementById('wound-cards-list');
+      if (savedWoundsContainer && woundCardsList) {
+        var wList = p.woundList || [];
+        if (wList.length > 0) {
+          savedWoundsContainer.style.display = 'flex';
+          woundCardsList.innerHTML = wList.map(function(item, index) {
+            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
+              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
+                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + item.location + '</strong>' +
+                '<button onclick="openAddWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
+              '</div>' +
+              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
+              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
+            '</div>';
+          }).join('');
+        } else {
+          savedWoundsContainer.style.display = 'none';
+          woundCardsList.innerHTML = '';
+        }
+      }
+
+      var deviceCountEl = document.getElementById('device-wound-count');
+      var savedDeviceContainer = document.getElementById('saved-device-container');
+      var deviceCardsList = document.getElementById('device-cards-list');
+      if (deviceCountEl && savedDeviceContainer && deviceCardsList) {
+        var dList = p.deviceWoundList || [];
+        if (dList.length > 0) {
+          deviceCountEl.innerText = dList.length + ' vị trí';
+          deviceCountEl.style.color = '#b91c1c';
+          deviceCountEl.style.background = '#fee2e2';
+          savedDeviceContainer.style.display = 'flex';
+          deviceCardsList.innerHTML = dList.map(function(item, index) {
+            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
+              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
+                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + (item.deviceType ? (item.deviceType + ' (' + item.location + ')') : item.location) + '</strong>' +
+                '<button onclick="openAddDeviceWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
+              '</div>' +
+              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
+              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
+            '</div>';
+          }).join('');
+        } else {
+          deviceCountEl.innerText = 'Chưa ghi nhận';
+          deviceCountEl.style.color = '#15803d';
+          deviceCountEl.style.background = '#dcfce7';
+          savedDeviceContainer.style.display = 'none';
+          deviceCardsList.innerHTML = '';
+        }
+      }
+
+      var turnLogContainer = document.getElementById('dt-turn-log-table');
+      if (turnLogContainer) {
+        if (p.turnLogs && p.turnLogs.length > 0) {
+          turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
+            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
+          }).join('');
+        } else {
+          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
+        }
+      }
+
+      var alertBox = document.getElementById('patient-alert-container');
+      if (alertBox) {
+        if (isDis) {
+          alertBox.innerHTML = '<div class="alert-box-discharged"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">HỒ SƠ ĐÃ XUẤT VIỆN KHOA HỒI SỨC</div><div style="font-size:20px; font-weight:750; margin:4px 0; color:#0f172a;">ĐÃ KẾT THÚC ĐIỀU TRỊ</div></div>';
+        } else if (p.risk === 'Nguy cơ rất cao') {
+          alertBox.innerHTML = '<div class="alert-box-red"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🔴 CẢNH BÁO NGUY CƠ RẤT CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b91c1c;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
+        } else if (p.risk === 'Nguy cơ cao') {
+          alertBox.innerHTML = '<div class="alert-box-yellow"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟡 CẢNH BÁO NGUY CƠ CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b45309;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
+        } else if (p.risk === 'Có nguy cơ') {
+          alertBox.innerHTML = '<div class="alert-box-green"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟢 CẢNH BÁO CÓ NGUY CƠ</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#15803d;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
+        } else {
+          alertBox.innerHTML = '<div class="alert-box-purple"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟣 CHƯA ĐÁNH GIÁ THANG ĐIỂM</div><div style="font-size:24px; font-weight:800; margin:4px 0; color:#7e22ce;">-- ĐIỂM</div></div>';
+        }
+      }
+
+      var trendPrev = calculateTrendText(p.waterlow, p.prevWaterlow);
+      var trendAdmit = calculateTrendText(p.waterlow, p.admitWaterlow);
+
+      document.getElementById('trend-compare-prev').innerText = trendPrev;
+      document.getElementById('trend-compare-prev-desc').innerText = (p.prevWaterlow !== null) ? ('(' + p.prevWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
+      document.getElementById('trend-compare-admit').innerText = trendAdmit;
+      document.getElementById('trend-compare-admit-desc').innerText = (p.admitWaterlow !== null) ? ('(' + p.admitWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
+
+      document.getElementById('discharge-inputs-box').style.display = isDis ? 'none' : 'flex';
+      document.getElementById('discharged-info-view').style.display = isDis ? 'block' : 'none';
+
+      if (isDis && p.dischargeData) {
+        document.getElementById('view-dis-condition').innerText = p.dischargeData.condition;
+        document.getElementById('view-dis-skin').innerText = p.dischargeData.skin;
+        document.getElementById('view-dis-reason').innerText = p.dischargeData.reason;
+        document.getElementById('view-dis-time').innerText = p.dischargeData.time;
+        document.getElementById('view-dis-note-box').innerText = p.dischargeData.note ? ('• Dặn dò: ' + p.dischargeData.note) : '';
+      }
+
+      document.getElementById('dt-trend-change-badge').innerText = trendPrev;
+      document.getElementById('trend-box-score').innerText = (p.waterlow !== null ? p.waterlow : '--');
+
+      renderChecklist();
+    }
+
+    function confirmDischargeFromTrend() {
+      var p = currentPatient;
+      if (confirm('Xác nhận hoàn tất xuất viện cho người bệnh ' + p.name + '?')) {
+        p.status = 'discharged';
+        p.dischargeData = {
+          condition: document.getElementById('dis-condition').value,
+          skin: document.getElementById('dis-skin').value,
+          reason: document.getElementById('dis-reason').value,
+          time: document.getElementById('dis-time').value,
+          note: document.getElementById('dis-note').value
+        };
+        showToast('Đã hoàn tất xuất viện');
+        updateDynamicDashboardCounts();
+        renderDetail();
+        renderPatients();
+        setTimeout(function() {
+          setPatientFilterStatus('discharged');
+          showTab('patients');
+        }, 1200);
+      }
+    }
+
+    function renderChecklist() {
+      var box = document.getElementById('dt-checklist-box');
+      if (!box) return;
+      var chk = currentPatient.checked || [];
+      document.getElementById('dt-checklist-count').innerText = chk.length + '/10';
+
+      var html = '';
+      for (var i = 0; i < CHECKLIST_ITEMS.length; i++) {
+        var isC = chk.indexOf(i) > -1;
+        html += '<div onclick="toggleCheckOneItem(' + i + ')" class="card" style="padding:10px; margin-bottom:0; display:flex; align-items:flex-start; gap:10px; cursor:pointer; background:' + (isC ? '#f0f9ff' : '#ffffff') + '; border-color:' + (isC ? '#0284c7' : '#e2e8f0') + ';">' +
+          '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (isC ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:800; font-size:12px;">' + (isC ? '✓' : '') + '</div>' +
+          '<div style="font-size:12px; color:' + (isC ? '#0284c7' : '#334155') + '; font-weight:' + (isC ? '650' : '500') + '; line-height:1.4;">' + CHECKLIST_ITEMS[i] + '</div>' +
+        '</div>';
+      }
+      box.innerHTML = html;
+    }
+
+    function toggleCheckOneItem(idx) {
+      if (!currentPatient.checked) currentPatient.checked = [];
+      var pos = currentPatient.checked.indexOf(idx);
+      if (pos > -1) currentPatient.checked.splice(pos, 1);
+      else currentPatient.checked.push(idx);
+      renderChecklist();
+      renderPatients();
+    }
+
+    function toggleCheckAll() {
+      if (currentPatient.checked && currentPatient.checked.length === 10) currentPatient.checked = [];
+      else currentPatient.checked = [0,1,2,3,4,5,6,7,8,9];
+      renderChecklist();
+      renderPatients();
+    }
+
+    function handleDetailTurnAction() {
+      var tVal = document.getElementById('dt-single-turntime-h').value || getNowTimeInputValue();
+      var dVal = document.getElementById('dt-single-turntime-d').value || getNowDateInputValue();
+      var recordTime = formatTimeDateDisplay(tVal, dVal);
+      var pos = currentPatient.selectedPos || "Ngửa";
+      var reasonText = currentPatient.turnReason ? (' (' + currentPatient.turnReason + ')') : '';
+
+      currentPatient.overdueTurn = "Vừa xoay";
+      currentPatient.lastTurnNote = pos + reasonText + " lúc " + tVal;
+      currentPatient.turns24h = (currentPatient.turns24h || 0) + 1;
+
+      if (!currentPatient.turnLogs) currentPatient.turnLogs = [];
+      currentPatient.turnLogs.unshift({ time: recordTime, pos: pos + reasonText, skin: currentPatient.checkedSkin !== false });
+
+      showToast("Đã ghi xoay trở");
+      updateDynamicDashboardCounts();
+      renderDetail();
+      renderPatients();
+      renderTasks();
+    }
+
+    var wizardPatient = null;
+    var wizardCurrentStep = 1;
+    var wizardForm = {
+      gender: 1, ageGroup: 1, bmi: 0, skinStatus: 0, continence: 0, mobility: 0,
+      nutritionDrop: 0, nutritionNpo: 0, tissueDamage: [], neuroDeficit: 0, surgeryTrauma: 0,
+      skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
+      deviceUlcerLocation: "", deviceUlcerGrade: "Độ I", deviceUlcerSize: "", deviceUlcerOrigin: "Phát sinh tại khoa", deviceUlcerDesc: "",
+      preventiveChecks: [], nurseNote: ""
+    };
+
+    function openWaterlowAssessmentWizard(patientId) {
+      wizardPatient = patients.find(function(x) { return x.id === patientId; });
+      if (!wizardPatient) return;
+      wizardCurrentStep = 1;
+      document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
+      document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
+      renderWizardCurrentStep();
+      updateWizardLiveBottomBar();
+      document.getElementById('waterlow-wizard-modal').style.display = 'flex';
+    }
+
+    function closeWaterlowAssessmentWizard() {
+      document.getElementById('waterlow-wizard-modal').style.display = 'none';
+    }
+
+    function calculateWizardTotalScore() {
+      var total = (parseInt(wizardForm.gender) || 0) + (parseInt(wizardForm.ageGroup) || 0) + (parseInt(wizardForm.bmi) || 0) + (parseInt(wizardForm.skinStatus) || 0) + (parseInt(wizardForm.continence) || 0) + (parseInt(wizardForm.mobility) || 0) + (parseInt(wizardForm.nutritionDrop) || 0) + (parseInt(wizardForm.nutritionNpo) || 0) + (wizardForm.tissueDamage || []).reduce(function(a,b){return a+b;},0) + (parseInt(wizardForm.neuroDeficit) || 0) + (parseInt(wizardForm.surgeryTrauma) || 0);
+      return total;
+    }
+
+    function updateWizardLiveBottomBar() {
+      var score = calculateWizardTotalScore();
+      document.getElementById('wz-bottom-score').innerText = score;
+      var badgeEl = document.getElementById('wz-bottom-risk-badge');
+      if (score >= 20) { badgeEl.className = "badge-red"; badgeEl.innerText = "Nguy cơ rất cao"; }
+      else if (score >= 15) { badgeEl.className = "badge-orange"; badgeEl.innerText = "Nguy cơ cao"; }
+      else if (score >= 10) { badgeEl.className = "badge-yellow"; badgeEl.innerText = "Có nguy cơ"; }
+      else { badgeEl.className = "badge-gray"; badgeEl.innerText = "Nguy cơ thấp"; }
+
+      document.getElementById('wz-back-step-btn').style.display = (wizardCurrentStep > 1) ? 'block' : 'none';
+      document.getElementById('wz-next-step-btn').innerText = (wizardCurrentStep === 4) ? "Hoàn tất và ký" : "Tiếp tục";
+    }
+
+    function goNextWizardStep() {
+      if (wizardCurrentStep < 4) {
+        wizardCurrentStep++;
+        renderWizardCurrentStep();
+        updateWizardLiveBottomBar();
+        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
+      } else {
+        finishAndSignWizard();
+      }
+    }
+
+    function goPreviousWizardStep() {
+      if (wizardCurrentStep > 1) {
+        wizardCurrentStep--;
+        renderWizardCurrentStep();
+        updateWizardLiveBottomBar();
+        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
+      }
+    }
+
+    function renderWizardCurrentStep() {
+      var c = document.getElementById('wz-steps-container');
+      if (!c) return;
+      if (wizardCurrentStep === 1) {
+        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Thang điểm Waterlow (Bước 1 / 4)</div>' +
+        '<div class="step-item-card"><div class="wizard-group-title"><span>1. Giới tính</span><span class="wizard-group-score">+' + wizardForm.gender + '</span></div>' +
+        '<div onclick="wizardForm.gender=1; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===1?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===1?'✓':'') + '</span><span class="opt-text">Nam</span></div><strong class="opt-points">+1</strong></div>' +
+        '<div onclick="wizardForm.gender=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===2?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===2?'✓':'') + '</span><span class="opt-text">Nữ</span></div><strong class="opt-points">+2</strong></div></div>';
+      } else if (wizardCurrentStep === 2) {
+        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Khám da và tổn thương (Bước 2 / 4)</div>';
+      } else {
+        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Kế hoạch phòng ngừa & Ký xác nhận (Bước 3-4 / 4)</div>';
+      }
+    }
+
+    function finishAndSignWizard() {
+      if (!wizardPatient) return;
+      var totalScore = calculateWizardTotalScore();
+      wizardPatient.waterlow = totalScore;
+      wizardPatient.risk = totalScore >= 20 ? "Nguy cơ rất cao" : (totalScore >= 15 ? "Nguy cơ cao" : (totalScore >= 10 ? "Có nguy cơ" : "Nguy cơ thấp"));
+      wizardPatient.overdueAssess = "";
+      wizardPatient.assessDateTime = formatTimeDateDisplay(getNowTimeInputValue(), getNowDateInputValue());
+      wizardPatient.latestAssess = "Hôm nay " + wizardPatient.assessDateTime.split('-')[0].replace('thời gian:', '').trim();
+      closeWaterlowAssessmentWizard();
+      showToast("Đã hoàn tất đánh giá Waterlow " + totalScore + " điểm");
+      updateDynamicDashboardCounts();
+      if (currentPatient && currentPatient.id === wizardPatient.id) renderDetail();
+      renderPatients();
+      renderTasks();
     }
 
     updateDynamicDashboardCounts();
