@@ -793,8 +793,8 @@
                 Đã kê gót chân treo, đặt đệm hơi, hẹn kiểm tra lại lúc 14 giờ.
               </div>
               <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
-                <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
               </div>
             </div>
 
@@ -816,8 +816,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">07:19 · 21/09/2026 · Phạm Thị Dung</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 2 -->
@@ -829,8 +829,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">00:37 · 21/09/2026 · Trần Văn An</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 3 -->
@@ -842,8 +842,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">18:16 · 20/09/2026 · Huỳnh Minh Khoa</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 4 -->
@@ -855,8 +855,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">11:23 · 20/09/2026 · Trần Văn An</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 5 -->
@@ -868,8 +868,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openSignedAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingFlowsheetModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="openSignedDetailModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="openNursingMonitorModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
               </div>
@@ -1001,131 +1001,83 @@
       </button>
     </nav>
 
-    <!-- Modal Chi Tiết Phiếu Đánh Giá Đã Ký (Xem chi tiết phiếu) -->
-    <div id="signed-assessment-modal" class="modal-overlay" style="z-index: 100;">
-      <div class="modal-content" style="max-width: 440px; padding: 18px; background: #ffffff;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
-          <div style="font-size: 15px; font-weight: 800; color: #0f172a;">Phiếu đánh giá đã ký</div>
-          <button onclick="closeSignedAssessmentModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
+    <!-- Modal Xem Chi Tiết Phiếu Đã Ký (Xem chi tiết phiếu) -->
+    <div id="signed-detail-modal" class="modal-overlay" style="z-index: 100;">
+      <div class="modal-content" style="max-width: 420px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 14px;">
+          <div style="font-size: 16px; font-weight: 750; color: #0f172a;">Phiếu đánh giá đã ký</div>
+          <button onclick="closeSignedDetailModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
 
-        <div style="background: #fdf2f2; border: 1.5px solid #f87171; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
-          <div style="font-size: 24px; font-weight: 850; color: #b91c1c;">26</div>
-          <div style="font-size: 13px; font-weight: 750; color: #b91c1c; margin-top: 2px;">Nguy cơ rất cao</div>
-          <div style="font-size: 11px; color: #64748b; margin-top: 2px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
+        <div style="background: #f8fafc; border: 1.5px solid #fecaca; border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+          <div style="font-size: 24px; font-weight: 850; color: #b91c1c; margin-bottom: 2px;">26</div>
+          <div style="font-size: 13px; font-weight: 750; color: #b91c1c; margin-bottom: 6px;">Nguy cơ rất cao</div>
+          <div style="font-size: 11px; color: #64748b;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
         </div>
 
-        <div class="table-container" style="margin-bottom: 12px;">
+        <div class="table-container" style="margin-bottom: 14px;">
           <table class="table-custom" style="min-width: 100%;">
-            <thead>
-              <tr>
-                <th style="width: 35%;">MỤC</th>
-                <th>LỰA CHỌN</th>
-                <th style="text-align: right; width: 15%;">ĐIỂM</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Mục</th><th>Lựa chọn</th><th style="text-align:right;">Điểm</th></tr></thead>
             <tbody>
-              <tr><td>Giới tính</td><td>Nam</td><td style="text-align: right; font-weight: 700;">1</td></tr>
-              <tr><td>Nhóm tuổi</td><td>50 – 64 tuổi</td><td style="text-align: right; font-weight: 700;">2</td></tr>
-              <tr><td>Thể trạng / Khối cơ</td><td>Dưới trung bình (BMI dưới 20)</td><td style="text-align: right; font-weight: 700;">3</td></tr>
-              <tr><td>Tình trạng da</td><td>Phù; Da đổi màu – bầm, xanh, tím, lốm đốm</td><td style="text-align: right; font-weight: 700;">3</td></tr>
-              <tr><td>Tiêu tiểu</td><td>Tiểu không tự chủ, hoặc sonde tiểu bị dò rỉ</td><td style="text-align: right; font-weight: 700;">1</td></tr>
-              <tr><td>Vận động</td><td>Bất động một phần – hôn mê, hoặc không xoay trở được do chấn thương, dị tật</td><td style="text-align: right; font-weight: 700;">4</td></tr>
-              <tr><td>Tổn thương mô</td><td>Suy một tạng – gan, thận, tim, phổi...</td><td style="text-align: right; font-weight: 700;">8</td></tr>
-              <tr><td>Thiếu hụt thần kinh</td><td>Không có</td><td style="text-align: right; font-weight: 700;">0</td></tr>
-              <tr><td>Phẫu thuật / chấn thương</td><td>Không chọn</td><td style="text-align: right; font-weight: 700;">0</td></tr>
-              <tr><td>Yếu tố dinh dưỡng</td><td>Dưới 18,5; Có</td><td style="text-align: right; font-weight: 700;">4</td></tr>
+              <tr><td>Giới tính</td><td>Nam</td><td style="text-align:right; font-weight:700;">1</td></tr>
+              <tr><td>Nhóm tuổi</td><td>50 – 64 tuổi</td><td style="text-align:right; font-weight:700;">2</td></tr>
+              <tr><td>Thể trạng / BMI</td><td>Dưới trung bình (BMI dưới 20)</td><td style="text-align:right; font-weight:700;">3</td></tr>
+              <tr><td>Tình trạng da</td><td>Phù; Da đổi màu – bầm, xanh, tím, lốm đốm</td><td style="text-align:right; font-weight:700;">3</td></tr>
+              <tr><td>Đại tiểu tiện</td><td>Tiểu không tự chủ, hoặc sonde tiểu bị dò rỉ</td><td style="text-align:right; font-weight:700;">1</td></tr>
+              <tr><td>Vận động</td><td>Bất động một phần – hôn mê, hoặc không xoay trở được do chấn thương, dị tật</td><td style="text-align:right; font-weight:700;">4</td></tr>
+              <tr><td>Tổn thương mô</td><td>Suy một tạng – gan, thận, tim, phổi...</td><td style="text-align:right; font-weight:700;">8</td></tr>
+              <tr><td>Hệ thần kinh khuyết tật</td><td>Không có</td><td style="text-align:right; font-weight:700;">0</td></tr>
             </tbody>
           </table>
         </div>
 
-        <div style="font-size: 12px; font-weight: 750; color: #0f172a; margin-bottom: 6px;">TỔNG ĐIỂM WATERLOW: <span style="color: #0284c7;">26</span></div>
-
-        <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 6px;">YẾU TỐ NGUY CƠ ĐẶC THÙ HỒI SỨC</div>
-        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; font-size: 11px;">
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 3px 8px; border-radius: 6px; color: #334155;">Albumin máu dưới 30 g/L</span>
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 3px 8px; border-radius: 6px; color: #334155;">Phù toàn thân</span>
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 3px 8px; border-radius: 6px; color: #334155;">Thời gian nằm khoa trên 7 ngày</span>
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px; margin-bottom: 16px; font-size: 11.5px; color: #166534; line-height: 1.5;">
+          ✓ Phiếu đã ký bởi <strong>Phạm Thị Dung</strong> lúc 09:21 · 13/09/2026 và không thể chỉnh sửa. Mọi thay đổi phải thực hiện bằng một lượt đánh giá mới[cite: 11].
         </div>
 
-        <div style="background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #166534; margin-bottom: 12px; font-weight: 600;">
-          ✓ Không ghi nhận tổn thương do tì đè tại thời điểm đánh giá.
-        </div>
-
-        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #475569; margin-bottom: 16px; line-height: 1.5;">
-          🛡 Phiếu đã ký bởi <strong>Phạm Thị Dung</strong> lúc 09:21 · 13/09/2026 và không thể chỉnh sửa. Mọi thay đổi phải thực hiện bằng một lượt đánh giá mới.
-        </div>
-
-        <button onclick="closeSignedAssessmentModal()" class="btn-dark" style="background: #0284c7; color: #fff; font-weight: 700; padding: 10px;">Đóng</button>
+        <button onclick="closeSignedDetailModal()" class="btn-blue" style="width: 100%; padding: 12px;">Đóng</button>
       </div>
     </div>
 
     <!-- Modal Phiếu Theo Dõi Điều Dưỡng (Phiếu theo dõi) -->
-    <div id="nursing-flowsheet-modal" class="modal-overlay" style="z-index: 100;">
-      <div class="modal-content" style="max-width: 440px; padding: 18px; background: #ffffff;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
-          <div style="font-size: 15px; font-weight: 800; color: #0f172a;">Phiếu theo dõi điều dưỡng</div>
-          <button onclick="closeNursingFlowsheetModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
+    <div id="nursing-monitor-modal" class="modal-overlay" style="z-index: 100;">
+      <div class="modal-content" style="max-width: 420px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 14px;">
+          <div style="font-size: 16px; font-weight: 750; color: #0f172a;">Phiếu theo dõi điều dưỡng</div>
+          <button onclick="closeNursingMonitorModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
 
         <div style="text-align: center; margin-bottom: 14px;">
-          <div style="font-size: 14px; font-weight: 850; color: #0f172a; text-transform: uppercase; line-height: 1.4;">PHIẾU THEO DÕI ĐIỀU DƯỠNG – PHÒNG NGỪA LOÉT TÌ ĐÈ</div>
-          <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Khoa Hồi sức tích cực · Bệnh viện Bệnh Nhiệt đới</div>
+          <div style="font-size: 14px; font-weight: 800; color: #0f172a; text-transform: uppercase;">PHIẾU THEO DÕI ĐIỀU DƯỠNG – PHÒNG NGỪA LOÉT TÌ ĐÈ</div>
+          <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Khoa Hồi sức tích cực · Bệnh viện Bệnh Nhiệt đới[cite: 14]</div>
         </div>
 
-        <div style="background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #166534; margin-bottom: 14px; line-height: 1.5;">
-          ✓ Phiếu dựng lại từ <strong>lượt đánh giá đã ký lúc 01:58 · 22/09/2026</strong> (Phạm Thị Dung) – giữ nguyên nội dung của thời điểm đó, không đổi theo dữ liệu về sau.
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px; margin-bottom: 12px; font-size: 11px; color: #166534; line-height: 1.4;">
+          ✓ Phiếu dựng lại từ <strong>lượt đánh giá đã ký lúc 01:58 · 22/09/2026</strong> (Phạm Thị Dung) – giữ nguyên nội dung của thời điểm đó, không đổi theo dữ liệu về sau[cite: 14].
         </div>
 
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div>• <strong>Họ tên:</strong> Phạm Thu Linh</div>
-          <div>• <strong>Mã hồ sơ:</strong> 26-040234</div>
-          <div>• <strong>Giường:</strong> HS-03</div>
-          <div>• <strong>Chẩn đoán:</strong> Nhiễm khuẩn huyết</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">Ngày / Giờ</div>
-          <div>01:58 · 22/09/2026 – ca tối</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">a. Tình trạng da</div>
-          <div>Chưa khám da trong hồ sơ</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">b. Đánh giá nguy cơ</div>
-          <div>Thang điểm Waterlow <strong>30 điểm</strong>, xác định mức độ nguy cơ <strong>nguy cơ rất cao</strong> (đánh giá 01:58 · 22/09/2026, Phạm Thị Dung)</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">c. Can thiệp phòng ngừa</div>
-          <div>Xoay <strong>nghiêng phải 30°</strong>. Duy trì xoay trở tư thế mỗi <strong>2 giờ</strong> (lịch cữ 00g · 02g · 04g · 06g · 08g · 10g · 12g · 14g · 16g · 18g · 20g · 22g). Giữ da sạch và khô. Bảo đảm dinh dưỡng đầy đủ. (2 lượt xoay trong 24 giờ trước mốc này)</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">d. Ghi nhận loét</div>
-          <div>Không ghi nhận loét.</div>
-        </div>
-
-        <div class="grid-2" style="margin-bottom: 14px; text-align: center; font-size: 11.5px; color: #475569; border-top: 1px solid #e2e8f0; padding-top: 10px;">
-          <div>Điều dưỡng lập phiếu<br><strong style="color: #0f172a;">Phạm Thị Dung</strong></div>
-          <div>Điều dưỡng trưởng<br><span>......................</span></div>
-        </div>
-
-        <div style="font-size: 10.5px; color: #64748b; line-height: 1.4; margin-bottom: 16px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 8px;">
-          Phiếu do phần mềm lập từ hồ sơ điện tử, theo Bước 4.1 quy trình phòng ngừa loét tì đè của khoa. Phiếu này không thay thế bàn giao bằng lời tại giường bệnh.
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; font-size: 12px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+          <div>• <strong>Họ tên:</strong> <span id="nm-modal-name">Phạm Thu Linh</span></div>
+          <div>• <strong>Mã hồ sơ:</strong> <span id="nm-modal-code">26-040234</span></div>
+          <div>• <strong>Giường:</strong> <span id="nm-modal-bed">HS-03</span></div>
+          <div>• <strong>Chẩn đoán:</strong> Nhiễm khuẩn huyết[cite: 13]</div>
+          <div style="border-top: 1px solid #e2e8f0; margin-top: 8px; padding-top: 8px;">
+            <div><strong>Ngày / Giờ:</strong> 01:58 · 22/09/2026 – ca tối[cite: 13]</div>
+            <div style="margin-top: 4px;"><strong>a. Tình trạng da:</strong> Chưa khám da trong hồ sơ[cite: 13]</div>
+            <div style="margin-top: 4px;"><strong>b. Đánh giá nguy cơ:</strong> Thang điểm Waterlow 30 điểm, xác định mức độ nguy cơ <strong>nguy cơ rất cao</strong>[cite: 13].</div>
+            <div style="margin-top: 4px;"><strong>c. Can thiệp phòng ngừa:</strong> Xoay nghiêng phải 30°. Duy trì xoay trở tư thế mỗi 2 giờ[cite: 13].</div>
+            <div style="margin-top: 4px;"><strong>d. Ghi nhận loét:</strong> Không ghi nhận loét[cite: 14].</div>
+          </div>
         </div>
 
         <div class="grid-2" style="gap: 10px;">
-          <button onclick="closeNursingFlowsheetModal()" class="btn-dark" style="padding: 10px; font-weight: 700;">Đóng</button>
-          <button onclick="showToast('Đang kết nối máy in phiếu...')" class="btn-blue" style="background: #0f766e; color: #fff; font-weight: 700; padding: 10px;">In phiếu</button>
+          <button onclick="closeNursingMonitorModal()" class="btn-dark">Đóng</button>
+          <button onclick="showToast('Đang in phiếu...')" style="background: #0f766e; color: #fff; font-weight: 700; border: none; border-radius: 10px; padding: 10px; font-size: 12px; cursor: pointer;">In phiếu</button>
         </div>
       </div>
     </div>
 
-    <!-- Cảnh Báo Trùng Lặp Hồ Sơ Mới -->
+    <!-- Modal Cảnh Báo Trùng Lặp Hồ Sơ Mới -->
     <div id="duplicate-warning-modal" class="modal-overlay" style="z-index: 90;">
       <div class="modal-content" style="max-width: 380px; text-align: center; padding: 24px 20px; background: #e0f2fe; border: 2px solid #0284c7;">
         <div id="dup-warning-title" style="font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 6px;"></div>
@@ -1139,7 +1091,7 @@
       </div>
     </div>
 
-    <!-- Cảnh Báo Thiếu Thời Gian -->
+    <!-- Modal Cảnh Báo Thiếu Thời Gian -->
     <div id="time-warning-modal" class="modal-overlay" style="z-index: 80;">
       <div class="modal-content" style="max-width: 360px; text-align: center; padding: 24px 20px;">
         <div style="font-size: 16px; font-weight: 800; color: #b91c1c; line-height: 1.4; margin-bottom: 8px;">
@@ -1685,6 +1637,28 @@
       }
     }
 
+    function openSignedDetailModal() {
+      var m = document.getElementById('signed-detail-modal');
+      if (m) m.style.display = 'flex';
+    }
+    function closeSignedDetailModal() {
+      var m = document.getElementById('signed-detail-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    function openNursingMonitorModal() {
+      var p = currentPatient;
+      document.getElementById('nm-modal-name').innerText = p.name;
+      document.getElementById('nm-modal-code').innerText = p.code;
+      document.getElementById('nm-modal-bed').innerText = p.bed;
+      var m = document.getElementById('nursing-monitor-modal');
+      if (m) m.style.display = 'flex';
+    }
+    function closeNursingMonitorModal() {
+      var m = document.getElementById('nursing-monitor-modal');
+      if (m) m.style.display = 'none';
+    }
+
     var currentActiveTab = 'home';
     function showTab(tabName) {
       if (currentActiveTab !== tabName) {
@@ -1777,26 +1751,6 @@
       bulkTurnFilterStatus = 'all';
       bulkTurnSortMode = 'bed-asc';
       showTab('bulk-turn');
-    }
-
-    function openSignedAssessmentModal() {
-      var modal = document.getElementById('signed-assessment-modal');
-      if (modal) modal.style.display = 'flex';
-    }
-
-    function closeSignedAssessmentModal() {
-      var modal = document.getElementById('signed-assessment-modal');
-      if (modal) modal.style.display = 'none';
-    }
-
-    function openNursingFlowsheetModal() {
-      var modal = document.getElementById('nursing-flowsheet-modal');
-      if (modal) modal.style.display = 'flex';
-    }
-
-    function closeNursingFlowsheetModal() {
-      var modal = document.getElementById('nursing-flowsheet-modal');
-      if (modal) modal.style.display = 'none';
     }
 
     function goBackFromDetail() {
@@ -2050,6 +2004,903 @@
         tbHtml += '</tbody></table></div>';
         container.innerHTML = tbHtml;
       }
+    }
+
+    function renderBulkTurnList() {
+      var container = document.getElementById('bulk-turn-container');
+      if (!container) return;
+
+      var treatingList = patients.filter(function(p) { return p.status === 'treating'; });
+      var countAll = treatingList.length;
+      var countOverdue = treatingList.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
+      var countNormal = countAll - countOverdue;
+
+      var list = [];
+      for (var i = 0; i < treatingList.length; i++) {
+        var p = treatingList[i];
+        var isOverdue = p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1;
+        if (bulkTurnFilterStatus === 'overdue' && !isOverdue) continue;
+        if (bulkTurnFilterStatus === 'normal' && isOverdue) continue;
+
+        list.push(p);
+      }
+
+      if (bulkTurnSortMode === 'waterlow-tiered') {
+        list.sort(function(a, b) {
+          var scoreA = (a.waterlow !== null) ? a.waterlow : -1;
+          var scoreB = (b.waterlow !== null) ? b.waterlow : -1;
+          if (scoreB !== scoreA) return scoreB - scoreA;
+          return (b.age || 0) - (a.age || 0);
+        });
+      } else if (bulkTurnSortMode === 'az') {
+        list.sort(function(a, b) { return getLastName(a.name).localeCompare(getLastName(b.name), 'vi'); });
+      } else if (bulkTurnSortMode === 'bed-desc') {
+        list.sort(function(a, b) { return b.bedNum - a.bedNum; });
+      } else {
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      }
+
+      var filterBarHtml = '<div class="grid-3 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc; position: sticky; top: 53px; z-index: 25; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">' +
+        '<button id="bulk-filter-all" onclick="setBulkTurnFilter(\'all\')" style="background:' + (bulkTurnFilterStatus==='all'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
+        '<button id="bulk-filter-overdue" onclick="setBulkTurnFilter(\'overdue\')" style="background:' + (bulkTurnFilterStatus==='overdue'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='overdue'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">đã tới lúc xoay-' + countOverdue + '</button>' +
+        '<button id="bulk-filter-normal" onclick="setBulkTurnFilter(\'normal\')" style="background:' + (bulkTurnFilterStatus==='normal'?'#0284c7':'transparent') + '; color:' + (bulkTurnFilterStatus==='normal'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 8px; padding: 6px; font-size: 11px; cursor: pointer;">chưa tới lúc-' + countNormal + '</button>' +
+      '</div>';
+
+      if (list.length === 0) {
+        container.innerHTML = filterBarHtml + '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không có người bệnh nào phù hợp.</div>';
+        return;
+      }
+
+      var html = filterBarHtml;
+      var currentDateDefault = getNowDateInputValue();
+
+      for (var j = 0; j < list.length; j++) {
+        var pt = list[j];
+        var isOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
+        var boxBorderColor = isOverdue ? '#f87171' : '#86efac';
+        var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
+        var curPos = pt.selectedPos || 'Ngửa';
+        var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
+        var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
+        var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
+
+        var cardStyle = 'margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;';
+        if (bulkTurnFilterStatus !== 'overdue') {
+          cardStyle += ' border-top: 1.5px solid ' + boxBorderColor + '; border-bottom: 1.5px solid ' + boxBorderColor + '; border-right: 1.5px solid ' + boxBorderColor + ';';
+        }
+
+        html += '<div class="card" style="' + cardStyle + '">' +
+          '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + getRiskColorCode(pt) + ';"></div>' +
+          '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
+              '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:750;">' + pt.bed + '</span>' +
+              '<strong onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="tbl-clean-link">' + getPatientFormattedHeader(pt) + '</strong>' +
+            '</div>' +
+            '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:750; color:#0284c7; background:#f0f9ff; border:1.5px solid #bae6fd; padding:3px 10px; border-radius:8px;">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
+          '</div>' +
+          '<div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:8px; font-weight:600; padding:2px 0;">' +
+            '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link">' + targetBadgeHtml + '</span>' +
+            '<span style="color:' + (isOverdue ? '#ea580c' : '#16a34a') + '; text-align:center;">' + pt.overdueTurn + '</span>' +
+            '<span style="color:#64748b; text-align:right;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
+          '</div>' +
+          '<div class="grid-4" style="margin-bottom:6px;">' +
+            '<button type="button" onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
+            '<button type="button" onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
+            '<button type="button" onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
+            '<button type="button" onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
+          '</div>' +
+          '<div style="display:grid; grid-template-columns:' + (isOtherSelected ? '1fr 1.2fr' : '1fr') + '; gap:6px; margin-bottom:6px;">' +
+            '<button type="button" onclick="selectBulkPatientPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (isOtherSelected?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
+            (isOtherSelected ? '<input type="text" id="bulk-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateBulkReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' : '') +
+          '</div>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
+            '<div onclick="toggleBulkPatientSkinCheck(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
+              '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:800; font-size:11px;">' + (pt.checkedSkin ? '✓' : '') + '</div>' +
+              '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
+            '</div>' +
+            '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
+              '<span style="font-weight:650; color:#0284c7;">Loét / Tổn thương:</span>' +
+              '<span style="font-weight:750; color:#b91c1c; background:#fee2e2; border:1.5px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
+              '<label style="font-size:11.5px; font-weight:550; color:#475569; white-space:nowrap;">thời gian:</label>' +
+              '<input type="time" id="bulkm-h-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
+              '<span style="font-weight:500; color:#94a3b8;">-</span>' +
+              '<input type="date" id="bulkm-d-' + pt.id + '" value="' + currentDateDefault + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
+            '</div>' +
+            '<button type="button" onclick="saveBulkTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
+          '</div>' +
+        '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function selectBulkPatientPos(id, posName) {
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) p.selectedPos = posName;
+      renderBulkTurnList();
+    }
+
+    function updateBulkReason(id, val) {
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) p.turnReason = val;
+    }
+
+    function toggleBulkPatientSkinCheck(id) {
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) p.checkedSkin = !p.checkedSkin;
+      renderBulkTurnList();
+    }
+
+    function saveBulkTurnWithTime(id) {
+      var timeInpVal = document.getElementById('bulkm-h-' + id).value;
+      var dateInpVal = document.getElementById('bulkm-d-' + id).value;
+
+      if (!timeInpVal || timeInpVal.trim() === "" || !dateInpVal || dateInpVal.trim() === "") {
+        document.getElementById('pending-turn-patient-id').value = id;
+        document.getElementById('time-warning-modal').style.display = 'flex';
+        return;
+      }
+
+      executeSaveBulkTurn(id, timeInpVal, dateInpVal);
+    }
+
+    function confirmPendingTurnTime() {
+      var id = document.getElementById('pending-turn-patient-id').value;
+      document.getElementById('time-warning-modal').style.display = 'none';
+      executeSaveBulkTurn(id, getNowTimeInputValue(), getNowDateInputValue());
+    }
+
+    function cancelPendingTurnTime() {
+      document.getElementById('time-warning-modal').style.display = 'none';
+    }
+
+    function executeSaveBulkTurn(id, timeInpVal, dateInpVal) {
+      var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
+      var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
+
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) {
+        var pos = p.selectedPos || "Ngửa";
+        var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
+        p.overdueTurn = "Vừa xoay";
+        p.lastTurnNote = pos + reasonText + " lúc " + activeTimeOnly;
+        p.turns24h = (p.turns24h || 0) + 1;
+
+        if (!p.turnLogs) p.turnLogs = [];
+        p.turnLogs.unshift({ time: recordTimeDisplay, pos: pos + reasonText, skin: p.checkedSkin !== false });
+
+        showToast("Đã lưu cữ xoay giường " + p.bed);
+      }
+
+      updateDynamicDashboardCounts();
+      renderBulkTurnList();
+      renderTasks();
+      renderPatients();
+    }
+
+    function selectTaskPos(patientId, posName) {
+      var p = patients.find(function(x) { return x.id === patientId; });
+      if (p) p.selectedPos = posName;
+      renderTasks();
+    }
+
+    function updateTaskReason(id, val) {
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) p.turnReason = val;
+    }
+
+    function toggleTaskSkin(patientId) {
+      var p = patients.find(function(x) { return x.id === patientId; });
+      if (p) p.checkedSkin = !p.checkedSkin;
+      renderTasks();
+    }
+
+    var currentTaskFilter = 'all';
+    function setTaskFilter(type) {
+      currentTaskFilter = type;
+      var arr = ['all', 'turn', 'assess', 'note'];
+      for (var i = 0; i < arr.length; i++) {
+        var b = document.getElementById('t-btn-' + arr[i]);
+        if (b) {
+          b.style.background = (arr[i] === type) ? '#0284c7' : 'transparent';
+          b.style.color = (arr[i] === type) ? '#ffffff' : '#64748b';
+        }
+      }
+      renderTasks();
+    }
+
+    function renderTasks() {
+      var container = document.getElementById('tasks-display-container');
+      var filterStickyContainer = document.getElementById('tasks-filter-container-sticky');
+      if (!container || !filterStickyContainer) return;
+
+      var treatingPatients = patients.filter(function(p) { return p.status === 'treating'; });
+      var countAll = treatingPatients.length;
+      var countTurn = treatingPatients.filter(function(p) { return p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1; }).length;
+      var countAssess = treatingPatients.filter(function(p) { return p.overdueAssess && p.overdueAssess.trim() !== ''; }).length;
+      var countNote = treatingPatients.filter(function(p) { return p.notes && p.notes.trim() !== ''; }).length;
+
+      filterStickyContainer.innerHTML = '<div class="grid-4 card" style="padding: 4px; margin-bottom: 10px; background: #f8fafc;">' +
+        '<button id="t-btn-all" onclick="setTaskFilter(\'all\')" style="background:' + (currentTaskFilter==='all'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='all'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">Tất cả-' + countAll + '</button>' +
+        '<button id="t-btn-turn" onclick="setTaskFilter(\'turn\')" style="background:' + (currentTaskFilter==='turn'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='turn'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">xoay trở-' + countTurn + '</button>' +
+        '<button id="t-btn-assess" onclick="setTaskFilter(\'assess\')" style="background:' + (currentTaskFilter==='assess'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='assess'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">đánh giá-' + countAssess + '</button>' +
+        '<button id="t-btn-note" onclick="setTaskFilter(\'note\')" style="background:' + (currentTaskFilter==='note'?'#0284c7':'transparent') + '; color:' + (currentTaskFilter==='note'?'#ffffff':'#64748b') + '; font-weight: 650; border: none; border-radius: 6px; padding: 6px 2px; font-size: 11px; cursor: pointer;">lưu ý-' + countNote + '</button>' +
+      '</div>';
+
+      var search = document.getElementById('task-search-input').value.toLowerCase().trim();
+      var sort = document.getElementById('task-sort-select').value;
+
+      var list = [];
+      for (var i = 0; i < patients.length; i++) {
+        var p = patients[i];
+        if (taskPatientStatus === 'treating' && p.status !== 'treating') continue;
+        if (taskPatientStatus === 'discharged' && p.status !== 'discharged') continue;
+
+        var isTurnOverdue = p.overdueTurn && p.overdueTurn.indexOf('Vừa xoay') === -1;
+        var isAssessNeeded = p.overdueAssess && p.overdueAssess.trim() !== '';
+        var isNotePending = p.notes && p.notes.trim() !== '';
+
+        if (currentTaskFilter === 'turn' && !isTurnOverdue) continue;
+        if (currentTaskFilter === 'assess' && !isAssessNeeded) continue;
+        if (currentTaskFilter === 'note' && !isNotePending) continue;
+        if (currentTaskFilter === 'all' && !isTurnOverdue && !isAssessNeeded && !isNotePending) continue;
+
+        if (isTaskFilteringBedRange && (p.bedNum < taskBedFrom || p.bedNum > taskBedTo)) continue;
+        if (!search || p.name.toLowerCase().indexOf(search) > -1 || p.bed.toLowerCase().indexOf(search) > -1 || p.code.toLowerCase().indexOf(search) > -1) {
+          list.push(p);
+        }
+      }
+
+      if (taskSortMode === 'waterlow-tiered') {
+        list.sort(function(a, b) {
+          var scoreA = (a.waterlow !== null) ? a.waterlow : -1;
+          var scoreB = (b.waterlow !== null) ? b.waterlow : -1;
+          if (scoreB !== scoreA) return scoreB - scoreA;
+          return (b.age || 0) - (a.age || 0);
+        });
+      } else if (taskSortMode === 'az') {
+        list.sort(function(a, b) { return getLastName(a.name).localeCompare(getLastName(b.name), 'vi'); });
+      } else if (taskSortMode === 'bed-desc') {
+        list.sort(function(a, b) { return b.bedNum - a.bedNum; });
+      } else {
+        list.sort(function(a, b) { return a.bedNum - b.bedNum; });
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = '<div class="card" style="text-align:center; color:#16a34a; font-size:13px; font-weight:700; padding:24px;">✓ Không còn người bệnh nào cần xử lý trong mục này.</div>';
+        return;
+      }
+
+      var html = '';
+      var currentDateDefault = getNowDateInputValue();
+
+      for (var j = 0; j < list.length; j++) {
+        var pt = list[j];
+        var colorCode = getRiskColorCode(pt);
+        var targetH = getTurnTargetHours(pt.waterlow, pt.risk);
+        var isTurnOverdue = pt.overdueTurn && pt.overdueTurn.indexOf('Vừa xoay') === -1;
+        var curPos = pt.selectedPos || 'Ngửa';
+        var targetBadgeHtml = getTurnTargetBadgeHtml(targetH, pt.risk);
+        var currentWoundsCount = (pt.woundList ? pt.woundList.length : 0) + (pt.deviceWoundList ? pt.deviceWoundList.length : 0);
+        
+        var isOtherSelected = (curPos === 'Chưa xoay được / Khác');
+
+        html += '<div class="card" style="margin-bottom:10px; position:relative; overflow:hidden; padding-left:16px;">' +
+          '<div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:' + colorCode + ';"></div>' +
+          '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">' +
+              '<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 8px; border-radius:6px; font-size:11px; color:#0284c7; font-weight:750;">' + pt.bed + '</span>' +
+              '<strong onclick="openDetailById(\'' + pt.id + '\', \'overview\')" class="tbl-clean-link">' + getPatientFormattedHeader(pt) + '</strong>' +
+            '</div>' +
+            '<span onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="tbl-clean-link" style="font-size:11px; font-weight:750; color:#0284c7; background:#f0f9ff; border:1.5px solid #bae6fd; padding:3px 10px; border-radius:8px;">Waterlow: ' + (pt.waterlow !== null ? pt.waterlow : '--') + '</span>' +
+          '</div>';
+
+        if (currentTaskFilter === 'turn') {
+          html += '<div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:8px; font-weight:600; padding:2px 0;">' +
+            '<span onclick="openPatientSubSection(\'' + pt.id + '\', \'turn\', \'dt-next-turn-pos\')" class="tbl-clean-link">' + targetBadgeHtml + '</span>' +
+            '<span style="color:#ea580c; text-align:center;">' + pt.overdueTurn + '</span>' +
+            '<span style="color:#64748b; text-align:right;">' + (pt.lastTurnNote || 'Ngh. phải lúc 21:10') + '</span>' +
+          '</div>' +
+          '<div class="grid-4" style="margin-bottom:6px;">' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. trái\')" class="pos-btn ' + (curPos==='Ngh. trái'?'pos-active':'') + '">Ngh. trái</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngửa\')" class="pos-btn ' + (curPos==='Ngửa'?'pos-active':'') + '">Ngửa</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Ngh. phải\')" class="pos-btn ' + (curPos==='Ngh. phải'?'pos-active':'') + '">Ngh. phải</button>' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Nửa ngồi\')" class="pos-btn ' + (curPos==='Nửa ngồi'?'pos-active':'') + '">Nửa ngồi</button>' +
+          '</div>' +
+          '<div style="display:grid; grid-template-columns:' + (isOtherSelected ? '1fr 1.2fr' : '1fr') + '; gap:6px; margin-bottom:6px;">' +
+            '<button type="button" onclick="selectTaskPos(\'' + pt.id + '\', \'Chưa xoay được / Khác\')" class="pos-btn ' + (isOtherSelected?'pos-active':'') + '">Chưa xoay được / Khác</button>' +
+            (isOtherSelected ? '<input type="text" id="task-reason-' + pt.id + '" value="' + (pt.turnReason || '') + '" placeholder="Lý do / Ghi chú..." oninput="updateTaskReason(\'' + pt.id + '\', this.value)" style="font-size:11.5px; padding:6px 10px;" />' : '') +
+          '</div>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px;">' +
+            '<div onclick="toggleTaskSkin(\'' + pt.id + '\')" style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:11.5px; color:#334155;">' +
+              '<div style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (pt.checkedSkin ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:800; font-size:11px;">' + (pt.checkedSkin ? '✓' : '') + '</div>' +
+              '<span style="font-weight:600;">đã kiểm tra tình trạng da, điểm loét tì đè</span>' +
+            '</div>' +
+            '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="tbl-clean-link" style="display:flex; align-items:center; gap:6px; font-size:11.5px;" title="Nhấp mở trang tổn thương">' +
+              '<span style="font-weight:650; color:#0284c7;">Loét / Tổn thương:</span>' +
+              '<span style="font-weight:750; color:#b91c1c; background:#fee2e2; border:1.5px solid #f87171; padding:1px 6px; border-radius:6px;">' + currentWoundsCount + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding-top:2px;">' +
+            '<div style="display:flex; align-items:center; gap:6px; flex:1;">' +
+              '<label style="font-size:11.5px; font-weight:550; color:#475569; white-space:nowrap;">thời gian:</label>' +
+              '<input type="time" id="turntime-h-' + pt.id + '" value="" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:75px; text-align:center; outline:none;" />' +
+              '<span style="font-weight:500; color:#94a3b8;">-</span>' +
+              '<input type="date" id="turntime-d-' + pt.id + '" value="' + currentDateDefault + '" style="font-size:12px; padding:4px 2px; font-weight:550; color:#334155; background:transparent; border:none; width:125px; text-align:center; outline:none;" />' +
+            '</div>' +
+            '<button type="button" onclick="saveTaskTurnWithTime(\'' + pt.id + '\')" class="btn-soft-pink" style="padding:7px 14px; font-size:12px; width:auto; shrink:0;">Lưu cữ xoay</button>' +
+          '</div>';
+        } else {
+          html += '<div style="font-size:12px; color:#334155; line-height:1.6;">' +
+            (pt.notes ? '<div onclick="openDetailById(\'' + pt.id + '\', \'wound\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;"><span>• ' + pt.notes + '</span><span style="font-size:11px; color:#0284c7; text-decoration:underline;">Xử lý ngay →</span></div>' : '') +
+            (pt.overdueAssess ? '<div onclick="openWaterlowAssessmentWizard(\'' + pt.id + '\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;"><span>• ' + pt.overdueAssess + '</span><span style="font-size:11px; color:#0284c7; text-decoration:underline;">Đánh giá ngay →</span></div>' : '') +
+            (isTurnOverdue ? '<div onclick="openDetailById(\'' + pt.id + '\', \'turn\')" class="clickable-alert-item" style="color:#ea580c; font-weight:600;"><span>• Đã ' + pt.overdueTurn + ' chưa xoay</span><span style="font-size:11px; color:#0284c7; text-decoration:underline;">Ghi xoay →</span></div>' : '') +
+          '</div>';
+        }
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    var activeWoundType = 'skin';
+
+    function openAddWoundModal(editIndex) {
+      if (!currentPatient.woundList) currentPatient.woundList = [];
+      activeWoundType = 'skin';
+
+      var modalTitle = document.getElementById('wound-modal-title');
+      var editInp = document.getElementById('edit-wound-index');
+      var sel = document.getElementById('wound-location-select');
+      var customInput = document.getElementById('wound-custom-location-input');
+      var sizeInp = document.getElementById('wound-size-input');
+      var descInp = document.getElementById('wound-desc-input');
+      var gradeSel = document.getElementById('wound-grade-select');
+      var depthSel = document.getElementById('wound-depth-select');
+      var deviceSelectorBox = document.getElementById('device-selector-box');
+      var deviceOtherBox = document.getElementById('device-other-box');
+      var skinLocationBox = document.getElementById('skin-location-box');
+
+      if (deviceSelectorBox) deviceSelectorBox.style.display = 'none';
+      if (deviceOtherBox) deviceOtherBox.style.display = 'none';
+      if (skinLocationBox) skinLocationBox.style.display = 'block';
+
+      if (editIndex !== undefined && editIndex !== null && !isNaN(editIndex) && editIndex >= 0 && currentPatient.woundList[editIndex]) {
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
+        if (editInp) editInp.value = editIndex;
+        var item = currentPatient.woundList[editIndex];
+
+        var foundOption = false;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === item.location) {
+            sel.value = item.location;
+            foundOption = true;
+            break;
+          }
+        }
+        if (!foundOption) {
+          sel.value = "Khác";
+          customInput.value = item.location;
+        } else {
+          customInput.value = "";
+        }
+
+        if (gradeSel) {
+          for (var g = 0; g < gradeSel.options.length; g++) {
+            if (item.grade && gradeSel.options[g].text.indexOf(item.grade.split('—')[0].trim()) > -1) {
+              gradeSel.selectedIndex = g;
+              break;
+            }
+          }
+        }
+        if (depthSel && item.depth) {
+          for (var dp = 0; dp < depthSel.options.length; dp++) {
+            if (depthSel.options[dp].value.indexOf(item.depth.split('-')[0].trim()) > -1) {
+              depthSel.selectedIndex = dp;
+              break;
+            }
+          }
+        }
+        if (sizeInp) sizeInp.value = item.size || "";
+        if (descInp) descInp.value = item.desc || "";
+        selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
+      } else {
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN TỔN THƯƠNG";
+        if (editInp) editInp.value = "-1";
+        sel.value = "Vùng chẩm";
+        customInput.value = "";
+        if (sizeInp) sizeInp.value = "";
+        if (descInp) descInp.value = "";
+        if (gradeSel) gradeSel.selectedIndex = 1;
+        if (depthSel) depthSel.selectedIndex = 0;
+        selectWoundMode('track');
+        selectWoundOrigin('khoa');
+      }
+
+      onWoundLocationChange(sel.value);
+
+      var chkNo = document.getElementById('no-abnormal-chk');
+      var rowNo = document.getElementById('no-abnormal-row');
+      if (chkNo && rowNo) {
+        chkNo.innerText = "";
+        chkNo.style.background = "#fff";
+        chkNo.style.borderColor = "#94a3b8";
+        rowNo.style.borderColor = "#cbd5e1";
+        rowNo.style.background = "#f8fafc";
+      }
+
+      document.getElementById('add-wound-modal').style.display = 'flex';
+    }
+
+    function openAddDeviceWoundModal(editIndex) {
+      if (!currentPatient.deviceWoundList) currentPatient.deviceWoundList = [];
+      activeWoundType = 'device';
+
+      var modalTitle = document.getElementById('wound-modal-title');
+      var editInp = document.getElementById('edit-wound-index');
+      var deviceSelectorBox = document.getElementById('device-selector-box');
+      var deviceOtherBox = document.getElementById('device-other-box');
+      var skinLocationBox = document.getElementById('skin-location-box');
+      var deviceTypeSelect = document.getElementById('device-type-select');
+      var deviceOtherInput = document.getElementById('device-other-input');
+      var sel = document.getElementById('wound-location-select');
+      var customInput = document.getElementById('wound-custom-location-input');
+      var sizeInp = document.getElementById('wound-size-input');
+      var descInp = document.getElementById('wound-desc-input');
+      var gradeSel = document.getElementById('wound-grade-select');
+      var depthSel = document.getElementById('wound-depth-select');
+
+      if (deviceSelectorBox) deviceSelectorBox.style.display = 'block';
+      if (skinLocationBox) skinLocationBox.style.display = 'block';
+
+      if (editIndex !== undefined && editIndex !== null && !isNaN(editIndex) && editIndex >= 0 && currentPatient.deviceWoundList[editIndex]) {
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN LOÉT DO THIẾT BỊ";
+        if (editInp) editInp.value = editIndex;
+        var item = currentPatient.deviceWoundList[editIndex];
+
+        var foundDev = false;
+        for (var d = 0; d < deviceTypeSelect.options.length; d++) {
+          if (deviceTypeSelect.options[d].value === item.deviceType) {
+            deviceTypeSelect.value = item.deviceType;
+            foundDev = true;
+            break;
+          }
+        }
+        if (!foundDev) {
+          deviceTypeSelect.value = "Thiết bị khác";
+          if (deviceOtherInput) deviceOtherInput.value = item.deviceType || "";
+        } else {
+          if (deviceOtherInput) deviceOtherInput.value = "";
+        }
+        onDeviceTypeChange(deviceTypeSelect.value);
+
+        var foundOption = false;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === item.location) {
+            sel.value = item.location;
+            foundOption = true;
+            break;
+          }
+        }
+        if (!foundOption) {
+          sel.value = "Khác";
+          customInput.value = item.location;
+        } else {
+          customInput.value = "";
+        }
+        onWoundLocationChange(sel.value);
+
+        if (gradeSel) {
+          for (var g = 0; g < gradeSel.options.length; g++) {
+            if (item.grade && gradeSel.options[g].text.indexOf(item.grade.split('—')[0].trim()) > -1) {
+              gradeSel.selectedIndex = g;
+              break;
+            }
+          }
+        }
+        if (depthSel && item.depth) {
+          for (var dp = 0; dp < depthSel.options.length; dp++) {
+            if (depthSel.options[dp].value.indexOf(item.depth.split('-')[0].trim()) > -1) {
+              depthSel.selectedIndex = dp;
+              break;
+            }
+          }
+        }
+        if (sizeInp) sizeInp.value = item.size || "";
+        if (descInp) descInp.value = item.desc || "";
+        selectWoundOrigin(item.origin === 'Phát sinh tại khoa' ? 'khoa' : 'ngoai');
+      } else {
+        if (modalTitle) modalTitle.innerText = "GHI NHẬN LOÉT DO THIẾT BỊ";
+        if (editInp) editInp.value = "-1";
+        if (deviceTypeSelect) deviceTypeSelect.selectedIndex = 0;
+        if (deviceOtherInput) deviceOtherInput.value = "";
+        if (sel) sel.value = "Vùng chẩm";
+        if (customInput) customInput.value = "";
+        if (sizeInp) sizeInp.value = "";
+        if (descInp) descInp.value = "";
+        if (gradeSel) gradeSel.selectedIndex = 1;
+        if (depthSel) depthSel.selectedIndex = 0;
+        selectWoundMode('track');
+        selectWoundOrigin('khoa');
+        onDeviceTypeChange(deviceTypeSelect ? deviceTypeSelect.value : "Ống nội khí quản");
+        onWoundLocationChange(sel ? sel.value : "Vùng chẩm");
+      }
+
+      var chkNo = document.getElementById('no-abnormal-chk');
+      var rowNo = document.getElementById('no-abnormal-row');
+      if (chkNo && rowNo) {
+        chkNo.innerText = "";
+        chkNo.style.background = "#fff";
+        chkNo.style.borderColor = "#94a3b8";
+        rowNo.style.borderColor = "#cbd5e1";
+        rowNo.style.background = "#f8fafc";
+      }
+
+      document.getElementById('add-wound-modal').style.display = 'flex';
+    }
+
+    function closeAddWoundModal() {
+      document.getElementById('add-wound-modal').style.display = 'none';
+    }
+
+    function onWoundLocationChange(val) {
+      var customBox = document.getElementById('custom-location-box');
+      customBox.style.display = (val === 'Khác') ? 'block' : 'none';
+    }
+
+    function onDeviceTypeChange(val) {
+      var otherBox = document.getElementById('device-other-box');
+      otherBox.style.display = (val === 'Thiết bị khác') ? 'block' : 'none';
+    }
+
+    function selectWoundMode(modeVal) {
+      var radios = document.getElementsByName('wound-mode');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].value === modeVal) radios[i].checked = true;
+      }
+      var rObserve = document.getElementById('mode-observe-row');
+      var rTrack = document.getElementById('mode-track-row');
+      if (modeVal === 'observe') {
+        rObserve.style.border = "1.5px solid #22c55e";
+        rObserve.style.background = "#f0fdf4";
+        rTrack.style.border = "none";
+        rTrack.style.background = "transparent";
+      } else {
+        rTrack.style.border = "1.5px solid #22c55e";
+        rTrack.style.background = "#f0fdf4";
+        rObserve.style.border = "none";
+        rObserve.style.background = "transparent";
+      }
+    }
+
+    function selectWoundOrigin(originVal) {
+      var radios = document.getElementsByName('wound-origin');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].value === originVal) radios[i].checked = true;
+      }
+      var rKhoa = document.getElementById('origin-khoa-row');
+      var rNgoai = document.getElementById('origin-ngoai-row');
+      if (originVal === 'khoa') {
+        rKhoa.style.border = "1.5px solid #0284c7";
+        rKhoa.style.background = "#f0f9ff";
+        rNgoai.style.border = "none";
+        rNgoai.style.background = "transparent";
+      } else {
+        rNgoai.style.border = "1.5px solid #0284c7";
+        rNgoai.style.background = "#f0f9ff";
+        rKhoa.style.border = "none";
+        rKhoa.style.background = "transparent";
+      }
+    }
+
+    var isNoAbnormalChecked = false;
+    function toggleNoAbnormality() {
+      isNoAbnormalChecked = !isNoAbnormalChecked;
+      var chk = document.getElementById('no-abnormal-chk');
+      var row = document.getElementById('no-abnormal-row');
+      if (chk && row) {
+        if (isNoAbnormalChecked) {
+          chk.innerText = "✓";
+          chk.style.background = "#22c55e";
+          chk.style.borderColor = "#22c55e";
+          row.style.borderColor = "#22c55e";
+          row.style.background = "#f0fdf4";
+        } else {
+          chk.innerText = "";
+          chk.style.background = "#fff";
+          chk.style.borderColor = "#94a3b8";
+          row.style.borderColor = "#cbd5e1";
+          row.style.background = "#f8fafc";
+        }
+      }
+    }
+
+    function saveNewWoundDetails() {
+      if (isNoAbnormalChecked) {
+        if (activeWoundType === 'device') currentPatient.deviceWoundList = [];
+        else currentPatient.woundList = [];
+        closeAddWoundModal();
+        showToast('Đã ghi nhận: Không có tổn thương');
+        renderDetail();
+        renderPatients();
+        return;
+      }
+
+      var locName = "";
+      var devType = "";
+      if (activeWoundType === 'device') {
+        var devSel = document.getElementById('device-type-select').value;
+        if (devSel === 'Thiết bị khác') {
+          var devOther = document.getElementById('device-other-input').value.trim();
+          devType = devOther ? devOther : 'Thiết bị khác';
+        } else {
+          devType = devSel;
+        }
+      }
+
+      var selVal = document.getElementById('wound-location-select').value;
+      if (selVal === 'Khác') {
+        var customInp = document.getElementById('wound-custom-location-input');
+        locName = customInp && customInp.value.trim() ? customInp.value.trim() : 'Vị trí tùy chỉnh';
+      } else {
+        locName = selVal;
+      }
+
+      var grade = document.getElementById('wound-grade-select').value;
+      var depth = document.getElementById('wound-depth-select').value;
+      var size = document.getElementById('wound-size-input').value.trim() || '3 × 2 cm';
+      var desc = document.getElementById('wound-desc-input').value.trim();
+      var originRadio = document.querySelector('input[name="wound-origin"]:checked');
+      var origin = (originRadio && originRadio.value === 'khoa') ? 'Phát sinh tại khoa' : 'Đã có sẵn khi vào khoa';
+
+      var editIndex = parseInt(document.getElementById('edit-wound-index').value, 10);
+      var targetList = (activeWoundType === 'device') ? (currentPatient.deviceWoundList = currentPatient.deviceWoundList || []) : (currentPatient.woundList = currentPatient.woundList || []);
+
+      if (!isNaN(editIndex) && editIndex >= 0 && targetList[editIndex]) {
+        if (activeWoundType === 'device') {
+          targetList[editIndex] = { deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc };
+        } else {
+          targetList[editIndex] = { location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc };
+        }
+        showToast('Đã cập nhật đè chính xác vết thương cũ');
+      } else {
+        if (activeWoundType === 'device') {
+          targetList.push({ deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
+        } else {
+          targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
+        }
+        showToast('Đã thêm tổn thương mới');
+      }
+
+      currentPatient.wounds = (currentPatient.woundList ? currentPatient.woundList.length : 0) + (currentPatient.deviceWoundList ? currentPatient.deviceWoundList.length : 0);
+      closeAddWoundModal();
+      renderDetail();
+      renderPatients();
+    }
+
+    function deleteCurrentWound() {
+      var editIndex = parseInt(document.getElementById('edit-wound-index').value, 10);
+      var targetList = (activeWoundType === 'device') ? currentPatient.deviceWoundList : currentPatient.woundList;
+
+      if (!isNaN(editIndex) && editIndex >= 0 && targetList && targetList[editIndex]) {
+        targetList.splice(editIndex, 1);
+        currentPatient.wounds = (currentPatient.woundList ? currentPatient.woundList.length : 0) + (currentPatient.deviceWoundList ? currentPatient.deviceWoundList.length : 0);
+        showToast('Đã xóa tổn thương thành công');
+      } else {
+        showToast('Không có tổn thương nào để xóa');
+      }
+      closeAddWoundModal();
+      renderDetail();
+      renderPatients();
+    }
+
+    function saveTaskTurnWithTime(id) {
+      var timeInpVal = document.getElementById('turntime-h-' + id).value;
+      var dateInpVal = document.getElementById('turntime-d-' + id).value;
+
+      if (!timeInpVal || timeInpVal.trim() === "" || !dateInpVal || dateInpVal.trim() === "") {
+        document.getElementById('pending-turn-patient-id').value = id;
+        document.getElementById('time-warning-modal').style.display = 'flex';
+        return;
+      }
+
+      executeSaveTaskTurn(id, timeInpVal, dateInpVal);
+    }
+
+    function confirmPendingTurnTime() {
+      var id = document.getElementById('pending-turn-patient-id').value;
+      document.getElementById('time-warning-modal').style.display = 'none';
+      executeSaveTaskTurn(id, getNowTimeInputValue(), getNowDateInputValue());
+    }
+
+    function cancelPendingTurnTime() {
+      document.getElementById('time-warning-modal').style.display = 'none';
+    }
+
+    function executeSaveTaskTurn(id, timeInpVal, dateInpVal) {
+      var recordTimeDisplay = formatTimeDateDisplay(timeInpVal, dateInpVal);
+      var activeTimeOnly = (timeInpVal && timeInpVal.trim() !== "") ? timeInpVal : getNowTimeInputValue();
+
+      var p = patients.find(function(x) { return x.id === id; });
+      if (p) {
+        var pos = p.selectedPos || "Ngửa";
+        var reasonText = p.turnReason ? (' (' + p.turnReason + ')') : '';
+        p.overdueTurn = "Vừa xoay";
+        p.lastTurnNote = pos + reasonText + " lúc " + activeTimeOnly;
+        p.turns24h = (p.turns24h || 0) + 1;
+
+        if (!p.turnLogs) p.turnLogs = [];
+        p.turnLogs.unshift({ time: recordTimeDisplay, pos: pos + reasonText, skin: p.checkedSkin !== false });
+
+        showToast("Đã lưu cữ xoay giường " + p.bed);
+      }
+
+      updateDynamicDashboardCounts();
+      renderTasks();
+      renderBulkTurnList();
+      renderPatients();
+    }
+
+    function openNewPatientModal() {
+      document.getElementById('inp-p-name').value = "";
+      document.getElementById('inp-p-code').value = "";
+      document.getElementById('inp-p-dob').value = "";
+      document.getElementById('inp-p-bed-num').value = "";
+      document.getElementById('inp-p-diag').value = "";
+      document.getElementById('new-patient-modal').style.display = 'flex';
+    }
+
+    function closeNewPatientModal() {
+      document.getElementById('new-patient-modal').style.display = 'none';
+    }
+
+    function validateAndSaveNewPatient() {
+      var name = document.getElementById('inp-p-name').value.trim().toUpperCase();
+      var code = document.getElementById('inp-p-code').value.trim();
+      var bedNum = parseInt(document.getElementById('inp-p-bed-num').value) || 1;
+      var bed = "G." + bedNum;
+
+      if (!name) { alert('Vui lòng nhập họ và tên người bệnh!'); return; }
+
+      duplicateCheckQueue = [];
+
+      var treatingList = patients.filter(function(p) { return p.status === 'treating'; });
+      for (var i = 0; i < treatingList.length; i++) {
+        var existing = treatingList[i];
+        if (name && existing.name.toUpperCase() === name) {
+          duplicateCheckQueue.push({
+            type: 'name',
+            inputValue: name,
+            matchText: 'BN: ' + existing.name.toUpperCase() + ' | ' + (existing.dob ? existing.dob.substring(0, 4) : '1976') + ' | ' + (existing.gender || 'Nam'),
+            matchDetail: 'Mã hồ sơ: ' + existing.code + '   Giường ' + existing.bed
+          });
+          break;
+        }
+      }
+
+      if (code) {
+        for (var j = 0; j < treatingList.length; j++) {
+          var existingCode = treatingList[j];
+          if (existingCode.code === code) {
+            duplicateCheckQueue.push({
+              type: 'code',
+              inputValue: code,
+              matchText: 'BN: ' + existingCode.name.toUpperCase() + ' | ' + (existingCode.dob ? existingCode.dob.substring(0, 4) : '1976') + ' | ' + (existingCode.gender || 'Nam'),
+              matchDetail: 'Mã hồ sơ: ' + existingCode.code + '   Giường ' + existingCode.bed
+            });
+            break;
+          }
+        }
+      }
+
+      for (var k = 0; k < treatingList.length; k++) {
+        var existingBed = treatingList[k];
+        if (existingBed.bed === bed) {
+          duplicateCheckQueue.push({
+            type: 'bed',
+            inputValue: bed,
+            matchText: 'BN: ' + existingBed.name.toUpperCase() + ' | ' + (existingBed.dob ? existingBed.dob.substring(0, 4) : '1976') + ' | ' + (existingBed.gender || 'Nam'),
+            matchDetail: 'Mã hồ sơ: ' + existingBed.code + '   Giường ' + existingBed.bed
+          });
+          break;
+        }
+      }
+
+      pendingNewPatientData = {
+        name: name,
+        code: code || ('26-' + Math.floor(100000 + Math.random() * 900000)),
+        dob: document.getElementById('inp-p-dob').value,
+        bedNum: bedNum,
+        bed: bed,
+        diag: document.getElementById('inp-p-diag').value.trim() || 'Theo dõi hồi sức ICU',
+        gender: document.getElementById('inp-p-gender').value
+      };
+
+      processNextDuplicateCheck();
+    }
+
+    function processNextDuplicateCheck() {
+      if (duplicateCheckQueue.length === 0) {
+        executeCreateNewPatient(pendingNewPatientData);
+        return;
+      }
+
+      var dup = duplicateCheckQueue.shift();
+      var titleEl = document.getElementById('dup-warning-title');
+      var infoEl = document.getElementById('dup-warning-match-info');
+      var questionEl = document.getElementById('dup-warning-question');
+
+      if (dup.type === 'name') {
+        titleEl.innerText = 'Họ và tên “ ' + dup.inputValue + ' ” bạn vừa tạo';
+        questionEl.innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “họ và tên” này không';
+      } else if (dup.type === 'code') {
+        titleEl.innerText = 'Mã hồ sơ “ ' + dup.inputValue + ' ” bạn vừa tạo';
+        questionEl.innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “Mã hồ sơ” này không';
+      } else {
+        titleEl.innerText = 'Giường “ ' + dup.inputValue + ' ” bạn vừa nhập';
+        questionEl.innerText = 'Bạn có muốn tiếp tục tạo hồ sơ mới với “giường” này không';
+      }
+
+      infoEl.innerHTML = dup.matchText + '<br><br>' + dup.matchDetail;
+      document.getElementById('duplicate-warning-modal').style.display = 'flex';
+    }
+
+    function handleDuplicateChoice(userChoice) {
+      document.getElementById('duplicate-warning-modal').style.display = 'none';
+      if (!userChoice) {
+        duplicateCheckQueue = [];
+        pendingNewPatientData = null;
+        closeNewPatientModal();
+        showToast('Đã hủy tạo hồ sơ mới');
+      } else {
+        processNextDuplicateCheck();
+      }
+    }
+
+    function executeCreateNewPatient(data) {
+      var calculatedAge = data.dob ? (2026 - new Date(data.dob).getFullYear()) : 50;
+
+      var newP = {
+        id: data.bed + '_' + Date.now(),
+        code: data.code,
+        name: data.name,
+        bed: data.bed,
+        bedNum: data.bedNum,
+        age: calculatedAge,
+        gender: data.gender,
+        dob: data.dob || "1976-01-01",
+        diag: data.diag,
+        stayDays: 1,
+        status: "treating",
+        waterlow: null,
+        admitWaterlow: null,
+        prevWaterlow: null,
+        risk: "Chưa đánh giá",
+        assessDateTime: "Chưa thực hiện",
+        overdueAssess: "Chưa đánh giá lần đầu",
+        latestAssess: "Chưa đánh giá lần đầu",
+        turns24h: 0,
+        wounds: 0,
+        checked: [],
+        overdueTurn: "Vừa nhận bệnh",
+        notes: "",
+        selectedPos: "Ngửa",
+        turnReason: "",
+        checkedSkin: false,
+        dischargeData: null,
+        turnLogs: [],
+        woundList: [],
+        deviceWoundList: [],
+        wizardState: null
+      };
+
+      patients.unshift(newP);
+      closeNewPatientModal();
+      showToast('Đã nhận bệnh ' + data.name + ' vào giường ' + data.bed);
+      updateDynamicDashboardCounts();
+      openDetailById(newP.id, 'overview');
     }
 
     updateDynamicDashboardCounts();
