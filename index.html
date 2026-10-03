@@ -757,26 +757,44 @@
 
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-bottom: 4px;">
-                <span>39</span>
+                <span>35 điểm</span>
                 <span style="color: #dc2626; font-weight: 700;">rất cao ≥20</span>
               </div>
-              <div style="text-align: right; font-size: 10px; color: #ea580c; font-weight: 700;">cao ≥15</div>
-              <div style="text-align: right; font-size: 10px; color: #16a34a; font-weight: 700; margin-bottom: 8px;">có nguy cơ ≥10</div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #64748b; margin-bottom: 2px;">
+                <span>20 điểm</span>
+                <span style="color: #ea580c; font-weight: 700;">cao ≥15</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #64748b; margin-bottom: 8px;">
+                <span>10 điểm</span>
+                <span style="color: #16a34a; font-weight: 700;">có nguy cơ ≥10</span>
+              </div>
 
-              <svg viewBox="0 0 300 90" style="width: 100%; height: 90px; overflow: visible;">
-                <line x1="0" y1="20" x2="300" y2="20" stroke="#fca5a5" stroke-dasharray="3,3" />
-                <line x1="0" y1="45" x2="300" y2="45" stroke="#fde68a" stroke-dasharray="3,3" />
-                <line x1="0" y1="70" x2="300" y2="70" stroke="#bbf7d0" stroke-dasharray="3,3" />
-                <polyline points="20,75 80,70 140,60 210,15 280,48" fill="none" stroke="#0284c7" stroke-width="2.5" />
-                <circle cx="20" cy="75" r="4" fill="#ea580c" />
-                <circle cx="80" cy="70" r="4" fill="#ea580c" />
-                <circle cx="140" cy="60" r="4" fill="#ea580c" />
-                <circle cx="210" cy="15" r="4" fill="#ea580c" />
-                <circle cx="280" cy="48" r="4" fill="#0284c7" />
+              <svg viewBox="0 0 300 110" style="width: 100%; height: 110px; overflow: visible;">
+                <line x1="25" y1="20" x2="300" y2="20" stroke="#fca5a5" stroke-dasharray="3,3" />
+                <text x="0" y="23" font-size="9" fill="#dc2626">20</text>
+
+                <line x1="25" y1="50" x2="300" y2="50" stroke="#fde68a" stroke-dasharray="3,3" />
+                <text x="0" y="53" font-size="9" fill="#ea580c">15</text>
+
+                <line x1="25" y1="80" x2="300" y2="80" stroke="#bbf7d0" stroke-dasharray="3,3" />
+                <text x="0" y="83" font-size="9" fill="#16a34a">10</text>
+
+                <line x1="25" y1="5" x2="25" y2="100" stroke="#cbd5e1" stroke-width="1.5" />
+                <line x1="25" y1="100" x2="300" y2="100" stroke="#cbd5e1" stroke-width="1.5" />
+
+                <!-- Points mapped to Waterlow score (Max ~35) -->
+                <!-- points: (50, 40), (100, 45), (150, 42), (200, 25), (250, 65), (280, 58) based on current score -->
+                <polyline points="50,45 100,48 150,42 200,30 250,60 280,50" fill="none" stroke="#0284c7" stroke-width="2.5" />
+                <circle cx="50" cy="45" r="4" fill="#ea580c" />
+                <circle cx="100" cy="48" r="4" fill="#ea580c" />
+                <circle cx="150" cy="42" r="4" fill="#ea580c" />
+                <circle cx="200" cy="30" r="4" fill="#ea580c" />
+                <circle cx="250" cy="60" r="4" fill="#ea580c" />
+                <circle cx="280" cy="50" r="4" fill="#0284c7" />
               </svg>
-              <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-top: 6px;">
-                <span>18/09 (Nhập viện: 14)</span>
-                <span>22/09 (Hiện tại: 23)</span>
+              <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-top: 6px; padding-left: 25px;">
+                <span>13/09 (Điểm: 19)</span>
+                <span>21/09 (Điểm: <span id="trend-chart-curr-score">23</span>)</span>
               </div>
             </div>
 
@@ -2908,6 +2926,9 @@
 
       document.getElementById('dt-trend-change-badge').innerText = trendPrev;
       document.getElementById('trend-box-score').innerText = (p.waterlow !== null ? p.waterlow : '--');
+      var currScoreDisplay = (p.waterlow !== null ? p.waterlow : 16);
+      var currScoreEl = document.getElementById('trend-chart-curr-score');
+      if (currScoreEl) currScoreEl.innerText = currScoreDisplay;
 
       renderChecklist();
     }
