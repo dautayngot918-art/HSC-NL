@@ -739,7 +739,7 @@
               </div>
               <span id="dt-trend-change-badge" style="font-size: 12px; font-weight: 750; color: #0284c7;">Không đổi</span>
             </div>
-            <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">6 lượt · đợt điều trị hiện tại</div>
+            <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">6 lượt · đợt điều trị hiện tại[cite: 9]</div>
 
             <div class="grid-2" style="margin-bottom: 12px;">
               <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 10px; text-align: center;">
@@ -757,120 +757,159 @@
 
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-bottom: 4px;">
-                <span>35 điểm</span>
+                <span>39</span>
                 <span style="color: #dc2626; font-weight: 700;">rất cao ≥20</span>
               </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #64748b; margin-bottom: 2px;">
-                <span>20 điểm</span>
-                <span style="color: #ea580c; font-weight: 700;">cao ≥15</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #64748b; margin-bottom: 8px;">
-                <span>10 điểm</span>
-                <span style="color: #16a34a; font-weight: 700;">có nguy cơ ≥10</span>
-              </div>
+              <div style="text-align: right; font-size: 10px; color: #ea580c; font-weight: 700;">cao ≥15</div>
+              <div style="text-align: right; font-size: 10px; color: #16a34a; font-weight: 700; margin-bottom: 8px;">có nguy cơ ≥10</div>
 
-              <svg viewBox="0 0 300 110" style="width: 100%; height: 110px; overflow: visible;">
-                <line x1="25" y1="20" x2="300" y2="20" stroke="#fca5a5" stroke-dasharray="3,3" />
-                <text x="0" y="23" font-size="9" fill="#dc2626">20</text>
-
-                <line x1="25" y1="50" x2="300" y2="50" stroke="#fde68a" stroke-dasharray="3,3" />
-                <text x="0" y="53" font-size="9" fill="#ea580c">15</text>
-
-                <line x1="25" y1="80" x2="300" y2="80" stroke="#bbf7d0" stroke-dasharray="3,3" />
-                <text x="0" y="83" font-size="9" fill="#16a34a">10</text>
-
-                <line x1="25" y1="5" x2="25" y2="100" stroke="#cbd5e1" stroke-width="1.5" />
-                <line x1="25" y1="100" x2="300" y2="100" stroke="#cbd5e1" stroke-width="1.5" />
-
-                <!-- Points mapped to Waterlow score (Max ~35) -->
-                <!-- points: (50, 40), (100, 45), (150, 42), (200, 25), (250, 65), (280, 58) based on current score -->
-                <polyline points="50,45 100,48 150,42 200,30 250,60 280,50" fill="none" stroke="#0284c7" stroke-width="2.5" />
-                <circle cx="50" cy="45" r="4" fill="#ea580c" />
-                <circle cx="100" cy="48" r="4" fill="#ea580c" />
-                <circle cx="150" cy="42" r="4" fill="#ea580c" />
-                <circle cx="200" cy="30" r="4" fill="#ea580c" />
-                <circle cx="250" cy="60" r="4" fill="#ea580c" />
-                <circle cx="280" cy="50" r="4" fill="#0284c7" />
+              <svg viewBox="0 0 300 90" style="width: 100%; height: 90px; overflow: visible;">
+                <line x1="0" y1="20" x2="300" y2="20" stroke="#fca5a5" stroke-dasharray="3,3" />
+                <line x1="0" y1="45" x2="300" y2="45" stroke="#fde68a" stroke-dasharray="3,3" />
+                <line x1="0" y1="70" x2="300" y2="70" stroke="#bbf7d0" stroke-dasharray="3,3" />
+                <polyline points="20,75 80,70 140,60 210,15 280,48" fill="none" stroke="#0284c7" stroke-width="2.5" />
+                <circle cx="20" cy="75" r="4" fill="#ea580c" />
+                <circle cx="80" cy="70" r="4" fill="#ea580c" />
+                <circle cx="140" cy="60" r="4" fill="#ea580c" />
+                <circle cx="210" cy="15" r="4" fill="#ea580c" />
+                <circle cx="280" cy="48" r="4" fill="#0284c7" />
               </svg>
-              <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-top: 6px; padding-left: 25px;">
-                <span>13/09 (Điểm: 19)</span>
-                <span>21/09 (Điểm: <span id="trend-chart-curr-score">23</span>)</span>
+              <div style="display: flex; justify-content: space-between; font-size: 10px; color: #64748b; margin-top: 6px;">
+                <span>13/09</span>
+                <span>21/09</span>
               </div>
             </div>
 
-            <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 12px; margin-bottom: 8px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                <span id="trend-box-score" style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 14px; font-weight: 750; padding: 2px 8px; border-radius: 6px;">23</span>
-                <span class="badge-red">Nguy cơ rất cao</span>
-                <span style="font-size: 10px; color: #64748b; background: #ffffff; padding: 2px 6px; border-radius: 4px; margin-left: auto;">3 yếu tố hồi sức</span>
+            <!-- Danh sách các lượt đánh giá theo hình mẫu -->
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+              <!-- Lượt 1 -->
+              <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                  <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 14px; font-weight: 800; padding: 2px 10px; border-radius: 8px;">19</span>
+                  <span class="badge-orange">Nguy cơ cao</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">1 tổn thương</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">6 yếu tố hồi sức</span>
+                </div>
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 6px;">14:21 · 21/09/2026 · Lê Thị Bình</div>
+                <div style="font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 8px;">Đã kê gót chân treo, đặt đệm hơi, hẹn kiểm tra lại lúc 14 giờ[cite: 9].</div>
+                <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
+                  <span onclick="openDetailedAssessmentModal(19, 'Nguy cơ cao', '14:21 · 21/09/2026', 'Lê Thị Bình', 'Nam', '50 – 64 tuổi', 'Dưới trung bình (BMI dưới 20)', 'Phù; Da đổi màu — bầm, xanh, tím, lốm đốm', 'Tiểu không tự chủ, hoặc sonde tiểu bị dò rỉ', 'Bất động một phần — hôn mê, hoặc không xoay trở được do chấn thương, dị tật', 'Suy một tạng — gan, thận, tim, phổi...', 'Không có', 4, ['Albumin máu dưới 30 g/L', 'Phù toàn thân', 'Thời gian nằm khoa trên 7 ngày'])" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Xem chi tiết phiếu</span>
+                  <span onclick="openNursingFlowsheetModal('14:21 · 21/09/2026', 'Lê Thị Bình', 19, 'Nguy cơ cao')" style="color: #15803d; cursor: pointer; text-decoration: underline;">Phiếu theo dõi</span>
+                </div>
               </div>
-              <div style="font-size: 11px; color: #64748b;">11:21 · 22/09/2026 · Lê Thị Bình</div>
+
+              <!-- Lượt 2 -->
+              <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                  <span style="background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; font-size: 14px; font-weight: 800; padding: 2px 10px; border-radius: 8px;">17</span>
+                  <span class="badge-orange">Nguy cơ cao</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">1 tổn thương</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">5 yếu tố hồi sức</span>
+                </div>
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">07:19 · 21/09/2026 · Phạm Thị Dung</div>
+                <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
+                  <span onclick="openDetailedAssessmentModal(17, 'Nguy cơ cao', '07:19 · 21/09/2026', 'Phạm Thị Dung', 'Nữ', '50 – 64 tuổi', 'Trung bình (BMI 20-24.9)', 'Bình thường', 'Không', 'Bất động một phần', 'Suy một tạng', 'Không có', 3, ['Albumin máu dưới 30 g/L', 'Thời gian nằm khoa trên 7 ngày'])" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Xem chi tiết phiếu</span>
+                  <span onclick="openNursingFlowsheetModal('07:19 · 21/09/2026', 'Phạm Thị Dung', 17, 'Nguy cơ cao')" style="color: #15803d; cursor: pointer; text-decoration: underline;">Phiếu theo dõi</span>
+                </div>
+              </div>
+
+              <!-- Lượt 3 -->
+              <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                  <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 14px; font-weight: 800; padding: 2px 10px; border-radius: 8px;">33</span>
+                  <span class="badge-red">Nguy cơ rất cao</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">6 yếu tố hồi sức</span>
+                </div>
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">00:37 · 21/09/2026 · Trần Văn An</div>
+                <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
+                  <span onclick="openDetailedAssessmentModal(33, 'Nguy cơ rất cao', '00:37 · 21/09/2026', 'Trần Văn An', 'Nam', '65 – 74 tuổi', 'Kém (BMI < 18.5)', 'Phù', 'Tiểu không tự chủ', 'Bất động hoàn toàn', 'Suy đa tạng', 'Có', 8, ['Albumin máu dưới 30 g/L', 'Phù toàn thân', 'Thời gian nằm khoa trên 7 ngày'])" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Xem chi tiết phiếu</span>
+                  <span onclick="openNursingFlowsheetModal('00:37 · 21/09/2026', 'Trần Văn An', 33, 'Nguy cơ rất cao')" style="color: #15803d; cursor: pointer; text-decoration: underline;">Phiếu theo dõi</span>
+                </div>
+              </div>
+
+              <!-- Lượt 4 -->
+              <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+                  <span style="background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; font-size: 14px; font-weight: 800; padding: 2px 10px; border-radius: 8px;">24</span>
+                  <span class="badge-red">Nguy cơ rất cao</span>
+                  <span style="font-size: 11px; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 650; color: #475569;">6 yếu tố hồi sức</span>
+                </div>
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 8px;">18:16 · 20/09/2026 · Huỳnh Minh Khoa</div>
+                <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
+                  <span onclick="openDetailedAssessmentModal(24, 'Nguy cơ rất cao', '18:16 · 20/09/2026', 'Huỳnh Minh Khoa', 'Nam', '50 – 64 tuổi', 'Trung bình', 'Bình thường', 'Không', 'Bất động một phần', 'Suy thận', 'Không', 5, ['Albumin máu thấp'])" style="color: #0284c7; cursor: pointer; text-decoration: underline;">Xem chi tiết phiếu</span>
+                  <span onclick="openNursingFlowsheetModal('18:16 · 20/09/2026', 'Huỳnh Minh Khoa', 24, 'Nguy cơ rất cao')" style="color: #15803d; cursor: pointer; text-decoration: underline;">Phiếu theo dõi</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Mục Xuất Viện -->
-            <div id="discharge-form-container" class="card" style="margin-top: 14px; border: 1.5px solid #0284c7; background: #f8fafc; padding: 16px;">
-              <div class="section-title" style="margin-bottom: 6px; color: #0284c7;">
-                <span class="section-indicator"></span>
-                <span>Hồ sơ xuất viện & Kết thúc điều trị</span>
-              </div>
-              <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
-                Ghi nhận tình trạng bệnh nhân trước khi xuất khoa. Sau khi lưu, hồ sơ sẽ được chuyển thẳng vào danh sách <strong>Đã xuất viện</strong>.
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center; font-size: 12px; color: #64748b; font-weight: 650; cursor: pointer;" onclick="showToast('Đang hiển thị toàn bộ 6 lượt đánh giá')">
+              5 lượt đánh giá cũ hơn (từ 13/09/2026) ▲
+            </div>
+          </div>
+
+          <!-- Mục Xuất Viện -->
+          <div id="discharge-form-container" class="card" style="margin-top: 14px; border: 1.5px solid #0284c7; background: #f8fafc; padding: 16px;">
+            <div class="section-title" style="margin-bottom: 6px; color: #0284c7;">
+              <span class="section-indicator"></span>
+              <span>Hồ sơ xuất viện & Kết thúc điều trị</span>
+            </div>
+            <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
+              Ghi nhận tình trạng bệnh nhân trước khi xuất khoa. Sau khi lưu, hồ sơ sẽ được chuyển thẳng vào danh sách <strong>Đã xuất viện</strong>.
+            </div>
+
+            <div id="discharge-inputs-box" style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
+              <div>
+                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng xuất viện / Bệnh</label>
+                <select id="dis-condition">
+                  <option value="Đỡ giảm, ổn định">Bệnh đỡ giảm, huyết động ổn định</option>
+                  <option value="Khỏi hoàn toàn">Khỏi bệnh hoàn toàn</option>
+                  <option value="Không giảm, xin chuyển viện">Bệnh không giảm, xin chuyển viện</option>
+                  <option value="Nặng hơn xin về">Bệnh nặng hơn xin về</option>
+                </select>
               </div>
 
-              <div id="discharge-inputs-box" style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
+              <div>
+                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng da & Loét tì đè khi xuất viện</label>
+                <select id="dis-skin">
+                  <option value="Da nguyên vẹn, không loét">Da nguyên vẹn, không có loét tì đè</option>
+                  <option value="Đỏ da độ I đang hồi phục">Đỏ da độ I đang hồi phục tốt</option>
+                  <option value="Có loét độ II, III bàn giao chăm sóc">Còn vết loét, đã hướng dẫn chăm sóc tại nhà</option>
+                </select>
+              </div>
+
+              <div class="grid-2">
                 <div>
-                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng xuất viện / Bệnh</label>
-                  <select id="dis-condition">
-                    <option value="Đỡ giảm, ổn định">Bệnh đỡ giảm, huyết động ổn định</option>
-                    <option value="Khỏi hoàn toàn">Khỏi bệnh hoàn toàn</option>
-                    <option value="Không giảm, xin chuyển viện">Bệnh không giảm, xin chuyển viện</option>
-                    <option value="Nặng hơn xin về">Bệnh nặng hơn xin về</option>
-                  </select>
+                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Lý do xuất viện</label>
+                  <input type="text" id="dis-reason" value="Đủ điều kiện ra viện" />
                 </div>
-
                 <div>
-                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Tình trạng da & Loét tì đè khi xuất viện</label>
-                  <select id="dis-skin">
-                    <option value="Da nguyên vẹn, không loét">Da nguyên vẹn, không có loét tì đè</option>
-                    <option value="Đỏ da độ I đang hồi phục">Đỏ da độ I đang hồi phục tốt</option>
-                    <option value="Có loét độ II, III bàn giao chăm sóc">Còn vết loét, đã hướng dẫn chăm sóc tại nhà</option>
-                  </select>
-                </div>
-
-                <div class="grid-2">
-                  <div>
-                    <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Lý do xuất viện</label>
-                    <input type="text" id="dis-reason" value="Đủ điều kiện ra viện" />
-                  </div>
-                  <div>
-                    <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày giờ xuất viện</label>
-                    <input type="text" id="dis-time" value="14:00 · 26/09/2026" />
-                  </div>
-                </div>
-
-                <div>
-                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Dặn dò & hướng dẫn chăm sóc phòng loét</label>
-                  <textarea id="dis-note" rows="2" placeholder="Dặn dò chế độ dinh dưỡng, cách xoay trở tại nhà..."></textarea>
-                </div>
-
-                <div style="margin-top: 6px;">
-                  <button onclick="confirmDischargeFromTrend()" class="btn-blue" style="padding: 12px; font-size: 13px;">
-                    ✓ Xác nhận xuất viện & Hoàn tất hồ sơ
-                  </button>
+                  <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Ngày giờ xuất viện</label>
+                  <input type="text" id="dis-time" value="14:00 · 26/09/2026" />
                 </div>
               </div>
 
-              <div id="discharged-info-view" style="display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; line-height: 1.7;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                  <strong style="color: #0284c7; font-size: 13px;">HỒ SƠ ĐÃ KẾT THÚC ĐIỀU TRỊ</strong>
-                  <span class="badge-discharged">Đã xuất viện</span>
-                </div>
-                <div>• Kết quả: <strong id="view-dis-condition">Khỏi bệnh</strong></div>
-                <div>• Tình trạng da: <strong id="view-dis-skin">Không loét</strong></div>
-                <div>• Lý do: <span id="view-dis-reason">Đủ điều kiện</span></div>
-                <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 26/09/2026</strong></div>
-                <div id="view-dis-note-box" style="margin-top: 4px; color: #64748b; font-size: 11px;"></div>
+              <div>
+                <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Dặn dò & hướng dẫn chăm sóc phòng loét</label>
+                <textarea id="dis-note" rows="2" placeholder="Dặn dò chế độ dinh dưỡng, cách xoay trở tại nhà..."></textarea>
               </div>
+
+              <div style="margin-top: 6px;">
+                <button onclick="confirmDischargeFromTrend()" class="btn-blue" style="padding: 12px; font-size: 13px;">
+                  ✓ Xác nhận xuất viện & Hoàn tất hồ sơ
+                </button>
+              </div>
+            </div>
+
+            <div id="discharged-info-view" style="display: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; line-height: 1.7;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #0284c7; font-size: 13px;">HỒ SƠ ĐÃ KẾT THÚC ĐIỀU TRỊ</strong>
+                <span class="badge-discharged">Đã xuất viện</span>
+              </div>
+              <div>• Kết quả: <strong id="view-dis-condition">Khỏi bệnh</strong></div>
+              <div>• Tình trạng da: <strong id="view-dis-skin">Không loét</strong></div>
+              <div>• Lý do: <span id="view-dis-reason">Đủ điều kiện</span></div>
+              <div>• Thời gian xuất: <strong id="view-dis-time">14:00 · 26/09/2026</strong></div>
+              <div id="view-dis-note-box" style="margin-top: 4px; color: #64748b; font-size: 11px;"></div>
             </div>
           </div>
         </div>
@@ -932,6 +971,76 @@
         <span>Tài khoản</span>
       </button>
     </nav>
+
+    <!-- Modal Chi Tiết Phiếu Đánh Giá Đã Ký -->
+    <div id="detailed-assessment-modal" class="modal-overlay" style="z-index: 95;">
+      <div class="modal-content" style="max-width: 420px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+          <div style="font-size: 16px; font-weight: 750; color: #0f172a;">Phiếu đánh giá đã ký</div>
+          <button onclick="closeDetailedAssessmentModal()" style="background: none; border: none; font-size: 22px; color: #64748b; cursor: pointer;">✕</button>
+        </div>
+        
+        <div id="dac-score-banner" style="background: #fef2f2; border: 1.5px solid #f87171; border-radius: 12px; padding: 14px; margin-bottom: 14px; text-align: center;">
+          <div id="dac-score-num" style="font-size: 28px; font-weight: 800; color: #b91c1c;">26</div>
+          <div id="dac-score-risk" style="font-size: 13px; font-weight: 700; color: #b91c1c; margin-top: 2px;">Nguy cơ rất cao</div>
+          <div id="dac-score-meta" style="font-size: 11px; color: #64748b; margin-top: 4px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
+        </div>
+
+        <div class="table-container" style="margin-bottom: 14px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 11.5px; text-align: left;">
+            <thead>
+              <tr style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                <th style="padding: 8px;">MỤC</th>
+                <th style="padding: 8px;">LỰA CHỌN</th>
+                <th style="padding: 8px; text-align: right;">ĐIỂM</th>
+              </tr>
+            </thead>
+            <tbody id="dac-table-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #166534; margin-bottom: 12px; line-height: 1.5;">
+          ✓ Phiếu đã ký bởi <strong id="dac-signer-name">Phạm Thị Dung</strong> lúc <span id="dac-signer-time">09:21 · 13/09/2026</span> và không thể chỉnh sửa. Mọi thay đổi phải thực hiện bằng một lượt đánh giá mới.
+        </div>
+
+        <button onclick="closeDetailedAssessmentModal()" class="btn-blue" style="width: 100%; padding: 10px; font-size: 13px;">Đóng</button>
+      </div>
+    </div>
+
+    <!-- Modal Phiếu Theo Dõi Điều Dưỡng -->
+    <div id="nursing-flowsheet-modal" class="modal-overlay" style="z-index: 95;">
+      <div class="modal-content" style="max-width: 420px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+          <div style="font-size: 16px; font-weight: 750; color: #0f172a;">Phiếu theo dõi điều dưỡng</div>
+          <button onclick="closeNursingFlowsheetModal()" style="background: none; border: none; font-size: 22px; color: #64748b; cursor: pointer;">✕</button>
+        </div>
+
+        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #0369a1; margin-bottom: 12px; line-height: 1.5;">
+          ℹ Phiếu dựng lại từ lượt đánh giá đã ký lúc <span id="nfs-time-top">01:58 · 22/09/2026</span> (<span id="nfs-signer-top">Phạm Thị Dung</span>) – giữ nguyên nội dung của thời điểm đó, không đổi theo dữ liệu về sau.
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 14px;">
+          <div style="text-align: center; font-weight: 800; font-size: 13px; color: #0284c7; margin-bottom: 4px; text-transform: uppercase;">PHIẾU THEO DÕI ĐIỀU DƯỠNG – PHÒNG NGỪA LOÉT TÌ ĐÈ</div>
+          <div style="text-align: center; font-size: 10.5px; color: #64748b; margin-bottom: 10px;">Khoa Hồi sức tích cực · Bệnh viện Bệnh Nhiệt đới</div>
+          <div>• Họ tên: <strong id="nfs-patient-name">Phạm Thu Linh</strong></div>
+          <div>• Mã hồ sơ: <strong id="nfs-patient-code">26-040234</strong></div>
+          <div>• Giường: <strong id="nfs-patient-bed">HS-03</strong></div>
+          <div style="border-top: 1px dashed #cbd5t1; margin: 6px 0;"></div>
+          <div>• Thời gian: <strong id="nfs-time-detail">01:58 · 22/09/2026 – ca tối</strong></div>
+          <div>• a. Tình trạng da: <span>Chưa khám da trong hồ sơ</span></div>
+          <div>• b. Đánh giá nguy cơ: <span id="nfs-risk-text">Thang điểm Waterlow 30 điểm, xác định mức độ nguy cơ rất cao</span></div>
+          <div>• c. Can thiệp phòng ngừa: <span>Xoay nghiêng phải 30°. Duy trì xoay trở tư thế mỗi 2 giờ. Giữ da sạch và khô.</span></div>
+          <div>• d. Ghi nhận loét: <span>Không ghi nhận loét.</span></div>
+        </div>
+
+        <div class="grid-2" style="gap: 10px;">
+          <button onclick="closeNursingFlowsheetModal()" class="btn-dark">Đóng</button>
+          <button onclick="showToast('Đang kết nối máy in phiếu...')" class="btn-blue" style="background: #14b8a6; color: #022c22; font-weight: 750;">In phiếu</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal Cảnh Báo Trùng Lặp Hồ Sơ Mới -->
     <div id="duplicate-warning-modal" class="modal-overlay" style="z-index: 90;">
@@ -1730,6 +1839,48 @@
           if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 150);
       }
+    }
+
+    function openDetailedAssessmentModal(score, riskText, timeText, signerName, genderVal, ageGroupVal, bmiVal, skinVal, continenceVal, mobilityVal, tissueVal, neuroVal, totalPoints, extraRisks) {
+      var modal = document.getElementById('detailed-assessment-modal');
+      document.getElementById('dac-score-num').innerText = score;
+      document.getElementById('dac-score-risk').innerText = riskText;
+      document.getElementById('dac-score-meta').innerText = timeText + ' · ' + signerName;
+      document.getElementById('dac-signer-name').innerText = signerName;
+      document.getElementById('dac-signer-time').innerText = timeText;
+
+      var tableBody = document.getElementById('dac-table-body');
+      tableBody.innerHTML = 
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Giới tính</td><td style="padding:8px;">' + genderVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">' + (genderVal === 'Nam' ? 1 : 2) + '</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Nhóm tuổi</td><td style="padding:8px;">' + ageGroupVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">2</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Thể trạng / BMI</td><td style="padding:8px;">' + bmiVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">3</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Tình trạng da</td><td style="padding:8px;">' + skinVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">3</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Tiểu tiện</td><td style="padding:8px;">' + continenceVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">1</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Vận động</td><td style="padding:8px;">' + mobilityVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">4</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Tổn thương mô</td><td style="padding:8px;">' + tissueVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">' + totalPoints + '</td></tr>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px; font-weight:650;">Thiếu hụt TK</td><td style="padding:8px;">' + neuroVal + '</td><td style="padding:8px; text-align:right; font-weight:700;">0</td></tr>';
+
+      modal.style.display = 'flex';
+    }
+
+    function closeDetailedAssessmentModal() {
+      document.getElementById('detailed-assessment-modal').style.display = 'none';
+    }
+
+    function openNursingFlowsheetModal(timeText, signerName, score, riskText) {
+      var modal = document.getElementById('nursing-flowsheet-modal');
+      document.getElementById('nfs-time-top').innerText = timeText;
+      document.getElementById('nfs-signer-top').innerText = signerName;
+      document.getElementById('nfs-patient-name').innerText = currentPatient.name;
+      document.getElementById('nfs-patient-code').innerText = currentPatient.code;
+      document.getElementById('nfs-patient-bed').innerText = currentPatient.bed;
+      document.getElementById('nfs-time-detail').innerText = timeText + ' – ca trực';
+      document.getElementById('nfs-risk-text').innerText = 'Thang điểm Waterlow ' + score + ' điểm, xác định mức độ nguy cơ ' + riskText.toLowerCase() + ' (đánh giá ' + timeText + ', ' + signerName + ')';
+      modal.style.display = 'flex';
+    }
+
+    function closeNursingFlowsheetModal() {
+      document.getElementById('nursing-flowsheet-modal').style.display = 'none';
     }
 
     function renderPatients() {
@@ -2735,372 +2886,6 @@
       showToast('Đã nhận bệnh ' + data.name + ' vào giường ' + data.bed);
       updateDynamicDashboardCounts();
       openDetailById(newP.id, 'overview');
-    }
-
-    function openDetailById(id, subTabName) {
-      var p = patients.find(function(x) { return x.id === id; });
-      if (p) currentPatient = p;
-      showTab('patient-detail');
-      setSubTab(subTabName || 'overview');
-    }
-
-    var currentSubTab = 'overview';
-    function setSubTab(sub) {
-      currentSubTab = sub;
-      var subs = ['overview', 'wound', 'turn', 'trend'];
-      for (var i = 0; i < subs.length; i++) {
-        var el = document.getElementById('subtab-' + subs[i] + '-content');
-        var btn = document.getElementById('st-' + subs[i] + '-btn');
-        if (el) el.style.display = (subs[i] === sub) ? 'block' : 'none';
-        if (btn) {
-          btn.style.background = (subs[i] === sub) ? '#0284c7' : 'transparent';
-          btn.style.color = (subs[i] === sub) ? '#ffffff' : '#64748b';
-        }
-      }
-    }
-
-    function selectSingleDetailPos(pos) {
-      currentPatient.selectedPos = pos;
-      var arr = ['Ngh. trái', 'Ngửa', 'Ngh. phải', 'Nửa ngồi', 'Chưa xoay được / Khác'];
-      var ids = ['sdt-pos-trai', 'sdt-pos-ngua', 'sdt-pos-phai', 'sdt-pos-ngoi', 'sdt-pos-chua'];
-      for (var i = 0; i < arr.length; i++) {
-        var el = document.getElementById(ids[i]);
-        if (el) {
-          if (arr[i] === pos) el.classList.add('pos-active');
-          else el.classList.remove('pos-active');
-        }
-      }
-      var rBox = document.getElementById('sdt-reason-box');
-      if (rBox) rBox.style.display = (pos === 'Chưa xoay được / Khác') ? 'block' : 'none';
-    }
-
-    function toggleSingleDetailSkinCheck() {
-      currentPatient.checkedSkin = !currentPatient.checkedSkin;
-      var box = document.getElementById('sdt-skin-box');
-      if (box) {
-        box.style.background = currentPatient.checkedSkin ? '#0284c7' : 'transparent';
-        box.innerText = currentPatient.checkedSkin ? '✓' : '';
-      }
-    }
-
-    function renderDetail() {
-      var p = currentPatient;
-      var isDis = p.status === 'discharged';
-      var targetH = getTurnTargetHours(p.waterlow, p.risk);
-
-      document.getElementById('dt-name-header').innerHTML = getPatientFormattedHeader(p);
-      document.getElementById('dt-code-line').innerText = 'Mã hồ sơ: ' + p.code;
-      document.getElementById('dt-bed-diag').innerHTML = 'Giường <strong style="color: #0284c7;">' + p.bed + '</strong> · ' + p.diag;
-      document.getElementById('dt-stay-days').innerText = 'Nhập khoa 17:21 · ngày điều trị thứ ' + (p.stayDays || 9);
-      document.getElementById('dt-assess-overdue').innerText = '• ' + (p.overdueAssess || 'Đã đánh giá');
-      document.getElementById('dt-turn-overdue').innerText = '• Đã ' + p.overdueTurn + ' chưa xoay — mục tiêu mỗi ' + targetH + ' giờ';
-      document.getElementById('dt-turn-protocol-text').innerText = 'quy trình mỗi ' + targetH + ' giờ · ' + p.risk.toLowerCase();
-
-      document.getElementById('dt-care-box').style.display = isDis ? 'none' : 'block';
-
-      selectSingleDetailPos(p.selectedPos || 'Ngửa');
-      var reasonInput = document.getElementById('sdt-reason-input');
-      if (reasonInput) reasonInput.value = p.turnReason || '';
-
-      var skinBox = document.getElementById('sdt-skin-box');
-      if (skinBox) {
-        skinBox.style.background = p.checkedSkin ? '#0284c7' : 'transparent';
-        skinBox.innerText = p.checkedSkin ? '✓' : '';
-      }
-
-      document.getElementById('dt-single-turntime-h').value = getNowTimeInputValue();
-      document.getElementById('dt-single-turntime-d').value = getNowDateInputValue();
-
-      var skinCount = p.woundList ? p.woundList.length : 0;
-      var deviceCount = p.deviceWoundList ? p.deviceWoundList.length : 0;
-      p.wounds = skinCount + deviceCount;
-
-      var countEl = document.getElementById('wound-spot-count');
-      if (countEl) {
-        if (skinCount > 0) {
-          countEl.innerText = skinCount + ' vị trí';
-          countEl.style.color = '#b91c1c';
-          countEl.style.background = '#fee2e2';
-        } else {
-          countEl.innerText = 'Chưa ghi nhận';
-          countEl.style.color = '#15803d';
-          countEl.style.background = '#dcfce7';
-        }
-      }
-
-      var savedWoundsContainer = document.getElementById('saved-wounds-container');
-      var woundCardsList = document.getElementById('wound-cards-list');
-      if (savedWoundsContainer && woundCardsList) {
-        var wList = p.woundList || [];
-        if (wList.length > 0) {
-          savedWoundsContainer.style.display = 'flex';
-          woundCardsList.innerHTML = wList.map(function(item, index) {
-            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
-              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
-                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + item.location + '</strong>' +
-                '<button onclick="openAddWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
-              '</div>' +
-              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          savedWoundsContainer.style.display = 'none';
-          woundCardsList.innerHTML = '';
-        }
-      }
-
-      var deviceCountEl = document.getElementById('device-wound-count');
-      var savedDeviceContainer = document.getElementById('saved-device-container');
-      var deviceCardsList = document.getElementById('device-cards-list');
-      if (deviceCountEl && savedDeviceContainer && deviceCardsList) {
-        var dList = p.deviceWoundList || [];
-        if (dList.length > 0) {
-          deviceCountEl.innerText = dList.length + ' vị trí';
-          deviceCountEl.style.color = '#b91c1c';
-          deviceCountEl.style.background = '#fee2e2';
-          savedDeviceContainer.style.display = 'flex';
-          deviceCardsList.innerHTML = dList.map(function(item, index) {
-            return '<div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px;">' +
-              '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">' +
-                '<strong style="color: #0f172a; font-size: 13.5px;">• ' + (item.deviceType ? (item.deviceType + ' (' + item.location + ')') : item.location) + '</strong>' +
-                '<button onclick="openAddDeviceWoundModal(' + index + ')" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0284c7; font-weight: 650; font-size: 11px; padding: 3px 10px; border-radius: 6px; cursor: pointer;">Sửa</button>' +
-              '</div>' +
-              '<div style="font-size: 11.5px; color: #b91c1c; font-weight: 700; margin-bottom: 2px;">' + item.grade + '</div>' +
-              '<div style="font-size: 11px; color: #64748b;">' + item.origin + ' · ' + item.size + (item.depth ? (' · ' + item.depth) : '') + (item.desc ? (' · ' + item.desc) : '') + '</div>' +
-            '</div>';
-          }).join('');
-        } else {
-          deviceCountEl.innerText = 'Chưa ghi nhận';
-          deviceCountEl.style.color = '#15803d';
-          deviceCountEl.style.background = '#dcfce7';
-          savedDeviceContainer.style.display = 'none';
-          deviceCardsList.innerHTML = '';
-        }
-      }
-
-      var turnLogContainer = document.getElementById('dt-turn-log-table');
-      if (turnLogContainer) {
-        if (p.turnLogs && p.turnLogs.length > 0) {
-          turnLogContainer.innerHTML = p.turnLogs.map(function(item) {
-            return '<div style="border-bottom:1px solid #e2e8f0; padding:4px 0;">• ' + item.time + ' — Tư thế: <strong>' + item.pos + '</strong> (' + (item.skin ? 'Đã xem da' : 'Chưa xem da') + ')</div>';
-          }).join('');
-        } else {
-          turnLogContainer.innerHTML = '<div style="color:#64748b;">Chưa có lượt xoay nào được ghi nhận trong ca này.</div>';
-        }
-      }
-
-      var alertBox = document.getElementById('patient-alert-container');
-      if (alertBox) {
-        if (isDis) {
-          alertBox.innerHTML = '<div class="alert-box-discharged"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">HỒ SƠ ĐÃ XUẤT VIỆN KHOA HỒI SỨC</div><div style="font-size:20px; font-weight:750; margin:4px 0; color:#0f172a;">ĐÃ KẾT THÚC ĐIỀU TRỊ</div></div>';
-        } else if (p.risk === 'Nguy cơ rất cao') {
-          alertBox.innerHTML = '<div class="alert-box-red"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🔴 CẢNH BÁO NGUY CƠ RẤT CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b91c1c;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else if (p.risk === 'Nguy cơ cao') {
-          alertBox.innerHTML = '<div class="alert-box-yellow"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟡 CẢNH BÁO NGUY CƠ CAO</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#b45309;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else if (p.risk === 'Có nguy cơ') {
-          alertBox.innerHTML = '<div class="alert-box-green"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟢 CẢNH BÁO CÓ NGUY CƠ</div><div style="font-size:26px; font-weight:800; margin:4px 0; color:#15803d;">' + p.waterlow + ' ĐIỂM WATERLOW</div></div>';
-        } else {
-          alertBox.innerHTML = '<div class="alert-box-purple"><div style="font-size:12px; font-weight:750; text-transform:uppercase;">🟣 CHƯA ĐÁNH GIÁ THANG ĐIỂM</div><div style="font-size:24px; font-weight:800; margin:4px 0; color:#7e22ce;">-- ĐIỂM</div></div>';
-        }
-      }
-
-      var trendPrev = calculateTrendText(p.waterlow, p.prevWaterlow);
-      var trendAdmit = calculateTrendText(p.waterlow, p.admitWaterlow);
-
-      document.getElementById('trend-compare-prev').innerText = trendPrev;
-      document.getElementById('trend-compare-prev-desc').innerText = (p.prevWaterlow !== null) ? ('(' + p.prevWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
-      document.getElementById('trend-compare-admit').innerText = trendAdmit;
-      document.getElementById('trend-compare-admit-desc').innerText = (p.admitWaterlow !== null) ? ('(' + p.admitWaterlow + ' → ' + p.waterlow + ' điểm)') : '(--)';
-
-      document.getElementById('discharge-inputs-box').style.display = isDis ? 'none' : 'flex';
-      document.getElementById('discharged-info-view').style.display = isDis ? 'block' : 'none';
-
-      if (isDis && p.dischargeData) {
-        document.getElementById('view-dis-condition').innerText = p.dischargeData.condition;
-        document.getElementById('view-dis-skin').innerText = p.dischargeData.skin;
-        document.getElementById('view-dis-reason').innerText = p.dischargeData.reason;
-        document.getElementById('view-dis-time').innerText = p.dischargeData.time;
-        document.getElementById('view-dis-note-box').innerText = p.dischargeData.note ? ('• Dặn dò: ' + p.dischargeData.note) : '';
-      }
-
-      document.getElementById('dt-trend-change-badge').innerText = trendPrev;
-      document.getElementById('trend-box-score').innerText = (p.waterlow !== null ? p.waterlow : '--');
-      var currScoreDisplay = (p.waterlow !== null ? p.waterlow : 16);
-      var currScoreEl = document.getElementById('trend-chart-curr-score');
-      if (currScoreEl) currScoreEl.innerText = currScoreDisplay;
-
-      renderChecklist();
-    }
-
-    function confirmDischargeFromTrend() {
-      var p = currentPatient;
-      if (confirm('Xác nhận hoàn tất xuất viện cho người bệnh ' + p.name + '?')) {
-        p.status = 'discharged';
-        p.dischargeData = {
-          condition: document.getElementById('dis-condition').value,
-          skin: document.getElementById('dis-skin').value,
-          reason: document.getElementById('dis-reason').value,
-          time: document.getElementById('dis-time').value,
-          note: document.getElementById('dis-note').value
-        };
-        showToast('Đã hoàn tất xuất viện');
-        updateDynamicDashboardCounts();
-        renderDetail();
-        renderPatients();
-        setTimeout(function() {
-          setPatientFilterStatus('discharged');
-          showTab('patients');
-        }, 1200);
-      }
-    }
-
-    function renderChecklist() {
-      var box = document.getElementById('dt-checklist-box');
-      if (!box) return;
-      var chk = currentPatient.checked || [];
-      document.getElementById('dt-checklist-count').innerText = chk.length + '/10';
-
-      var html = '';
-      for (var i = 0; i < CHECKLIST_ITEMS.length; i++) {
-        var isC = chk.indexOf(i) > -1;
-        html += '<div onclick="toggleCheckOneItem(' + i + ')" class="card" style="padding:10px; margin-bottom:0; display:flex; align-items:flex-start; gap:10px; cursor:pointer; background:' + (isC ? '#f0f9ff' : '#ffffff') + '; border-color:' + (isC ? '#0284c7' : '#e2e8f0') + ';">' +
-          '<div style="width:18px; height:18px; border-radius:4px; border:1.5px solid #0284c7; display:flex; align-items:center; justify-content:center; background:' + (isC ? '#0284c7' : 'transparent') + '; color:#ffffff; font-weight:800; font-size:12px;">' + (isC ? '✓' : '') + '</div>' +
-          '<div style="font-size:12px; color:' + (isC ? '#0284c7' : '#334155') + '; font-weight:' + (isC ? '650' : '500') + '; line-height:1.4;">' + CHECKLIST_ITEMS[i] + '</div>' +
-        '</div>';
-      }
-      box.innerHTML = html;
-    }
-
-    function toggleCheckOneItem(idx) {
-      if (!currentPatient.checked) currentPatient.checked = [];
-      var pos = currentPatient.checked.indexOf(idx);
-      if (pos > -1) currentPatient.checked.splice(pos, 1);
-      else currentPatient.checked.push(idx);
-      renderChecklist();
-      renderPatients();
-    }
-
-    function toggleCheckAll() {
-      if (currentPatient.checked && currentPatient.checked.length === 10) currentPatient.checked = [];
-      else currentPatient.checked = [0,1,2,3,4,5,6,7,8,9];
-      renderChecklist();
-      renderPatients();
-    }
-
-    function handleDetailTurnAction() {
-      var tVal = document.getElementById('dt-single-turntime-h').value || getNowTimeInputValue();
-      var dVal = document.getElementById('dt-single-turntime-d').value || getNowDateInputValue();
-      var recordTime = formatTimeDateDisplay(tVal, dVal);
-      var pos = currentPatient.selectedPos || "Ngửa";
-      var reasonText = currentPatient.turnReason ? (' (' + currentPatient.turnReason + ')') : '';
-
-      currentPatient.overdueTurn = "Vừa xoay";
-      currentPatient.lastTurnNote = pos + reasonText + " lúc " + tVal;
-      currentPatient.turns24h = (currentPatient.turns24h || 0) + 1;
-
-      if (!currentPatient.turnLogs) currentPatient.turnLogs = [];
-      currentPatient.turnLogs.unshift({ time: recordTime, pos: pos + reasonText, skin: currentPatient.checkedSkin !== false });
-
-      showToast("Đã ghi xoay trở");
-      updateDynamicDashboardCounts();
-      renderDetail();
-      renderPatients();
-      renderTasks();
-    }
-
-    var wizardPatient = null;
-    var wizardCurrentStep = 1;
-    var wizardForm = {
-      gender: 1, ageGroup: 1, bmi: 0, skinStatus: 0, continence: 0, mobility: 0,
-      nutritionDrop: 0, nutritionNpo: 0, tissueDamage: [], neuroDeficit: 0, surgeryTrauma: 0,
-      skinTemp: "Bình thường", skinFirm: "Bình thường", skinSens: "Bình thường",
-      deviceUlcerLocation: "", deviceUlcerGrade: "Độ I", deviceUlcerSize: "", deviceUlcerOrigin: "Phát sinh tại khoa", deviceUlcerDesc: "",
-      preventiveChecks: [], nurseNote: ""
-    };
-
-    function openWaterlowAssessmentWizard(patientId) {
-      wizardPatient = patients.find(function(x) { return x.id === patientId; });
-      if (!wizardPatient) return;
-      wizardCurrentStep = 1;
-      document.getElementById('wz-patient-name-title').innerHTML = getPatientFormattedHeader(wizardPatient);
-      document.getElementById('wz-patient-sub-title').innerText = 'Đánh giá · Giường ' + wizardPatient.bed;
-      renderWizardCurrentStep();
-      updateWizardLiveBottomBar();
-      document.getElementById('waterlow-wizard-modal').style.display = 'flex';
-    }
-
-    function closeWaterlowAssessmentWizard() {
-      document.getElementById('waterlow-wizard-modal').style.display = 'none';
-    }
-
-    function calculateWizardTotalScore() {
-      var total = (parseInt(wizardForm.gender) || 0) + (parseInt(wizardForm.ageGroup) || 0) + (parseInt(wizardForm.bmi) || 0) + (parseInt(wizardForm.skinStatus) || 0) + (parseInt(wizardForm.continence) || 0) + (parseInt(wizardForm.mobility) || 0) + (parseInt(wizardForm.nutritionDrop) || 0) + (parseInt(wizardForm.nutritionNpo) || 0) + (wizardForm.tissueDamage || []).reduce(function(a,b){return a+b;},0) + (parseInt(wizardForm.neuroDeficit) || 0) + (parseInt(wizardForm.surgeryTrauma) || 0);
-      return total;
-    }
-
-    function updateWizardLiveBottomBar() {
-      var score = calculateWizardTotalScore();
-      document.getElementById('wz-bottom-score').innerText = score;
-      var badgeEl = document.getElementById('wz-bottom-risk-badge');
-      if (score >= 20) { badgeEl.className = "badge-red"; badgeEl.innerText = "Nguy cơ rất cao"; }
-      else if (score >= 15) { badgeEl.className = "badge-orange"; badgeEl.innerText = "Nguy cơ cao"; }
-      else if (score >= 10) { badgeEl.className = "badge-yellow"; badgeEl.innerText = "Có nguy cơ"; }
-      else { badgeEl.className = "badge-gray"; badgeEl.innerText = "Nguy cơ thấp"; }
-
-      document.getElementById('wz-back-step-btn').style.display = (wizardCurrentStep > 1) ? 'block' : 'none';
-      document.getElementById('wz-next-step-btn').innerText = (wizardCurrentStep === 4) ? "Hoàn tất và ký" : "Tiếp tục";
-    }
-
-    function goNextWizardStep() {
-      if (wizardCurrentStep < 4) {
-        wizardCurrentStep++;
-        renderWizardCurrentStep();
-        updateWizardLiveBottomBar();
-        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
-      } else {
-        finishAndSignWizard();
-      }
-    }
-
-    function goPreviousWizardStep() {
-      if (wizardCurrentStep > 1) {
-        wizardCurrentStep--;
-        renderWizardCurrentStep();
-        updateWizardLiveBottomBar();
-        document.querySelector('#waterlow-wizard-modal .modal-content').scrollTop = 0;
-      }
-    }
-
-    function renderWizardCurrentStep() {
-      var c = document.getElementById('wz-steps-container');
-      if (!c) return;
-      if (wizardCurrentStep === 1) {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Thang điểm Waterlow (Bước 1 / 4)</div>' +
-        '<div class="step-item-card"><div class="wizard-group-title"><span>1. Giới tính</span><span class="wizard-group-score">+' + wizardForm.gender + '</span></div>' +
-        '<div onclick="wizardForm.gender=1; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===1?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===1?'✓':'') + '</span><span class="opt-text">Nam</span></div><strong class="opt-points">+1</strong></div>' +
-        '<div onclick="wizardForm.gender=2; renderWizardCurrentStep(); updateWizardLiveBottomBar();" class="option-row ' + (wizardForm.gender===2?'opt-selected':'') + '"><div style="display:flex; align-items:center;"><span class="opt-circle">' + (wizardForm.gender===2?'✓':'') + '</span><span class="opt-text">Nữ</span></div><strong class="opt-points">+2</strong></div></div>';
-      } else if (wizardCurrentStep === 2) {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Khám da và tổn thương (Bước 2 / 4)</div>';
-      } else {
-        c.innerHTML = '<div style="font-size: 15px; font-weight: 750; color: #0284c7; margin-bottom: 10px;">Kế hoạch phòng ngừa & Ký xác nhận (Bước 3-4 / 4)</div>';
-      }
-    }
-
-    function finishAndSignWizard() {
-      if (!wizardPatient) return;
-      var totalScore = calculateWizardTotalScore();
-      wizardPatient.waterlow = totalScore;
-      wizardPatient.risk = totalScore >= 20 ? "Nguy cơ rất cao" : (totalScore >= 15 ? "Nguy cơ cao" : (totalScore >= 10 ? "Có nguy cơ" : "Nguy cơ thấp"));
-      wizardPatient.overdueAssess = "";
-      wizardPatient.assessDateTime = formatTimeDateDisplay(getNowTimeInputValue(), getNowDateInputValue());
-      wizardPatient.latestAssess = "Hôm nay " + wizardPatient.assessDateTime.split('-')[0].replace('thời gian:', '').trim();
-      closeWaterlowAssessmentWizard();
-      showToast("Đã hoàn tất đánh giá Waterlow " + totalScore + " điểm");
-      updateDynamicDashboardCounts();
-      if (currentPatient && currentPatient.id === wizardPatient.id) renderDetail();
-      renderPatients();
-      renderTasks();
     }
 
     updateDynamicDashboardCounts();
