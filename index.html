@@ -793,8 +793,8 @@
                 Đã kê gót chân treo, đặt đệm hơi, hẹn kiểm tra lại lúc 14 giờ.
               </div>
               <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 700;">
-                <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                <span onclick="showToast('Mở chi tiết phiếu đánh giá đã ký')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                <span onclick="showToast('Mở phiếu theo dõi điều dưỡng')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
               </div>
             </div>
 
@@ -816,8 +816,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">07:19 · 21/09/2026 · Phạm Thị Dung</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 2 -->
@@ -829,8 +829,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">00:37 · 21/09/2026 · Trần Văn An</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 3 -->
@@ -842,8 +842,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">18:16 · 20/09/2026 · Huỳnh Minh Khoa</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 4 -->
@@ -855,8 +855,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">11:23 · 20/09/2026 · Trần Văn An</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
                 <!-- 5 -->
@@ -868,8 +868,8 @@
                   </div>
                   <div style="font-size: 10.5px; color: #64748b; margin-bottom: 6px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
                   <div style="display: flex; gap: 12px; font-size: 11.5px; font-weight: 700;">
-                    <span onclick="openDetailAssessmentModal()" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
-                    <span onclick="openNursingCareModal()" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
+                    <span onclick="showToast('Mở chi tiết phiếu')" style="color: #0284c7; cursor: pointer;">Xem chi tiết phiếu</span>
+                    <span onclick="showToast('Mở phiếu theo dõi')" style="color: #0f766e; cursor: pointer;">Phiếu theo dõi</span>
                   </div>
                 </div>
               </div>
@@ -973,6 +973,36 @@
       </div>
     </main>
 
+    <!-- TRỢ LÝ AI HỖ TRỢ CHĂM SÓC (GÓC DƯỚI BÊN PHẢI) -->
+    <div id="ai-assistant-container" style="position: fixed; bottom: 85px; right: 16px; z-index: 100;">
+      <button onclick="toggleAiChat()" style="background: #0284c7; color: #fff; border: none; border-radius: 50px; padding: 10px 16px; font-size: 12px; font-weight: 750; box-shadow: 0 4px 15px rgba(2,132,199,0.4); display: flex; align-items: center; gap: 6px; cursor: pointer;">
+        <span>✨ Trợ lý AI chăm sóc</span>
+      </button>
+    </div>
+
+    <!-- Modal Khung Chat AI -->
+    <div id="ai-chat-modal" class="modal-overlay" style="z-index: 110;">
+      <div class="modal-content" style="max-width: 400px; padding: 16px; display: flex; flex-direction: column; height: 450px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 10px;">
+          <div style="font-size: 14px; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 6px;">
+            <span>✨ Trợ lý AI Gemini ICU</span>
+          </div>
+          <button onclick="toggleAiChat()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
+        </div>
+
+        <div id="ai-chat-messages" style="flex: 1; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; font-size: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;">
+          <div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 10px; max-width: 85%;">
+            Chào điều dưỡng! Tôi là trợ lý AI liên kết Gemini hỗ trợ chăm sóc loét tì đè ICU. Bạn cần tư vấn về thang điểm Waterlow, quy trình xoay trở hay xử lý tổn thương da không?
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 6px;">
+          <input type="text" id="ai-chat-input" placeholder="Nhập câu hỏi về chăm sóc..." onkeypress="if(event.key==='Enter') sendAiMessage()" style="font-size: 12px; padding: 8px 10px;" />
+          <button onclick="sendAiMessage()" class="btn-blue" style="width: 70px; shrink: 0;">Gửi</button>
+        </div>
+      </div>
+    </div>
+
     <nav>
       <button onclick="showTab('home')" id="nav-home" class="nav-btn" style="color: #0284c7; font-weight: 650;">
         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -1001,159 +1031,7 @@
       </button>
     </nav>
 
-    <!-- Modal Xem Chi Tiết Phiếu Đánh Giá Đã Ký (Xem chi tiết phiếu) -->
-    <div id="detail-assessment-modal" class="modal-overlay" style="z-index: 95;">
-      <div class="modal-content" style="max-width: 440px; padding: 18px; background: #ffffff;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
-          <div style="font-size: 15px; font-weight: 800; color: #0f172a;">Phiếu đánh giá đã ký</div>
-          <button onclick="closeDetailAssessmentModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
-        </div>
-
-        <div style="background: #fdf2f2; border: 1.5px solid #f87171; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
-          <div style="font-size: 22px; font-weight: 850; color: #b91c1c;">26</div>
-          <div style="font-size: 13px; font-weight: 750; color: #b91c1c; margin-top: 2px;">Nguy cơ rất cao</div>
-          <div style="font-size: 11px; color: #64748b; margin-top: 4px;">09:21 · 13/09/2026 · Phạm Thị Dung</div>
-        </div>
-
-        <div class="table-container" style="margin-bottom: 12px;">
-          <table class="table-custom" style="min-width: 100%; font-size: 11.5px;">
-            <thead>
-              <tr>
-                <th style="width: 35%;">MỤC</th>
-                <th>LỰA CHỌN</th>
-                <th style="text-align: right; width: 15%;">ĐIỂM</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="font-weight: 650;">Giới tính</td>
-                <td>Nam[cite: 12]</td>
-                <td style="text-align: right; font-weight: 750;">1[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Nhóm tuổi</td>
-                <td>50 – 64 tuổi[cite: 12]</td>
-                <td style="text-align: right; font-weight: 750;">2[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Thể trạng / BMI</td>
-                <td>Dưới trung bình (BMI dưới 20)[cite: 12]</td>
-                <td style="text-align: right; font-weight: 750;">3[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Tình trạng da</td>
-                <td>Phù; Da đổi màu – bầm, xanh, tím, lốm đốm[cite: 12]</td>
-                <td style="text-align: right; font-weight: 750;">3[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Bài tiêu</td>
-                <td>Tiểu không tự chủ, hoặc sonde tiểu bị dò rỉ[cite: 12]</td>
-                <td style="text-align: right; font-weight: 750;">1[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Vận động</td>
-                <td>Bất động một phần – hôn mê, hoặc không xoay trở được do chấn thương, dị tật[cite: 11, 12]</td>
-                <td style="text-align: right; font-weight: 750;">4[cite: 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Tổn thương mô</td>
-                <td>Suy một tạng – gan, thận, tim, phổi...[cite: 11, 12]</td>
-                <td style="text-align: right; font-weight: 750;">8[cite: 11, 12]</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 650;">Thiếu khuyết thần kinh</td>
-                <td>Không có[cite: 11]</td>
-                <td style="text-align: right; font-weight: 750;">0[cite: 11]</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style="font-size: 11.5px; font-weight: 750; color: #334155; margin-bottom: 6px;">YẾU TỐ NGUY CƠ ĐẶC THÙ HỒI SỨC</div>
-        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; font-size: 11px;">
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 6px; color: #334155; font-weight: 650;">Albumin máu dưới 30 g/L[cite: 11]</span>
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 6px; color: #334155; font-weight: 650;">Phù toàn thân[cite: 11]</span>
-          <span style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 6px; color: #334155; font-weight: 650;">Thời gian nằm khoa trên 7 ngày[cite: 11]</span>
-        </div>
-
-        <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #166534; font-weight: 650; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-          <span>✓ Không ghi nhận tổn thương do tì đè tại thời điểm đánh giá.[cite: 11]</span>
-        </div>
-
-        <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; font-size: 11px; color: #475569; line-height: 1.5; margin-bottom: 16px;">
-          🔒 Phiếu đã ký bởi <strong>Phạm Thị Dung</strong> lúc 09:21 · 13/09/2026 và không thể chỉnh sửa. Mọi thay đổi phải thực hiện bằng một lượt đánh giá mới.[cite: 11]
-        </div>
-
-        <button onclick="closeDetailAssessmentModal()" class="btn-dark" style="background: #0284c7; color: #fff; font-weight: 750;">Đóng</button>
-      </div>
-    </div>
-
-    <!-- Modal Phiếu Theo Dõi Điều Dưỡng (Phiếu theo dõi) -->
-    <div id="nursing-care-modal" class="modal-overlay" style="z-index: 95;">
-      <div class="modal-content" style="max-width: 440px; padding: 18px; background: #ffffff;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
-          <div style="font-size: 15px; font-weight: 800; color: #0f172a;">Phiếu theo dõi điều dưỡng</div>
-          <button onclick="closeNursingCareModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
-        </div>
-
-        <div style="text-align: center; font-weight: 800; font-size: 14px; color: #0f172a; margin-bottom: 4px; text-transform: uppercase;">
-          PHIẾU THEO DÕI ĐIỀU DƯỠNG – PHÒNG NGỪA LOÉT TÌ ĐÈ[cite: 14]
-        </div>
-        <div style="text-align: center; font-size: 11px; color: #64748b; margin-bottom: 12px;">
-          Khoa Hồi sức tích cực · Bệnh viện Bệnh Nhiệt đới[cite: 14]
-        </div>
-
-        <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 10px; font-size: 11px; color: #166534; margin-bottom: 12px; line-height: 1.5;">
-          ✓ Phiếu dựng lại từ <strong>lượt đánh giá đã ký lúc 01:58 · 22/09/2026</strong> (Phạm Thị Dung) – giữ nguyên nội dung của thời điểm đó, không đổi theo dữ liệu về sau.[cite: 14]
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.8; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-          <div>• <strong>Họ tên:</strong> Phạm Thu Linh[cite: 14]</div>
-          <div>• <strong>Mã hồ sơ:</strong> 26-040234[cite: 14]</div>
-          <div>• <strong>Giường:</strong> HS-03[cite: 14]</div>
-          <div>• <strong>Chẩn đoán:</strong> Nhiễm khuẩn huyết[cite: 14]</div>
-        </div>
-
-        <div style="font-size: 12px; color: #334155; line-height: 1.6; margin-bottom: 14px;">
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">Ngày / Giờ</div>
-          <div style="margin-bottom: 8px;">01:58 · 22/09/2026 – ca tối[cite: 13]</div>
-
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">a. Tình trạng da</div>
-          <div style="margin-bottom: 8px;">Chưa khám da trong hồ sơ[cite: 13]</div>
-
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">b. Đánh giá nguy cơ</div>
-          <div style="margin-bottom: 8px;">Thang điểm Waterlow <strong>30 điểm</strong>, xác định mức độ nguy cơ <strong>nguy cơ rất cao</strong> (đánh giá 01:58 · 22/09/2026, Phạm Thị Dung)[cite: 13]</div>
-
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">c. Can thiệp phòng ngừa</div>
-          <div style="margin-bottom: 8px;">Xoay <strong>nghiêng phải 30°</strong>. Duy trì xoay trở tư thế mỗi <strong>2 giờ</strong> (lịch cữ 00g · 02g · 04g · 06g · 08g · 10g · 12g · 14g · 16g · 18g · 20g · 22g). Giữ da sạch và khô. Bảo đảm dinh dưỡng đầy đủ. (2 lượt xoay trong 24 giờ trước mốc này)[cite: 13]</div>
-
-          <div style="font-weight: 750; color: #0284c7; margin-bottom: 2px;">d. Ghi nhận loét</div>
-          <div>Không ghi nhận loét.[cite: 13]</div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; margin-top: 16px; margin-bottom: 16px; font-size: 12px; text-align: center;">
-          <div>
-            <div style="color: #64748b;">Điều dưỡng lập phiếu</div>
-            <div style="font-weight: 750; color: #0f172a; margin-top: 4px;">Phạm Thị Dung[cite: 13]</div>
-          </div>
-          <div>
-            <div style="color: #64748b;">Điều dưỡng trưởng</div>
-            <div style="font-weight: 750; color: #0f172a; margin-top: 4px;">......................</div>
-          </div>
-        </div>
-
-        <div style="font-size: 10.5px; color: #64748b; line-height: 1.4; margin-bottom: 16px; background: #f8fafc; padding: 8px; border-radius: 8px;">
-          Phiếu do phần mềm lập từ hồ sơ điện tử, theo Bước 4.1 quy trình phòng ngừa loét tì đè của khoa. Phiếu này không thay thế bàn giao bằng lời tại giường bệnh.[cite: 13]
-        </div>
-
-        <div class="grid-2" style="gap: 10px;">
-          <button onclick="closeNursingCareModal()" class="btn-dark" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;">Đóng</button>
-          <button onclick="showToast('Đang in phiếu theo dõi...')" class="btn-blue" style="background: #0f766e; color: #fff;">In phiếu</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cảnh Báo Trùng Lặp & Thiếu Thời Gian (Giữ nguyên) -->
+    <!-- Modal Cảnh Báo Trùng Lặp Hồ Sơ Mới -->
     <div id="duplicate-warning-modal" class="modal-overlay" style="z-index: 90;">
       <div class="modal-content" style="max-width: 380px; text-align: center; padding: 24px 20px; background: #e0f2fe; border: 2px solid #0284c7;">
         <div id="dup-warning-title" style="font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 6px;"></div>
@@ -1167,6 +1045,7 @@
       </div>
     </div>
 
+    <!-- Modal Cảnh Báo Thiếu Thời Gian -->
     <div id="time-warning-modal" class="modal-overlay" style="z-index: 80;">
       <div class="modal-content" style="max-width: 360px; text-align: center; padding: 24px 20px;">
         <div style="font-size: 16px; font-weight: 800; color: #b91c1c; line-height: 1.4; margin-bottom: 8px;">
@@ -1183,15 +1062,18 @@
       </div>
     </div>
 
-    <!-- Modal Thêm Tổn Thương -->
+    <!-- Modal Thư mục con: GHI NHẬN TỔN THƯƠNG / LOÉT DO THIẾT BỊ -->
     <div id="add-wound-modal" class="modal-overlay" style="z-index: 70;">
       <div class="modal-content">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
           <div id="wound-modal-title" style="font-size: 16px; font-weight: 750; color: #0284c7;">GHI NHẬN TỔN THƯƠNG</div>
           <button onclick="closeAddWoundModal()" style="background: none; border: none; color: #64748b; font-size: 22px; cursor: pointer;">✕</button>
         </div>
+
         <input type="hidden" id="edit-wound-index" value="-1" />
+
         <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
+          
           <div id="device-selector-box" style="display: none;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Thiết bị gây tì đè</label>
             <select id="device-type-select" onchange="onDeviceTypeChange(this.value)" style="font-size: 12.5px; font-weight: 600; color: #0284c7;">
@@ -1209,10 +1091,12 @@
               <option value="Thiết bị khác">Thiết bị khác</option>
             </select>
           </div>
+
           <div id="device-other-box" style="display: none;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Nhập tên thiết bị khác</label>
             <input type="text" id="device-other-input" placeholder="Nhập tên thiết bị..." style="font-size: 12.5px;" />
           </div>
+
           <div id="skin-location-box" style="display: block;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Vị trí</label>
             <select id="wound-location-select" onchange="onWoundLocationChange(this.value)" style="font-size: 12.5px; font-weight: 600; color: #0284c7;">
@@ -1245,10 +1129,12 @@
               <option value="Khác">Vị trí khác (Nhập tùy chỉnh)</option>
             </select>
           </div>
+
           <div id="custom-location-box" style="display: none;">
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Nhập vị trí khác tùy ý</label>
             <input type="text" id="wound-custom-location-input" placeholder="Nhập vị trí tự do..." style="font-size: 12.5px;" />
           </div>
+
           <div>
             <label style="font-weight: 650; color: #334155; margin-bottom: 6px; display: block;">Ghi nhận thế nào</label>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -1264,6 +1150,7 @@
               </div>
             </div>
           </div>
+
           <div>
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Phân độ (NPIAP / EPUAP)</label>
             <select id="wound-grade-select" style="font-size: 12.5px;">
@@ -1276,6 +1163,7 @@
               <option>Nghi ngờ tổn thương mô sâu — vùng tím sẫm, không mất màu khi ấn</option>
             </select>
           </div>
+
           <div>
             <label style="font-weight: 650; color: #334155; margin-bottom: 6px; display: block;">Nguồn gốc tổn thương</label>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -1291,6 +1179,7 @@
               </div>
             </div>
           </div>
+
           <div class="grid-2">
             <div>
               <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Kích thước (dài × rộng)</label>
@@ -1301,6 +1190,7 @@
               <input type="text" id="wound-date-input" value="ngày 27 thg 9, 2026" />
             </div>
           </div>
+
           <div>
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Độ sâu</label>
             <select id="wound-depth-select" style="font-size: 12.5px;">
@@ -1310,14 +1200,17 @@
               <option>Không đánh giá được</option>
             </select>
           </div>
+
           <div>
             <label style="font-weight: 650; color: #334155; margin-bottom: 4px; display: block;">Mô tả thêm</label>
             <textarea id="wound-desc-input" rows="2" placeholder="vd: đáy vết đỏ, dịch tiết ít, bờ không hoại tử..." style="font-size: 12px;"></textarea>
           </div>
+
           <div onclick="toggleNoAbnormality()" id="no-abnormal-row" style="padding: 8px 10px; border-radius: 10px; border: 1.5px solid #cbd5e1; background: #f8fafc; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.15s;">
             <div id="no-abnormal-chk" style="width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid #94a3b8; display: flex; align-items: center; justify-content: center; background: #fff; color: #fff; font-weight: 800; font-size: 11px;"></div>
             <span style="font-weight: 650; color: #334155; font-size: 12px;">Chưa ghi nhận bất thường / tổn thương da (Da bình thường)</span>
           </div>
+
           <div class="grid-2" style="margin-top: 6px;">
             <button onclick="deleteCurrentWound()" class="btn-danger">Xóa tổn thương</button>
             <button onclick="saveNewWoundDetails()" class="btn-blue" style="background: #0f766e; color: #fff;">Lưu tổn thương</button>
@@ -1333,15 +1226,18 @@
           <div style="font-size: 16px; font-weight: 750; color: #0284c7;">Hồ sơ người bệnh mới</div>
           <button onclick="closeNewPatientModal()" style="background: none; border: none; color: #64748b; font-size: 22px; cursor: pointer;">✕</button>
         </div>
+
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div>
             <label style="font-size: 12px; color: #334155; font-weight: 650; margin-bottom: 4px; display: block;">Họ và tên (In hoa tự động)</label>
             <input type="text" id="inp-p-name" placeholder="vd: ĐÀO THỊ THÌN" value="" style="text-transform: uppercase;" />
           </div>
+
           <div>
             <label style="font-size: 12px; color: #334155; font-weight: 650; margin-bottom: 4px; display: block;">Mã hồ sơ bệnh án</label>
             <input type="text" id="inp-p-code" placeholder="vd: 26-045678" value="" />
           </div>
+
           <div class="grid-2">
             <div>
               <label style="font-size: 12px; color: #334155; font-weight: 650; margin-bottom: 4px; display: block;">Ngày sinh</label>
@@ -1355,6 +1251,7 @@
               </select>
             </div>
           </div>
+
           <div>
             <label style="font-size: 12px; color: #334155; font-weight: 650; margin-bottom: 4px; display: block;">Giường bệnh</label>
             <div style="display:flex; align-items:center; background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding-left:10px;">
@@ -1362,10 +1259,12 @@
               <input type="number" id="inp-p-bed-num" placeholder="Điền số giường..." min="1" max="100" style="border:none; padding:9px 8px; font-weight:700; color:#334155;" />
             </div>
           </div>
+
           <div>
             <label style="font-size: 12px; color: #334155; font-weight: 650; margin-bottom: 4px; display: block;">Chẩn đoán chính</label>
             <input type="text" id="inp-p-diag" placeholder="vd: Viêm não, sốc nhiễm khuẩn..." value="" />
           </div>
+
           <div class="grid-2" style="margin-top: 10px;">
             <button onclick="closeNewPatientModal()" class="btn-dark">Huỷ</button>
             <button onclick="validateAndSaveNewPatient()" class="btn-blue">Tạo và nhập khoa</button>
@@ -1387,10 +1286,13 @@
           </div>
           <button onclick="closeWaterlowAssessmentWizard()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
+
         <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 12px; padding: 12px; font-size: 12px; color: #92400e; font-weight: 700; line-height: 1.5; margin-bottom: 14px;">
           ℹ Một số mục ít thay đổi đã được điền sẵn từ lần đánh giá trước. Vui lòng soát lại toàn bộ trước khi ký.
         </div>
+
         <div id="wz-steps-container"></div>
+
         <div style="position: sticky; bottom: -60px; left: 0; right: 0; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(2,132,199,0.12); margin-top: 14px; z-index: 25;">
           <div>
             <div style="font-size: 10px; color: #64748b; font-weight: 650; text-transform: uppercase;">TỔNG ĐIỂM WATERLOW</div>
@@ -2375,22 +2277,34 @@
       container.innerHTML = html;
     }
 
-    function openDetailAssessmentModal() {
-      var modal = document.getElementById('detail-assessment-modal');
-      if (modal) modal.style.display = 'flex';
-    }
-    function closeDetailAssessmentModal() {
-      var modal = document.getElementById('detail-assessment-modal');
-      if (modal) modal.style.display = 'none';
+    function toggleAiChat() {
+      var modal = document.getElementById('ai-chat-modal');
+      if (modal) {
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+      }
     }
 
-    function openNursingCareModal() {
-      var modal = document.getElementById('nursing-care-modal');
-      if (modal) modal.style.display = 'flex';
-    }
-    function closeNursingCareModal() {
-      var modal = document.getElementById('nursing-care-modal');
-      if (modal) modal.style.display = 'none';
+    function sendAiMessage() {
+      var input = document.getElementById('ai-chat-input');
+      var msgBox = document.getElementById('ai-chat-messages');
+      if (!input || !input.value.trim() || !msgBox) return;
+
+      var userText = input.value.trim();
+      input.value = '';
+
+      msgBox.innerHTML += '<div style="background: #f1f5f9; color: #334155; padding: 8px 10px; border-radius: 10px; max-width: 85%; align-self: flex-end;">' + userText + '</div>';
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      setTimeout(function() {
+        var reply = "Dựa trên dữ liệu chăm sóc ICU và tiêu chuẩn NPIAP/Waterlow, đối với tình trạng này, điều dưỡng nên tuân thủ xoay trở đúng cữ, đánh giá vùng tì đè mỗi 2–4 giờ, đồng thời duy trì đệm giảm áp và dinh dưỡng đầy đủ.";
+        if (userText.toLowerCase().includes('waterlow')) {
+          reply = "Thang điểm Waterlow đánh giá nguy cơ loét tì đè. Điểm từ 10-14: có nguy cơ; 15-19: nguy cơ cao; từ 20 trở lên: nguy cơ rất cao, cần thực hiện quy trình xoay trở mỗi 2 giờ.";
+        } else if (userText.toLowerCase().includes('xoay')) {
+          reply = "Quy trình xoay trở chuẩn tại ICU: Thực hiện mỗi 2-3 giờ, ưu tiên nghiêng 30 độ, kê gót chân treo tự do và kiểm tra da dưới thiết bị y tế.";
+        }
+        msgBox.innerHTML += '<div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 10px; max-width: 85%;">' + reply + '</div>';
+        msgBox.scrollTop = msgBox.scrollHeight;
+      }, 600);
     }
 
     var activeWoundType = 'skin';
@@ -2717,7 +2631,7 @@
         if (activeWoundType === 'device') {
           targetList.push({ deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         } else {
-          targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
+          targetList.push({ location: locName, grade: grade, depth: grade, depth: depth, size: size, origin: origin, desc: desc });
         }
         showToast('Đã thêm tổn thương mới');
       }
@@ -2786,8 +2700,8 @@
       }
 
       updateDynamicDashboardCounts();
-      renderTasks();
       renderBulkTurnList();
+      renderTasks();
       renderPatients();
     }
 
@@ -2949,28 +2863,6 @@
       showToast('Đã nhận bệnh ' + data.name + ' vào giường ' + data.bed);
       updateDynamicDashboardCounts();
       openDetailById(newP.id, 'overview');
-    }
-
-    function openDetailById(id, subTabName) {
-      var p = patients.find(function(x) { return x.id === id; });
-      if (p) currentPatient = p;
-      showTab('patient-detail');
-      setSubTab(subTabName || 'overview');
-    }
-
-    var currentSubTab = 'overview';
-    function setSubTab(sub) {
-      currentSubTab = sub;
-      var subs = ['overview', 'wound', 'turn', 'trend'];
-      for (var i = 0; i < subs.length; i++) {
-        var el = document.getElementById('subtab-' + subs[i] + '-content');
-        var btn = document.getElementById('st-' + subs[i] + '-btn');
-        if (el) el.style.display = (subs[i] === sub) ? 'block' : 'none';
-        if (btn) {
-          btn.style.background = (subs[i] === sub) ? '#0284c7' : 'transparent';
-          btn.style.color = (subs[i] === sub) ? '#ffffff' : '#64748b';
-        }
-      }
     }
 
     updateDynamicDashboardCounts();
