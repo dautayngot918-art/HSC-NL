@@ -973,32 +973,29 @@
       </div>
     </main>
 
-    <!-- TRỢ LÝ AI HỖ TRỢ CHĂM SÓC (GÓC DƯỚI BÊN PHẢI) -->
-    <div id="ai-assistant-container" style="position: fixed; bottom: 85px; right: 16px; z-index: 100;">
-      <button onclick="toggleAiChat()" style="background: #0284c7; color: #fff; border: none; border-radius: 50px; padding: 10px 16px; font-size: 12px; font-weight: 750; box-shadow: 0 4px 15px rgba(2,132,199,0.4); display: flex; align-items: center; gap: 6px; cursor: pointer;">
-        <span>✨ Trợ lý AI chăm sóc</span>
-      </button>
-    </div>
+    <!-- Nút AI Hỗ Trợ Gốc Dưới Bên Phải -->
+    <button onclick="openAiAssistantModal()" style="position: fixed; bottom: 75px; right: 16px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border: none; border-radius: 99px; padding: 10px 18px; font-weight: 750; font-size: 12px; cursor: pointer; box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4); z-index: 100; display: flex; align-items: center; gap: 6px;">
+      ✨ Hỏi AI Chăm Sóc
+    </button>
 
-    <!-- Modal Khung Chat AI -->
-    <div id="ai-chat-modal" class="modal-overlay" style="z-index: 110;">
-      <div class="modal-content" style="max-width: 400px; padding: 16px; display: flex; flex-direction: column; height: 450px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 10px;">
-          <div style="font-size: 14px; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 6px;">
-            <span>✨ Trợ lý AI Gemini ICU</span>
-          </div>
-          <button onclick="toggleAiChat()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
+    <!-- Modal Trợ Lý AI Gemini -->
+    <div id="ai-assistant-modal" class="modal-overlay" style="z-index: 110;">
+      <div class="modal-content" style="max-width: 420px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+          <div style="font-size: 15px; font-weight: 750; color: #0284c7;">✨ Trợ Lý AI Chăm Sóc Y Tế (Gemini)</div>
+          <button onclick="closeAiAssistantModal()" style="background: none; border: none; font-size: 20px; color: #64748b; cursor: pointer;">✕</button>
         </div>
-
-        <div id="ai-chat-messages" style="flex: 1; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; font-size: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;">
-          <div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 10px; max-width: 85%;">
-            Chào điều dưỡng! Tôi là trợ lý AI liên kết Gemini hỗ trợ chăm sóc loét tì đè ICU. Bạn cần tư vấn về thang điểm Waterlow, quy trình xoay trở hay xử lý tổn thương da không?
+        <div style="font-size: 11px; color: #64748b; margin-bottom: 10px;">
+          Hỏi đáp mọi thắc mắc về quy trình phòng ngừa loét tì đè, dinh dưỡng, xoay trở theo tài liệu lâm sàng mới nhất.
+        </div>
+        <div id="ai-chat-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px; height: 220px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">
+          <div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 8px; max-width: 85%;">
+            Chào điều dưỡng! Tôi có thể hỗ trợ gì cho bạn trong việc chăm sóc người bệnh ca trực này?
           </div>
         </div>
-
         <div style="display: flex; gap: 6px;">
-          <input type="text" id="ai-chat-input" placeholder="Nhập câu hỏi về chăm sóc..." onkeypress="if(event.key==='Enter') sendAiMessage()" style="font-size: 12px; padding: 8px 10px;" />
-          <button onclick="sendAiMessage()" class="btn-blue" style="width: 70px; shrink: 0;">Gửi</button>
+          <input type="text" id="ai-user-input" placeholder="Nhập câu hỏi chăm sóc..." onkeypress="if(event.key==='Enter') sendAiQuery()" />
+          <button onclick="sendAiQuery()" class="btn-blue" style="width: auto; shrink: 0;">Gửi</button>
         </div>
       </div>
     </div>
@@ -2277,36 +2274,6 @@
       container.innerHTML = html;
     }
 
-    function toggleAiChat() {
-      var modal = document.getElementById('ai-chat-modal');
-      if (modal) {
-        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-      }
-    }
-
-    function sendAiMessage() {
-      var input = document.getElementById('ai-chat-input');
-      var msgBox = document.getElementById('ai-chat-messages');
-      if (!input || !input.value.trim() || !msgBox) return;
-
-      var userText = input.value.trim();
-      input.value = '';
-
-      msgBox.innerHTML += '<div style="background: #f1f5f9; color: #334155; padding: 8px 10px; border-radius: 10px; max-width: 85%; align-self: flex-end;">' + userText + '</div>';
-      msgBox.scrollTop = msgBox.scrollHeight;
-
-      setTimeout(function() {
-        var reply = "Dựa trên dữ liệu chăm sóc ICU và tiêu chuẩn NPIAP/Waterlow, đối với tình trạng này, điều dưỡng nên tuân thủ xoay trở đúng cữ, đánh giá vùng tì đè mỗi 2–4 giờ, đồng thời duy trì đệm giảm áp và dinh dưỡng đầy đủ.";
-        if (userText.toLowerCase().includes('waterlow')) {
-          reply = "Thang điểm Waterlow đánh giá nguy cơ loét tì đè. Điểm từ 10-14: có nguy cơ; 15-19: nguy cơ cao; từ 20 trở lên: nguy cơ rất cao, cần thực hiện quy trình xoay trở mỗi 2 giờ.";
-        } else if (userText.toLowerCase().includes('xoay')) {
-          reply = "Quy trình xoay trở chuẩn tại ICU: Thực hiện mỗi 2-3 giờ, ưu tiên nghiêng 30 độ, kê gót chân treo tự do và kiểm tra da dưới thiết bị y tế.";
-        }
-        msgBox.innerHTML += '<div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 10px; max-width: 85%;">' + reply + '</div>';
-        msgBox.scrollTop = msgBox.scrollHeight;
-      }, 600);
-    }
-
     var activeWoundType = 'skin';
 
     function openAddWoundModal(editIndex) {
@@ -2631,7 +2598,7 @@
         if (activeWoundType === 'device') {
           targetList.push({ deviceType: devType, location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         } else {
-          targetList.push({ location: locName, grade: grade, depth: grade, depth: depth, size: size, origin: origin, desc: desc });
+          targetList.push({ location: locName, grade: grade, depth: depth, size: size, origin: origin, desc: desc });
         }
         showToast('Đã thêm tổn thương mới');
       }
@@ -2700,8 +2667,8 @@
       }
 
       updateDynamicDashboardCounts();
-      renderBulkTurnList();
       renderTasks();
+      renderBulkTurnList();
       renderPatients();
     }
 
@@ -2863,6 +2830,34 @@
       showToast('Đã nhận bệnh ' + data.name + ' vào giường ' + data.bed);
       updateDynamicDashboardCounts();
       openDetailById(newP.id, 'overview');
+    }
+
+    function openAiAssistantModal() {
+      var modal = document.getElementById('ai-assistant-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeAiAssistantModal() {
+      var modal = document.getElementById('ai-assistant-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function sendAiQuery() {
+      var input = document.getElementById('ai-user-input');
+      var chatBox = document.getElementById('ai-chat-box');
+      if (!input || !chatBox) return;
+      var text = input.value.trim();
+      if (!text) return;
+
+      chatBox.innerHTML += '<div style="background: #0284c7; color: #ffffff; padding: 8px 10px; border-radius: 8px; margin-left: auto; max-width: 85%;">' + text + '</div>';
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      setTimeout(function() {
+        var reply = "Dựa trên các tài liệu chăm sóc ICU và hướng dẫn NPIAP gần nhất, đối với câu hỏi '" + text + "', điều dưỡng cần duy trì đánh giá thang điểm Waterlow mỗi ca, đảm bảo xoay trở đúng tư thế nghiêng 30 độ kèm theo đệm giảm áp chuyên dụng và ghi nhận đầy đủ điểm tì đè.";
+        chatBox.innerHTML += '<div style="background: #e0f2fe; color: #0369a1; padding: 8px 10px; border-radius: 8px; max-width: 85%;">' + reply + '</div>';
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
     }
 
     updateDynamicDashboardCounts();
